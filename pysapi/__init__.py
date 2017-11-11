@@ -29,8 +29,17 @@ class lot:
             return None
         else:
             return result[0]
+    
+    def Select(self, fxn):
+        '''returns a new lot of objects where fxn(object) == True'''
+        if callable(fxn):
+            return lot(list(filter(fxn,self.collection)))
+        else:
+            raise TypeError('fxn is not callable')
+        
     def __getitem__(self,key):
         if type(key) is int or type(key) is slice:
+            # this could be slow:
             return [i for i in self.collection][key]
         else:
             if callable(key):
