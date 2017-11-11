@@ -25,7 +25,7 @@ from System.Runtime.InteropServices import GCHandle, GCHandleType
 
 # the python
 import numpy as np
-from ctypes import string_at, sizeof, c_int32, c_bool
+from ctypes import string_at, sizeof, c_int32, c_bool, c_double
 
 SAFE_MODE = True  # if True all array copies are verified
 
@@ -117,30 +117,80 @@ def dose_to_nparray(dose):
     offset = float(dose.VoxelToDoseValue(0).Dose)/scale  # minimum dose value stored as int (zero if coming from Eclipse plan)
     return scale*dose_array.astype(float)+offset
 
-def segment_mask_for_dose_gird(structure, dose):
-    '''returns a 3D numpy.ndarray of bools matching dose grid indexed like [z,y,x]'''
-    if (structure.HasSegment):
-        dose_shape = (dose.ZSize,dose.YSize,dose.XSize)
-        mask_array = np.zeros(dose_shape)
+def fill_in_profiles(dose_or_image, profile_fxn, row_buffer, dtype, pre_buffer=None):
+    mask_array = np.zeros((dose_or_image.ZSize,dose_or_image.YSize,dose_or_image.XSize))
 
-        pre_buffer = System.Collections.BitArray(dose.ZSize);
-        row_buffer = Array.CreateInstance(bool,dose.ZSize);
-        
-        z_direction = VVector.op_Multiply(Double(dose.ZSize * dose.ZRes),dose.ZDirection)
-        for x in range(dose.XSize): # scan X dimension
-            start_x = VVector.op_Addition(dose.Origin,
-                VVector.op_Multiply(Double(x * dose.XRes),dose.XDirection))
-            for y in range(dose.YSize): # scan Y dimension
-                # get the profile along Z dimension
-                start = VVector.op_Addition(start_x,VVector.op_Multiply(Double(y * dose.YRes),dose.YDirection))
-                stop = VVector.op_Addition(start,z_direction)
-                structure.GetSegmentProfile(start,stop,pre_buffer)
+    z_direction = VVector.op_Multiply(Double(dose_or_image.ZSize * dose_or_image.ZRes),dose_or_image.ZDirection)
+    for x in range(dose_or_image.XSize): # scan X dimension
+        start_x = VVector.op_Addition(dose_or_image.Origin,
+            VVector.op_Multiply(Double(x * dose_or_image.XRes),dose_or_image.XDirection))
+        for y in range(dose_or_image.YSize): # scan Y dimension
+            # get the profile along Z dimension
+            start = VVector.op_Addition(start_x,VVector.op_Multiply(Double(y * dose_or_image.YRes),dose_or_image.YDirection))
+            stop = VVector.op_Addition(start,z_direction)
+            if pre_buffer is None:
+                profile_fxn(start,stop,row_buffer)
+            else:
+                profile_fxn(start,stop,pre_buffer)
                 pre_buffer.CopyTo(row_buffer,0)
-                mask_array[:,y,x] = to_ndarray(row_buffer,c_bool)
+            mask_array[:,y,x] = to_ndarray(row_buffer,dtype)
+    return mask_array
+
+
+def make_segment_mask_for_gird(structure,dose_or_image):
+    '''returns a 3D numpy.ndarray of bools matching dose or image grid indexed like [z,x,y]'''
+    return make_segment_mask_for_structure(dose_or_image,structure)
+
+
+def make_segment_mask_for_structure(dose_or_image, structure):
+    '''returns a 3D numpy.ndarray of bools matching dose or image grid indexed like [z,y,x]'''
+    if (structure.HasSegment):
+        mask_array = np.zeros((dose_or_image.ZSize,dose_or_image.YSize,dose_or_image.XSize))
+
+        pre_buffer = System.Collections.BitArray(dose_or_image.ZSize);
+        row_buffer = Array.CreateInstance(bool,dose_or_image.ZSize);
                 
-        return mask_array
+        return fill_in_profiles(dose_or_image,structure.GetSegmentProfile,row_buffer,c_bool,pre_buffer)
     else:
         raise Exception("structure has no segment data")
+
+
+def make_dose_for_grid(dose, image=None):
+    '''returns a 3D numpy.ndarray of doubles matching dose (default) or image grid indexed like [z,y,x]'''
+    
+    if image is not None:
+        row_buffer = Array.CreateInstance(Double,image.ZSize);                
+        dose_array = fill_in_profiles(image,dose.GetDoseProfile,row_buffer,c_double)
+    else:
+        # default
+        dose_array = dose_to_nparray(dose)
+
+    dose_array[np.where(np.isnan(dose_array))] = 0.0
+    return dose_array
+
+
+def compute_voxel_points_matrix(dose_or_image):
+    
+    origin = [dose_or_image.Origin.x,dose_or_image.Origin.y,dose_or_image.Origin.z]
+    resolution = [dose_or_image.XRes,dose_or_image.YRes,dose_or_image.ZRes]
+    _shape = [dose_or_image.XSize,dose_or_image.YSize,dose_or_image.ZSize]
+    
+    # create an array of points (location of each voxel)
+    ax = []
+    for dim in range(3):
+        ax.append(np.linspace(
+            start = origin[dim],
+            stop = origin[dim] + _shape[dim]*resolution[dim],
+            num = _shape[dim]
+        ))
+
+    # create a matrix of 3-vectors for voxel locations
+    voxel_points = np.vstack((np.meshgrid(*ax,indexing='ij'))).reshape(3,*_shape).T
+    voxel_points = np.swapaxes(voxel_points,0,2)  # gets us to [z,y,x]
+    assert np.all(origin == voxel_points[0,0,0])
+    assert np.all(origin + np.array(_shape) * np.array(resolution) == voxel_points[-1,-1,-1])
+    return voxel_points
+
 
 # where the magic happens:
 
@@ -152,7 +202,13 @@ lotify(Beam)
 lotify(StructureSet)
 
 # monkeypatch numpy array translators
-Structure.asarray = segment_mask_for_dose_gird
-Dose.asarray = dose_to_nparray
+Structure.nparray_like = make_segment_mask_for_gird
+Dose.nparray_like = make_dose_for_grid
+
+Image.mask_nparray = make_segment_mask_for_structure
+Dose.mask_nparray = make_segment_mask_for_structure
+
+Image.voxel_pts_nparray = compute_voxel_points_matrix
+Dose.voxel_pts_nparray = compute_voxel_points_matrix
 
 
