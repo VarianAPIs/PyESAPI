@@ -22,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="tools\Structures.py">
+    <Compile Include="tools\structures.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tools\__init__.py">
