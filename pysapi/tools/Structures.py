@@ -10,7 +10,7 @@ def is_number(s):
         return False
 
 
-class label_matcher(object):
+class IdMatcher(object):
     def __init__(self,name,regex,overmatch_fxn = None):
         self.name = name
         self.regex = regex
