@@ -7,7 +7,6 @@ import clr  # pip install pythonnet
 clr.AddReference('System.Windows')
 clr.AddReference('System.Linq')
 clr.AddReference('System.Collections')
-#clr.AddReference('System.Reflection')
 clr.AddReference('VMS.TPS.Common.Model')
 clr.AddReference('VMS.TPS.Common.Model.API')
 
@@ -29,7 +28,7 @@ from ctypes import string_at, sizeof, c_int32, c_bool, c_double
 from scipy.ndimage.morphology import binary_dilation
 
 
-SAFE_MODE = True  # if True all array copies are verified
+SAFE_MODE = True  # if True all C# to Numpy array copies are verified
 
 class lot:
     '''a custom collection container for pysapi'''
@@ -209,14 +208,14 @@ def compute_voxel_points_matrix(dose_or_image):
 
 # where the magic happens:
 
-# add any missing objects with IEnumerable childeren
+# add Lot accessors to objects with IEnumerable childeren
 lotify(Patient)
 lotify(PlanSetup)
 lotify(Course)
 lotify(Beam)
 lotify(StructureSet)
 
-# monkeypatch numpy array translators
+# monkeypatch "extensions" for numpy array translators
 Structure.nparray_like = make_segment_mask_for_gird
 Dose.nparray_like = make_dose_for_grid
 
