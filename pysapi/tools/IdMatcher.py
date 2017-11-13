@@ -1,16 +1,7 @@
-
-
-def is_number(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        return False
-    except TypeError:
-        return False
-
+import re
 
 class IdMatcher(object):
+    '''a class to help manage regex matches'''
     def __init__(self,name,regex,overmatch_fxn = None):
         self.name = name
         self.regex = regex
@@ -43,7 +34,6 @@ class IdMatcher(object):
         elif len(self.groups_list) == 0:
             raise Exception('"{}" not found in {} with regex("{}")'.format(self.name,self.tested_list,self.regex))
 
-#         print '\n', self.label_list
         return self.found_label
         
     def clean(self):

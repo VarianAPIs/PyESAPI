@@ -1,1 +1,1 @@
-from IdMatcher import IdMatcher
+from .IdMatcher import *

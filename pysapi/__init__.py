@@ -26,6 +26,8 @@ from System.Runtime.InteropServices import GCHandle, GCHandleType
 # the python
 import numpy as np
 from ctypes import string_at, sizeof, c_int32, c_bool, c_double
+from scipy.ndimage.morphology import binary_dilation
+
 
 SAFE_MODE = True  # if True all array copies are verified
 
@@ -103,38 +105,50 @@ def to_ndarray(src,dtype):
 
 
 def dose_to_nparray(dose):
-    '''returns a 3D numpy.ndarray of floats indexed like [z,y,x]'''
+    '''returns a 3D numpy.ndarray of floats indexed like [x,y,z]'''
 
-    dose_shape = (dose.ZSize,dose.YSize,dose.XSize)
+    dose_shape = (dose.XSize,dose.YSize,dose.ZSize)
     dose_array = np.zeros(dose_shape)
 
     _buffer = Array.CreateInstance(Int32, dose.XSize, dose.YSize)
     for z in range(dose.ZSize):
         dose.GetVoxels(z,_buffer)
-        dose_array[z,:,:] = to_ndarray(_buffer,dtype=c_int32).reshape((dose.XSize,dose.YSize)).T  # transposed to [y,x] ordering
+        dose_array[:,:,z] = to_ndarray(_buffer,dtype=c_int32).reshape((dose.XSize,dose.YSize))
         
     scale = float(dose.VoxelToDoseValue(1).Dose - dose.VoxelToDoseValue(0).Dose)  # maps int to float
     offset = float(dose.VoxelToDoseValue(0).Dose)/scale  # minimum dose value stored as int (zero if coming from Eclipse plan)
     return scale*dose_array.astype(float)+offset
 
 def fill_in_profiles(dose_or_image, profile_fxn, row_buffer, dtype, pre_buffer=None):
-    mask_array = np.zeros((dose_or_image.ZSize,dose_or_image.YSize,dose_or_image.XSize))
+    '''fills in 3D profile data (dose or segments)'''
+    mask_array = np.zeros((dose_or_image.XSize, dose_or_image.YSize, dose_or_image.ZSize))
 
-    z_direction = VVector.op_Multiply(Double(dose_or_image.ZSize * dose_or_image.ZRes),dose_or_image.ZDirection)
-    for x in range(dose_or_image.XSize): # scan X dimension
+    # note used ZSize-1 to match zero indexed loops below and compute_voxel_points_matrix(...)
+    z_direction = VVector.op_Multiply(Double((dose_or_image.ZSize-1) * dose_or_image.ZRes), dose_or_image.ZDirection)    
+    y_step = VVector.op_Multiply(dose_or_image.YRes, dose_or_image.YDirection)
+    
+    for x in range(dose_or_image.XSize): # scan X dimensions
         start_x = VVector.op_Addition(dose_or_image.Origin,
-            VVector.op_Multiply(Double(x * dose_or_image.XRes),dose_or_image.XDirection))
+            VVector.op_Multiply(Double(x * dose_or_image.XRes), dose_or_image.XDirection))
+
         for y in range(dose_or_image.YSize): # scan Y dimension
+            stop = VVector.op_Addition(start_x, z_direction)
+
             # get the profile along Z dimension
-            start = VVector.op_Addition(start_x,VVector.op_Multiply(Double(y * dose_or_image.YRes),dose_or_image.YDirection))
-            stop = VVector.op_Addition(start,z_direction)
             if pre_buffer is None:
-                profile_fxn(start,stop,row_buffer)
+                profile_fxn(start_x, stop, row_buffer)
             else:
-                profile_fxn(start,stop,pre_buffer)
-                pre_buffer.CopyTo(row_buffer,0)
-            mask_array[:,y,x] = to_ndarray(row_buffer,dtype)
+                profile_fxn(start_x, stop, pre_buffer)
+                pre_buffer.CopyTo(row_buffer, 0)
+
+            # save data
+            mask_array[x,y,:] = to_ndarray(row_buffer, dtype)
+            
+            # add step for next point
+            start_x = VVector.op_Addition(start_x, y_step)
+
     return mask_array
+
 
 
 def make_segment_mask_for_gird(structure,dose_or_image):
@@ -143,7 +157,7 @@ def make_segment_mask_for_gird(structure,dose_or_image):
 
 
 def make_segment_mask_for_structure(dose_or_image, structure):
-    '''returns a 3D numpy.ndarray of bools matching dose or image grid indexed like [z,y,x]'''
+    '''returns a 3D numpy.ndarray of bools matching dose or image grid indexed like [x,y,z]'''
     if (structure.HasSegment):
         mask_array = np.zeros((dose_or_image.ZSize,dose_or_image.YSize,dose_or_image.XSize))
 
@@ -156,7 +170,7 @@ def make_segment_mask_for_structure(dose_or_image, structure):
 
 
 def make_dose_for_grid(dose, image=None):
-    '''returns a 3D numpy.ndarray of doubles matching dose (default) or image grid indexed like [z,y,x]'''
+    '''returns a 3D numpy.ndarray of doubles matching dose (default) or image grid indexed like [x,y,z]'''
     
     if image is not None:
         row_buffer = Array.CreateInstance(Double,image.ZSize);                
@@ -170,7 +184,7 @@ def make_dose_for_grid(dose, image=None):
 
 
 def compute_voxel_points_matrix(dose_or_image):
-    
+    ''' returns a matrix of vectors, matching the dose or image object provided, indexed like [x,y,z] wich returns a vector (x,y.z) mm'''
     origin = [dose_or_image.Origin.x,dose_or_image.Origin.y,dose_or_image.Origin.z]
     resolution = [dose_or_image.XRes,dose_or_image.YRes,dose_or_image.ZRes]
     _shape = [dose_or_image.XSize,dose_or_image.YSize,dose_or_image.ZSize]
@@ -180,15 +194,16 @@ def compute_voxel_points_matrix(dose_or_image):
     for dim in range(3):
         ax.append(np.linspace(
             start = origin[dim],
-            stop = origin[dim] + _shape[dim]*resolution[dim],
-            num = _shape[dim]
+            stop = origin[dim] + (_shape[dim]-1)*resolution[dim],
+            num = _shape[dim],
+            endpoint=True
         ))
 
     # create a matrix of 3-vectors for voxel locations
     voxel_points = np.vstack((np.meshgrid(*ax,indexing='ij'))).reshape(3,*_shape).T
-    voxel_points = np.swapaxes(voxel_points,0,2)  # gets us to [z,y,x]
+    voxel_points = np.swapaxes(voxel_points,0,2)  # gets us to [x,y,z]
     assert np.all(origin == voxel_points[0,0,0])
-    assert np.all(origin + np.array(_shape) * np.array(resolution) == voxel_points[-1,-1,-1])
+    assert np.all(origin + (np.array(_shape)-1) * np.array(resolution) == voxel_points[-1,-1,-1])
     return voxel_points
 
 
@@ -212,3 +227,25 @@ Image.voxel_pts_nparray = compute_voxel_points_matrix
 Dose.voxel_pts_nparray = compute_voxel_points_matrix
 
 
+# some tests
+
+def validate_structure_mask(structure, mask, pts, margin=4):
+    dilation_idx = np.where(binary_dilation(mask,iterations=margin))
+    flat_pts = pts[dilation_idx]
+    flat_mask = mask[dilation_idx]
+    vv = VVector()
+    
+    def tester(pt):
+        vv.x = pt[0]
+        vv.y = pt[1]
+        vv.z = pt[2]
+        return structure.IsPointInsideSegment(vv)
+    
+    mismatch_count = 0
+    for i,p in enumerate(flat_pts):
+        if flat_mask[i] != tester(p):
+            mismatch_count += 1
+   
+    error = mismatch_count/len(flat_mask)*100.0
+    print("mask error (%):",error)
+    assert error <= 0.05, "Masking error greater than 0.05 %"
