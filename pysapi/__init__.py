@@ -30,7 +30,7 @@ from scipy.ndimage.morphology import binary_dilation
 
 SAFE_MODE = True  # if True all C# to Numpy array copies are verified
 
-class lot:
+class Lot:
     '''a custom collection container for pysapi'''
     def __init__(self, some_collectable):
         self.collection = some_collectable
@@ -45,7 +45,7 @@ class lot:
     def Select(self, fxn):
         '''returns a new lot of objects where fxn(object) == True'''
         if callable(fxn):
-            return lot(list(filter(fxn,self.collection)))
+            return Lot(list(filter(fxn,self.collection)))
         else:
             raise TypeError('fxn is not callable')
         
@@ -67,7 +67,7 @@ class lot:
 
 def lot_lambda(attr):
     '''returns a lambda that wraps attr in a lot'''
-    return lambda self,key=None: lot(getattr(self,attr)) if key is None else lot(getattr(self,attr))[key]
+    return lambda self,key=None: Lot(getattr(self,attr)) if key is None else Lot(getattr(self,attr))[key]
 
 
 def lotify(T):
@@ -80,7 +80,7 @@ def lotify(T):
         if ienum_t.IsAssignableFrom(p.PropertyType) \
         and p.PropertyType.IsGenericType \
         and len(p.PropertyType.GetGenericArguments()) == 1:
-            # add the lot accessor to the parent object
+            # Monkeypatch the lot accessor onto the parent object
             setattr(T,p.Name+"Lot",lot_lambda(p.Name))
 
 

@@ -23,6 +23,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="tools\IdMatcher.py" />
+    <Compile Include="tools\structures.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tools\__init__.py" />
     <Compile Include="__init__.py" />
   </ItemGroup>
