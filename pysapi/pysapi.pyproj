@@ -23,7 +23,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="tools\IdMatcher.py" />
-    <Compile Include="tools\structures.py">
+    <Compile Include="tools\structures\dvh.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tools\structures\ovh.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tools\structures\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tools\__init__.py" />
@@ -31,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="tools\" />
+    <Folder Include="tools\structures\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
