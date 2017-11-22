@@ -23,6 +23,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="tools\IdMatcher.py" />
+    <Compile Include="tools\plans\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tools\structures\dth.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tools\structures\dvh.py">
       <SubType>Code</SubType>
     </Compile>
@@ -37,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="tools\" />
+    <Folder Include="tools\plans\" />
     <Folder Include="tools\structures\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

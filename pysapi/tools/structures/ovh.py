@@ -13,8 +13,8 @@ def cumovh(structure_set, ptv_id, oar_id, min_mm=-10.0, max_mm=50.0, step_mm=5.0
         step_mm: the steps in mm to take after min_mm and up to but not exceeding max_mm (default is 5.0)
     
     Returns:
-        mm: an np.array of expansions in mm of the target
-        volume: a np.array of the computed overlap volume of the corrisponding expansions in cm^3      
+        mm: a numpy array of expansions in mm of the target
+        volume: a numpy array of the computed overlap volume of the corrisponding expansions in cm^3      
     '''
     ptv = structure_set.StructuresLot(ptv_id)
     oar = structure_set.StructuresLot(oar_id)

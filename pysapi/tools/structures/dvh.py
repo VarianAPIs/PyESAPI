@@ -1,3 +1,5 @@
+from ... import DoseValuePresentation, VolumePresentation
+
 def dvh_absolue(plan, sId, dose_bin_width=.1):
     '''Shortcut to compute DVH with absolue dose and relative volume values.
 
