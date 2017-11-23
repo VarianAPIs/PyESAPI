@@ -1,6 +1,6 @@
 from ... import DoseValuePresentation, VolumePresentation
 
-def dvh_absolue(plan, sId, dose_bin_width=.1):
+def dvh_absolute(plan, sId, dose_bin_width=.1):
     '''Shortcut to compute DVH with absolue dose and relative volume values.
 
     Args:
@@ -14,8 +14,8 @@ def dvh_absolue(plan, sId, dose_bin_width=.1):
     '''
     dvh = plan.GetDVHCumulativeData(
         plan.StructureSet.StructuresLot(sId),
-        DoseValuePresentation.Absolute,
-        VolumePresentation.Relative,
+        DoseValuePresentation.Relative,
+        VolumePresentation.AbsoluteCm3,
         dose_bin_width
     )
     return [p.DoseValue.Dose for p in dvh.CurveData], [p.Volume for p in dvh.CurveData]
