@@ -20,7 +20,7 @@ def cumovh(structure_set, ptv_id, oar_id, min_mm=-10.0, max_mm=50.0, step_mm=5.0
     oar = structure_set.StructuresLot(oar_id)
 
     try:
-        overlap = structure_set.AddStructure('DOSE_REGION','temp_pysapi2')
+        overlap = structure_set.AddStructure('DOSE_REGION', 'temp_pysapi2')
         ovh_mm = np.arange(min_mm, max_mm, step_mm)
         ovh_vol = []
 

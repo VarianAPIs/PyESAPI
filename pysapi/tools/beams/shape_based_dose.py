@@ -502,24 +502,27 @@ def make_maps_from_x(study, dose_group='dose_sh2o', alt_x_path=None):
         study.create_dataset('{}/beams/{}/map'.format(dose_group, beam_number), flu.T)
 
 
-def _make_sh2o_Dij_beam(dose_shape, idxs_oi, pts_3d_ct, pts_3d_shell_ct, esapi_Beam, SAD_mm, field_size_mm, field_buffer_mm,
-                        beamlet_size_x_mm, beamlet_size_z_mm, save_meta=False, dose_group=None):
-    print("Beam: {}".format(esapi_Beam.Number))
+def _make_sh2o_Dij_beam(dose_shape, idxs_oi, pts_3d_ct, pts_3d_shell_ct, pysapi_beam, field_size_mm,
+                        field_buffer_mm,
+                        beamlet_size_x_mm, beamlet_size_z_mm):
+    """ Ready for use in PySAPI """
+    print("Beam: #{} ({})".format(pysapi_beam.get_BeamNumber(), pysapi_beam.Id))
 
-    # settings
-    isocenter_mm = [esapi_Beam.isoX[0], esapi_Beam.isoY[0], esapi_Beam.isoZ[0]]  # already in MM
-    gantry_angle_deg = esapi_Beam.GantryAng[0]
-
+    #  since each beam could have a different isocenter
+    isocenter_mm = [pysapi_beam.IsocenterPosition.x, pysapi_beam.IsocenterPosition.y,
+                    pysapi_beam.IsocenterPosition.z]  # already in mm
     pts_3d = pts_3d_ct - isocenter_mm
     pts_3d_shell = pts_3d_shell_ct - isocenter_mm
-    gantry_angle_deg = esapi_Beam.GantryAng[0]  # USING CONTROL POINT 0
+
+    gantry_angle_deg = pysapi_beam.ControlPoints[0].GantryAngle
+    assert np.all([cp.GantryAngle == gantry_angle_deg for cp in pysapi_beam.ControlPoints]), "Arc beams not implemented."
 
     csr = compute_Dij(  # v_dig_valid, x_bins, y_bins
         dose_shape,
         idxs_oi,
         pts_3d,
         pts_3d_shell,
-        SAD=SAD_mm,
+        SAD=pysapi_beam.TreatmentUnit.get_SourceAxisDistance(),
         gantry_angle=gantry_angle_deg,
         field_size=field_size_mm,
         field_buffer=field_buffer_mm,  # added to all sides
@@ -530,51 +533,6 @@ def _make_sh2o_Dij_beam(dose_shape, idxs_oi, pts_3d_ct, pts_3d_shell_ct, esapi_B
     )
 
     tic = time()
-
-    # if save_meta:
-    #     print("Saving csr for beam {}...".format(fmap_beam.Number))
-    #     study.create_dataset('{}/beams/{}/csr/shape'.format(dose_group, fmap_beam.Number), csr.shape,
-    #                          compression_opts=0)
-    #     study.create_dataset('{}/beams/{}/csr/data'.format(dose_group, fmap_beam.Number), csr.data, compression_opts=0)
-    #     study.create_dataset('{}/beams/{}/csr/indices'.format(dose_group, fmap_beam.Number), csr.indices,
-    #                          compression_opts=0)
-    #     study.create_dataset('{}/beams/{}/csr/indptr'.format(dose_group, fmap_beam.Number), csr.indptr,
-    #                          compression_opts=0)
-    #
-    #     study.create_dataset('{}/beams/{}/field_size_mm'.format(dose_group, fmap_beam.Number), field_size_mm,
-    #                          compression=None)
-    #     study.create_dataset('{}/beams/{}/field_buffer_mm'.format(dose_group, fmap_beam.Number), field_buffer_mm,
-    #                          compression=None)
-    #     study.create_dataset('{}/beams/{}/beamlet_size_xz_mm'.format(dose_group, fmap_beam.Number),
-    #                          [beamlet_size_x_mm, beamlet_size_z_mm], compression=None)
-    #
-    #     study.create_dataset('{}/beams/{}/{}'.format(dose_group, fmap_beam.Number, 'description'), fmap_beam.Name,
-    #                          compression=None)
-    #     study.create_dataset('{}/beams/{}/{}'.format(dose_group, fmap_beam.Number, 'energy'), fmap_beam.BeamEnergy,
-    #                          compression=None)
-    #     study.create_dataset('{}/beams/{}/{}'.format(dose_group, fmap_beam.Number, 'mu'), fmap_beam.MU,
-    #                          compression=None)
-    #     # study.create_dataset('{}/beams/{}/{}'.format(dose_group,fmap_beam.Number, 'mlcx_a'), fmap_beam.BankA, compression=None)
-    #     # study.create_dataset('{}/beams/{}/{}'.format(dose_group,fmap_beam.Number, 'mlcx_b'), fmap_beam.BankB, compression=None)
-    #     study.create_dataset('{}/beams/{}/{}'.format(dose_group, fmap_beam.Number, 'jaw_x1'), fmap_beam.X1 * 10.,
-    #                          compression=None)  # native units of fluence map code is cm, converting from mm
-    #     study.create_dataset('{}/beams/{}/{}'.format(dose_group, fmap_beam.Number, 'jaw_x2'), fmap_beam.X2 * 10.,
-    #                          compression=None)
-    #     study.create_dataset('{}/beams/{}/{}'.format(dose_group, fmap_beam.Number, 'jaw_y1'), fmap_beam.Y1 * 10.,
-    #                          compression=None)
-    #     study.create_dataset('{}/beams/{}/{}'.format(dose_group, fmap_beam.Number, 'jaw_y2'), fmap_beam.Y2 * 10.,
-    #                          compression=None)
-    #     study.create_dataset('{}/beams/{}/{}'.format(dose_group, fmap_beam.Number, 'isocenter'),
-    #                          np.array(zip(fmap_beam.isoX, fmap_beam.isoY, fmap_beam.isoZ)),
-    #                          compression=None)  # KEEP IN MM (units)
-    #     study.create_dataset('{}/beams/{}/{}'.format(dose_group, fmap_beam.Number, 'gantry'), fmap_beam.GantryAng,
-    #                          compression=None)
-    #     study.create_dataset('{}/beams/{}/{}'.format(dose_group, fmap_beam.Number, 'sad_mm'), SAD_mm, compression=None)
-    #     study.create_dataset('{}/beams/{}/{}'.format(dose_group, fmap_beam.Number, 'collimator'), 0.0,
-    #                          compression=None)  # bm1.CollimatorAng use zero since we do not account for collimator rotation at this time
-    #
-    # d_mtx = csr.dot(v_mtx.T)
-
     print(time() - tic, "sec", csr.__repr__())
     return csr
 
@@ -591,30 +549,32 @@ def _calc_num_px_for_field(field_size_mm, field_buffer_mm, beamlet_size_x_mm, be
     return x_map_n, z_map_n
 
 
-def compute_shape_dose_influence_matrix(esapi_Plan, body_shell, pts_3d_ct, dose_mask, beam_energy, ct_group='ct_lowres', dose_group='dose_sh2o', body_shell_path='structures/body/shell',
-                          dose_mask_path='structures_lowres/body/mask',
-                          dij_cutoff=5e-3,
-                          # beam_energy='6X'
-                          ):
-    # if fluence_obj is None:
-    #     f = make_fluence_maps(study)
-    # else:
-    #     f = fluence_obj
-    SAD_mm = 1000.0
+def compute_shape_dose_influence_matrix(pysapi_plan, body_shell, pts_3d_ct, dose_mask, fluence_cutoff=5e-3,
+                                        return_scatter_matrix=False):
+    """ Ready for use in PySAPI """
+
+    beam_energy = pysapi_plan.BeamsLot(0).EnergyModeDisplayName
+    assert np.all([beam_energy == b.EnergyModeDisplayName for b in
+                   pysapi_plan.Beams]), "Beams having different energies is not implemented."
+
     ## testing alternative sizes
     beamlet_size_x_mm = 2.5  # 1.0 # this is minimum leaf resolution, set to 1.0 mm
     beamlet_size_z_mm = 2.5  # 5.0 # truebeam HD is 5.0mm and 10.0mm clinac is 10.0mm
-    field_buffer_mm = 20.0  # or 2 cm
+    field_buffer_mm = 20.0  # or 2 cm, needed for penumbra
 
-    # pts_3d_ct = study['{}/voxel_coords'.format(ct_group)]
-    idxs_oi = np.where(dose_mask > 0)
+    idxs_oi = np.where(dose_mask > 0)  # indexes Of Interest
 
     # this should happen at full resulution if possible
     pts_3d_shell_ct = pts_3d_ct[np.where(body_shell)]
 
     field_size_mm = 0.
-    for beam_obj in esapi_Plan.Beams:
-        tst_fsize = 10. * 2. * max(max(abs(beam_obj.X2.max()), abs(beam_obj.X1.max())), max(abs(beam_obj.Y2.max()), abs(beam_obj.Y1.max())))
+    # scan control points to get max square field size
+    for beam_obj in pysapi_plan.Beams:
+        jaws_max_mm = np.max([np.abs([cp.get_JawPositions().get_X1() for cp in beam_obj.ControlPoints]).max(),
+                              np.abs([cp.get_JawPositions().get_X2() for cp in beam_obj.ControlPoints]).max(),
+                              np.abs([cp.get_JawPositions().get_X1() for cp in beam_obj.ControlPoints]).max(),
+                              np.abs([cp.get_JawPositions().get_X2() for cp in beam_obj.ControlPoints]).max()])
+        tst_fsize = 2. * jaws_max_mm
         if tst_fsize > field_size_mm:
             field_size_mm = tst_fsize
 
@@ -634,74 +594,60 @@ def compute_shape_dose_influence_matrix(esapi_Plan, body_shell, pts_3d_ct, dose_
 
     x_map_n, z_map_n = _calc_num_px_for_field(field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm)
 
-    # make common kernel fluence
-    # x_ax = np.array(range(x_map_n))
-    # y_ax = np.array(range(z_map_n))
-    # x_m, y_m = np.meshgrid(x_ax,y_ax)
-    # scat_kern = _scatter_kernel(x_m, y_m, beamlet_size_mm,center=float(x_map_n/2))
-    v_mtx = lil_matrix((x_map_n * z_map_n, x_map_n * z_map_n), dtype=np.float32)
+    v_mtx = lil_matrix((x_map_n * z_map_n, x_map_n * z_map_n), dtype=np.float32)  # the 2D scatter kernel matrix
 
     print(x_map_n)
     for i in range(x_map_n):
         x_ax = (np.array(range(x_map_n)) - i) * beamlet_size_x_mm
         if i % 10 == 0:
-            print("row: {}".format(i))
+            print("row: {}".format(i), end='\r')
         for j in range(z_map_n):
             y_ax = (np.array(range(z_map_n)) - j) * beamlet_size_z_mm
             x_m, y_m = np.meshgrid(x_ax, y_ax)
-            # r_m = np.sqrt(np.square(x_m)+np.square(y_m))
-            ## due to wierdness of convolve function , we have to offset grid by half bixel -- but we don't convolve here!!! taking it out
-            ## TESTING TRANSPOSE,
             k = _scatter_kernel(y_m, x_m, kernel_data[beam_energy])
-            # v = np.zeros((x_map_n,z_map_n))
-            # v[i,j] = 1.0
-            # NOTE Z,X Transpose!!!
-            # k = _scatter_kernel(x_m, y_m, beamlet_size_z_mm, beamlet_size_x_mm, centers=(i, j), energy=beam_energy)#convolve2d(v,scat_kern, mode='same')
             tmp = k.flatten()
-            tmp[np.where(tmp < dij_cutoff)] = 0.0
+            tmp[np.where(tmp < fluence_cutoff)] = 0.0
             v_mtx[i * z_map_n + j, :] = tmp
+    print()
     print(v_mtx.__repr__())
 
-    for itr, beam in enumerate(esapi_Plan.Beams):
+    for itr, beam in enumerate(pysapi_plan.Beams):
         if itr == 0:
             # first beam
             full_DijT = _make_sh2o_Dij_beam(
                 pts_3d_ct.shape[:3], idxs_oi, pts_3d_ct, pts_3d_shell_ct,
-                beam, SAD_mm, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm,
-                dose_group=dose_group, save_meta=True
+                beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm,
             ).dot(v_mtx.T).transpose()
         else:
             full_DijT = vstack((full_DijT, _make_sh2o_Dij_beam(
                 pts_3d_ct.shape[:3], idxs_oi, pts_3d_ct, pts_3d_shell_ct,
-                beam, SAD_mm, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm,
-                dose_group=dose_group, save_meta=True
+                beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm,
             ).dot(v_mtx.T).transpose()))
 
     full_DijT = full_DijT.tocsr()
-    tic = time()
-    # study.create_dataset('{}/DijT_csr/shape'.format(dose_group), full_DijT.shape, compression_opts=0)
-    # study.create_dataset('{}/DijT_csr/data'.format(dose_group), full_DijT.data, compression_opts=0)
-    # study.create_dataset('{}/DijT_csr/indices'.format(dose_group), full_DijT.indices, compression_opts=0)
-    # study.create_dataset('{}/DijT_csr/indptr'.format(dose_group), full_DijT.indptr, compression_opts=0)
-    # study.save()
-    # print(time() - tic, " sec to save")
-    return full_DijT
+
+    if return_scatter_matrix:
+        return full_DijT, v_mtx
+    else:
+        return full_DijT
 
 
 def make_sh2o_dose(study, ct_group, body_shell_path, dose_mask_path, trial_name='', fluence_obj=None,
                    mode='original', dose_group=None):
+    # TODO: make this function work.
+
     # some per-plan settings/constants
     # ct_group = 'ct_lowres'
     # body_shell_path = 'structures/body/shell' #'/structures_lowres/block/mask'
     # dose_mask_path = 'structures_lowres/body/mask' #'/structures_lowres/block/mask'
 
     SAD_mm = 1000.0
-    if fluence_obj is None:
-        f = make_fluence_maps(study, resolution=160,
-                              minLeafPxWidth=2)  # creates .25 cm or 50 cm square pixels(for field_size = 40)
-        #  todo: make_fluence_maps should place all needed data in rt5 study!!
-    else:
-        f = fluence_obj
+    # if fluence_obj is None:
+    #     f = make_fluence_maps(study, resolution=160,
+    #                           minLeafPxWidth=2)  # creates .25 cm or 50 cm square pixels(for field_size = 40)
+    #     #  todo: make_fluence_maps should place all needed data in rt5 study!!
+    # else:
+    #     f = fluence_obj
 
     if mode == 'original':
 
