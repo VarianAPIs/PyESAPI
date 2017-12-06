@@ -124,22 +124,19 @@ def _projection_matrix(point, normal, direction=None,
     return M
 
 
-def proj_iso_plane(pts, sad, gantry_deg):
+def proj_iso_plane(pts, sad, gantry_deg, collimator_deg=90.0):
     # pts = pts.copy()
     """
     ssd: source to axis distance
     gantry_ang: gantry rotation angle
+    collimator_deg: collimator rotation angle
     pts: point or matrix of column vectors
     """
-    rot = [0.0, 0.0, np.radians(gantry_deg)]
+    rot = [0.0, np.radians(collimator_deg), np.radians(gantry_deg)]
     src = [0, -sad, 0]
     pts_r = np.dot(rotation_matrix(rot), pts)
-    #     print pts
-    #     try:
+
     pts_r = np.vstack((pts_r, np.ones(pts_r.shape[1])))
-    #     print pts
-    #     except IndexError:
-    #         pts_rh= np.vstack((pts_r,np.ones((1))))
     pts_r = np.dot(_projection_matrix([0., 0., 0.], [0., 1., 0.], perspective=src), pts_r)
     pts_r = np.divide(pts_r[:3], pts_r[3])
     return pts_r

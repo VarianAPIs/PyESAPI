@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.interpolate import griddata
 from scipy.sparse import csr_matrix, lil_matrix, hstack, vstack
-from ..geometry import rotation_matrix, proj_iso_plane  # , make_fluence_maps
+from pysapi.tools.geometry import rotation_matrix, proj_iso_plane  # , make_fluence_maps
 from time import time
 # from scipy.signal import convolve2d
 from scipy.ndimage import convolve
@@ -12,13 +12,13 @@ from scipy.ndimage.interpolation import rotate
 #  commissioning data and fit fxns
 
 pdd_data = {
-    "6X": {
-        "buildup": [-0.00015749459237802087, 0.018456397544299074, -0.88448139491242872, 22.163062813849965,
-                    -312.23926598651917, 2449.7961711094094, 1749.682558831852],
-        "split": 18.75,
-        "falloff": [-2.8264719677060061e-07, 0.00024313850219755478, -0.036093426359969094, -28.230918530108855,
-                    11245.762396352433]
-    },
+    # "6X": {
+    #     "buildup": [-0.00015749459237802087, 0.018456397544299074, -0.88448139491242872, 22.163062813849965,
+    #                 -312.23926598651917, 2449.7961711094094, 1749.682558831852],
+    #     "split": 18.75,
+    #     "falloff": [-2.8264719677060061e-07, 0.00024313850219755478, -0.036093426359969094, -28.230918530108855,
+    #                 11245.762396352433]
+    # },
     "15X": {
         "buildup": [-2.7723087151505166e-06, 0.00055879347539751413, -0.053759468984408219, 3.0197899077600456,
                     -101.31274784968605, 1888.8581630228164, 1293.1597039077351],
@@ -64,7 +64,7 @@ kernel_data = {
 
 
 def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_angle=0., field_size=100.,
-                beamlet_size_x=1., beamlet_size_z=5., field_buffer=20., beam_energy="6X", show_plots=False,
+                beamlet_size_x=1., beamlet_size_z=5., field_buffer=20., beam_energy=None, show_plots=False,
                 anti_alias=False):
     """
     all units in mm (DICOM)
@@ -82,6 +82,10 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
 
     :return:
     """
+
+    assert beam_energy is not None, "please provide a beam energy"
+    assert len(pdd_data[beam_energy]), "please provide beam data"
+
     big_tic = time()
     # dose calc settings
     # SAD = 1000.  # mm
@@ -151,7 +155,7 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
     # try grabbing body contour instead?
     # pts_3d_shell = (study['ct/voxel_coords'.format(ct_group)] - isocenter)[np.where(study[body_shell_path])]  # shell path in full resolution?
 
-    print(time() - tic, ' sec for init')
+    print(round(time() - tic, 3), ' sec for init')
 
     # BUILD SURFACE DISTANCE MAP ######################################################################################
 
@@ -228,7 +232,7 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
     # p_max = np.array(p_max)
     # d_max = np.array(d_max)
 
-    print(time() - tic, 'sec for surface map computation')
+    print(round(time() - tic, 3), 'sec for surface map computation')
 
     if show_plots:
         # example of interpolated distance map @ fluence map resolution
@@ -270,10 +274,10 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
 
     # only used for testing/validation
     # dose_test[idxs_oi] = np.divide(dist_pts,np.square(dist_pts))
-    print(time() - tic, "sec for depth calculation")
+    print(round(time() - tic, 3), "sec for depth calculation")
 
     if show_plots:
-        plt.imshow(dose_test[:, :, dose_test.shape[2] / 2])
+        plt.imshow(dose_test[:, :, int(dose_test.shape[2] / 2)])
         plt.colorbar()
         plt.show()
         # plt.imshow(dose_test[:,dose_test.shape[1]/2,:])
@@ -384,7 +388,7 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
     # print(csr.shape)
     # print(csr.nnz)
 
-    print("total time: ", time() - big_tic, " sec")
+    print("total Dij time: ", round(time() - big_tic, 3), " sec")
 
     return csr  # , idxs_oi# v_dig_valid #, x_bins, z_bins
 
@@ -504,9 +508,8 @@ def make_maps_from_x(study, dose_group='dose_sh2o', alt_x_path=None):
 
 def _make_sh2o_Dij_beam(dose_shape, idxs_oi, pts_3d_ct, pts_3d_shell_ct, pysapi_beam, field_size_mm,
                         field_buffer_mm,
-                        beamlet_size_x_mm, beamlet_size_z_mm):
+                        beamlet_size_x_mm, beamlet_size_z_mm, verbose=False):
     """ Ready for use in PySAPI """
-    print("Beam: #{} ({})".format(pysapi_beam.get_BeamNumber(), pysapi_beam.Id))
 
     #  since each beam could have a different isocenter
     isocenter_mm = [pysapi_beam.IsocenterPosition.x, pysapi_beam.IsocenterPosition.y,
@@ -515,13 +518,15 @@ def _make_sh2o_Dij_beam(dose_shape, idxs_oi, pts_3d_ct, pts_3d_shell_ct, pysapi_
     pts_3d_shell = pts_3d_shell_ct - isocenter_mm
 
     gantry_angle_deg = pysapi_beam.ControlPoints[0].GantryAngle
-    assert np.all([cp.GantryAngle == gantry_angle_deg for cp in pysapi_beam.ControlPoints]), "Arc beams not implemented."
+    assert np.all(
+        [cp.GantryAngle == gantry_angle_deg for cp in pysapi_beam.ControlPoints]), "Arc beams not implemented."
 
     csr = compute_Dij(  # v_dig_valid, x_bins, y_bins
         dose_shape,
         idxs_oi,
         pts_3d,
         pts_3d_shell,
+        beam_energy=pysapi_beam.EnergyModeDisplayName,
         SAD=pysapi_beam.TreatmentUnit.get_SourceAxisDistance(),
         gantry_angle=gantry_angle_deg,
         field_size=field_size_mm,
@@ -529,11 +534,9 @@ def _make_sh2o_Dij_beam(dose_shape, idxs_oi, pts_3d_ct, pts_3d_shell_ct, pysapi_
         beamlet_size_x=beamlet_size_x_mm,
         beamlet_size_z=beamlet_size_z_mm,
         show_plots=False,
-        anti_alias=True
+        anti_alias=False
     )
 
-    tic = time()
-    print(time() - tic, "sec", csr.__repr__())
     return csr
 
 
@@ -549,23 +552,25 @@ def _calc_num_px_for_field(field_size_mm, field_buffer_mm, beamlet_size_x_mm, be
     return x_map_n, z_map_n
 
 
-def compute_shape_dose_influence_matrix(pysapi_plan, body_shell, pts_3d_ct, dose_mask, fluence_cutoff=5e-3,
-                                        return_scatter_matrix=False):
+def dose_influence_matrix(pysapi_plan, body_surface_pts, pts_3d_ct, dose_mask, fluence_cutoff=5e-3,
+                          return_scatter_matrix=False, verbose=False,
+                          # beamlet_size_x_mm=1.0, beamlet_size_z_mm=5.0, field_buffer_mm=5.0
+                          ):
     """ Ready for use in PySAPI """
 
     beam_energy = pysapi_plan.BeamsLot(0).EnergyModeDisplayName
     assert np.all([beam_energy == b.EnergyModeDisplayName for b in
                    pysapi_plan.Beams]), "Beams having different energies is not implemented."
 
-    ## testing alternative sizes
+    ## 2.5 mm is the only resolution supported by ESAPI, other resulutions would require resampling
     beamlet_size_x_mm = 2.5  # 1.0 # this is minimum leaf resolution, set to 1.0 mm
     beamlet_size_z_mm = 2.5  # 5.0 # truebeam HD is 5.0mm and 10.0mm clinac is 10.0mm
-    field_buffer_mm = 20.0  # or 2 cm, needed for penumbra
+    field_buffer_mm = 20.0  # or 5 cm, needed for penumbra?
 
     idxs_oi = np.where(dose_mask > 0)  # indexes Of Interest
 
     # this should happen at full resulution if possible
-    pts_3d_shell_ct = pts_3d_ct[np.where(body_shell)]
+    pts_3d_shell_ct = body_surface_pts #pts_3d_ct[np.where(body_shell)]
 
     field_size_mm = 0.
     # scan control points to get max square field size
@@ -581,9 +586,10 @@ def compute_shape_dose_influence_matrix(pysapi_plan, body_shell, pts_3d_ct, dose
     # snap to nearest reasonable size (evenly divisible by beamlet size)
     field_size_mm = np.ceil(field_size_mm / beamlet_size_z_mm) * beamlet_size_z_mm
 
-    print("common field size (mm): ", field_size_mm)
-    print("assigned leaf width/beamlet size X *anisotropic* (mm): ", beamlet_size_x_mm)
-    print("assigned leaf width/beamlet size Z *anisotropic* (mm): ", beamlet_size_z_mm)
+    if verbose:
+        print("common field size (mm): ", field_size_mm)
+        print("assigned leaf width/beamlet size X *anisotropic* (mm): ", beamlet_size_x_mm)
+        print("assigned leaf width/beamlet size Z *anisotropic* (mm): ", beamlet_size_z_mm)
 
     # pre-sanity check
     assert field_size_mm % beamlet_size_x_mm == 0, "field_size must be integer multiple of beamlet_size"
@@ -596,11 +602,13 @@ def compute_shape_dose_influence_matrix(pysapi_plan, body_shell, pts_3d_ct, dose
 
     v_mtx = lil_matrix((x_map_n * z_map_n, x_map_n * z_map_n), dtype=np.float32)  # the 2D scatter kernel matrix
 
-    print(x_map_n)
+    if verbose:
+        print(x_map_n)
     for i in range(x_map_n):
         x_ax = (np.array(range(x_map_n)) - i) * beamlet_size_x_mm
         if i % 10 == 0:
-            print("row: {}".format(i), end='\r')
+            if verbose:
+                print("row: {}".format(i), end='\r')
         for j in range(z_map_n):
             y_ax = (np.array(range(z_map_n)) - j) * beamlet_size_z_mm
             x_m, y_m = np.meshgrid(x_ax, y_ax)
@@ -608,10 +616,14 @@ def compute_shape_dose_influence_matrix(pysapi_plan, body_shell, pts_3d_ct, dose
             tmp = k.flatten()
             tmp[np.where(tmp < fluence_cutoff)] = 0.0
             v_mtx[i * z_map_n + j, :] = tmp
-    print()
-    print(v_mtx.__repr__())
+    if verbose:
+        print()
+        print(v_mtx.__repr__())
 
+    beam_count = 0
     for itr, beam in enumerate(pysapi_plan.Beams):
+        beam_count += 1
+        print("Beam Id: {}".format(beam.Id))
         if itr == 0:
             # first beam
             full_DijT = _make_sh2o_Dij_beam(
@@ -629,7 +641,7 @@ def compute_shape_dose_influence_matrix(pysapi_plan, body_shell, pts_3d_ct, dose
     if return_scatter_matrix:
         return full_DijT, v_mtx
     else:
-        return full_DijT
+        return full_DijT, (beam_count, x_map_n, z_map_n), (beamlet_size_x_mm, beamlet_size_z_mm)
 
 
 def make_sh2o_dose(study, ct_group, body_shell_path, dose_mask_path, trial_name='', fluence_obj=None,
