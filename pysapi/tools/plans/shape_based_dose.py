@@ -635,9 +635,9 @@ def dose_influence_matrix(pysapi_plan, body_surface_pts, pts_3d_ct, dose_mask, f
                 pts_3d_ct.shape[:3], idxs_oi, pts_3d_ct, pts_3d_shell_ct,
                 beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm,
             ).dot(v_mtx.T).transpose()))
-
-    full_DijT = full_DijT.tocsr()
-
+    # tic = time()
+    # full_DijT = full_DijT.tocsc()
+    # print("CSC time:", round(time()-tic))
     if return_scatter_matrix:
         return full_DijT, v_mtx
     else:
