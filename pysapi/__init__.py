@@ -7,20 +7,22 @@ sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.5\\ExternalBeam")  # P
 import clr  # pip install pythonnet
 
 clr.AddReference('System.Windows')
-clr.AddReference('System.Linq')
-clr.AddReference('System.Collections')
+# clr.AddReference('System.Linq')
+# clr.AddReference('System.Collections')
 clr.AddReference('VMS.TPS.Common.Model')
 clr.AddReference('VMS.TPS.Common.Model.API')
 
 # the bad stuff
-import System.Collections
-import System.Reflection
+import System
+# import System.Collections
+# import System.Reflection
 
 # the good stuff
 from VMS.TPS.Common.Model.Types import *
 from VMS.TPS.Common.Model.API import *
 
 # for numpy array interfacing
+from System.Windows import Point
 from System import Array, Int32, Double
 from System.Runtime.InteropServices import GCHandle, GCHandleType
 
@@ -210,19 +212,24 @@ def compute_voxel_points_matrix(dose_or_image):
     return voxel_points
 
 
-def set_fluence_nparray(beam, shaped_fluence, beamlet_size_mm=2.5):
+def set_fluence_nparray(beam, shaped_fluence, beamlet_size_mm=2.5, half_bixel_shift=True):
     """sets optimal fluence in beam given numpy array and beamlet size (asserts square fluence, and zero collimator rotation)."""
     # assumes all fluence is square with isocenter at center of image
     # TODO: implement functionality below to remove assertions
-    assert beamlet_size_mm == 2.5, "only beamlet of other than 2.5 mm is not implemented"
+    assert beamlet_size_mm == 2.5, "beamlet sizes of other than 2.5 mm are not implemented"
     assert shaped_fluence.shape[0] == shaped_fluence.shape[1], "non-square fluence not implemented"
     assert beam.ControlPoints[0].CollimatorAngle == 0.0, "non-zero collimator angle not implemented"
 
     _buffer = Array.CreateInstance(System.Single, shaped_fluence.shape[0], shaped_fluence.shape[1])
 
-    # note: the shape -1, then divide by 2.0 gives desired center of corner beamlet (half pixel shift)
-    x_origin = - float(shaped_fluence.shape[0] - 1) * beamlet_size_mm / 2.0
-    y_origin = + float(shaped_fluence.shape[1] - 1) * beamlet_size_mm / 2.0
+    if half_bixel_shift:
+        # note: the shape -1, then divide by 2.0 gives desired center of corner beamlet (half pixel shift)
+        x_origin = - float(shaped_fluence.shape[0] - 1) * beamlet_size_mm / 2.0
+        y_origin = + float(shaped_fluence.shape[1] - 1) * beamlet_size_mm / 2.0
+    else:
+        # note: the shape -1, then divide by 2.0 gives desired center of corner beamlet (half pixel shift)
+        x_origin = - float(shaped_fluence.shape[0] + 1) * beamlet_size_mm / 2.0
+        y_origin = + float(shaped_fluence.shape[1] + 1) * beamlet_size_mm / 2.0
 
     for i in range(shaped_fluence.shape[0]):
         for j in range(shaped_fluence.shape[1]):
