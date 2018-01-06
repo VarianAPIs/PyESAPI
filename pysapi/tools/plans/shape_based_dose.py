@@ -511,7 +511,7 @@ def make_maps_from_x(study, dose_group='dose_sh2o', alt_x_path=None):
 
 def _make_sh2o_Dij_beam(dose_shape, idxs_oi, pts_3d_ct, pts_3d_shell_ct, pysapi_beam, field_size_mm,
                         field_buffer_mm,
-                        beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_beam_dose=False):
+                        beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_beam_dose=False, ref_image=None):
     """ Ready for use in PySAPI """
 
     #  since each beam could have a different isocenter
@@ -526,9 +526,13 @@ def _make_sh2o_Dij_beam(dose_shape, idxs_oi, pts_3d_ct, pts_3d_shell_ct, pysapi_
 
     open_field_dose = None
     if use_beam_dose:
-        open_field_dose = pysapi_beam.Dose.np_array_like()  # dose grid res
-        assert open_field_dose.shape == dose_shape, "Please use plan's dose grid resolution"
-        pass
+        if ref_image is None:
+            # use dose grid resolution
+            open_field_dose = pysapi_beam.Dose.np_array_like()  # dose grid res
+        else:
+            # use image grid resolution
+            open_field_dose = pysapi_beam.Dose.np_array_like(ref_image)
+        assert open_field_dose.shape == dose_shape, "dose shape does not match beam dose or image shape"
         # get dose from beam
 
     csr = compute_Dij(  # v_dig_valid, x_bins, y_bins
@@ -567,7 +571,7 @@ def dose_influence_matrix(pysapi_plan, body_surface_pts, pts_3d_ct, dose_mask, m
                           use_scatter = True,
                           anti_alias=False, verbose=False,
                           beamlet_size_x_mm=2.5, beamlet_size_z_mm=2.5, field_buffer_mm=5.0,
-                          use_plan_dose=False, return_scatter_matrix=False
+                          use_plan_dose=False, return_scatter_matrix=False, ref_image=None
                           ):
     """ Ready for use in PySAPI """
 
@@ -599,7 +603,7 @@ def dose_influence_matrix(pysapi_plan, body_surface_pts, pts_3d_ct, dose_mask, m
     # snap to nearest reasonable size (evenly divisible by beamlet size)
     # enforce even number of bixels for better match up with TPS (honestly we only need this along the virtical axis...
     temp_field_size = np.ceil(field_size_mm / beamlet_size_z_mm)
-    if temp_field_size % 2:  # if there is a remainder, then it's odd, so make it even
+    if temp_field_size % 2 != 0:  # if there is a remainder, then it's odd, so make it even
         temp_field_size -= 1.0
     field_size_mm = temp_field_size * beamlet_size_z_mm
 
@@ -618,6 +622,8 @@ def dose_influence_matrix(pysapi_plan, body_surface_pts, pts_3d_ct, dose_mask, m
     assert field_buffer_mm % beamlet_size_z_mm == 0, "field_buffer must be integer multiple of beamlet_size"
 
     x_map_n, z_map_n = _calc_num_px_for_field(field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm)
+    assert x_map_n % 2 == 0, "fluence pixels are not an even number"
+    assert z_map_n % 2 == 0, "fluence pixels are not an even number"
 
     if use_scatter:
         v_mtx = lil_matrix((x_map_n * z_map_n, x_map_n * z_map_n), dtype=np.float32)  # the 2D scatter kernel matrix
@@ -648,12 +654,12 @@ def dose_influence_matrix(pysapi_plan, body_surface_pts, pts_3d_ct, dose_mask, m
                 # first beam
                 full_DijT = _make_sh2o_Dij_beam(
                     pts_3d_ct.shape[:3], idxs_oi, pts_3d_ct, pts_3d_shell_ct,
-                    beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_plan_dose
+                    beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_plan_dose, ref_image
                 ).dot(v_mtx.T).transpose()
             else:
                 full_DijT = vstack((full_DijT, _make_sh2o_Dij_beam(
                     pts_3d_ct.shape[:3], idxs_oi, pts_3d_ct, pts_3d_shell_ct,
-                    beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_plan_dose
+                    beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_plan_dose, ref_image
                 ).dot(v_mtx.T).transpose()))
     else:
         beam_count = 0
@@ -664,12 +670,12 @@ def dose_influence_matrix(pysapi_plan, body_surface_pts, pts_3d_ct, dose_mask, m
                 # first beam
                 full_DijT = _make_sh2o_Dij_beam(
                     pts_3d_ct.shape[:3], idxs_oi, pts_3d_ct, pts_3d_shell_ct,
-                    beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_plan_dose
+                    beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_plan_dose, ref_image
                 ).transpose()
             else:
                 full_DijT = vstack((full_DijT, _make_sh2o_Dij_beam(
                     pts_3d_ct.shape[:3], idxs_oi, pts_3d_ct, pts_3d_shell_ct,
-                    beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_plan_dose
+                    beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_plan_dose, ref_image
                 ).transpose()))
 
     # tic = time()
