@@ -594,8 +594,8 @@ def dose_influence_matrix(pysapi_plan, body_surface_pts, pts_3d_ct, dose_mask, m
     for beam_obj in pysapi_plan.Beams:
         jaws_max_mm = np.max([np.abs([cp.get_JawPositions().get_X1() for cp in beam_obj.ControlPoints]).max(),
                               np.abs([cp.get_JawPositions().get_X2() for cp in beam_obj.ControlPoints]).max(),
-                              np.abs([cp.get_JawPositions().get_X1() for cp in beam_obj.ControlPoints]).max(),
-                              np.abs([cp.get_JawPositions().get_X2() for cp in beam_obj.ControlPoints]).max()])
+                              np.abs([cp.get_JawPositions().get_Y1() for cp in beam_obj.ControlPoints]).max(),
+                              np.abs([cp.get_JawPositions().get_Y2() for cp in beam_obj.ControlPoints]).max()])
         tst_fsize = 2. * jaws_max_mm
         if tst_fsize > field_size_mm:
             field_size_mm = tst_fsize

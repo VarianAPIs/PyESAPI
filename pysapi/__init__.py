@@ -212,7 +212,7 @@ def compute_voxel_points_matrix(dose_or_image):
     return voxel_points
 
 
-def set_fluence_nparray(beam, shaped_fluence, beamlet_size_mm=2.5, half_bixel_shift=True):
+def set_fluence_nparray(beam, shaped_fluence, beamlet_size_mm=2.5):
     """sets optimal fluence in beam given numpy array and beamlet size (asserts square fluence, and zero collimator rotation)."""
     # assumes all fluence is square with isocenter at center of image
     # TODO: implement functionality below to remove assertions
@@ -222,14 +222,9 @@ def set_fluence_nparray(beam, shaped_fluence, beamlet_size_mm=2.5, half_bixel_sh
 
     _buffer = Array.CreateInstance(System.Single, shaped_fluence.shape[0], shaped_fluence.shape[1])
 
-    if half_bixel_shift:
-        # note: the shape -1, then divide by 2.0 gives desired center of corner beamlet (half pixel shift)
-        x_origin = - float(shaped_fluence.shape[0] - 1) * beamlet_size_mm / 2.0
-        y_origin = + float(shaped_fluence.shape[1] - 1) * beamlet_size_mm / 2.0
-    else:
-        # note: the shape -1, then divide by 2.0 gives desired center of corner beamlet (half pixel shift)
-        x_origin = - float(shaped_fluence.shape[0] + 1) * beamlet_size_mm / 2.0
-        y_origin = + float(shaped_fluence.shape[1] + 1) * beamlet_size_mm / 2.0
+    # note: the shape -1, then divide by 2.0 gives desired center of corner beamlet (half pixel shift)
+    x_origin = - float(shaped_fluence.shape[0] - 1) * beamlet_size_mm / 2.0
+    y_origin = + float(shaped_fluence.shape[1] - 1) * beamlet_size_mm / 2.0
 
     for i in range(shaped_fluence.shape[0]):
         for j in range(shaped_fluence.shape[1]):
