@@ -166,7 +166,7 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
     # try grabbing body contour instead?
     # pts_3d_shell = (study['ct/voxel_coords'.format(ct_group)] - isocenter)[np.where(study[body_shell_path])]  # shell path in full resolution?
 
-    print(round(time() - tic, 3), ' sec for init')
+    # print(round(time() - tic, 3), ' sec for init')
 
     # BUILD SURFACE DISTANCE MAP ######################################################################################
 
@@ -243,7 +243,7 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
     # p_max = np.array(p_max)
     # d_max = np.array(d_max)
 
-    print(round(time() - tic, 3), 'sec for surface map computation')
+    # print(round(time() - tic, 3), 'sec for surface map computation')
 
     if show_plots:
         # example of interpolated distance map @ fluence map resolution
@@ -285,7 +285,7 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
 
     # only used for testing/validation
     # dose_test[idxs_oi] = np.divide(dist_pts,np.square(dist_pts))
-    print(round(time() - tic, 3), "sec for depth calculation")
+    # print(round(time() - tic, 3), "sec for depth calculation")
 
     if show_plots:
         plt.imshow(dose_test[:, :, int(dose_test.shape[2] / 2)])
@@ -330,7 +330,7 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
         pdd_dose[np.where(np.isnan(pdd_dose))] = 0.0
         pdd_dose[np.where(pdd_dose < 0.0)] = 0.0
 
-        print(time() - tic, 'sec to apply PDD')
+        # print(time() - tic, 'sec to apply PDD')
         del bu_idx
         del fo_idx
     else:
@@ -389,7 +389,7 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
     # print(csr.shape)
     # print(csr.nnz)
 
-    print("total Dij time: ", round(time() - big_tic, 3), " sec")
+    print("beam Dij time: ", round(time() - big_tic, 3), " sec")
 
     return csr  # , idxs_oi# v_dig_valid #, x_bins, z_bins
 
