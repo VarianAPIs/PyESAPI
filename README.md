@@ -1,6 +1,6 @@
 ## Quickstart
 
-* Install [Anaconda3](https://www.anaconda.com/download/?lang=en-us) for User only (do not try to install for all users unless you know what you are doing)
+* Install [Anaconda3](https://www.anaconda.com/download/?lang=en-us) for "Just Me" (unless you know what you are doing)
   * Use defaults (don't add anaconda to path, but do set ananconda as your default python installation)
 * Optionally install google chrome browser (for better Jupyter Notebook experience) and set it as your default browser
 * Launch Anaconda Prompt
