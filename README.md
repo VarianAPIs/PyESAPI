@@ -1,3 +1,14 @@
+## Quickstart
+
+* Install [Anaconda3](https://www.anaconda.com/download/?lang=en-us) for "Just Me" (unless you know what you are doing)
+  * Use defaults (don't add anaconda to path, but do set ananconda as your default python installation)
+* Optionally install google chrome browser (for better Jupyter Notebook experience) and set it as your default browser
+* Launch Anaconda Prompt
+* Execute the command `pip install pythonnet`
+* Execute the command `jupyter notebook`
+* Create a new notebook and start with example below to test basic functionality
+
+
 ## From example.py
 
 ```python
