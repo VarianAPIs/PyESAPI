@@ -9,6 +9,9 @@ from time import time
 from scipy.ndimage import convolve
 from scipy.ndimage.interpolation import rotate
 
+import trimesh as tm # https://github.com/mikedh/trimesh
+
+
 #  commissioning data and fit fxns
 
 pdd_data = {
@@ -299,6 +302,258 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
 
     # APPLY PDD #######################################################################################################
 
+    if pdd_dose is None:
+        tic = time()
+
+        pdd_f_fxn = np.poly1d(pdd_data[beam_energy]['falloff'])
+        pdd_b_fxn = np.poly1d(pdd_data[beam_energy]['buildup'])
+
+        # make copy of distance data
+        pdd_dose = dose_test.copy()
+
+        # optional cleanup
+        # nan_vals = np.where(np.isnan(pdd_dose))
+        # pdd_dose[nan_vals] = 0.
+
+        # select buildup region by index
+        bu_idx = np.where(pdd_dose <= pdd_data[beam_energy]['split'])
+        # select fall off region by index
+        fo_idx = np.where(pdd_dose > pdd_data[beam_energy]['split'])
+
+        # apply buildup and falloff PDD filter
+        # TODO: can we narrow the indexing here rather than applying to full dose grid?
+        pdd_dose[bu_idx] = pdd_b_fxn(pdd_dose[bu_idx])
+        pdd_dose[fo_idx] = pdd_f_fxn(pdd_dose[fo_idx])
+
+        # normalize by physical distance (1/square(r))
+        # TESTING NO NORM
+        pdd_dose[idxs_oi] = np.divide(pdd_dose[idxs_oi], np.square(dist_pts))
+
+        # cleanup dose grid
+        pdd_dose[np.where(np.isnan(pdd_dose))] = 0.0
+        pdd_dose[np.where(pdd_dose < 0.0)] = 0.0
+
+        # print(time() - tic, 'sec to apply PDD')
+        del bu_idx
+        del fo_idx
+    else:
+        print("USING ECLIPSE BEAM FOR DEPTH DOSE")
+        assert pdd_dose.shape == dose_shape, "PDD shape does not match dose shape"
+    # BUILD SPARSE MATRIX #############################################################################################
+
+    # here we form the "ray trace" matrix for computing dose given a fluence map
+    # TODO: double check behavior of np.digitize
+
+    # some variable shortcuts
+    x_map_n = len(x_map_centers)
+    z_map_n = len(z_map_centers)
+
+    def digitize_voxel_mtx(vol_pts, x_map_bounds, z_map_bounds, x_shift=0.0, z_shift=0.0):
+        # digitize the location of each vozel point on the fluence plane
+        v_dig_x = np.digitize(vol_pts[0] + x_shift, x_map_bounds) - 1
+        v_dig_z = np.digitize(vol_pts[2] + z_shift, z_map_bounds) - 1
+        # select on valid indeces within fluence map
+        v_dig_valid = np.where((0 <= v_dig_x) & (v_dig_x < x_map_n) & (0 <= v_dig_z) & (v_dig_z < z_map_n))
+
+        tmp = pdd_dose[idxs_oi]
+
+        # form sparse dose matrix:
+        sparse_dose = tmp[v_dig_valid].flatten().copy()
+
+        fmap_width = len(x_map_bounds) - 1  # we subtract 1 here because boundaries are of length x_map_n+1
+
+        col_idx = v_dig_x[v_dig_valid] + fmap_width * (v_dig_z[v_dig_valid])
+        row_idx = v_dig_valid[0]  # np.array(range(len(sparse_dose)))
+        del tmp
+        del v_dig_x
+        del v_dig_z
+        return csr_matrix((sparse_dose.astype(np.float32), (row_idx, col_idx)),
+                          shape=(
+                              len(idxs_oi[0]),
+                              (x_map_boundaries.shape[0] - 1) * (z_map_boundaries.shape[0] - 1)
+                          ))
+
+    if anti_alias:
+        # this averages out beamlet contributions across neighboring voxels
+
+        # d = 2.
+        csr = None
+        N = 20
+        for x_shift in np.linspace(-beamlet_size_x/2.0, beamlet_size_x/2.0, N, endpoint=True):
+            for z_shift in np.linspace(-beamlet_size_z/2.0, beamlet_size_z/2.0, N, endpoint=True):
+                if csr is None:
+                    csr = digitize_voxel_mtx(vol_proj, x_map_boundaries, z_map_boundaries, x_shift, z_shift)
+                else:
+                    csr += digitize_voxel_mtx(vol_proj, x_map_boundaries, z_map_boundaries, x_shift, z_shift)
+        csr /= float(N)
+
+    else:
+        csr = digitize_voxel_mtx(vol_proj, x_map_boundaries, z_map_boundaries)
+    # print(col_idx.max())
+    # print(csr.shape)
+    # print(csr.nnz)
+
+    print("beam Dij time: ", round(time() - big_tic, 3), " sec")
+
+    return csr  # , idxs_oi# v_dig_valid #, x_bins, z_bins
+
+def compute_Dij_bodymesh(dose_shape, idxs_oi, pts_3d, bodymesh, SAD=1000., gantry_angle=0., field_size=100.,
+                beamlet_size_x=1., beamlet_size_z=5., field_buffer=20., beam_energy=None, show_plots=False,
+                anti_alias=False, pdd_dose = None):
+    """
+    all units in mm (DICOM)
+    returns a "ray-trace" Dij matrix (no scatter)
+    :param SAD:
+    :param gantry_angle:
+    :param field_size:
+    :param beamlet_size:
+    :param field_buffer: added to all sides of the field
+    :param beam_energy:
+    :param show_plots:
+    :param anti_alias:
+
+    1)
+
+    :return:
+    """
+
+    assert beam_energy is not None, "please provide a beam energy"
+    assert len(pdd_data[beam_energy]), "please provide beam data"
+
+    big_tic = time()
+    # dose calc settings
+    # SAD = 1000.  # mm
+    # gantry_angle = 0.  # degrees
+
+    # all geometry defined on iso-center plane as usual
+    # field_size = 100.  # mm (square)
+    # beamlet_size = 1.  # mm (square)
+    # field_buffer = 20.  # mm (width of region beyond field - allows for scattering outside of field)
+
+    # BUILD FLUENCE MAP ###############################################################################################
+
+    tic = time()
+
+    # pre-sanity check
+    assert field_size % beamlet_size_x == 0, "field_size must be integer multiple of beamlet_size"
+    assert field_buffer % beamlet_size_x == 0, "field_buffer must be integer multiple of beamlet_size"
+
+    assert field_size % beamlet_size_z == 0, "field_size must be integer multiple of beamlet_size"
+    assert field_buffer % beamlet_size_z == 0, "field_buffer must be integer multiple of beamlet_size"
+
+    # some pre-calcualted variables which are re-used throughout the code
+    src = [0, SAD, 0]  # source point @ 0 degrees rotation in (isocenter-shifted) DICOM ref. frame
+    src_rot = np.dot(rotation_matrix([0., 0., np.radians(180. - gantry_angle)]), src)
+    # print(src_rot)
+    # setup fluence grid
+    expanded_field_size = field_size + 2. * field_buffer  # [buffer][field][buffer]
+    field_buffer_x_px = int(field_buffer / beamlet_size_x)  # number of fluence pixels in buffer region
+    field_size_x_px = int(field_size / beamlet_size_x)  # number of fluence pixels in field
+
+    field_buffer_z_px = int(field_buffer / beamlet_size_z)  # number of fluence pixels in buffer region
+    field_size_z_px = int(field_size / beamlet_size_z)  # number of fluence pixels in field
+
+    # compute BOUNDARIES of fluence map pixels (note the +1)
+    x_map_boundaries = np.linspace(-expanded_field_size / 2., expanded_field_size / 2.,
+                                   int(expanded_field_size / beamlet_size_x) + 1)
+    z_map_boundaries = np.linspace(-expanded_field_size / 2., expanded_field_size / 2.,
+                                   int(expanded_field_size / beamlet_size_z) + 1)
+    # z_map_boundaries = x_map_boundaries
+    x_mesh_boundaries, z_mesh_boundaries = np.meshgrid(x_map_boundaries, z_map_boundaries)
+
+    # sanity check
+    # print(x_mesh_boundaries.shape[1], 2*field_buffer_x_px + field_size_x_px + 1, "x field dimensions")
+    # print(x_mesh_boundaries.shape[0], 2*field_buffer_z_px + field_size_z_px + 1, "x field dimensions")
+
+    assert x_mesh_boundaries.shape[1] == 2 * field_buffer_x_px + field_size_x_px + 1, "error computing field dimensions"
+    assert x_mesh_boundaries.shape[0] == 2 * field_buffer_z_px + field_size_z_px + 1, "error computing field dimensions"
+
+    # compute CENTRAL POINTS of pixels on fluence map
+    x_map_centers = np.linspace(-expanded_field_size / 2. + beamlet_size_x / 2,
+                                expanded_field_size / 2. - beamlet_size_x / 2.,
+                                int(expanded_field_size / beamlet_size_x))
+
+    z_map_centers = np.linspace(-expanded_field_size / 2. + beamlet_size_z / 2,
+                                expanded_field_size / 2. - beamlet_size_z / 2.,
+                                int(expanded_field_size / beamlet_size_z))
+
+    # z_map_centers = x_map_centers
+    x_mesh_centers, z_mesh_centers = np.meshgrid(x_map_centers, z_map_centers)
+
+    # print(len(x_map))
+    # print(x_map.min(), x_map.max())
+
+    # get point data
+    # vox_size = study['{}/voxel_size'.format(ct_group)]
+    # pts_3d = study['{}/voxel_coords'.format(ct_group)] - isocenter
+    # try grabbing body contour instead?
+    # pts_3d_shell = (study['ct/voxel_coords'.format(ct_group)] - isocenter)[np.where(study[body_shell_path])]  # shell path in full resolution?
+
+    # print(round(time() - tic, 3), ' sec for init')
+
+    # BUILD SURFACE DISTANCE MAP ######################################################################################
+
+    tic = time()
+
+    num_bixels = x_mesh_centers.shape[0] * z_mesh_centers.shape[0]
+
+    src_pts = np.array([_ for _ in src_rot] * num_bixels).reshape((-1, 3))  # mm
+    # raise Exception("BODY MESH FLUENCE PLANE ROTATION NOT IMPLEMENTED")
+    isocenter_plane = np.array([x_mesh_centers.flatten(), [0.0] * num_bixels, z_mesh_centers.flatten()]).T
+    iso_plane_rot = np.dot(
+        isocenter_plane,
+        rotation_matrix([0., 0., np.radians(180. - gantry_angle)]).T,
+    )
+    assert iso_plane_rot.shape == src_pts.shape, "iso_plane shape: {}, src_pts.shape: {}".format(iso_plane_rot.shape,src_pts.shape)
+
+    intersections = bodymesh.ray.intersects_location(ray_origins=src_pts, ray_directions=iso_plane_rot - src_pts)
+
+    locations = intersections[0]
+    ray_idxs = intersections[1]
+    dist_map = np.ones_like(x_mesh_centers) * np.inf
+    for i, idx in enumerate(ray_idxs):
+        temp_dist = np.sqrt(np.square(locations[i] - src_pts[idx]).sum())
+        if (temp_dist < dist_map.flat[idx]):
+            dist_map.flat[idx] = temp_dist
+
+    # COMPUTE DEPTH TO EACH POINT #####################################################################################
+
+    tic = time()
+
+    # create dose grid (@ CT resolution for now)
+    dose_test = np.zeros(dose_shape)
+
+    # only select points inside body contour
+    # idxs_oi = np.where(study[body_contour_path] > 0)
+    pts_3d_oi = pts_3d[idxs_oi]  # points within body contour
+
+    # project all points to isocenter plane
+    vol_proj = proj_iso_plane(pts_3d_oi.T, SAD, gantry_angle)
+
+    # compute physical distance between source and all points of interest
+    dist_pts = np.linalg.norm(pts_3d_oi - src_rot, axis=1)
+
+    # compute physical distance between body surface and all points of interest
+    dx_map = griddata((iso_plane_rot.T[0], isocenter_plane.T[2]), dist_map.flat, (vol_proj[0], vol_proj[2]), method='linear')
+
+    dose_test[idxs_oi] = dist_pts - dx_map
+
+    # only used for testing/validation
+    # dose_test[idxs_oi] = np.divide(dist_pts,np.square(dist_pts))
+    # print(round(time() - tic, 3), "sec for depth calculation")
+
+    if show_plots:
+        plt.imshow(dose_test[:, :, int(dose_test.shape[2] / 2)])
+        plt.colorbar()
+        plt.show()
+        # plt.imshow(dose_test[:,dose_test.shape[1]/2,:])
+        # plt.colorbar()
+        # plt.show()
+
+    # del dx_map
+
+    # APPLY PDD #######################################################################################################
+
     if pdd_dose == None:
         tic = time()
 
@@ -392,6 +647,7 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
     print("beam Dij time: ", round(time() - big_tic, 3), " sec")
 
     return csr  # , idxs_oi# v_dig_valid #, x_bins, z_bins
+
 
 
 def _g_func(r, sig):
@@ -554,6 +810,52 @@ def _make_sh2o_Dij_beam(dose_shape, idxs_oi, pts_3d_ct, pts_3d_shell_ct, pysapi_
 
     return csr
 
+def _make_sh2o_Dij_beam_bodymesh(dose_shape, idxs_oi, pts_3d_ct, bodymeshgeo, pysapi_beam, field_size_mm,
+                        field_buffer_mm,
+                        beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_beam_dose=False, ref_image=None):
+    """ Ready for use in PySAPI """
+
+    #  since each beam could have a different isocenter
+    iso = pysapi_beam.IsocenterPosition  # mm
+    isocenter_mm = [iso.x, iso.y, iso.z]  # already in mm
+    pts_3d = pts_3d_ct - isocenter_mm
+
+    body_verts = np.array([(_.X - iso.x, _.Y - iso.y, _.Z - iso.z) for _ in bodymeshgeo.Positions])
+    body_faces = np.array([_ for _ in bodymeshgeo.TriangleIndices]).reshape((-1, 3))
+
+    gantry_angle_deg = pysapi_beam.ControlPoints[0].GantryAngle
+    assert np.all(
+        [cp.GantryAngle == gantry_angle_deg for cp in pysapi_beam.ControlPoints]), "Arc beams not implemented."
+
+    open_field_dose = None
+    if use_beam_dose:
+        if ref_image is None:
+            # use dose grid resolution
+            open_field_dose = pysapi_beam.Dose.np_array_like()  # dose grid res
+        else:
+            # use image grid resolution
+            open_field_dose = pysapi_beam.Dose.np_array_like(ref_image)
+        assert open_field_dose.shape == dose_shape, "dose shape does not match beam dose or image shape"
+        # get dose from beam
+
+    csr = compute_Dij_bodymesh(  # v_dig_valid, x_bins, y_bins
+        dose_shape,
+        idxs_oi,
+        pts_3d,
+        bodymesh=tm.Trimesh(vertices=body_verts, faces=body_faces),
+        beam_energy=pysapi_beam.EnergyModeDisplayName,
+        SAD=pysapi_beam.TreatmentUnit.get_SourceAxisDistance(),
+        gantry_angle=gantry_angle_deg,
+        field_size=field_size_mm,
+        field_buffer=field_buffer_mm,  # added to all sides
+        beamlet_size_x=beamlet_size_x_mm,
+        beamlet_size_z=beamlet_size_z_mm,
+        show_plots=False,
+        anti_alias=anti_alias,
+        pdd_dose=open_field_dose
+    )
+
+    return csr
 
 def _calc_num_px_for_field(field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm):
     field_buffer_x_px = int(field_buffer_mm / beamlet_size_x_mm)  # number of fluence pixels in buffer region
@@ -686,133 +988,253 @@ def dose_influence_matrix(pysapi_plan, body_surface_pts, pts_3d_ct, dose_mask, m
     else:
         return full_DijT, (beam_count, x_map_n, z_map_n)
 
+def dose_influence_matrix_bodymesh(pysapi_plan, body_structure, pts_3d_ct, dose_mask, max_scatter_radius_mm=20.0,
+                          use_scatter = True,
+                          anti_alias=False, verbose=False,
+                          beamlet_size_x_mm=2.5, beamlet_size_z_mm=2.5, field_buffer_mm=5.0,
+                          use_plan_dose=False, return_scatter_matrix=False, ref_image=None
+                          ):
+    """ Ready for use in PySAPI """
 
-def make_sh2o_dose(study, ct_group, body_shell_path, dose_mask_path, trial_name='', fluence_obj=None,
-                   mode='original', dose_group=None):
-    # TODO: make this function work.
+    beam_energy = pysapi_plan.BeamsLot(0).EnergyModeDisplayName
+    assert np.all([beam_energy == b.EnergyModeDisplayName for b in
+                   pysapi_plan.Beams]), "Beams having different energies is not implemented."
 
-    # some per-plan settings/constants
-    # ct_group = 'ct_lowres'
-    # body_shell_path = 'structures/body/shell' #'/structures_lowres/block/mask'
-    # dose_mask_path = 'structures_lowres/body/mask' #'/structures_lowres/block/mask'
+    ## 2.5 mm is the only resolution supported by ESAPI, other resulutions would require resampling
+    # beamlet_size_x_mm = 2.5  # 1.0 # this is minimum leaf resolution, set to 1.0 mm
+    # beamlet_size_z_mm = 2.5  # 5.0 # truebeam HD is 5.0mm and 10.0mm clinac is 10.0mm
+    # field_buffer_mm = 20.0  # or 5 cm, needed for penumbra?
 
-    SAD_mm = 1000.0
-    # if fluence_obj is None:
-    #     f = make_fluence_maps(study, resolution=160,
-    #                           minLeafPxWidth=2)  # creates .25 cm or 50 cm square pixels(for field_size = 40)
-    #     #  todo: make_fluence_maps should place all needed data in rt5 study!!
-    # else:
-    #     f = fluence_obj
-
-    if mode == 'original':
-
-        # field_size_mm = 400.
-        field_buffer_mm = 0.0  # (from above)
-
-        field_size_mm = f.fieldSize * 10.
-
-        x_px_size = f.minLeafWidth / float(f.minLeafWidth_in_px)  # usually something like .5 cm / 2.0
-        y_px_size = f.fieldSize / f.resolution  # usually something like  40 cm / 160
-        print("beamlet sizes (x y): ", x_px_size, y_px_size, (x_px_size - y_px_size))
-        assert x_px_size == y_px_size, "non-uniform beamlet sizes not currently supported"
-        # np.testing.assert_approx_equal(x_px_size,y_px_size, significant=10)
-
-        # assure that the following dataset has been constructed by make_low_res
-
-        ######## if you are getting errors check here #################
-        # study.create_dataset('ct_lowres/voxel_coords',study['ct/voxel_coords'][::2,::2,:])
-        # print("*!*!*!TODO: create 'ct_lowres/voxel_coords' as part of make_lowres tool!!!!" DONE!)
-
-        beamlet_size_x_mm = x_px_size * 10.  # cm -> mm
-        beamlet_size_z_mm = beamlet_size_x_mm
-
-    elif mode == 'replan':  # fluence resolution is read in by what has been saved during 'make_sh2o_DijT_replan(...)'
-        beamlet_size_xy_mm = study[
-            '{}/beams/{}/beamlet_size_xz_mm'.format(dose_group, 1)]  # assume all same beamlet sizes
-
-        beamlet_size_x_mm = beamlet_size_xy_mm[0]  # this is minimum leaf resolution, set to 1.0 mm
-        beamlet_size_z_mm = beamlet_size_xy_mm[1]  # truebeam HD is 5.0mm and 10.0mm clinac is 10.0mm
-        field_buffer_mm = study['{}/beams/{}/field_buffer_mm'.format(dose_group, 1)]  # or 2 cm
-
-        field_size_mm = study['{}/beams/{}/field_size_mm'.format(dose_group, 1)]
-        print("field size (mm): ", field_size_mm)
-        print("assigned leaf width or beamlet size X *anisotropic* (mm): ", beamlet_size_x_mm)
-        print("assigned leaf width or beamlet size Z *anisotropic* (mm): ", beamlet_size_z_mm)
-
-        # pre-sanity check
-        assert field_size_mm % beamlet_size_x_mm == 0, "field_size must be integer multiple of beamlet_size"
-        assert field_buffer_mm % beamlet_size_x_mm == 0, "field_buffer must be integer multiple of beamlet_size"
-
-        assert field_size_mm % beamlet_size_z_mm == 0, "field_size must be integer multiple of beamlet_size"
-        assert field_buffer_mm % beamlet_size_z_mm == 0, "field_buffer must be integer multiple of beamlet_size"
-    else:
-        raise Exception('bad "mode" parameter')
-
-    # used for scatter kernel to define pixel indexes in x and y(z)
-    x_map_n, z_map_n = _calc_num_px_for_field(field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm)
-    # x_ax = np.array(range(x_map_n))
-    x_ax = (np.array(range(x_map_n)) - (x_map_n - 1.) / 2.) * beamlet_size_x_mm
-    # y_ax = np.array(range(z_map_n))
-    y_ax = (np.array(range(z_map_n)) - (z_map_n - 1.) / 2.) * beamlet_size_z_mm
-    x_m, y_m = np.meshgrid(x_ax, y_ax)
-
-    pts_3d_ct = study['{}/voxel_coords'.format(ct_group)]
-    idxs_oi = np.where(study[dose_mask_path] > 0)
+    idxs_oi = np.where(dose_mask > 0)  # indexes Of Interest
 
     # this should happen at full resulution if possible
-    pts_3d_shell_ct = study['ct/voxel_coords'.format(ct_group)][np.where(study[body_shell_path])]
+    # pts_3d_shell_ct = body_surface_pts #pts_3d_ct[np.where(body_shell)]
+    bodymesh = body_structure.MeshGeometry
 
-    for beam in f.mlcData:
-        print("processing beam: ", beam.Number)
+    field_size_mm = 0.
+    # scan control points to get max square field size
+    for beam_obj in pysapi_plan.Beams:
+        jaws_max_mm = np.max([np.abs([cp.get_JawPositions().get_X1() for cp in beam_obj.ControlPoints]).max(),
+                              np.abs([cp.get_JawPositions().get_X2() for cp in beam_obj.ControlPoints]).max(),
+                              np.abs([cp.get_JawPositions().get_Y1() for cp in beam_obj.ControlPoints]).max(),
+                              np.abs([cp.get_JawPositions().get_Y2() for cp in beam_obj.ControlPoints]).max()])
+        tst_fsize = 2. * jaws_max_mm
+        if tst_fsize > field_size_mm:
+            field_size_mm = tst_fsize
 
-        csr = _make_sh2o_Dij_beam(
-            study, idxs_oi, pts_3d_ct, pts_3d_shell_ct,
-            beam, SAD_mm, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm,
-            # dose_group=dose_group, save_meta=True
-        )
+    # snap to nearest reasonable size (evenly divisible by beamlet size)
+    # enforce even number of bixels for better match up with TPS (honestly we only need this along the virtical axis...
+    temp_field_size = np.ceil(field_size_mm / beamlet_size_z_mm)
+    if temp_field_size % 2 != 0:  # if there is a remainder, then it's odd, so make it even
+        temp_field_size -= 1.0
+    field_size_mm = temp_field_size * beamlet_size_z_mm
 
-        print("COLLIMATOR ANGLE CHECK!!! ", beam.CollimatorAng)
+    assert temp_field_size % 2 == 0, "field size not an even number"
 
-        print("using beam energy: '{:.0f}X'".format(beam.BeamEnergy))
-        # note transpose in sizes...
-        ## DUE TO WIERDNESS OF CONVOLUTION FUNCTION WE NEED TO OFFSET THE KERNEL BY HALF A BIXEL:
-        ## TESTING TRANSPOSE
-        scat_kern = _scatter_kernel(y_m - beamlet_size_z_mm / 2., x_m - beamlet_size_x_mm / 2., kernel_data[
-            "{:.0f}X".format(beam.BeamEnergy)])  # subtracting one due to nature of conv and kernel
+    if verbose:
+        print("common field size (mm): ", field_size_mm)
+        print("assigned leaf width/beamlet size X *anisotropic* (mm): ", beamlet_size_x_mm)
+        print("assigned leaf width/beamlet size Z *anisotropic* (mm): ", beamlet_size_z_mm)
 
-        # convolve scatter kernel
-        if mode == 'original':
-            f_map_c = convolve(rotate(beam.map, -beam.CollimatorAng, reshape=False), scat_kern,
-                               mode='constant')  # this ordering will give result the size that the dose matrix is shaped for
-        elif mode == 'replan':
-            # note no rotation
-            f_map_c = convolve(study['{}/beams/{}/map'.format(dose_group, beam.Number)], scat_kern,
-                               mode='constant')  # this ordering will give result the size that the dose matrix is shaped for
-        else:
-            raise Exception('bad "mode" parameter')
+    # pre-sanity check
+    assert field_size_mm % beamlet_size_x_mm == 0, "field_size must be integer multiple of beamlet_size"
+    assert field_buffer_mm % beamlet_size_x_mm == 0, "field_buffer must be integer multiple of beamlet_size"
 
-        # create dose for the beam
-        spmv_dose = np.zeros_like(study['{}/hu'.format(ct_group)])
+    assert field_size_mm % beamlet_size_z_mm == 0, "field_size must be integer multiple of beamlet_size"
+    assert field_buffer_mm % beamlet_size_z_mm == 0, "field_buffer must be integer multiple of beamlet_size"
 
-        print("dose shape {}".format(spmv_dose.shape))
-        print("plan fluence shape {}, ({})".format(beam.map.shape, beam.map.flatten().shape))
-        print("fluence shape {}, ({})".format(f_map_c.shape, f_map_c.flatten().shape))
-        print("matrix shape {}".format(csr.shape))
-        spmv_dose[idxs_oi] = csr.dot(f_map_c.flatten())
+    x_map_n, z_map_n = _calc_num_px_for_field(field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm)
+    assert x_map_n % 2 == 0, "fluence pixels are not an even number"
+    assert z_map_n % 2 == 0, "fluence pixels are not an even number"
 
-        # TODO: getting negative values?
-        neg_dose_idx = np.where(spmv_dose < 0.)
-        print("any negative values? : {}".format(neg_dose_idx))  # due to polynomials in PDD
-        spmv_dose[neg_dose_idx] = 0.
-        study.create_dataset('dose_sh2o{}/beam/{}/average'.format(trial_name, beam.Number), spmv_dose)
-        study.save()
-        del csr
+    if use_scatter:
+        v_mtx = lil_matrix((x_map_n * z_map_n, x_map_n * z_map_n), dtype=np.float32)  # the 2D scatter kernel matrix
 
-    # now sum the dose
-    # tot_dose = np.zeros_like(study['{}/density'.format(ct_group)])
-    tot_dose = np.zeros_like(study['{}/hu'.format(ct_group)])
-    for beam in f.mlcData:
-        tot_dose += study['dose_sh2o{}/beam/{}/average'.format(trial_name, beam.Number)]
+        if verbose:
+            print(x_map_n)
+        for i in range(x_map_n):
+            x_ax = (np.array(range(x_map_n)) - i) * beamlet_size_x_mm
+            if i % 10 == 0:
+                if verbose:
+                    print("row: {}".format(i), end='\r')
+            for j in range(z_map_n):
+                y_ax = (np.array(range(z_map_n)) - j) * beamlet_size_z_mm
+                x_m, y_m = np.meshgrid(x_ax, y_ax)
+                k = _scatter_kernel(y_m, x_m, kernel_data[beam_energy], max_scatter_radius_mm)
+                tmp = k.flatten()
+                # tmp[np.where(tmp < fluence_cutoff)] = 0.0
+                v_mtx[i * z_map_n + j, :] = tmp
+        if verbose:
+            print()
+            print(v_mtx.__repr__())
 
-    study.create_dataset('dose_sh2o{}/gy'.format(trial_name), tot_dose)
-    study.save()
+        beam_count = 0
+        for itr, beam in enumerate(pysapi_plan.Beams):
+            beam_count += 1
+            print("Beam Id: {}".format(beam.Id))
+            if itr == 0:
+                # first beam
+                full_DijT = _make_sh2o_Dij_beam_bodymesh(
+                    pts_3d_ct.shape[:3], idxs_oi, pts_3d_ct, bodymesh,
+                    beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_plan_dose, ref_image
+                ).dot(v_mtx.T).transpose()
+            else:
+                full_DijT = vstack((full_DijT, _make_sh2o_Dij_beam_bodymesh(
+                    pts_3d_ct.shape[:3], idxs_oi, pts_3d_ct, bodymesh,
+                    beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_plan_dose, ref_image
+                ).dot(v_mtx.T).transpose()))
+    else:
+        beam_count = 0
+        for itr, beam in enumerate(pysapi_plan.Beams):
+            beam_count += 1
+            print("Beam Id: {}".format(beam.Id))
+            if itr == 0:
+                # first beam
+                full_DijT = _make_sh2o_Dij_beam_bodymesh(
+                    pts_3d_ct.shape[:3], idxs_oi, pts_3d_ct, bodymesh,
+                    beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_plan_dose, ref_image
+                ).transpose()
+            else:
+                full_DijT = vstack((full_DijT, _make_sh2o_Dij_beam_bodymesh(
+                    pts_3d_ct.shape[:3], idxs_oi, pts_3d_ct, bodymesh,
+                    beam, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_plan_dose, ref_image
+                ).transpose()))
+
+    # tic = time()
+    # full_DijT = full_DijT.tocsc()
+    # print("CSC time:", round(time()-tic))
+    if return_scatter_matrix:
+        return full_DijT, (beam_count, x_map_n, z_map_n), v_mtx
+    else:
+        return full_DijT, (beam_count, x_map_n, z_map_n)
+
+
+# def make_sh2o_dose(study, ct_group, body_shell_path, dose_mask_path, trial_name='', fluence_obj=None,
+#                    mode='original', dose_group=None):
+#     # TODO: make this function work.
+#
+#     # some per-plan settings/constants
+#     # ct_group = 'ct_lowres'
+#     # body_shell_path = 'structures/body/shell' #'/structures_lowres/block/mask'
+#     # dose_mask_path = 'structures_lowres/body/mask' #'/structures_lowres/block/mask'
+#
+#     SAD_mm = 1000.0
+#     # if fluence_obj is None:
+#     #     f = make_fluence_maps(study, resolution=160,
+#     #                           minLeafPxWidth=2)  # creates .25 cm or 50 cm square pixels(for field_size = 40)
+#     #     #  todo: make_fluence_maps should place all needed data in rt5 study!!
+#     # else:
+#     #     f = fluence_obj
+#
+#     if mode == 'original':
+#
+#         # field_size_mm = 400.
+#         field_buffer_mm = 0.0  # (from above)
+#
+#         field_size_mm = f.fieldSize * 10.
+#
+#         x_px_size = f.minLeafWidth / float(f.minLeafWidth_in_px)  # usually something like .5 cm / 2.0
+#         y_px_size = f.fieldSize / f.resolution  # usually something like  40 cm / 160
+#         print("beamlet sizes (x y): ", x_px_size, y_px_size, (x_px_size - y_px_size))
+#         assert x_px_size == y_px_size, "non-uniform beamlet sizes not currently supported"
+#         # np.testing.assert_approx_equal(x_px_size,y_px_size, significant=10)
+#
+#         # assure that the following dataset has been constructed by make_low_res
+#
+#         ######## if you are getting errors check here #################
+#         # study.create_dataset('ct_lowres/voxel_coords',study['ct/voxel_coords'][::2,::2,:])
+#         # print("*!*!*!TODO: create 'ct_lowres/voxel_coords' as part of make_lowres tool!!!!" DONE!)
+#
+#         beamlet_size_x_mm = x_px_size * 10.  # cm -> mm
+#         beamlet_size_z_mm = beamlet_size_x_mm
+#
+#     elif mode == 'replan':  # fluence resolution is read in by what has been saved during 'make_sh2o_DijT_replan(...)'
+#         beamlet_size_xy_mm = study[
+#             '{}/beams/{}/beamlet_size_xz_mm'.format(dose_group, 1)]  # assume all same beamlet sizes
+#
+#         beamlet_size_x_mm = beamlet_size_xy_mm[0]  # this is minimum leaf resolution, set to 1.0 mm
+#         beamlet_size_z_mm = beamlet_size_xy_mm[1]  # truebeam HD is 5.0mm and 10.0mm clinac is 10.0mm
+#         field_buffer_mm = study['{}/beams/{}/field_buffer_mm'.format(dose_group, 1)]  # or 2 cm
+#
+#         field_size_mm = study['{}/beams/{}/field_size_mm'.format(dose_group, 1)]
+#         print("field size (mm): ", field_size_mm)
+#         print("assigned leaf width or beamlet size X *anisotropic* (mm): ", beamlet_size_x_mm)
+#         print("assigned leaf width or beamlet size Z *anisotropic* (mm): ", beamlet_size_z_mm)
+#
+#         # pre-sanity check
+#         assert field_size_mm % beamlet_size_x_mm == 0, "field_size must be integer multiple of beamlet_size"
+#         assert field_buffer_mm % beamlet_size_x_mm == 0, "field_buffer must be integer multiple of beamlet_size"
+#
+#         assert field_size_mm % beamlet_size_z_mm == 0, "field_size must be integer multiple of beamlet_size"
+#         assert field_buffer_mm % beamlet_size_z_mm == 0, "field_buffer must be integer multiple of beamlet_size"
+#     else:
+#         raise Exception('bad "mode" parameter')
+#
+#     # used for scatter kernel to define pixel indexes in x and y(z)
+#     x_map_n, z_map_n = _calc_num_px_for_field(field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm)
+#     # x_ax = np.array(range(x_map_n))
+#     x_ax = (np.array(range(x_map_n)) - (x_map_n - 1.) / 2.) * beamlet_size_x_mm
+#     # y_ax = np.array(range(z_map_n))
+#     y_ax = (np.array(range(z_map_n)) - (z_map_n - 1.) / 2.) * beamlet_size_z_mm
+#     x_m, y_m = np.meshgrid(x_ax, y_ax)
+#
+#     pts_3d_ct = study['{}/voxel_coords'.format(ct_group)]
+#     idxs_oi = np.where(study[dose_mask_path] > 0)
+#
+#     # this should happen at full resulution if possible
+#     pts_3d_shell_ct = study['ct/voxel_coords'.format(ct_group)][np.where(study[body_shell_path])]
+#
+#     for beam in f.mlcData:
+#         print("processing beam: ", beam.Number)
+#
+#         csr = _make_sh2o_Dij_beam(
+#             study, idxs_oi, pts_3d_ct, pts_3d_shell_ct,
+#             beam, SAD_mm, field_size_mm, field_buffer_mm, beamlet_size_x_mm, beamlet_size_z_mm,
+#             # dose_group=dose_group, save_meta=True
+#         )
+#
+#         print("COLLIMATOR ANGLE CHECK!!! ", beam.CollimatorAng)
+#
+#         print("using beam energy: '{:.0f}X'".format(beam.BeamEnergy))
+#         # note transpose in sizes...
+#         ## DUE TO WIERDNESS OF CONVOLUTION FUNCTION WE NEED TO OFFSET THE KERNEL BY HALF A BIXEL:
+#         ## TESTING TRANSPOSE
+#         scat_kern = _scatter_kernel(y_m - beamlet_size_z_mm / 2., x_m - beamlet_size_x_mm / 2., kernel_data[
+#             "{:.0f}X".format(beam.BeamEnergy)])  # subtracting one due to nature of conv and kernel
+#
+#         # convolve scatter kernel
+#         if mode == 'original':
+#             f_map_c = convolve(rotate(beam.map, -beam.CollimatorAng, reshape=False), scat_kern,
+#                                mode='constant')  # this ordering will give result the size that the dose matrix is shaped for
+#         elif mode == 'replan':
+#             # note no rotation
+#             f_map_c = convolve(study['{}/beams/{}/map'.format(dose_group, beam.Number)], scat_kern,
+#                                mode='constant')  # this ordering will give result the size that the dose matrix is shaped for
+#         else:
+#             raise Exception('bad "mode" parameter')
+#
+#         # create dose for the beam
+#         spmv_dose = np.zeros_like(study['{}/hu'.format(ct_group)])
+#
+#         print("dose shape {}".format(spmv_dose.shape))
+#         print("plan fluence shape {}, ({})".format(beam.map.shape, beam.map.flatten().shape))
+#         print("fluence shape {}, ({})".format(f_map_c.shape, f_map_c.flatten().shape))
+#         print("matrix shape {}".format(csr.shape))
+#         spmv_dose[idxs_oi] = csr.dot(f_map_c.flatten())
+#
+#         # TODO: getting negative values?
+#         neg_dose_idx = np.where(spmv_dose < 0.)
+#         print("any negative values? : {}".format(neg_dose_idx))  # due to polynomials in PDD
+#         spmv_dose[neg_dose_idx] = 0.
+#         study.create_dataset('dose_sh2o{}/beam/{}/average'.format(trial_name, beam.Number), spmv_dose)
+#         study.save()
+#         del csr
+#
+#     # now sum the dose
+#     # tot_dose = np.zeros_like(study['{}/density'.format(ct_group)])
+#     tot_dose = np.zeros_like(study['{}/hu'.format(ct_group)])
+#     for beam in f.mlcData:
+#         tot_dose += study['dose_sh2o{}/beam/{}/average'.format(trial_name, beam.Number)]
+#
+#     study.create_dataset('dose_sh2o{}/gy'.format(trial_name), tot_dose)
+#     study.save()

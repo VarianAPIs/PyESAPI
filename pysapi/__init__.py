@@ -1,4 +1,6 @@
 import sys
+import pythoncom
+pythoncom.CoInitialize()  # enforces single thread apartment mode
 
 # sys.path.append("D:\\TPS\\va\\Main\\Bin\\Release64") # Dev
 sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.5\\esapi\\API")  # Prod

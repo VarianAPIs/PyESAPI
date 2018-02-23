@@ -1,5 +1,5 @@
 from ... import VolumePresentation, DoseValuePresentation
-from .shape_based_dose import dose_influence_matrix
+from .shape_based_dose import dose_influence_matrix, dose_influence_matrix_bodymesh
 
 def normalize_relative(plan, target_id, percent = 95.0):
     """ Sets a plan's normalization such that 100% of Rx dose covers a percent volume of a target
