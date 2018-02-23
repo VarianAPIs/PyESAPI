@@ -1,3 +1,13 @@
+## Quickstart
+
+* Install [Anaconda3](https://www.anaconda.com/download/?lang=en-us) for User only (do not try to install for all users unless you know what you are doing)
+  * Use defaults (don't add anaconda to path, but do set ananconda as your default python installation)
+* Launch Anaconda Prompt
+* Execute the command `pip install pythonnet`
+* Execute the command `jupyter notebook`
+* Create a new notebook and start with example below to test basic functionality
+
+
 ## From example.py
 
 ```python
