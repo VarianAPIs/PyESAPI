@@ -12,7 +12,6 @@
 ## From example.py
 
 ```python
-
 # coding: utf-8
 
 # In[1]:
@@ -23,7 +22,7 @@
 # - Michael Folkerts (Michael.Folkerts@varian.com)
 
 
-# In[2]:
+# In[1]:
 
 import sys
 sys.path.append(r'C:\Users\Varian\source\repos\vmspy')  # path to vmspy repo
@@ -32,16 +31,19 @@ pysapi.SAFE_MODE = False # bypass C# to Numpy array verification
 from matplotlib import pyplot as plt
 import numpy as np
 from time import time
+import atexit
 #load app only once
 app = pysapi.CustomScriptExecutable.CreateApplication('python_demo')  # script name is used for logging
+# setup clean exit
+atexit.register(app.Dispose)
 
 
-# In[3]:
+# In[2]:
 
 patient = app.OpenPatientById('001')
 
 
-# In[4]:
+# In[10]:
 
 # shortcut for patient.Courses.ElementAt(0).PlanSetups.FirstOrDefault(lambda x: x.Id == '1 IMRT Prost' )
 plan = patient.CoursesLot(0).PlanSetupsLot('1 IMRT Prost')
@@ -67,10 +69,11 @@ body1 = patient.StructureSetsLot()[0].StructuresLot('body')
 body = structures['body']  # another shortcut for FirstOrDefault on Id field
 assert body == body1  # same object
 
-voxels = plan.StructureSet.Image.voxel_pts_nparray()  # a pysapi extension!
+voxels = plan.Dose.np_voxel_locations()  # a pysapi extension!
+#voxels = plan.StructureSet.Image.np_voxel_locations()  # a pysapi extension!
 
 
-# In[5]:
+# In[11]:
 
 # let's grab some structure masks using pysapi extension method
 # this is actually a little slow, but worth the wait... (better impemented in c++ and added to ESAPI)
@@ -79,16 +82,19 @@ masks = {}
 tic = time()
 for s in structures:
     if s.Id in structures_of_interest:
-        print("Creating mask for {}...            ".format(s.Id),end='\r')
-        masks[s.Id] = plan.StructureSet.Image.mask_nparray(s)  # pysapi extension!
-print("Creating structure masks took {:0.2f} s         ".format(time()-tic))
+        print("Creating mask for {} at Dose grid resolution...            ".format(s.Id),end='\r')
+        masks[s.Id] = plan.Dose.np_structure_mask(s)  # pysapi extension!
+        #print("Creating mask for {} at CT Image resolution...            ".format(s.Id),end='\r')
+        #masks[s.Id] = plan.StructureSet.Image.np_structure_mask(s)  # pysapi extension!
+print("Creating structure masks took {:0.2f} s                   ".format(time()-tic))
 
 tic = time()
-dose = plan.Dose.nparray_like(plan.StructureSet.Image)  # pysapi extension!
+dose = plan.Dose.np_array_like()  # pysapi extension! (Dose at Dose grid resolution, default)
+#dose = plan.Dose.np_array_like(plan.StructureSet.Image)  # pysapi extension! (Dose at CT Image resolution)
 print("Extracting dose took {:0.2f} s".format(time()-tic))
 
 
-# In[6]:
+# In[12]:
 
 # run some verification based on Structure.IsPointInsideSegment(VVector) ...
 # this is very slow!
@@ -97,7 +103,7 @@ for sId in structures_of_interest:
     pysapi.validate_structure_mask(structures[sId],masks[sId],voxels)
 
 
-# In[7]:
+# In[13]:
 
 # plot a dose slice ...
 assert plan.DoseValuePresentation == pysapi.DoseValuePresentation.Relative, "dose not in relative units"
@@ -111,7 +117,7 @@ plt.title("Rx Relative Dose (Z = {:.1f})".format(slice_z_mm))
 plt.show()
 
 
-# In[8]:
+# In[14]:
 
 # plot masked dose ...
 all_masks = np.zeros_like(masks['body'])
@@ -127,7 +133,7 @@ plt.title("")
 plt.show()
 
 
-# In[ ]:
+# In[15]:
 
 # let's compute some DVH "by hand" and compare to Eclipse
 
@@ -152,10 +158,9 @@ plt.title("Mask-Calculated DVH vs. Eclipse DVH (gray dashed lines)")
 plt.show()
 
 
-# In[10]:
+# In[16]:
 
 # to exit cleanly when done...
 app.ClosePatient()
-app.Dispose()
 
 ```
