@@ -16,7 +16,7 @@ clr.AddReference('VMS.TPS.Common.Model.API')
 
 # the bad stuff
 import System
-# import System.Collections
+from System.Collections.Generic import Dictionary
 # import System.Reflection
 
 # the good stuff
