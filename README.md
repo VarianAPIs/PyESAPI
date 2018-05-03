@@ -26,14 +26,14 @@
 
 import sys
 sys.path.append(r'C:\Users\Varian\source\repos\vmspy')  # path to vmspy repo
-import pysapi
-pysapi.SAFE_MODE = False # bypass C# to Numpy array verification
+import pyESAPI
+pyESAPI.SAFE_MODE = False # bypass C# to Numpy array verification
 from matplotlib import pyplot as plt
 import numpy as np
 from time import time
 import atexit
 #load app only once
-app = pysapi.CustomScriptExecutable.CreateApplication('python_demo')  # script name is used for logging
+app = pyESAPI.CustomScriptExecutable.CreateApplication('python_demo')  # script name is used for logging
 # setup clean exit
 atexit.register(app.Dispose)
 
@@ -69,13 +69,13 @@ body1 = patient.StructureSetsLot()[0].StructuresLot('body')
 body = structures['body']  # another shortcut for FirstOrDefault on Id field
 assert body == body1  # same object
 
-voxels = plan.Dose.np_voxel_locations()  # a pysapi extension!
-#voxels = plan.StructureSet.Image.np_voxel_locations()  # a pysapi extension!
+voxels = plan.Dose.np_voxel_locations()  # a pyESAPI extension!
+#voxels = plan.StructureSet.Image.np_voxel_locations()  # a pyESAPI extension!
 
 
 # In[11]:
 
-# let's grab some structure masks using pysapi extension method
+# let's grab some structure masks using pyESAPI extension method
 # this is actually a little slow, but worth the wait... (better impemented in c++ and added to ESAPI)
 structures_of_interest = ['PTV 8100','bladder','rectum','body']
 masks = {}
@@ -83,14 +83,14 @@ tic = time()
 for s in structures:
     if s.Id in structures_of_interest:
         print("Creating mask for {} at Dose grid resolution...            ".format(s.Id),end='\r')
-        masks[s.Id] = plan.Dose.np_structure_mask(s)  # pysapi extension!
+        masks[s.Id] = plan.Dose.np_structure_mask(s)  # pyESAPI extension!
         #print("Creating mask for {} at CT Image resolution...            ".format(s.Id),end='\r')
-        #masks[s.Id] = plan.StructureSet.Image.np_structure_mask(s)  # pysapi extension!
+        #masks[s.Id] = plan.StructureSet.Image.np_structure_mask(s)  # pyESAPI extension!
 print("Creating structure masks took {:0.2f} s                   ".format(time()-tic))
 
 tic = time()
-dose = plan.Dose.np_array_like()  # pysapi extension! (Dose at Dose grid resolution, default)
-#dose = plan.Dose.np_array_like(plan.StructureSet.Image)  # pysapi extension! (Dose at CT Image resolution)
+dose = plan.Dose.np_array_like()  # pyESAPI extension! (Dose at Dose grid resolution, default)
+#dose = plan.Dose.np_array_like(plan.StructureSet.Image)  # pyESAPI extension! (Dose at CT Image resolution)
 print("Extracting dose took {:0.2f} s".format(time()-tic))
 
 
@@ -100,13 +100,13 @@ print("Extracting dose took {:0.2f} s".format(time()-tic))
 # this is very slow!
 for sId in structures_of_interest:
     print("Verifying {} mask...".format(sId))
-    pysapi.validate_structure_mask(structures[sId],masks[sId],voxels)
+    pyESAPI.validate_structure_mask(structures[sId],masks[sId],voxels)
 
 
 # In[13]:
 
 # plot a dose slice ...
-assert plan.DoseValuePresentation == pysapi.DoseValuePresentation.Relative, "dose not in relative units"
+assert plan.DoseValuePresentation == pyESAPI.DoseValuePresentation.Relative, "dose not in relative units"
 slice_idx = 39
 slice_z_mm = voxels[0,0,slice_idx][2]  # a 3D array of 3D points of locations for each voxel
 print(dose.shape)
@@ -146,8 +146,8 @@ for sId in ['PTV 8100','bladder','rectum','body']:
     plt.plot(bins[:-1],100.-hist.cumsum()*100.0/tot_vox,label=sId)
     dvh = plan.GetDVHCumulativeData(
         structures[sId],
-        pysapi.DoseValuePresentation.Relative,
-        pysapi.VolumePresentation.Relative,
+        pyESAPI.DoseValuePresentation.Relative,
+        pyESAPI.VolumePresentation.Relative,
         .01
     )
     pts = np.array([[p.DoseValue.Dose,p.Volume] for p in dvh.CurveData])
