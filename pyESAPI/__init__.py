@@ -2,9 +2,13 @@ import sys
 import pythoncom
 pythoncom.CoInitialize()  # enforces single thread apartment mode
 
-# sys.path.append("D:\\TPS\\va\\Main\\Bin\\Release64") # Dev
-sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.5\\esapi\\API")  # Prod
-sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.5\\ExternalBeam")  # Prod
+# add 15.5 paths
+sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.5\\esapi\\API")
+sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.5\\ExternalBeam")
+
+# add 15.6 paths
+sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.6\\esapi\\API")
+sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.6\\ExternalBeam")
 
 import clr  # pip install pythonnet
 
@@ -33,44 +37,9 @@ import numpy as np
 from ctypes import string_at, sizeof, c_int32, c_bool, c_double
 from scipy.ndimage.morphology import binary_dilation
 
-SAFE_MODE = True  # if True all C# to Numpy array copies are verified
+from .Lot import Lot
 
-
-class Lot:
-    '''a custom collection container for pysapi'''
-
-    def __init__(self, some_collectable):
-        self.collection = some_collectable
-
-    def FirstOrDefault(self, fxn):
-        result = list(filter(fxn, self.collection))
-        if len(result) == 0:
-            return None
-        else:
-            return result[0]
-
-    def Select(self, fxn):
-        '''returns a new lot of objects where fxn(object) == True'''
-        if callable(fxn):
-            return Lot(list(filter(fxn, self.collection)))
-        else:
-            raise TypeError('fxn is not callable')
-
-    def __getitem__(self, key):
-        if type(key) is int or type(key) is slice:
-            # this could be slow:
-            return [i for i in self.collection][key]
-        else:
-            if callable(key):
-                obj = self.FirstOrDefault(key)
-            else:
-                obj = self.FirstOrDefault(lambda x: x.Id == key)
-            if obj == None:
-                print(type(key))
-                raise KeyError('not found')
-            else:
-                return obj
-
+SAFE_MODE = False  # if True all C# to Numpy array copies are verified
 
 def lot_lambda(attr):
     '''returns a lambda that wraps attr in a lot'''
