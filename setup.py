@@ -3,7 +3,12 @@ from distutils.core import setup
 setup(
     name='pyesapi',
     version='0.1dev',
-    packages=['pyesapi',],
-    license=open('LICENSE').read(),
-    long_description='https://github.com/VarianAPIs/PyESAPI',
+    description='Python interface to Eclipse Scripting API"
+    author='Michael Folkerts, Varian Medical Systems'
+    author_email='Michael.Folkerts@varian.com'
+    license='MIT',
+    packages=['pyesapi'],
+    install_requires=[
+        'pythonnet',
+    ],
 )
