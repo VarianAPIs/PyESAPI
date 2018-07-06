@@ -37,47 +37,7 @@ import numpy as np
 from ctypes import string_at, sizeof, c_int32, c_bool, c_double
 from scipy.ndimage.morphology import binary_dilation
 
-<<<<<<< HEAD
-SAFE_MODE = True  # if True all C# to Numpy array copies are verified
-
-
-class Lot:
-    '''a custom collection container for PyESAPI'''
-
-    def __init__(self, some_collectable):
-        self.collection = some_collectable
-
-    def FirstOrDefault(self, fxn):
-        result = list(filter(fxn, self.collection))
-        if len(result) == 0:
-            return None
-        else:
-            return result[0]
-
-    def Select(self, fxn):
-        '''returns a new lot of objects where fxn(object) == True'''
-        if callable(fxn):
-            return Lot(list(filter(fxn, self.collection)))
-        else:
-            raise TypeError('fxn is not callable')
-
-    def __getitem__(self, key):
-        if type(key) is int or type(key) is slice:
-            # this could be slow:
-            return [i for i in self.collection][key]
-        else:
-            if callable(key):
-                obj = self.FirstOrDefault(key)
-            else:
-                obj = self.FirstOrDefault(lambda x: x.Id == key)
-            if obj == None:
-                print(type(key))
-                raise KeyError('not found')
-            else:
-                return obj
-=======
 from .Lot import Lot
->>>>>>> 7cad879dfec91c083835bca4222e3a053b6310e7
 
 SAFE_MODE = False  # if True all C# to Numpy array copies are verified
 
