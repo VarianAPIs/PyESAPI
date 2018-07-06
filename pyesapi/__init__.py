@@ -60,12 +60,6 @@ def lotify(T):
             setattr(T, p.Name + "Lot", lot_lambda(p.Name))
 
 
-def check_arrays(a, b):
-    '''array copy verification'''
-    assert len(a) == len(b), "Arrays are different size!"
-    assert any(A == B for A, B in zip(a, b)), "Arrays have different values!"
-
-
 def to_ndarray(src, dtype):
     '''converts a blitable .NET array of type dtype to a numpy array of type dtype'''
     src_hndl = GCHandle.Alloc(src, GCHandleType.Pinned)
@@ -78,6 +72,7 @@ def to_ndarray(src, dtype):
         check_arrays(src, dest)
     return dest
 
+
 def image_to_nparray(image_like):
     '''returns a 3D numpy.ndarray of floats indexed like [x,y,z]'''
     _shape = (image_like.XSize, image_like.YSize, image_like.ZSize)
@@ -89,6 +84,7 @@ def image_to_nparray(image_like):
         _array[:, :, z] = to_ndarray(_buffer, dtype=c_int32).reshape((image_like.XSize, image_like.YSize))
 
     return _array
+
 
 def dose_to_nparray(dose):
     '''returns a 3D numpy.ndarray of floats indexed like [x,y,z]'''
@@ -209,7 +205,8 @@ def set_fluence_nparray(beam, shaped_fluence, beamlet_size_mm=2.5):
     fluence = Fluence(_buffer, x_origin, y_origin)
     beam.SetOptimalFluence(fluence)
 
-# where the magic happens:
+
+## where the magic happens ##
 
 # add Lot accessors to objects with IEnumerable childeren
 lotify(Patient)
@@ -217,6 +214,7 @@ lotify(PlanSetup)
 lotify(Course)
 lotify(Beam)
 lotify(StructureSet)
+
 
 # monkeypatch "extensions" for numpy array translators
 Structure.np_mask_like = make_segment_mask_for_grid
@@ -231,7 +229,8 @@ Dose.np_voxel_locations = compute_voxel_points_matrix
 
 Beam.np_set_fluence = set_fluence_nparray
 
-# some tests
+
+## some tests ##
 
 def validate_structure_mask(structure, mask, pts, margin=4):
     dilation_idx = np.where(binary_dilation(mask, iterations=margin))
@@ -253,3 +252,9 @@ def validate_structure_mask(structure, mask, pts, margin=4):
     error = mismatch_count / len(flat_mask) * 100.0
     print("mask error (%):", error)
     assert error <= 0.05, "Masking error greater than 0.05 %"
+
+
+def check_arrays(a, b):
+    '''array copy verification'''
+    assert len(a) == len(b), "Arrays are different size!"
+    assert any(A == B for A, B in zip(a, b)), "Arrays have different values!"
