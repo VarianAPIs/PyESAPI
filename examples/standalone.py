@@ -1,4 +1,4 @@
-import pysapi
+import pysapi  # pip install git+https://github.com/VarianAPIs/PyESAPI
 
 def main():
     try:
