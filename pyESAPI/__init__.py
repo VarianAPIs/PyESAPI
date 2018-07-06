@@ -37,7 +37,7 @@ SAFE_MODE = True  # if True all C# to Numpy array copies are verified
 
 
 class Lot:
-    '''a custom collection container for pysapi'''
+    '''a custom collection container for PyESAPI'''
 
     def __init__(self, some_collectable):
         self.collection = some_collectable
@@ -102,24 +102,28 @@ def to_ndarray(src, dtype):
     src_hndl = GCHandle.Alloc(src, GCHandleType.Pinned)
     try:
         src_ptr = src_hndl.AddrOfPinnedObject().ToInt64()
-        dest = np.fromstring(string_at(src_ptr, len(src) * sizeof(dtype)), dtype=dtype)
+        dest = np.frombuffer(string_at(src_ptr, len(src) * sizeof(dtype)), dtype=dtype)
     finally:
         if src_hndl.IsAllocated: src_hndl.Free()
     if SAFE_MODE:
         check_arrays(src, dest)
     return dest
 
+def image_to_nparray(image_like):
+    '''returns a 3D numpy.ndarray of floats indexed like [x,y,z]'''
+    _shape = (image_like.XSize, image_like.YSize, image_like.ZSize)
+    _array = np.zeros(_shape)
+
+    _buffer = Array.CreateInstance(Int32, image_like.XSize, image_like.YSize)
+    for z in range(image_like.ZSize):
+        image_like.GetVoxels(z, _buffer)
+        _array[:, :, z] = to_ndarray(_buffer, dtype=c_int32).reshape((image_like.XSize, image_like.YSize))
+
+    return _array
 
 def dose_to_nparray(dose):
     '''returns a 3D numpy.ndarray of floats indexed like [x,y,z]'''
-
-    dose_shape = (dose.XSize, dose.YSize, dose.ZSize)
-    dose_array = np.zeros(dose_shape)
-
-    _buffer = Array.CreateInstance(Int32, dose.XSize, dose.YSize)
-    for z in range(dose.ZSize):
-        dose.GetVoxels(z, _buffer)
-        dose_array[:, :, z] = to_ndarray(_buffer, dtype=c_int32).reshape((dose.XSize, dose.YSize))
+    dose_array = image_to_nparray(dose)
 
     scale = float(dose.VoxelToDoseValue(1).Dose - dose.VoxelToDoseValue(0).Dose)  # maps int to float
     offset = float(
@@ -160,6 +164,7 @@ def fill_in_profiles(dose_or_image, profile_fxn, row_buffer, dtype, pre_buffer=N
 
 def make_segment_mask_for_grid(structure, dose_or_image):
     '''returns a 3D numpy.ndarray of bools matching dose or image grid indexed like [z,x,y]'''
+    assert dose_or_image is not None, "A dose or image object is required to generate a mask."
     return make_segment_mask_for_structure(dose_or_image, structure)
 
 
@@ -247,6 +252,7 @@ lotify(StructureSet)
 # monkeypatch "extensions" for numpy array translators
 Structure.np_mask_like = make_segment_mask_for_grid
 Dose.np_array_like = make_dose_for_grid
+Image.np_array_like = image_to_nparray
 
 Image.np_structure_mask = make_segment_mask_for_structure
 Dose.np_structure_mask = make_segment_mask_for_structure
