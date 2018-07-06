@@ -16,4 +16,4 @@
 * Create a new notebook and **see [example.ipynb](examples/example.ipynb)** for basic functionality
 
 ## Examples
-* Stand-alone python script template: [standalone.py](examples/standalone.py)
+* Stand-alone python script: [standalone.py](examples/standalone.py)
