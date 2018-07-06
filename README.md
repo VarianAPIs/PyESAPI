@@ -1,8 +1,9 @@
 # PyESAPI
-*A passion project to bring the power of Eclipse Scripting under the Python umbrella to accelerate breakthroughs in medical physics research. - Michael Folkerts, Software Engineer, Varian Medical Systems*
+*"A passion project to help accelerate breakthroughs in medical physics research by bringing the power of Python into the Eclipse API ecosystem."*  
+*-Michael Folkerts, Software Engineer, Varian Medical Systems*
 
 ## Links
-* [Developer Workshop 2018 Material](examples/DeveloperWorkshop2018)
+* [Developer Workshop 2018](examples/DeveloperWorkshop2018)
 
 ## Quickstart
 
