@@ -2,9 +2,13 @@ import sys
 import pythoncom
 pythoncom.CoInitialize()  # enforces single thread apartment mode
 
-# sys.path.append("D:\\TPS\\va\\Main\\Bin\\Release64") # Dev
-sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.5\\esapi\\API")  # Prod
-sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.5\\ExternalBeam")  # Prod
+# add 15.5 paths
+sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.5\\esapi\\API")
+sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.5\\ExternalBeam")
+
+# add 15.6 paths
+sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.6\\esapi\\API")
+sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.6\\ExternalBeam")
 
 import clr  # pip install pythonnet
 
@@ -33,6 +37,7 @@ import numpy as np
 from ctypes import string_at, sizeof, c_int32, c_bool, c_double
 from scipy.ndimage.morphology import binary_dilation
 
+<<<<<<< HEAD
 SAFE_MODE = True  # if True all C# to Numpy array copies are verified
 
 
@@ -70,7 +75,11 @@ class Lot:
                 raise KeyError('not found')
             else:
                 return obj
+=======
+from .Lot import Lot
+>>>>>>> 7cad879dfec91c083835bca4222e3a053b6310e7
 
+SAFE_MODE = False  # if True all C# to Numpy array copies are verified
 
 def lot_lambda(attr):
     '''returns a lambda that wraps attr in a lot'''
