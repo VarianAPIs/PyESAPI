@@ -3,11 +3,12 @@
 
 ## Quickstart
 
+* Access your Eclipse 15.5 (or later) TBOX desktop
 * Install [Anaconda3](https://www.anaconda.com/download/?lang=en-us) for "Just Me" (unless you know what you are doing)
   * Use defaults (don't add anaconda to path, but do set ananconda as your default python installation)
-* Optionally install google chrome browser (for better Jupyter Notebook experience) and set it as your default browser
-* Launch Anaconda Prompt
-* Execute the command `pip install pythonnet`
+* Optionally install google chrome or chromium browser (for better Jupyter Notebook experience) and set it as your default browser
+* Launch Anaconda Prompt by searching in windows menu
+* Execute the command `pip install git+https://github.com/VarianAPIs/PyESAPI`
 * Execute the command `jupyter notebook`
 * Create a new notebook and start with example below to test basic functionality
 
@@ -16,8 +17,7 @@ Below is taken from [example.py](https://github.com/VarianPremiumDeveloper/PyESA
 
 ```python
 import sys
-sys.path.append(r'C:\Users\Varian\source\repos\vmspy')  # path to vmspy repo
-import pyesapi
+import pyesapi  # pip install git+https://github.com/VarianAPIs/PyESAPI
 pyesapi.SAFE_MODE = False # bypass C# to Numpy array verification (faster)
 from matplotlib import pyplot as plt
 import numpy as np
