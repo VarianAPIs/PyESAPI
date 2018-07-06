@@ -4,4 +4,5 @@ You are in the right place for PyESAPI coursework.
 
 ## Solutions
 *No peeking...*
-* [GettingStarted.ipynb](GettingStarted.ipynb)
+* [Getting Started](GettingStarted.ipynb)
+* [Data Mining](DataMining.ipynb)
