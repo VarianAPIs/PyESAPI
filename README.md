@@ -1,5 +1,5 @@
 ## Links
-* [Developer Workshop 2018 Material](tree/master/examples/DeveloperWorkshop2018)
+* [Developer Workshop 2018 Material](examples/DeveloperWorkshop2018)
 
 ## Quickstart
 
