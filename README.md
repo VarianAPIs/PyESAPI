@@ -1,5 +1,5 @@
 ## Links
-* [Developer Workshop 2018 Material](https://github.com/VarianPremiumDeveloper/PyESAPI/tree/master/examples/DeveloperWorkshop2018)
+* [Developer Workshop 2018 Material](tree/master/examples/DeveloperWorkshop2018)
 
 ## Quickstart
 
