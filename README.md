@@ -1,3 +1,6 @@
+## Links
+* [Developer Workshop 2018 Material](https://github.com/VarianPremiumDeveloper/PyESAPI/tree/master/examples/DeveloperWorkshop2018)
+
 ## Quickstart
 
 * Install [Anaconda3](https://www.anaconda.com/download/?lang=en-us) for "Just Me" (unless you know what you are doing)
