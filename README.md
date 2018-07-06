@@ -8,32 +8,20 @@
 * Execute the command `jupyter notebook`
 * Create a new notebook and start with example below to test basic functionality
 
-
-## From example.py
+## Example
+Below is taken from [example.py](https://github.com/VarianPremiumDeveloper/PyESAPI/blob/master/examples/example.py) in [examples](https://github.com/VarianPremiumDeveloper/PyESAPI/blob/master/examples) folder.
 
 ```python
-# coding: utf-8
-
-# In[1]:
-
-# I recommend installing Aanaconda3 (64 bit of course) as a "local" install
-# don't forget to: pip install pythonnet
-# this notebook is run by first opening anaconda prompt and executing: jupyter notebook
-# - Michael Folkerts (Michael.Folkerts@varian.com)
-
-
-# In[1]:
-
 import sys
 sys.path.append(r'C:\Users\Varian\source\repos\vmspy')  # path to vmspy repo
-import pyESAPI
-pyESAPI.SAFE_MODE = False # bypass C# to Numpy array verification
+import pyesapi
+pyesapi.SAFE_MODE = False # bypass C# to Numpy array verification (faster)
 from matplotlib import pyplot as plt
 import numpy as np
 from time import time
 import atexit
 #load app only once
-app = pyESAPI.CustomScriptExecutable.CreateApplication('python_demo')  # script name is used for logging
+app = pyesapi.CustomScriptExecutable.CreateApplication('python_demo')  # script name is used for logging
 # setup clean exit
 atexit.register(app.Dispose)
 
@@ -69,13 +57,13 @@ body1 = patient.StructureSetsLot()[0].StructuresLot('body')
 body = structures['body']  # another shortcut for FirstOrDefault on Id field
 assert body == body1  # same object
 
-voxels = plan.Dose.np_voxel_locations()  # a pyESAPI extension!
-#voxels = plan.StructureSet.Image.np_voxel_locations()  # a pyESAPI extension!
+voxels = plan.Dose.np_voxel_locations()  # a PyESAPI extension!
+#voxels = plan.StructureSet.Image.np_voxel_locations()  # a PyESAPI extension!
 
 
 # In[11]:
 
-# let's grab some structure masks using pyESAPI extension method
+# let's grab some structure masks using PyESAPI extension method
 # this is actually a little slow, but worth the wait... (better impemented in c++ and added to ESAPI)
 structures_of_interest = ['PTV 8100','bladder','rectum','body']
 masks = {}
@@ -83,14 +71,14 @@ tic = time()
 for s in structures:
     if s.Id in structures_of_interest:
         print("Creating mask for {} at Dose grid resolution...            ".format(s.Id),end='\r')
-        masks[s.Id] = plan.Dose.np_structure_mask(s)  # pyESAPI extension!
+        masks[s.Id] = plan.Dose.np_structure_mask(s)  # PyESAPI extension!
         #print("Creating mask for {} at CT Image resolution...            ".format(s.Id),end='\r')
-        #masks[s.Id] = plan.StructureSet.Image.np_structure_mask(s)  # pyESAPI extension!
+        #masks[s.Id] = plan.StructureSet.Image.np_structure_mask(s)  # PyESAPI extension!
 print("Creating structure masks took {:0.2f} s                   ".format(time()-tic))
 
 tic = time()
-dose = plan.Dose.np_array_like()  # pyESAPI extension! (Dose at Dose grid resolution, default)
-#dose = plan.Dose.np_array_like(plan.StructureSet.Image)  # pyESAPI extension! (Dose at CT Image resolution)
+dose = plan.Dose.np_array_like()  # PyESAPI extension! (Dose at Dose grid resolution, default)
+#dose = plan.Dose.np_array_like(plan.StructureSet.Image)  # PyESAPI extension! (Dose at CT Image resolution)
 print("Extracting dose took {:0.2f} s".format(time()-tic))
 
 
@@ -100,13 +88,13 @@ print("Extracting dose took {:0.2f} s".format(time()-tic))
 # this is very slow!
 for sId in structures_of_interest:
     print("Verifying {} mask...".format(sId))
-    pyESAPI.validate_structure_mask(structures[sId],masks[sId],voxels)
+    pyesapi.validate_structure_mask(structures[sId],masks[sId],voxels)
 
 
 # In[13]:
 
 # plot a dose slice ...
-assert plan.DoseValuePresentation == pyESAPI.DoseValuePresentation.Relative, "dose not in relative units"
+assert plan.DoseValuePresentation == pyesapi.DoseValuePresentation.Relative, "dose not in relative units"
 slice_idx = 39
 slice_z_mm = voxels[0,0,slice_idx][2]  # a 3D array of 3D points of locations for each voxel
 print(dose.shape)
@@ -146,8 +134,8 @@ for sId in ['PTV 8100','bladder','rectum','body']:
     plt.plot(bins[:-1],100.-hist.cumsum()*100.0/tot_vox,label=sId)
     dvh = plan.GetDVHCumulativeData(
         structures[sId],
-        pyESAPI.DoseValuePresentation.Relative,
-        pyESAPI.VolumePresentation.Relative,
+        pyesapi.DoseValuePresentation.Relative,
+        pyesapi.VolumePresentation.Relative,
         .01
     )
     pts = np.array([[p.DoseValue.Dose,p.Volume] for p in dvh.CurveData])
