@@ -1,8 +1,8 @@
-import pysapi  # pip install git+https://github.com/VarianAPIs/PyESAPI
+import pyesapi  # pip install git+https://github.com/VarianAPIs/PyESAPI
 
 def main():
     try:
-        app = pysapi.CustomScriptExecutable.CreateApplication('python_ex')  # script name is used for logging
+        app = pyesapi.CustomScriptExecutable.CreateApplication('python_ex')  # script name is used for logging
         print("Current User: " + app.CurrentUser.ToString())
         print([p.Id for p in app.PatientSummaries])
 
