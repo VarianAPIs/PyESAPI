@@ -1,5 +1,5 @@
 # PyESAPI
-*"A passion project to help accelerate breakthroughs in medical physics research by bringing the power of Python into the Varian API ecosystem."  -Michael Folkerts, Software Engineer, Varian Medical Systems*
+*A passion project to help accelerate breakthroughs in medical physics research by bringing the power of Python into the Varian API ecosystem.*
 
 ## Links
 * [Developer Workshop 2018](examples/DeveloperWorkshop2018/README.md)
