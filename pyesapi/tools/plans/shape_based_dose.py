@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.interpolate import griddata
 from scipy.sparse import csr_matrix, lil_matrix, hstack, vstack
-from pysapi.tools.geometry import rotation_matrix, proj_iso_plane  # , make_fluence_maps
+from geometry import rotation_matrix, proj_iso_plane  # , make_fluence_maps
 from time import time
 # from scipy.signal import convolve2d
 from scipy.ndimage import convolve
