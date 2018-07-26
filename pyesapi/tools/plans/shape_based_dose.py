@@ -9,7 +9,7 @@ from time import time
 from scipy.ndimage import convolve
 from scipy.ndimage.interpolation import rotate
 
-import trimesh as tm # https://github.com/mikedh/trimesh
+# import trimesh as tm # https://github.com/mikedh/trimesh
 
 
 #  commissioning data and fit fxns
@@ -815,6 +815,8 @@ def _make_sh2o_Dij_beam_bodymesh(dose_shape, idxs_oi, pts_3d_ct, bodymeshgeo, py
                         beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_beam_dose=False, ref_image=None):
     """ Ready for use in PySAPI """
 
+    import trimesh as tm # https://github.com/mikedh/trimesh
+    
     #  since each beam could have a different isocenter
     iso = pysapi_beam.IsocenterPosition  # mm
     isocenter_mm = [iso.x, iso.y, iso.z]  # already in mm
