@@ -380,7 +380,7 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
 
         # d = 2.
         csr = None
-        N = 20
+        N = 4 #20
         for x_shift in np.linspace(-beamlet_size_x/2.0, beamlet_size_x/2.0, N, endpoint=True):
             for z_shift in np.linspace(-beamlet_size_z/2.0, beamlet_size_z/2.0, N, endpoint=True):
                 if csr is None:
