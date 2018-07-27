@@ -3,25 +3,25 @@ from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.interpolate import griddata
 from scipy.sparse import csr_matrix, lil_matrix, hstack, vstack
-from pysapi.tools.geometry import rotation_matrix, proj_iso_plane  # , make_fluence_maps
+from geometry import rotation_matrix, proj_iso_plane  # , make_fluence_maps
 from time import time
 # from scipy.signal import convolve2d
 from scipy.ndimage import convolve
 from scipy.ndimage.interpolation import rotate
 
-import trimesh as tm # https://github.com/mikedh/trimesh
+# import trimesh as tm # https://github.com/mikedh/trimesh
 
 
 #  commissioning data and fit fxns
 
 pdd_data = {
-    # "6X": {
-    #     "buildup": [-0.00015749459237802087, 0.018456397544299074, -0.88448139491242872, 22.163062813849965,
-    #                 -312.23926598651917, 2449.7961711094094, 1749.682558831852],
-    #     "split": 18.75,
-    #     "falloff": [-2.8264719677060061e-07, 0.00024313850219755478, -0.036093426359969094, -28.230918530108855,
-    #                 11245.762396352433]
-    # },
+    "6X": {
+        "buildup": [-0.00015749459237802087, 0.018456397544299074, -0.88448139491242872, 22.163062813849965,
+                    -312.23926598651917, 2449.7961711094094, 1749.682558831852],
+        "split": 18.75,
+        "falloff": [-2.8264719677060061e-07, 0.00024313850219755478, -0.036093426359969094, -28.230918530108855,
+                    11245.762396352433]
+    },
     "15X": {
         "split": 35.0,
         "buildup": [-0.0009464313106873083, 0.19875057524433598, -16.539586683888302, 692.4124379156118,
@@ -59,6 +59,8 @@ kernel_data = {
     #       49.56740857240596, 8.417599570230726, 2.1880620468364484],
     "15X": [0.00028964017385020818, 0.00011667873579437889, 0.0024779599104120744, 6.4674171413250718,
             18.237437627703674, 1.5545102702143783], ## CAME FROM MC
+    "6X": [0.00028964017385020818, 0.00011667873579437889, 0.0024779599104120744, 6.4674171413250718,
+        18.237437627703674, 1.5545102702143783], ## COPY OF 15X kernel
 
     # (f1,f2,f3,s1,s2,r3)
     #               {
@@ -378,7 +380,7 @@ def compute_Dij(dose_shape, idxs_oi, pts_3d, pts_3d_shell, SAD=1000., gantry_ang
 
         # d = 2.
         csr = None
-        N = 20
+        N = 4 #20
         for x_shift in np.linspace(-beamlet_size_x/2.0, beamlet_size_x/2.0, N, endpoint=True):
             for z_shift in np.linspace(-beamlet_size_z/2.0, beamlet_size_z/2.0, N, endpoint=True):
                 if csr is None:
@@ -815,6 +817,8 @@ def _make_sh2o_Dij_beam_bodymesh(dose_shape, idxs_oi, pts_3d_ct, bodymeshgeo, py
                         beamlet_size_x_mm, beamlet_size_z_mm, anti_alias, use_beam_dose=False, ref_image=None):
     """ Ready for use in PySAPI """
 
+    import trimesh as tm # https://github.com/mikedh/trimesh
+    
     #  since each beam could have a different isocenter
     iso = pysapi_beam.IsocenterPosition  # mm
     isocenter_mm = [iso.x, iso.y, iso.z]  # already in mm
