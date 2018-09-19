@@ -9,7 +9,6 @@ A passion project to help accelerate breakthroughs in medical physics research b
 ## Quickstart
 
 * Access your Eclipse 15.5 (or later) TBOX desktop
-* Install [git for Windows](https://git-scm.com/downloads)
 * Install [Anaconda3](https://www.anaconda.com/download/?lang=en-us) for "Just Me" (unless you know what you are doing)
   * Use defaults (don't add anaconda to path, but do set ananconda as your default python installation)
 * Optionally install google chrome or chromium browser (for better Jupyter Notebook experience) and set it as your default browser
