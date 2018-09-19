@@ -14,6 +14,8 @@ A passion project to help accelerate breakthroughs in medical physics research b
   * Use defaults (don't add anaconda to path, but do set ananconda as your default python installation)
 * Optionally install google chrome or chromium browser (for better Jupyter Notebook experience) and set it as your default browser
 * Launch "Anaconda Prompt" by searching in Windows menu
+* Execute the command `conda install -c anaconda git`
+* If you are behind a proxy do `git config --global https.proxy https://some.proxy.net:1234`
 * Execute the command `pip install git+https://github.com/VarianAPIs/PyESAPI`
 * Execute the command `jupyter notebook`
 * Create a new notebook and **see [example.ipynb](examples/example.ipynb)** for basic functionality
