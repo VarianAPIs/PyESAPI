@@ -1,14 +1,30 @@
-import sys
+import sys, os
 import pythoncom
 pythoncom.CoInitialize()  # enforces single thread apartment mode
 
-# add 15.5 paths
-sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.5\\esapi\\API")
-sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.5\\ExternalBeam")
+rpaths=[os.path.join("esapi","API"),"ExternalBeam"]
+versions=["15.5","15.6"]
+base=os.path.join("Program Files (x86)","Varian","RTM")
+drives=["C:","D:"] # Could potentially list local drives, but Eclispe should be on C or D
 
-# add 15.6 paths
-sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.6\\esapi\\API")
-sys.path.append("C:\\Program Files (x86)\\Varian\\RTM\\15.6\\ExternalBeam")
+# Add paths that exist
+paths=[]
+spaths=[]
+for drive in drives:
+	for ver in versions:
+		for rp in rpaths:
+			p=os.path.join(drive,os.sep,base,ver,rp)
+			spaths.append(p)
+			if os.path.isdir(p):
+				paths.append(p)
+
+if len(paths) < 2:
+	raise Exception("Did not find required library paths!  Searched for:\n %s"%(",\n".join(spaths)))
+if len(paths) > 2:
+	print("WARNING: Found multiple possible VMS dll locations:\n %s"%(",\n".join(spaths)))
+
+for p in paths:
+	sys.path.append(p)
 
 import clr  # pip install pythonnet
 
