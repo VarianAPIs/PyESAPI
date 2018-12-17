@@ -3,9 +3,6 @@
 
 A passion project to help accelerate breakthroughs in medical physics research by bringing the power of Python into the Varian API ecosystem.
 
-## Links
-* [Developer Workshop 2018](examples/DeveloperWorkshop2018/README.md)
-
 ## Quickstart
 
 * Access your Eclipse 15.5 (or later) TBOX desktop
@@ -17,7 +14,7 @@ A passion project to help accelerate breakthroughs in medical physics research b
 * If you are behind a proxy do `git config --global https.proxy https://some.proxy.net:1234`
 * Execute the command `pip install git+https://github.com/VarianAPIs/PyESAPI`
 * Execute the command `jupyter notebook`
-* Create a new notebook and **see [example.ipynb](examples/example.ipynb)** for basic functionality
+* Create a new notebook and **see [Developer Workshop 2018 Notebooks](examples/DeveloperWorkshop2018/README.md)** for examples.
 
 ## Examples
 * Stand-alone python script: [standalone.py](examples/standalone.py)
