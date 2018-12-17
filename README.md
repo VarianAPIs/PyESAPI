@@ -17,5 +17,5 @@ A passion project to help accelerate breakthroughs in medical physics research b
 * Create a new notebook and see below for examples.
 
 ## Examples
-* [Developer Workshop 2018 Notebooks](examples/DeveloperWorkshop2018/README.md)
+* [Developer Workshop 2018](examples/DeveloperWorkshop2018/README.md)
 * Stand-alone python script: [standalone.py](examples/standalone.py)
