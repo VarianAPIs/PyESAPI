@@ -14,7 +14,8 @@ A passion project to help accelerate breakthroughs in medical physics research b
 * If you are behind a proxy do `git config --global https.proxy https://some.proxy.net:1234`
 * Execute the command `pip install git+https://github.com/VarianAPIs/PyESAPI`
 * Execute the command `jupyter notebook`
-* Create a new notebook and **see [Developer Workshop 2018 Notebooks](examples/DeveloperWorkshop2018/README.md)** for examples.
+* Create a new notebook and see below for examples.
 
 ## Examples
+* [Developer Workshop 2018 Notebooks](examples/DeveloperWorkshop2018/README.md)
 * Stand-alone python script: [standalone.py](examples/standalone.py)
