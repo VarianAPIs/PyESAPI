@@ -9,6 +9,6 @@ setup(
     license='MIT',
     packages=['pyesapi'],
     install_requires=[
-        'git+https://github.com/pythonnet/pythonnet@master#egg=pythonnet',
+        'https://github.com/pythonnet/pythonnet@d3ca2e8f9d221853f5c75fbb0ff4c7c85dafa70d#egg=pythonnet',
     ],
 )
