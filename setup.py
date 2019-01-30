@@ -8,7 +8,7 @@ setup(
     author_email='Michael.Folkerts@varian.com',
     license='MIT',
     packages=['pyesapi'],
-    install_requires=[
-        'pythonnet',
-    ],
+    # install_requires=[
+    #     'pythonnet',
+    # ],
 )
