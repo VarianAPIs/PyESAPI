@@ -19,3 +19,12 @@ A passion project to help accelerate breakthroughs in medical physics research b
 ## Examples
 * [Developer Workshop 2018](examples/DeveloperWorkshop2018/README.md)
 * Stand-alone python script: [standalone.py](examples/standalone.py)
+
+## Development
+Set custom ESAPI_PATH (to DLLs) before import (bypasses production directory path search)
+```python
+import os
+os.environ['ESAPI_PATH'] = "C:\\Users\\CoolKid\\Source\\Magic\\Bin\\Debug64"
+import pyesapi
+# ...
+```
