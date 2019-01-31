@@ -2,37 +2,45 @@ import sys, os
 import pythoncom
 pythoncom.CoInitialize()  # enforces single thread apartment mode
 
-rpaths=[os.path.join("esapi","API"),"ExternalBeam"]
-versions=["15.5","15.6"]
-base=os.path.join("Program Files (x86)","Varian","RTM")
-drives=["C:","D:"] # Could potentially list local drives, but Eclispe should be on C or D
+ESAPI_PATH = os.environ.get('ESAPI_PATH')
 
-# Add paths that exist
-paths=[]
-spaths=[]
-for drive in drives:
-	for ver in versions:
-		for rp in rpaths:
-			p=os.path.join(drive,os.sep,base,ver,rp)
-			spaths.append(p)
-			if os.path.isdir(p):
-				paths.append(p)
+if ESAPI_PATH is not None:
+    # optionally set ESAPI_PATH env var with location of DLLs
+    sys.path.append(ESAPI_PATH)
+else:
+    # do some soul searching
+    rpaths=[os.path.join("esapi","API"),"ExternalBeam"]
+    versions=["15.5","15.6"]
+    base=os.path.join("Program Files (x86)","Varian","RTM")
+    drives=["C:","D:"] # Could potentially list local drives, but Eclispe should be on C or D
 
-if len(paths) < 2:
-	raise Exception("Did not find required library paths!  Searched for:\n %s"%(",\n".join(spaths)))
-if len(paths) > 2:
-	print("WARNING: Found multiple possible VMS dll locations:\n %s"%(",\n".join(spaths)))
+    # Add paths that exist
+    paths=[]
+    spaths=[]
+    for drive in drives:
+        for ver in versions:
+            for rp in rpaths:
+                p=os.path.join(drive,os.sep,base,ver,rp)
+                spaths.append(p)
+                if os.path.isdir(p):
+                    paths.append(p)
 
-for p in paths:
-	sys.path.append(p)
+    if len(paths) < 2:
+        raise Exception("Did not find required library paths!  Searched for:\n %s"%(",\n".join(spaths)))
+    if len(paths) > 2:
+        print("WARNING: Found multiple possible VMS dll locations:\n %s"%(",\n".join(spaths)))
 
-import clr  # pip install pythonnet
+    for p in paths:
+        sys.path.append(p)
+
+import clr  # pip install git+https://github.com/VarianAPIs/pythonnet
 
 clr.AddReference('System.Windows')
 # clr.AddReference('System.Linq')
 # clr.AddReference('System.Collections')
-clr.AddReference('VMS.TPS.Common.Model')
 clr.AddReference('VMS.TPS.Common.Model.API')
+# clr.AddReference('VMS.TPS.Common.Model')
+
 
 # the bad stuff
 import System
@@ -166,7 +174,7 @@ def make_dose_for_grid(dose, image=None):
     '''returns a 3D numpy.ndarray of doubles matching dose (default) or image grid indexed like [x,y,z]'''
 
     if image is not None:
-        row_buffer = Array.CreateInstance(Double, image.ZSize);
+        row_buffer = Array.CreateInstance(Double, image.ZSize)
         dose_array = fill_in_profiles(image, dose.GetDoseProfile, row_buffer, c_double)
     else:
         # default
