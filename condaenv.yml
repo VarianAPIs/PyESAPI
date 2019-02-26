@@ -1,5 +1,6 @@
 name: pyesapi
 channels:
+  - anaconda-fusion
   - defaults
 dependencies:
   - _ipyw_jlab_nb_ext_conf=0.1.0=py36he6757f0_0
@@ -18,6 +19,7 @@ dependencies:
   - beautifulsoup4=4.6.0=py36hd4cc5e8_1
   - bitarray=0.8.1=py36hfa6e2cd_1
   - bkcharts=0.2=py36h7e685f7_0
+  - blas=1.0=mkl
   - blaze=0.11.3=py36h8a29ca5_0
   - bleach=2.1.2=py36_0
   - bokeh=0.12.13=py36h047fa9f_0
@@ -33,7 +35,7 @@ dependencies:
   - clyent=1.2.2=py36hb10d595_1
   - colorama=0.3.9=py36h029ae33_0
   - comtypes=1.1.4=py36_0
-  - conda=4.4.10=py36_0
+  - conda=4.6.7=py36_0
   - conda-build=3.4.1=py36_0
   - conda-env=2.6.0=h36134e3_1
   - conda-verify=2.0.0=py36h065de53_0
@@ -59,6 +61,7 @@ dependencies:
   - freetype=2.8=h51f8f2c_1
   - get_terminal_size=1.0.0=h38e98db_0
   - gevent=1.2.2=py36h342a76c_0
+  - git=2.20.1=h6bb4b03_0
   - glob2=0.6=py36hdf76b57_0
   - greenlet=0.4.12=py36ha00ad21_0
   - h5py=2.7.1=py36he54a1c3_0
@@ -111,6 +114,8 @@ dependencies:
   - msgpack-python=0.5.1=py36he980bc4_0
   - multipledispatch=0.4.9=py36he44c36e_0
   - navigator-updater=0.1.0=py36h8a7b86b_0
+  - nb_conda=2.2.1=py36_0
+  - nb_conda_kernels=2.2.0=py36_1
   - nbconvert=5.3.1=py36h8dc0fde_0
   - nbformat=4.4.0=py36h3a5bc1b_0
   - networkx=2.1=py36_0
@@ -225,9 +230,8 @@ dependencies:
   - zict=0.1.3=py36h2d8e73e_0
   - zlib=1.2.11=h8395fce_2
   - pip:
-    - ipympl==0.2.0
-    - pydicom==1.1.0
-    - git+https://github.com/VarianAPIs/PyESAPI.git@master
-    - pythonnet==2.3.0
+    - https://api.github.com/repos/VarianAPIs/PyESAPI/tarball
+    - pypiwin32==223
     - tables==3.4.2
+prefix: C:\Users\blw8175\anaconda3\envs\pyesapi
 
