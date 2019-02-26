@@ -9,7 +9,6 @@ setup(
     license='MIT',
     packages=['pyesapi'],
     install_requires=[
-        'pypiwin32',
         'numpy',
         'scipy',
         'pythonnet'
