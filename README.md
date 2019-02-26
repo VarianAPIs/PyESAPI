@@ -12,7 +12,7 @@ To simpify the install process and to provide users with accelerated (pre-compil
   * Use defaults (don't add anaconda to path, but do set ananconda as your default python installation)
 * Optionally install google chrome or chromium browser (for better Jupyter Notebook experience) and set it as your default browser
 * Launch "Anaconda Prompt" by searching in Windows menu
-* In the prompt, execute the command `curl -L https://raw.githubusercontent.com/VarianAPIs/PyESAPI/master/condaenv36.yml > condaenv36.yml`
+* In the prompt, execute the command `curl -O https://raw.githubusercontent.com/VarianAPIs/PyESAPI/master/condaenv36.yml`
   * This command downloads the anaconda base environment definition file for use with pyesapi (used for all examples)
 * In the prompt, execute the command `conda env create -f condaenv36.yml`
   * This command actually creates the anaconda environment
