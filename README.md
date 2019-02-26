@@ -10,7 +10,9 @@ A passion project to help accelerate breakthroughs in medical physics research b
   * Choose to install for "Just Me" (unless you know what you are doing and have admin privlages on your machine)
   * Use defaults (don't add anaconda to path, but do set ananconda as your default python installation)
 * Optionally install google chrome or chromium browser (for better Jupyter Notebook experience) and set it as your default browser
+* Download the pyesapi conda evnironment file: <a href="https://github.com/VarianAPIs/PyESAPI/raw/master/condaenv.yml" download>condaenv.yml</a>
 * Launch "Anaconda Prompt" by searching in Windows menu
+* In the prompt, execute the command `conda env create -f condaenv.yml`
 * In the prompt, execute the command `pip install https://api.github.com/repos/VarianAPIs/PyESAPI/tarball`
   * TODO: get official pypy distribution set up
 * Then execute the command `jupyter notebook`
