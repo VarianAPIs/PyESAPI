@@ -33,6 +33,14 @@ import pyesapi
 # ...
 ```
 
+### Stub Gen
+To create lintable code and enable code completion (in Visual Studio Code at least) we generate python stubs for ESAPI libs...
+1. [Download](https://ironpython.net/download/) and install IronPython (2.7.9 tested to work) in default location (C:\Program Files\IronPython 2.7\ipy.exe).
+1. Load ironpython-stubs submodule `git submodule update --init` (ironstubs)
+1. Move to stubgen folder `cd stubgen`
+1. Execute script `stubgen.ps1`
+1. Commit updates to stubs folder
+
 ## Proxy and Git Considerations
 * [Proxy for Anaconda](https://support.anaconda.com/customer/en/portal/articles/2921276-using-anaconda-behind-a-firewall-or-proxy)
 * Install git in a conda env: `conda install -c anaconda git`
@@ -43,3 +51,4 @@ import pyesapi
 - [ ] Official PyPi release
 - [ ] PyESAPI Stubs
 - [ ] Visual Studio Code support
+- [ ] Version stubs.min files
