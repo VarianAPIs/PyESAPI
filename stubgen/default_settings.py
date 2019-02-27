@@ -6,14 +6,13 @@ PATHS = [
     ]
 
 ASSEMBLIES = [
-    # 'WindowsBase',
-    # # | System
-    # 'System',
+    # | System
+    'System',  # broken?
     # 'System.Drawing',
-    # 'System.Windows',
-    # 'System.Windows.Forms',
-    # 'System.Collections.Generic',
-    # 'System.Runtime.InteropServices',
+    'System.Windows',
+    'System.Collections',
+    'System.Runtime.InteropServices',
+
     # | ESAPI
     'VMS.TPS.Common.Model.API',
     'VMS.TPS.Common.Model.Types',
@@ -21,7 +20,6 @@ ASSEMBLIES = [
 
 BUILTINS = [
     'clr',
-    'wpf'
     ]
 
 ASSEMBLIES.extend(BUILTINS)

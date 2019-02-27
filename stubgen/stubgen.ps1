@@ -8,4 +8,4 @@ cp .\default_settings.py .\ironstubs
 mkdir logs
 
 # execute stubgen, add --debug if you get errors
-& 'C:\Program Files\IronPython 2.7\ipy.exe' -m ironstubs make --all --overwrite --output=..\..\stubs
+& 'C:\Program Files\IronPython 2.7\ipy.exe' -m ironstubs make --all --output=..\..\stubs

@@ -22,46 +22,62 @@ def accepts(*types, p_object=None): # real signature unknown; restored from __do
 
 def AddReference(*args, **kwargs): # real signature unknown
     """
-    Adds a reference to a .NET assembly.  Parameters can be an already loaded
-    Assembly object, a full assembly name, or a partial assembly name. After the
-    load the assemblies namespaces and top-level types will be available via 
+    Adds a reference to a .NET assembly.  Parameters can be an already loaded
+
+    Assembly object, a full assembly name, or a partial assembly name. After the
+
+    load the assemblies namespaces and top-level types will be available via 
+
     import Namespace.
     """
     pass
 
 def AddReferenceByName(*args, **kwargs): # real signature unknown
     """
-    Adds a reference to a .NET assembly.  Parameters are an assembly name. 
-    After the load the assemblies namespaces and top-level types will be available via 
+    Adds a reference to a .NET assembly.  Parameters are an assembly name. 
+
+    After the load the assemblies namespaces and top-level types will be available via 
+
     import Namespace.
     """
     pass
 
 def AddReferenceByPartialName(*args, **kwargs): # real signature unknown
     """
-    Adds a reference to a .NET assembly.  Parameters are a partial assembly name. 
-    After the load the assemblies namespaces and top-level types will be available via 
+    Adds a reference to a .NET assembly.  Parameters are a partial assembly name. 
+
+    After the load the assemblies namespaces and top-level types will be available via 
+
     import Namespace.
     """
     pass
 
 def AddReferenceToFile(*args, **kwargs): # real signature unknown
     """
-    Adds a reference to a .NET assembly.  One or more assembly names can
-    be provided.  The assembly is searched for in the directories specified in 
-    sys.path and dependencies will be loaded from sys.path as well.  The assembly 
-    name should be the filename on disk without a directory specifier and 
-    optionally including the .EXE or .DLL extension. After the load the assemblies 
+    Adds a reference to a .NET assembly.  One or more assembly names can
+
+    be provided.  The assembly is searched for in the directories specified in 
+
+    sys.path and dependencies will be loaded from sys.path as well.  The assembly 
+
+    name should be the filename on disk without a directory specifier and 
+
+    optionally including the .EXE or .DLL extension. After the load the assemblies 
+
     namespaces and top-level types will be available via import Namespace.
     """
     pass
 
 def AddReferenceToFileAndPath(*args, **kwargs): # real signature unknown
     """
-    Adds a reference to a .NET assembly.  One or more assembly names can
-    be provided which are fully qualified names to the file on disk.  The 
-    directory is added to sys.path and AddReferenceToFile is then called. After the 
-    load the assemblies namespaces and top-level types will be available via 
+    Adds a reference to a .NET assembly.  One or more assembly names can
+
+    be provided which are fully qualified names to the file on disk.  The 
+
+    directory is added to sys.path and AddReferenceToFile is then called. After the 
+
+    load the assemblies namespaces and top-level types will be available via 
+
     import Namespace.
     """
     pass
@@ -74,9 +90,10 @@ def ClearProfilerData(): # real signature unknown; restored from __doc__
     """ ClearProfilerData() """
     pass
 
-def CompileModules(assemblyName, **kwArgs, p_str=None, p_object=None, *args): # real signature unknown; NOTE: unreliably restored from __doc__ 
-    """ CompileModules(assemblyName: str, **kwArgs: IDictionary[str, object], *filenames: Array[str]) """
-    pass
+# not valid python 3.6 syntax:
+# def CompileModules(assemblyName, **kwArgs, p_str=None, p_object=None, *args): # real signature unknown; NOTE: unreliably restored from __doc__ 
+#     """ CompileModules(assemblyName: str, **kwArgs: IDictionary[str, object], *filenames: Array[str]) """
+#     pass
 
 def CompileSubclassTypes(assemblyName, *newTypes, p_object=None): # real signature unknown; restored from __doc__
     """ CompileSubclassTypes(assemblyName: str, *newTypes: Array[object]) """
@@ -140,39 +157,48 @@ def ImportExtensions(type): # real signature unknown; restored from __doc__
 
 def LoadAssemblyByName(*args, **kwargs): # real signature unknown
     """
-    Loads an assembly from the specified assembly name and returns the assembly
-    object.  Namespaces or types in the assembly can be accessed directly from 
+    Loads an assembly from the specified assembly name and returns the assembly
+
+    object.  Namespaces or types in the assembly can be accessed directly from 
+
     the assembly object.
     """
     pass
 
 def LoadAssemblyByPartialName(*args, **kwargs): # real signature unknown
     """
-    Loads an assembly from the specified partial assembly name and returns the 
-    assembly object.  Namespaces or types in the assembly can be accessed directly 
+    Loads an assembly from the specified partial assembly name and returns the 
+
+    assembly object.  Namespaces or types in the assembly can be accessed directly 
+
     from the assembly object.
     """
     pass
 
 def LoadAssemblyFromFile(*args, **kwargs): # real signature unknown
     """
-    Loads an assembly from the specified filename and returns the assembly
-    object.  Namespaces or types in the assembly can be accessed directly from 
+    Loads an assembly from the specified filename and returns the assembly
+
+    object.  Namespaces or types in the assembly can be accessed directly from 
+
     the assembly object.
     """
     pass
 
 def LoadAssemblyFromFileWithPath(*args, **kwargs): # real signature unknown
     """
-    Adds a reference to a .NET assembly.  Parameters are a full path to an. 
-    assembly on disk. After the load the assemblies namespaces and top-level types 
+    Adds a reference to a .NET assembly.  Parameters are a full path to an. 
+
+    assembly on disk. After the load the assemblies namespaces and top-level types 
+
     will be available via import Namespace.
     """
     pass
 
 def LoadTypeLibrary(rcw): # real signature unknown; restored from __doc__
     """
-    LoadTypeLibrary(rcw: object) -> ComTypeLibInfo
+    LoadTypeLibrary(rcw: object) -> ComTypeLibInfo
+
     LoadTypeLibrary(typeLibGuid: Guid) -> ComTypeLibInfo
     """
     pass
@@ -195,7 +221,8 @@ def SetCommandDispatcher(dispatcher, Action=None): # real signature unknown; res
 
 def Use(name): # real signature unknown; restored from __doc__
     """
-    Use(name: str) -> object
+    Use(name: str) -> object
+
     Use(path: str, language: str) -> object
     """
     return object()
@@ -216,7 +243,8 @@ class ArgChecker(object):
 
 class StrongBox(object, IStrongBox):
     """
-    StrongBox[T]()
+    StrongBox[T]()
+
     StrongBox[T](value: T)
     """
     def __init__(self, *args): #cannot find CLR method
@@ -226,7 +254,8 @@ class StrongBox(object, IStrongBox):
     @staticmethod # known case of __new__
     def __new__(self, value=None):
         """
-        __new__(cls: type)
+        __new__(cls: type)
+
         __new__(cls: type, value: T)
         """
         pass
@@ -288,7 +317,8 @@ class ReturnChecker(object):
 
 class RuntimeArgChecker(PythonTypeSlot):
     """
-    RuntimeArgChecker(function: object, expectedArgs: Array[object])
+    RuntimeArgChecker(function: object, expectedArgs: Array[object])
+
     RuntimeArgChecker(instance: object, function: object, expectedArgs: Array[object])
     """
     def __call__(self, *args): #cannot find CLR method
@@ -298,7 +328,8 @@ class RuntimeArgChecker(PythonTypeSlot):
     @staticmethod # known case of __new__
     def __new__(self, *__args):
         """
-        __new__(cls: type, function: object, expectedArgs: Array[object])
+        __new__(cls: type, function: object, expectedArgs: Array[object])
+
         __new__(cls: type, instance: object, function: object, expectedArgs: Array[object])
         """
         pass
@@ -306,7 +337,8 @@ class RuntimeArgChecker(PythonTypeSlot):
 
 class RuntimeReturnChecker(PythonTypeSlot):
     """
-    RuntimeReturnChecker(function: object, expectedReturn: object)
+    RuntimeReturnChecker(function: object, expectedReturn: object)
+
     RuntimeReturnChecker(instance: object, function: object, expectedReturn: object)
     """
     def GetAttribute(self, instance, owner):
@@ -320,7 +352,8 @@ class RuntimeReturnChecker(PythonTypeSlot):
     @staticmethod # known case of __new__
     def __new__(self, *__args):
         """
-        __new__(cls: type, function: object, expectedReturn: object)
+        __new__(cls: type, function: object, expectedReturn: object)
+
         __new__(cls: type, instance: object, function: object, expectedReturn: object)
         """
         pass
