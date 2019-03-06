@@ -1,13 +1,13 @@
-from distutils.core import setup
+from distutils.core import setup, find_packages
 
 setup(
     name='pyesapi',
-    version='0.4dev',
+    version='0.5dev',
     description='Python interface to Eclipse Scripting API',
     author='Michael Folkerts, Varian Medical Systems',
     author_email='Michael.Folkerts@varian.com',
     license='MIT',
-    packages=['pyesapi'],
+    packages=find_packages(),
     install_requires=[
         'numpy',
         'scipy',
