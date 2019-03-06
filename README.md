@@ -24,6 +24,10 @@ To simpify the install process and to provide users with accelerated (pre-compil
 * [Developer Workshop 2018](examples/DeveloperWorkshop2018/README.md)
 * Stand-alone python script: [standalone.py](examples/standalone.py)
 
+## Upgrading
+* Inside your conda env, execute `pip install https://api.github.com/repos/VarianAPIs/PyESAPI/tarball --upgrade`
+  * This will check and upgrade PyESAPI if a newer version is available
+
 ## Visual Studio Code
 * Tested to work with new projects being built with pyesapi
 * Install [Python Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
