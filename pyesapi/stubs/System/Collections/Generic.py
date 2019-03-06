@@ -11,22 +11,21 @@
 class Comparer(object, IComparer, IComparer[T]):
     # no doc
     def Compare(self, x, y):
+        # type: (self: Comparer[T], x: T, y: T) -> int
         """
         Compare(self: Comparer[T], x: T, y: T) -> int
         
-            When overridden in a derived class, performs a comparison of two objects of the same type and returns a value indicating whether one object is less than, 
-             equal to, or greater than the other.
-        
+            When overridden in a derived class, performs a comparison of two objects of the same type and returns a value indicating whether one object is less than, equal to, or greater than the other.
         
             x: The first object to compare.
             y: The second object to compare.
-            Returns: A signed integer that indicates the relative values of x and y, as shown in the following table.Value Meaning Less than zero x is less than y.Zero x equals 
-             y.Greater than zero x is greater than y.
+            Returns: A signed integer that indicates the relative values of x and y, as shown in the following table.Value Meaning Less than zero x is less than y.Zero x equals y.Greater than zero x is greater than y.
         """
         pass
 
     @staticmethod
     def Create(comparison):
+        # type: (comparison: Comparison[T]) -> Comparer[T]
         """ Create(comparison: Comparison[T]) -> Comparer[T] """
         pass
 
@@ -47,6 +46,7 @@ class Comparer(object, IComparer, IComparer[T]):
 
 
 class Dictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKey, TValue]], IEnumerable[KeyValuePair[TKey, TValue]], IEnumerable, IDictionary, ICollection, IReadOnlyDictionary[TKey, TValue], IReadOnlyCollection[KeyValuePair[TKey, TValue]], ISerializable, IDeserializationCallback):
+    # type: ()
     """
     Dictionary[TKey, TValue]()
     Dictionary[TKey, TValue](capacity: int)
@@ -56,6 +56,7 @@ class Dictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
     Dictionary[TKey, TValue](dictionary: IDictionary[TKey, TValue])
     """
     def Add(self, key, value):
+        # type: (self: Dictionary[TKey, TValue], key: TKey, value: TValue)
         """
         Add(self: Dictionary[TKey, TValue], key: TKey, value: TValue)
             Adds the specified key and value to the dictionary.
@@ -66,6 +67,7 @@ class Dictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def Clear(self):
+        # type: (self: Dictionary[TKey, TValue])
         """
         Clear(self: Dictionary[TKey, TValue])
             Removes all keys and values from the System.Collections.Generic.Dictionary.
@@ -73,6 +75,7 @@ class Dictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def ContainsKey(self, key):
+        # type: (self: Dictionary[TKey, TValue], key: TKey) -> bool
         """
         ContainsKey(self: Dictionary[TKey, TValue], key: TKey) -> bool
         
@@ -84,6 +87,7 @@ class Dictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def ContainsValue(self, value):
+        # type: (self: Dictionary[TKey, TValue], value: TValue) -> bool
         """
         ContainsValue(self: Dictionary[TKey, TValue], value: TValue) -> bool
         
@@ -95,6 +99,7 @@ class Dictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def GetEnumerator(self):
+        # type: (self: Dictionary[TKey, TValue]) -> Enumerator
         """
         GetEnumerator(self: Dictionary[TKey, TValue]) -> Enumerator
         
@@ -104,21 +109,18 @@ class Dictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def GetObjectData(self, info, context):
+        # type: (self: Dictionary[TKey, TValue], info: SerializationInfo, context: StreamingContext)
         """
         GetObjectData(self: Dictionary[TKey, TValue], info: SerializationInfo, context: StreamingContext)
-            Implements the System.Runtime.Serialization.ISerializable interface and returns the data needed to serialize the System.Collections.Generic.Dictionary 
-             instance.
+            Implements the System.Runtime.Serialization.ISerializable interface and returns the data needed to serialize the System.Collections.Generic.Dictionary instance.
         
-        
-            info: A System.Runtime.Serialization.SerializationInfo object that contains the information required to serialize the System.Collections.Generic.Dictionary 
-             instance.
-        
-            context: A System.Runtime.Serialization.StreamingContext structure that contains the source and destination of the serialized stream associated with the 
-             System.Collections.Generic.Dictionary instance.
+            info: A System.Runtime.Serialization.SerializationInfo object that contains the information required to serialize the System.Collections.Generic.Dictionary instance.
+            context: A System.Runtime.Serialization.StreamingContext structure that contains the source and destination of the serialized stream associated with the System.Collections.Generic.Dictionary instance.
         """
         pass
 
     def OnDeserialization(self, sender):
+        # type: (self: Dictionary[TKey, TValue], sender: object)
         """
         OnDeserialization(self: Dictionary[TKey, TValue], sender: object)
             Implements the System.Runtime.Serialization.ISerializable interface and raises the deserialization event when the deserialization is complete.
@@ -128,18 +130,19 @@ class Dictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def Remove(self, key):
+        # type: (self: Dictionary[TKey, TValue], key: TKey) -> bool
         """
         Remove(self: Dictionary[TKey, TValue], key: TKey) -> bool
         
             Removes the value with the specified key from the System.Collections.Generic.Dictionary.
         
             key: The key of the element to remove.
-            Returns: true if the element is successfully found and removed; otherwise, false.  This method returns false if key is not found in the 
-             System.Collections.Generic.Dictionary.
+            Returns: true if the element is successfully found and removed; otherwise, false.  This method returns false if key is not found in the System.Collections.Generic.Dictionary.
         """
         pass
 
     def TryGetValue(self, key, value):
+        # type: (self: Dictionary[TKey, TValue], key: TKey) -> (bool, TValue)
         """ TryGetValue(self: Dictionary[TKey, TValue], key: TKey) -> (bool, TValue) """
         pass
 
@@ -208,32 +211,32 @@ class Dictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     Comparer = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Collections.Generic.IEqualityComparer that is used to determine equality of keys for the dictionary.
-
-Get: Comparer(self: Dictionary[TKey, TValue]) -> IEqualityComparer[TKey]
-
-"""
+    """
+    Gets the System.Collections.Generic.IEqualityComparer that is used to determine equality of keys for the dictionary.
+    
+    Get: Comparer(self: Dictionary[TKey, TValue]) -> IEqualityComparer[TKey]
+    """
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of key/value pairs contained in the System.Collections.Generic.Dictionary.
-
-Get: Count(self: Dictionary[TKey, TValue]) -> int
-
-"""
+    """
+    Gets the number of key/value pairs contained in the System.Collections.Generic.Dictionary.
+    
+    Get: Count(self: Dictionary[TKey, TValue]) -> int
+    """
 
     Keys = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection containing the keys in the System.Collections.Generic.Dictionary.
-
-Get: Keys(self: Dictionary[TKey, TValue]) -> KeyCollection
-
-"""
+    """
+    Gets a collection containing the keys in the System.Collections.Generic.Dictionary.
+    
+    Get: Keys(self: Dictionary[TKey, TValue]) -> KeyCollection
+    """
 
     Values = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection containing the values in the System.Collections.Generic.Dictionary.
-
-Get: Values(self: Dictionary[TKey, TValue]) -> ValueCollection
-
-"""
+    """
+    Gets a collection containing the values in the System.Collections.Generic.Dictionary.
+    
+    Get: Values(self: Dictionary[TKey, TValue]) -> ValueCollection
+    """
 
 
     Enumerator = None
@@ -244,6 +247,7 @@ Get: Values(self: Dictionary[TKey, TValue]) -> ValueCollection
 class EqualityComparer(object, IEqualityComparer, IEqualityComparer[T]):
     # no doc
     def Equals(self, *__args):
+        # type: (self: EqualityComparer[T], x: T, y: T) -> bool
         """
         Equals(self: EqualityComparer[T], x: T, y: T) -> bool
         
@@ -256,6 +260,7 @@ class EqualityComparer(object, IEqualityComparer, IEqualityComparer[T]):
         pass
 
     def GetHashCode(self, obj=None):
+        # type: (self: EqualityComparer[T], obj: T) -> int
         """
         GetHashCode(self: EqualityComparer[T], obj: T) -> int
         
@@ -285,6 +290,7 @@ class EqualityComparer(object, IEqualityComparer, IEqualityComparer[T]):
 class ICollection(IEnumerable[T], IEnumerable):
     # no doc
     def Add(self, item):
+        # type: (self: ICollection[T], item: T)
         """
         Add(self: ICollection[T], item: T)
             Adds an item to the System.Collections.Generic.ICollection.
@@ -294,6 +300,7 @@ class ICollection(IEnumerable[T], IEnumerable):
         pass
 
     def Clear(self):
+        # type: (self: ICollection[T])
         """
         Clear(self: ICollection[T])
             Removes all items from the System.Collections.Generic.ICollection.
@@ -301,6 +308,7 @@ class ICollection(IEnumerable[T], IEnumerable):
         pass
 
     def Contains(self, item):
+        # type: (self: ICollection[T], item: T) -> bool
         """
         Contains(self: ICollection[T], item: T) -> bool
         
@@ -312,18 +320,19 @@ class ICollection(IEnumerable[T], IEnumerable):
         pass
 
     def CopyTo(self, array, arrayIndex):
+        # type: (self: ICollection[T], array: Array[T], arrayIndex: int)
         """ CopyTo(self: ICollection[T], array: Array[T], arrayIndex: int) """
         pass
 
     def Remove(self, item):
+        # type: (self: ICollection[T], item: T) -> bool
         """
         Remove(self: ICollection[T], item: T) -> bool
         
             Removes the first occurrence of a specific object from the System.Collections.Generic.ICollection.
         
             item: The object to remove from the System.Collections.Generic.ICollection.
-            Returns: true if item was successfully removed from the System.Collections.Generic.ICollection; otherwise, false. This method also returns false if item is not found 
-             in the original System.Collections.Generic.ICollection.
+            Returns: true if item was successfully removed from the System.Collections.Generic.ICollection; otherwise, false. This method also returns false if item is not found in the original System.Collections.Generic.ICollection.
         """
         pass
 
@@ -344,24 +353,25 @@ class ICollection(IEnumerable[T], IEnumerable):
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of elements contained in the System.Collections.Generic.ICollection.
-
-Get: Count(self: ICollection[T]) -> int
-
-"""
+    """
+    Gets the number of elements contained in the System.Collections.Generic.ICollection.
+    
+    Get: Count(self: ICollection[T]) -> int
+    """
 
     IsReadOnly = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether the System.Collections.Generic.ICollection is read-only.
-
-Get: IsReadOnly(self: ICollection[T]) -> bool
-
-"""
+    """
+    Gets a value indicating whether the System.Collections.Generic.ICollection is read-only.
+    
+    Get: IsReadOnly(self: ICollection[T]) -> bool
+    """
 
 
 
 class IComparer:
     # no doc
     def Compare(self, x, y):
+        # type: (self: IComparer[T], x: T, y: T) -> int
         """
         Compare(self: IComparer[T], x: T, y: T) -> int
         
@@ -369,8 +379,7 @@ class IComparer:
         
             x: The first object to compare.
             y: The second object to compare.
-            Returns: A signed integer that indicates the relative values of x and y, as shown in the following table.Value Meaning Less than zerox is less than y.Zerox equals 
-             y.Greater than zerox is greater than y.
+            Returns: A signed integer that indicates the relative values of x and y, as shown in the following table.Value Meaning Less than zerox is less than y.Zerox equals y.Greater than zerox is greater than y.
         """
         pass
 
@@ -386,6 +395,7 @@ class IComparer:
 class IDictionary(ICollection[KeyValuePair[TKey, TValue]], IEnumerable[KeyValuePair[TKey, TValue]], IEnumerable):
     # no doc
     def Add(self, key, value):
+        # type: (self: IDictionary[TKey, TValue], key: TKey, value: TValue)
         """
         Add(self: IDictionary[TKey, TValue], key: TKey, value: TValue)
             Adds an element with the provided key and value to the System.Collections.Generic.IDictionary.
@@ -396,6 +406,7 @@ class IDictionary(ICollection[KeyValuePair[TKey, TValue]], IEnumerable[KeyValueP
         pass
 
     def ContainsKey(self, key):
+        # type: (self: IDictionary[TKey, TValue], key: TKey) -> bool
         """
         ContainsKey(self: IDictionary[TKey, TValue], key: TKey) -> bool
         
@@ -407,18 +418,19 @@ class IDictionary(ICollection[KeyValuePair[TKey, TValue]], IEnumerable[KeyValueP
         pass
 
     def Remove(self, key):
+        # type: (self: IDictionary[TKey, TValue], key: TKey) -> bool
         """
         Remove(self: IDictionary[TKey, TValue], key: TKey) -> bool
         
             Removes the element with the specified key from the System.Collections.Generic.IDictionary.
         
             key: The key of the element to remove.
-            Returns: true if the element is successfully removed; otherwise, false.  This method also returns false if key was not found in the original 
-             System.Collections.Generic.IDictionary.
+            Returns: true if the element is successfully removed; otherwise, false.  This method also returns false if key was not found in the original System.Collections.Generic.IDictionary.
         """
         pass
 
     def TryGetValue(self, key, value):
+        # type: (self: IDictionary[TKey, TValue], key: TKey) -> (bool, TValue)
         """ TryGetValue(self: IDictionary[TKey, TValue], key: TKey) -> (bool, TValue) """
         pass
 
@@ -451,24 +463,25 @@ class IDictionary(ICollection[KeyValuePair[TKey, TValue]], IEnumerable[KeyValueP
         pass
 
     Keys = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an System.Collections.Generic.ICollection containing the keys of the System.Collections.Generic.IDictionary.
-
-Get: Keys(self: IDictionary[TKey, TValue]) -> ICollection[TKey]
-
-"""
+    """
+    Gets an System.Collections.Generic.ICollection containing the keys of the System.Collections.Generic.IDictionary.
+    
+    Get: Keys(self: IDictionary[TKey, TValue]) -> ICollection[TKey]
+    """
 
     Values = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an System.Collections.Generic.ICollection containing the values in the System.Collections.Generic.IDictionary.
-
-Get: Values(self: IDictionary[TKey, TValue]) -> ICollection[TValue]
-
-"""
+    """
+    Gets an System.Collections.Generic.ICollection containing the values in the System.Collections.Generic.IDictionary.
+    
+    Get: Values(self: IDictionary[TKey, TValue]) -> ICollection[TValue]
+    """
 
 
 
 class IEnumerable(IEnumerable):
     # no doc
     def GetEnumerator(self):
+        # type: (self: IEnumerable[T]) -> IEnumerator[T]
         """
         GetEnumerator(self: IEnumerable[T]) -> IEnumerator[T]
         
@@ -485,6 +498,7 @@ class IEnumerable(IEnumerable):
 class IEnumerator(IDisposable, IEnumerator):
     # no doc
     def next(self, *args): #cannot find CLR method
+        # type: (self: object) -> object
         """ next(self: object) -> object """
         pass
 
@@ -505,17 +519,18 @@ class IEnumerator(IDisposable, IEnumerator):
         pass
 
     Current = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the element in the collection at the current position of the enumerator.
-
-Get: Current(self: IEnumerator[T]) -> T
-
-"""
+    """
+    Gets the element in the collection at the current position of the enumerator.
+    
+    Get: Current(self: IEnumerator[T]) -> T
+    """
 
 
 
 class IEqualityComparer:
     # no doc
     def Equals(self, x, y):
+        # type: (self: IEqualityComparer[T], x: T, y: T) -> bool
         """
         Equals(self: IEqualityComparer[T], x: T, y: T) -> bool
         
@@ -528,6 +543,7 @@ class IEqualityComparer:
         pass
 
     def GetHashCode(self, obj):
+        # type: (self: IEqualityComparer[T], obj: T) -> int
         """
         GetHashCode(self: IEqualityComparer[T], obj: T) -> int
         
@@ -550,6 +566,7 @@ class IEqualityComparer:
 class IList(ICollection[T], IEnumerable[T], IEnumerable):
     # no doc
     def IndexOf(self, item):
+        # type: (self: IList[T], item: T) -> int
         """
         IndexOf(self: IList[T], item: T) -> int
         
@@ -561,6 +578,7 @@ class IList(ICollection[T], IEnumerable[T], IEnumerable):
         pass
 
     def Insert(self, index, item):
+        # type: (self: IList[T], index: int, item: T)
         """
         Insert(self: IList[T], index: int, item: T)
             Inserts an item to the System.Collections.Generic.IList at the specified index.
@@ -571,6 +589,7 @@ class IList(ICollection[T], IEnumerable[T], IEnumerable):
         pass
 
     def RemoveAt(self, index):
+        # type: (self: IList[T], index: int)
         """
         RemoveAt(self: IList[T], index: int)
             Removes the System.Collections.Generic.IList item at the specified index.
@@ -626,19 +645,20 @@ class IReadOnlyCollection(IEnumerable[T], IEnumerable):
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Get: Count(self: IReadOnlyCollection[T]) -> int
-
-"""
+    # type: (self: IReadOnlyCollection[T]) -> int
+    """ Get: Count(self: IReadOnlyCollection[T]) -> int """
 
 
 
 class IReadOnlyDictionary(IReadOnlyCollection[KeyValuePair[TKey, TValue]], IEnumerable[KeyValuePair[TKey, TValue]], IEnumerable):
     # no doc
     def ContainsKey(self, key):
+        # type: (self: IReadOnlyDictionary[TKey, TValue], key: TKey) -> bool
         """ ContainsKey(self: IReadOnlyDictionary[TKey, TValue], key: TKey) -> bool """
         pass
 
     def TryGetValue(self, key, value):
+        # type: (self: IReadOnlyDictionary[TKey, TValue], key: TKey) -> (bool, TValue)
         """ TryGetValue(self: IReadOnlyDictionary[TKey, TValue], key: TKey) -> (bool, TValue) """
         pass
 
@@ -659,14 +679,12 @@ class IReadOnlyDictionary(IReadOnlyCollection[KeyValuePair[TKey, TValue]], IEnum
         pass
 
     Keys = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Get: Keys(self: IReadOnlyDictionary[TKey, TValue]) -> IEnumerable[TKey]
-
-"""
+    # type: (self: IReadOnlyDictionary[TKey, TValue]) -> IEnumerable[TKey]
+    """ Get: Keys(self: IReadOnlyDictionary[TKey, TValue]) -> IEnumerable[TKey] """
 
     Values = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Get: Values(self: IReadOnlyDictionary[TKey, TValue]) -> IEnumerable[TValue]
-
-"""
+    # type: (self: IReadOnlyDictionary[TKey, TValue]) -> IEnumerable[TValue]
+    """ Get: Values(self: IReadOnlyDictionary[TKey, TValue]) -> IEnumerable[TValue] """
 
 
 
@@ -692,6 +710,7 @@ class IReadOnlyList(IReadOnlyCollection[T], IEnumerable[T], IEnumerable):
 class ISet(ICollection[T], IEnumerable[T], IEnumerable):
     # no doc
     def Add(self, item):
+        # type: (self: ISet[T], item: T) -> bool
         """
         Add(self: ISet[T], item: T) -> bool
         
@@ -703,6 +722,7 @@ class ISet(ICollection[T], IEnumerable[T], IEnumerable):
         pass
 
     def ExceptWith(self, other):
+        # type: (self: ISet[T], other: IEnumerable[T])
         """
         ExceptWith(self: ISet[T], other: IEnumerable[T])
             Removes all elements in the specified collection from the current set.
@@ -712,6 +732,7 @@ class ISet(ICollection[T], IEnumerable[T], IEnumerable):
         pass
 
     def IntersectWith(self, other):
+        # type: (self: ISet[T], other: IEnumerable[T])
         """
         IntersectWith(self: ISet[T], other: IEnumerable[T])
             Modifies the current set so that it contains only elements that are also in a specified collection.
@@ -721,6 +742,7 @@ class ISet(ICollection[T], IEnumerable[T], IEnumerable):
         pass
 
     def IsProperSubsetOf(self, other):
+        # type: (self: ISet[T], other: IEnumerable[T]) -> bool
         """
         IsProperSubsetOf(self: ISet[T], other: IEnumerable[T]) -> bool
         
@@ -732,6 +754,7 @@ class ISet(ICollection[T], IEnumerable[T], IEnumerable):
         pass
 
     def IsProperSupersetOf(self, other):
+        # type: (self: ISet[T], other: IEnumerable[T]) -> bool
         """
         IsProperSupersetOf(self: ISet[T], other: IEnumerable[T]) -> bool
         
@@ -743,6 +766,7 @@ class ISet(ICollection[T], IEnumerable[T], IEnumerable):
         pass
 
     def IsSubsetOf(self, other):
+        # type: (self: ISet[T], other: IEnumerable[T]) -> bool
         """
         IsSubsetOf(self: ISet[T], other: IEnumerable[T]) -> bool
         
@@ -754,6 +778,7 @@ class ISet(ICollection[T], IEnumerable[T], IEnumerable):
         pass
 
     def IsSupersetOf(self, other):
+        # type: (self: ISet[T], other: IEnumerable[T]) -> bool
         """
         IsSupersetOf(self: ISet[T], other: IEnumerable[T]) -> bool
         
@@ -765,6 +790,7 @@ class ISet(ICollection[T], IEnumerable[T], IEnumerable):
         pass
 
     def Overlaps(self, other):
+        # type: (self: ISet[T], other: IEnumerable[T]) -> bool
         """
         Overlaps(self: ISet[T], other: IEnumerable[T]) -> bool
         
@@ -776,6 +802,7 @@ class ISet(ICollection[T], IEnumerable[T], IEnumerable):
         pass
 
     def SetEquals(self, other):
+        # type: (self: ISet[T], other: IEnumerable[T]) -> bool
         """
         SetEquals(self: ISet[T], other: IEnumerable[T]) -> bool
         
@@ -787,6 +814,7 @@ class ISet(ICollection[T], IEnumerable[T], IEnumerable):
         pass
 
     def SymmetricExceptWith(self, other):
+        # type: (self: ISet[T], other: IEnumerable[T])
         """
         SymmetricExceptWith(self: ISet[T], other: IEnumerable[T])
             Modifies the current set so that it contains only elements that are present either in the current set or in the specified collection, but not both.
@@ -796,6 +824,7 @@ class ISet(ICollection[T], IEnumerable[T], IEnumerable):
         pass
 
     def UnionWith(self, other):
+        # type: (self: ISet[T], other: IEnumerable[T])
         """
         UnionWith(self: ISet[T], other: IEnumerable[T])
             Modifies the current set so that it contains all elements that are present in both the current set and in the specified collection.
@@ -864,8 +893,10 @@ class KeyNotFoundException(SystemException, ISerializable, _Exception):
 
 
 class KeyValuePair(object):
+    # type: (key: TKey, value: TValue)
     """ KeyValuePair[TKey, TValue](key: TKey, value: TValue) """
     def ToString(self):
+        # type: (self: KeyValuePair[TKey, TValue]) -> str
         """
         ToString(self: KeyValuePair[TKey, TValue]) -> str
         
@@ -877,33 +908,36 @@ class KeyValuePair(object):
     @staticmethod # known case of __new__
     def __new__(self, key, value):
         """
-        __new__(cls: type, key: TKey, value: TValue)
-        __new__[KeyValuePair`2]() -> KeyValuePair[TKey, TValue]
+        __new__[KeyValuePair`2]() -> KeyValuePair[TKey, TValue]
+        
+        __new__(cls: type, key: TKey, value: TValue)
         """
         pass
 
     Key = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the key in the key/value pair.
-
-Get: Key(self: KeyValuePair[TKey, TValue]) -> TKey
-
-"""
+    """
+    Gets the key in the key/value pair.
+    
+    Get: Key(self: KeyValuePair[TKey, TValue]) -> TKey
+    """
 
     Value = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the value in the key/value pair.
-
-Get: Value(self: KeyValuePair[TKey, TValue]) -> TValue
-
-"""
+    """
+    Gets the value in the key/value pair.
+    
+    Get: Value(self: KeyValuePair[TKey, TValue]) -> TValue
+    """
 
 
 
 class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollection[T], ISerializable, IDeserializationCallback):
+    # type: ()
     """
     LinkedList[T]()
     LinkedList[T](collection: IEnumerable[T])
     """
     def AddAfter(self, node, *__args):
+        # type: (self: LinkedList[T], node: LinkedListNode[T], newNode: LinkedListNode[T])
         """
         AddAfter(self: LinkedList[T], node: LinkedListNode[T], newNode: LinkedListNode[T])
             Adds the specified new node after the specified existing node in the System.Collections.Generic.LinkedList.
@@ -921,6 +955,7 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     def AddBefore(self, node, *__args):
+        # type: (self: LinkedList[T], node: LinkedListNode[T], value: T) -> LinkedListNode[T]
         """
         AddBefore(self: LinkedList[T], node: LinkedListNode[T], value: T) -> LinkedListNode[T]
         
@@ -938,6 +973,7 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     def AddFirst(self, *__args):
+        # type: (self: LinkedList[T], value: T) -> LinkedListNode[T]
         """
         AddFirst(self: LinkedList[T], value: T) -> LinkedListNode[T]
         
@@ -953,6 +989,7 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     def AddLast(self, *__args):
+        # type: (self: LinkedList[T], value: T) -> LinkedListNode[T]
         """
         AddLast(self: LinkedList[T], value: T) -> LinkedListNode[T]
         
@@ -968,6 +1005,7 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     def Clear(self):
+        # type: (self: LinkedList[T])
         """
         Clear(self: LinkedList[T])
             Removes all nodes from the System.Collections.Generic.LinkedList.
@@ -975,6 +1013,7 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     def Contains(self, value):
+        # type: (self: LinkedList[T], value: T) -> bool
         """
         Contains(self: LinkedList[T], value: T) -> bool
         
@@ -986,10 +1025,12 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     def CopyTo(self, array, index):
+        # type: (self: LinkedList[T], array: Array[T], index: int)
         """ CopyTo(self: LinkedList[T], array: Array[T], index: int) """
         pass
 
     def Find(self, value):
+        # type: (self: LinkedList[T], value: T) -> LinkedListNode[T]
         """
         Find(self: LinkedList[T], value: T) -> LinkedListNode[T]
         
@@ -1001,6 +1042,7 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     def FindLast(self, value):
+        # type: (self: LinkedList[T], value: T) -> LinkedListNode[T]
         """
         FindLast(self: LinkedList[T], value: T) -> LinkedListNode[T]
         
@@ -1012,6 +1054,7 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     def GetEnumerator(self):
+        # type: (self: LinkedList[T]) -> Enumerator
         """
         GetEnumerator(self: LinkedList[T]) -> Enumerator
         
@@ -1021,21 +1064,18 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     def GetObjectData(self, info, context):
+        # type: (self: LinkedList[T], info: SerializationInfo, context: StreamingContext)
         """
         GetObjectData(self: LinkedList[T], info: SerializationInfo, context: StreamingContext)
-            Implements the System.Runtime.Serialization.ISerializable interface and returns the data needed to serialize the System.Collections.Generic.LinkedList 
-             instance.
+            Implements the System.Runtime.Serialization.ISerializable interface and returns the data needed to serialize the System.Collections.Generic.LinkedList instance.
         
-        
-            info: A System.Runtime.Serialization.SerializationInfo object that contains the information required to serialize the System.Collections.Generic.LinkedList 
-             instance.
-        
-            context: A System.Runtime.Serialization.StreamingContext object that contains the source and destination of the serialized stream associated with the 
-             System.Collections.Generic.LinkedList instance.
+            info: A System.Runtime.Serialization.SerializationInfo object that contains the information required to serialize the System.Collections.Generic.LinkedList instance.
+            context: A System.Runtime.Serialization.StreamingContext object that contains the source and destination of the serialized stream associated with the System.Collections.Generic.LinkedList instance.
         """
         pass
 
     def OnDeserialization(self, sender):
+        # type: (self: LinkedList[T], sender: object)
         """
         OnDeserialization(self: LinkedList[T], sender: object)
             Implements the System.Runtime.Serialization.ISerializable interface and raises the deserialization event when the deserialization is complete.
@@ -1045,15 +1085,14 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     def Remove(self, *__args):
+        # type: (self: LinkedList[T], value: T) -> bool
         """
         Remove(self: LinkedList[T], value: T) -> bool
         
             Removes the first occurrence of the specified value from the System.Collections.Generic.LinkedList.
         
             value: The value to remove from the System.Collections.Generic.LinkedList.
-            Returns: true if the element containing value is successfully removed; otherwise, false.  This method also returns false if value was not found in the original 
-             System.Collections.Generic.LinkedList.
-        
+            Returns: true if the element containing value is successfully removed; otherwise, false.  This method also returns false if value was not found in the original System.Collections.Generic.LinkedList.
         Remove(self: LinkedList[T], node: LinkedListNode[T])
             Removes the specified node from the System.Collections.Generic.LinkedList.
         
@@ -1062,6 +1101,7 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     def RemoveFirst(self):
+        # type: (self: LinkedList[T])
         """
         RemoveFirst(self: LinkedList[T])
             Removes the node at the start of the System.Collections.Generic.LinkedList.
@@ -1069,6 +1109,7 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     def RemoveLast(self):
+        # type: (self: LinkedList[T])
         """
         RemoveLast(self: LinkedList[T])
             Removes the node at the end of the System.Collections.Generic.LinkedList.
@@ -1115,31 +1156,32 @@ class LinkedList(object, ICollection[T], IEnumerable[T], IEnumerable, ICollectio
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of nodes actually contained in the System.Collections.Generic.LinkedList.
-
-Get: Count(self: LinkedList[T]) -> int
-
-"""
+    """
+    Gets the number of nodes actually contained in the System.Collections.Generic.LinkedList.
+    
+    Get: Count(self: LinkedList[T]) -> int
+    """
 
     First = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the first node of the System.Collections.Generic.LinkedList.
-
-Get: First(self: LinkedList[T]) -> LinkedListNode[T]
-
-"""
+    """
+    Gets the first node of the System.Collections.Generic.LinkedList.
+    
+    Get: First(self: LinkedList[T]) -> LinkedListNode[T]
+    """
 
     Last = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the last node of the System.Collections.Generic.LinkedList.
-
-Get: Last(self: LinkedList[T]) -> LinkedListNode[T]
-
-"""
+    """
+    Gets the last node of the System.Collections.Generic.LinkedList.
+    
+    Get: Last(self: LinkedList[T]) -> LinkedListNode[T]
+    """
 
 
     Enumerator = None
 
 
 class LinkedListNode(object):
+    # type: (value: T)
     """ LinkedListNode[T](value: T) """
     @staticmethod # known case of __new__
     def __new__(self, value):
@@ -1147,43 +1189,46 @@ class LinkedListNode(object):
         pass
 
     List = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Collections.Generic.LinkedList that the System.Collections.Generic.LinkedListNode belongs to.
-
-Get: List(self: LinkedListNode[T]) -> LinkedList[T]
-
-"""
+    """
+    Gets the System.Collections.Generic.LinkedList that the System.Collections.Generic.LinkedListNode belongs to.
+    
+    Get: List(self: LinkedListNode[T]) -> LinkedList[T]
+    """
 
     Next = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the next node in the System.Collections.Generic.LinkedList.
-
-Get: Next(self: LinkedListNode[T]) -> LinkedListNode[T]
-
-"""
+    """
+    Gets the next node in the System.Collections.Generic.LinkedList.
+    
+    Get: Next(self: LinkedListNode[T]) -> LinkedListNode[T]
+    """
 
     Previous = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the previous node in the System.Collections.Generic.LinkedList.
-
-Get: Previous(self: LinkedListNode[T]) -> LinkedListNode[T]
-
-"""
+    """
+    Gets the previous node in the System.Collections.Generic.LinkedList.
+    
+    Get: Previous(self: LinkedListNode[T]) -> LinkedListNode[T]
+    """
 
     Value = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the value contained in the node.
-
-Get: Value(self: LinkedListNode[T]) -> T
-
-Set: Value(self: LinkedListNode[T]) = value
-"""
+    """
+    Gets the value contained in the node.
+    
+    Get: Value(self: LinkedListNode[T]) -> T
+    
+    Set: Value(self: LinkedListNode[T]) = value
+    """
 
 
 
 class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList, ICollection, IReadOnlyList[T], IReadOnlyCollection[T]):
+    # type: ()
     """
     List[T]()
     List[T](capacity: int)
     List[T](collection: IEnumerable[T])
     """
     def Add(self, item):
+        # type: (self: List[T], item: T)
         """
         Add(self: List[T], item: T)
             Adds an object to the end of the System.Collections.Generic.List.
@@ -1193,16 +1238,17 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def AddRange(self, collection):
+        # type: (self: List[T], collection: IEnumerable[T])
         """
         AddRange(self: List[T], collection: IEnumerable[T])
             Adds the elements of the specified collection to the end of the System.Collections.Generic.List.
         
-            collection: The collection whose elements should be added to the end of the System.Collections.Generic.List. The collection itself cannot be null, but it can contain 
-             elements that are null, if type T is a reference type.
+            collection: The collection whose elements should be added to the end of the System.Collections.Generic.List. The collection itself cannot be null, but it can contain elements that are null, if type T is a reference type.
         """
         pass
 
     def AsReadOnly(self):
+        # type: (self: List[T]) -> ReadOnlyCollection[T]
         """
         AsReadOnly(self: List[T]) -> ReadOnlyCollection[T]
         
@@ -1212,44 +1258,40 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def BinarySearch(self, *__args):
+        # type: (self: List[T], index: int, count: int, item: T, comparer: IComparer[T]) -> int
         """
         BinarySearch(self: List[T], index: int, count: int, item: T, comparer: IComparer[T]) -> int
         
-            Searches a range of elements in the sorted System.Collections.Generic.List for an element using the specified comparer and returns the zero-based index of 
-             the element.
-        
+            Searches a range of elements in the sorted System.Collections.Generic.List for an element using the specified comparer and returns the zero-based index of the element.
         
             index: The zero-based starting index of the range to search.
             count: The length of the range to search.
             item: The object to locate. The value can be null for reference types.
-            comparer: The System.Collections.Generic.IComparer implementation to use when comparing elements, or null to use the default comparer 
-             System.Collections.Generic.Comparer.
-        
-            Returns: The zero-based index of item in the sorted System.Collections.Generic.List, if item is found; otherwise, a negative number that is the bitwise complement of 
-             the index of the next element that is larger than item or, if there is no larger element, the bitwise complement of System.Collections.Generic.List.
+            comparer: The System.Collections.Generic.IComparer implementation to use when comparing elements, or null to use the default comparer System.Collections.Generic.Comparer.
+            Returns: The zero-based index of item in the sorted System.Collections.Generic.List, if item is found; otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or, if there is no larger element, the 
+             bitwise complement of System.Collections.Generic.List.
         
         BinarySearch(self: List[T], item: T) -> int
         
             Searches the entire sorted System.Collections.Generic.List for an element using the default comparer and returns the zero-based index of the element.
         
             item: The object to locate. The value can be null for reference types.
-            Returns: The zero-based index of item in the sorted System.Collections.Generic.List, if item is found; otherwise, a negative number that is the bitwise complement of 
-             the index of the next element that is larger than item or, if there is no larger element, the bitwise complement of System.Collections.Generic.List.
+            Returns: The zero-based index of item in the sorted System.Collections.Generic.List, if item is found; otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or, if there is no larger element, the 
+             bitwise complement of System.Collections.Generic.List.
         
         BinarySearch(self: List[T], item: T, comparer: IComparer[T]) -> int
         
             Searches the entire sorted System.Collections.Generic.List for an element using the specified comparer and returns the zero-based index of the element.
         
             item: The object to locate. The value can be null for reference types.
-            comparer: The System.Collections.Generic.IComparer implementation to use when comparing elements.-or-null to use the default comparer 
-             System.Collections.Generic.Comparer.
-        
-            Returns: The zero-based index of item in the sorted System.Collections.Generic.List, if item is found; otherwise, a negative number that is the bitwise complement of 
-             the index of the next element that is larger than item or, if there is no larger element, the bitwise complement of System.Collections.Generic.List.
+            comparer: The System.Collections.Generic.IComparer implementation to use when comparing elements.-or-null to use the default comparer System.Collections.Generic.Comparer.
+            Returns: The zero-based index of item in the sorted System.Collections.Generic.List, if item is found; otherwise, a negative number that is the bitwise complement of the index of the next element that is larger than item or, if there is no larger element, the 
+             bitwise complement of System.Collections.Generic.List.
         """
         pass
 
     def Clear(self):
+        # type: (self: List[T])
         """
         Clear(self: List[T])
             Removes all elements from the System.Collections.Generic.List.
@@ -1257,6 +1299,7 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def Contains(self, item):
+        # type: (self: List[T], item: T) -> bool
         """
         Contains(self: List[T], item: T) -> bool
         
@@ -1268,14 +1311,17 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def ConvertAll(self, converter):
+        # type: (self: List[T], converter: Converter[T, TOutput]) -> List[TOutput]
         """ ConvertAll[TOutput](self: List[T], converter: Converter[T, TOutput]) -> List[TOutput] """
         pass
 
     def CopyTo(self, *__args):
+        # type: (self: List[T], index: int, array: Array[T], arrayIndex: int, count: int)CopyTo(self: List[T], array: Array[T])CopyTo(self: List[T], array: Array[T], arrayIndex: int)
         """ CopyTo(self: List[T], index: int, array: Array[T], arrayIndex: int, count: int)CopyTo(self: List[T], array: Array[T])CopyTo(self: List[T], array: Array[T], arrayIndex: int) """
         pass
 
     def Exists(self, match):
+        # type: (self: List[T], match: Predicate[T]) -> bool
         """
         Exists(self: List[T], match: Predicate[T]) -> bool
         
@@ -1287,12 +1333,11 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def Find(self, match):
+        # type: (self: List[T], match: Predicate[T]) -> T
         """
         Find(self: List[T], match: Predicate[T]) -> T
         
-            Searches for an element that matches the conditions defined by the specified predicate, and returns the first occurrence within the entire 
-             System.Collections.Generic.List.
-        
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the first occurrence within the entire System.Collections.Generic.List.
         
             match: The System.Predicate delegate that defines the conditions of the element to search for.
             Returns: The first element that matches the conditions defined by the specified predicate, if found; otherwise, the default value for type T.
@@ -1300,38 +1345,37 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def FindAll(self, match):
+        # type: (self: List[T], match: Predicate[T]) -> List[T]
         """
         FindAll(self: List[T], match: Predicate[T]) -> List[T]
         
             Retrieves all the elements that match the conditions defined by the specified predicate.
         
             match: The System.Predicate delegate that defines the conditions of the elements to search for.
-            Returns: A System.Collections.Generic.List containing all the elements that match the conditions defined by the specified predicate, if found; otherwise, an empty 
-             System.Collections.Generic.List.
+            Returns: A System.Collections.Generic.List containing all the elements that match the conditions defined by the specified predicate, if found; otherwise, an empty System.Collections.Generic.List.
         """
         pass
 
     def FindIndex(self, *__args):
+        # type: (self: List[T], match: Predicate[T]) -> int
         """
         FindIndex(self: List[T], match: Predicate[T]) -> int
         
-            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the 
-             entire System.Collections.Generic.List.
-        
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the entire System.Collections.Generic.List.
         
             match: The System.Predicate delegate that defines the conditions of the element to search for.
                 FindIndex(self: List[T], startIndex: int, match: Predicate[T]) -> int
         
-            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the 
-             range of elements in the System.Collections.Generic.List that extends from the specified index to the last element.
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the range of elements in the System.Collections.Generic.List that extends from the specified index 
+             to the last element.
         
         
             startIndex: The zero-based starting index of the search.
             match: The System.Predicate delegate that defines the conditions of the element to search for.
                 FindIndex(self: List[T], startIndex: int, count: int, match: Predicate[T]) -> int
         
-            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the 
-             range of elements in the System.Collections.Generic.List that starts at the specified index and contains the specified number of elements.
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence within the range of elements in the System.Collections.Generic.List that starts at the specified index and 
+             contains the specified number of elements.
         
         
             startIndex: The zero-based starting index of the search.
@@ -1341,12 +1385,11 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def FindLast(self, match):
+        # type: (self: List[T], match: Predicate[T]) -> T
         """
         FindLast(self: List[T], match: Predicate[T]) -> T
         
-            Searches for an element that matches the conditions defined by the specified predicate, and returns the last occurrence within the entire 
-             System.Collections.Generic.List.
-        
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the last occurrence within the entire System.Collections.Generic.List.
         
             match: The System.Predicate delegate that defines the conditions of the element to search for.
             Returns: The last element that matches the conditions defined by the specified predicate, if found; otherwise, the default value for type T.
@@ -1354,26 +1397,25 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def FindLastIndex(self, *__args):
+        # type: (self: List[T], match: Predicate[T]) -> int
         """
         FindLastIndex(self: List[T], match: Predicate[T]) -> int
         
-            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the last occurrence within the 
-             entire System.Collections.Generic.List.
-        
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the last occurrence within the entire System.Collections.Generic.List.
         
             match: The System.Predicate delegate that defines the conditions of the element to search for.
                 FindLastIndex(self: List[T], startIndex: int, match: Predicate[T]) -> int
         
-            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the last occurrence within the 
-             range of elements in the System.Collections.Generic.List that extends from the first element to the specified index.
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the last occurrence within the range of elements in the System.Collections.Generic.List that extends from the first element to 
+             the specified index.
         
         
             startIndex: The zero-based starting index of the backward search.
             match: The System.Predicate delegate that defines the conditions of the element to search for.
                 FindLastIndex(self: List[T], startIndex: int, count: int, match: Predicate[T]) -> int
         
-            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the last occurrence within the 
-             range of elements in the System.Collections.Generic.List that contains the specified number of elements and ends at the specified index.
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the last occurrence within the range of elements in the System.Collections.Generic.List that contains the specified number of 
+             elements and ends at the specified index.
         
         
             startIndex: The zero-based starting index of the backward search.
@@ -1383,6 +1425,7 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def ForEach(self, action):
+        # type: (self: List[T], action: Action[T])
         """
         ForEach(self: List[T], action: Action[T])
             Performs the specified action on each element of the System.Collections.Generic.List.
@@ -1392,6 +1435,7 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def GetEnumerator(self):
+        # type: (self: List[T]) -> Enumerator
         """
         GetEnumerator(self: List[T]) -> Enumerator
         
@@ -1401,6 +1445,7 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def GetRange(self, index, count):
+        # type: (self: List[T], index: int, count: int) -> List[T]
         """
         GetRange(self: List[T], index: int, count: int) -> List[T]
         
@@ -1413,6 +1458,7 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def IndexOf(self, item, index=None, count=None):
+        # type: (self: List[T], item: T) -> int
         """
         IndexOf(self: List[T], item: T) -> int
         
@@ -1421,28 +1467,22 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
             item: The object to locate in the System.Collections.Generic.List. The value can be null for reference types.
                 IndexOf(self: List[T], item: T, index: int) -> int
         
-            Searches for the specified object and returns the zero-based index of the first occurrence within the range of elements in the 
-             System.Collections.Generic.List that extends from the specified index to the last element.
-        
+            Searches for the specified object and returns the zero-based index of the first occurrence within the range of elements in the System.Collections.Generic.List that extends from the specified index to the last element.
         
             item: The object to locate in the System.Collections.Generic.List. The value can be null for reference types.
             index: The zero-based starting index of the search. 0 (zero) is valid in an empty list.
-            Returns: The zero-based index of the first occurrence of item within the range of elements in the System.Collections.Generic.List that extends from index to the last 
-                
-        IndexOf(self: List[T], item: T, index: int, count: int) -> int
+                IndexOf(self: List[T], item: T, index: int, count: int) -> int
         
-            Searches for the specified object and returns the zero-based index of the first occurrence within the range of elements in the 
-             System.Collections.Generic.List that starts at the specified index and contains the specified number of elements.
-        
+            Searches for the specified object and returns the zero-based index of the first occurrence within the range of elements in the System.Collections.Generic.List that starts at the specified index and contains the specified number of elements.
         
             item: The object to locate in the System.Collections.Generic.List. The value can be null for reference types.
             index: The zero-based starting index of the search. 0 (zero) is valid in an empty list.
             count: The number of elements in the section to search.
-            Returns: The zero-based index of the first occurrence of item within the range of elements in the System.Collections.Generic.List that starts at index and contains 
                 """
         pass
 
     def Insert(self, index, item):
+        # type: (self: List[T], index: int, item: T)
         """
         Insert(self: List[T], index: int, item: T)
             Inserts an element into the System.Collections.Generic.List at the specified index.
@@ -1453,17 +1493,18 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def InsertRange(self, index, collection):
+        # type: (self: List[T], index: int, collection: IEnumerable[T])
         """
         InsertRange(self: List[T], index: int, collection: IEnumerable[T])
             Inserts the elements of a collection into the System.Collections.Generic.List at the specified index.
         
             index: The zero-based index at which the new elements should be inserted.
-            collection: The collection whose elements should be inserted into the System.Collections.Generic.List. The collection itself cannot be null, but it can contain elements 
-             that are null, if type T is a reference type.
+            collection: The collection whose elements should be inserted into the System.Collections.Generic.List. The collection itself cannot be null, but it can contain elements that are null, if type T is a reference type.
         """
         pass
 
     def LastIndexOf(self, item, index=None, count=None):
+        # type: (self: List[T], item: T) -> int
         """
         LastIndexOf(self: List[T], item: T) -> int
         
@@ -1472,28 +1513,22 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
             item: The object to locate in the System.Collections.Generic.List. The value can be null for reference types.
                 LastIndexOf(self: List[T], item: T, index: int) -> int
         
-            Searches for the specified object and returns the zero-based index of the last occurrence within the range of elements in the 
-             System.Collections.Generic.List that extends from the first element to the specified index.
-        
+            Searches for the specified object and returns the zero-based index of the last occurrence within the range of elements in the System.Collections.Generic.List that extends from the first element to the specified index.
         
             item: The object to locate in the System.Collections.Generic.List. The value can be null for reference types.
             index: The zero-based starting index of the backward search.
-            Returns: The zero-based index of the last occurrence of item within the range of elements in the System.Collections.Generic.List that extends from the first element 
-                
-        LastIndexOf(self: List[T], item: T, index: int, count: int) -> int
+                LastIndexOf(self: List[T], item: T, index: int, count: int) -> int
         
-            Searches for the specified object and returns the zero-based index of the last occurrence within the range of elements in the 
-             System.Collections.Generic.List that contains the specified number of elements and ends at the specified index.
-        
+            Searches for the specified object and returns the zero-based index of the last occurrence within the range of elements in the System.Collections.Generic.List that contains the specified number of elements and ends at the specified index.
         
             item: The object to locate in the System.Collections.Generic.List. The value can be null for reference types.
             index: The zero-based starting index of the backward search.
             count: The number of elements in the section to search.
-            Returns: The zero-based index of the last occurrence of item within the range of elements in the System.Collections.Generic.List that contains count number of 
                 """
         pass
 
     def Remove(self, item):
+        # type: (self: List[T], item: T) -> bool
         """
         Remove(self: List[T], item: T) -> bool
         
@@ -1505,6 +1540,7 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def RemoveAll(self, match):
+        # type: (self: List[T], match: Predicate[T]) -> int
         """
         RemoveAll(self: List[T], match: Predicate[T]) -> int
         
@@ -1516,6 +1552,7 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def RemoveAt(self, index):
+        # type: (self: List[T], index: int)
         """
         RemoveAt(self: List[T], index: int)
             Removes the element at the specified index of the System.Collections.Generic.List.
@@ -1525,6 +1562,7 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def RemoveRange(self, index, count):
+        # type: (self: List[T], index: int, count: int)
         """
         RemoveRange(self: List[T], index: int, count: int)
             Removes a range of elements from the System.Collections.Generic.List.
@@ -1535,6 +1573,7 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def Reverse(self, index=None, count=None):
+        # type: (self: List[T], index: int, count: int)
         """
         Reverse(self: List[T], index: int, count: int)
             Reverses the order of the elements in the specified range.
@@ -1547,23 +1586,20 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def Sort(self, *__args):
+        # type: (self: List[T])
         """
         Sort(self: List[T])
             Sorts the elements in the entire System.Collections.Generic.List using the default comparer.
         Sort(self: List[T], comparer: IComparer[T])
             Sorts the elements in the entire System.Collections.Generic.List using the specified comparer.
         
-            comparer: The System.Collections.Generic.IComparer implementation to use when comparing elements, or null to use the default comparer 
-             System.Collections.Generic.Comparer.
-        
+            comparer: The System.Collections.Generic.IComparer implementation to use when comparing elements, or null to use the default comparer System.Collections.Generic.Comparer.
         Sort(self: List[T], index: int, count: int, comparer: IComparer[T])
             Sorts the elements in a range of elements in System.Collections.Generic.List using the specified comparer.
         
             index: The zero-based starting index of the range to sort.
             count: The length of the range to sort.
-            comparer: The System.Collections.Generic.IComparer implementation to use when comparing elements, or null to use the default comparer 
-             System.Collections.Generic.Comparer.
-        
+            comparer: The System.Collections.Generic.IComparer implementation to use when comparing elements, or null to use the default comparer System.Collections.Generic.Comparer.
         Sort(self: List[T], comparison: Comparison[T])
             Sorts the elements in the entire System.Collections.Generic.List using the specified System.Comparison.
         
@@ -1572,6 +1608,7 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def ToArray(self):
+        # type: (self: List[T]) -> Array[T]
         """
         ToArray(self: List[T]) -> Array[T]
         
@@ -1581,6 +1618,7 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def TrimExcess(self):
+        # type: (self: List[T])
         """
         TrimExcess(self: List[T])
             Sets the capacity to the actual number of elements in the System.Collections.Generic.List, if that number is less than a threshold value.
@@ -1588,14 +1626,14 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     def TrueForAll(self, match):
+        # type: (self: List[T], match: Predicate[T]) -> bool
         """
         TrueForAll(self: List[T], match: Predicate[T]) -> bool
         
             Determines whether every element in the System.Collections.Generic.List matches the conditions defined by the specified predicate.
         
             match: The System.Predicate delegate that defines the conditions to check against the elements.
-            Returns: true if every element in the System.Collections.Generic.List matches the conditions defined by the specified predicate; otherwise, false. If the list has no 
-             elements, the return value is true.
+            Returns: true if every element in the System.Collections.Generic.List matches the conditions defined by the specified predicate; otherwise, false. If the list has no elements, the return value is true.
         """
         pass
 
@@ -1671,31 +1709,34 @@ class List(object, IList[T], ICollection[T], IEnumerable[T], IEnumerable, IList,
         pass
 
     Capacity = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the total number of elements the internal data structure can hold without resizing.
-
-Get: Capacity(self: List[T]) -> int
-
-Set: Capacity(self: List[T]) = value
-"""
+    """
+    Gets or sets the total number of elements the internal data structure can hold without resizing.
+    
+    Get: Capacity(self: List[T]) -> int
+    
+    Set: Capacity(self: List[T]) = value
+    """
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of elements actually contained in the System.Collections.Generic.List.
-
-Get: Count(self: List[T]) -> int
-
-"""
+    """
+    Gets the number of elements actually contained in the System.Collections.Generic.List.
+    
+    Get: Count(self: List[T]) -> int
+    """
 
 
     Enumerator = None
 
 
 class Queue(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollection[T]):
+    # type: ()
     """
     Queue[T]()
     Queue[T](capacity: int)
     Queue[T](collection: IEnumerable[T])
     """
     def Clear(self):
+        # type: (self: Queue[T])
         """
         Clear(self: Queue[T])
             Removes all objects from the System.Collections.Generic.Queue.
@@ -1703,6 +1744,7 @@ class Queue(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def Contains(self, item):
+        # type: (self: Queue[T], item: T) -> bool
         """
         Contains(self: Queue[T], item: T) -> bool
         
@@ -1714,10 +1756,12 @@ class Queue(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def CopyTo(self, array, arrayIndex):
+        # type: (self: Queue[T], array: Array[T], arrayIndex: int)
         """ CopyTo(self: Queue[T], array: Array[T], arrayIndex: int) """
         pass
 
     def Dequeue(self):
+        # type: (self: Queue[T]) -> T
         """
         Dequeue(self: Queue[T]) -> T
         
@@ -1727,6 +1771,7 @@ class Queue(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def Enqueue(self, item):
+        # type: (self: Queue[T], item: T)
         """
         Enqueue(self: Queue[T], item: T)
             Adds an object to the end of the System.Collections.Generic.Queue.
@@ -1736,6 +1781,7 @@ class Queue(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def GetEnumerator(self):
+        # type: (self: Queue[T]) -> Enumerator
         """
         GetEnumerator(self: Queue[T]) -> Enumerator
         
@@ -1745,6 +1791,7 @@ class Queue(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def Peek(self):
+        # type: (self: Queue[T]) -> T
         """
         Peek(self: Queue[T]) -> T
         
@@ -1754,6 +1801,7 @@ class Queue(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def ToArray(self):
+        # type: (self: Queue[T]) -> Array[T]
         """
         ToArray(self: Queue[T]) -> Array[T]
         
@@ -1763,6 +1811,7 @@ class Queue(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def TrimExcess(self):
+        # type: (self: Queue[T])
         """
         TrimExcess(self: Queue[T])
             Sets the capacity to the actual number of elements in the System.Collections.Generic.Queue, if that number is less than 90 percent of current capacity.
@@ -1802,17 +1851,18 @@ class Queue(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of elements contained in the System.Collections.Generic.Queue.
-
-Get: Count(self: Queue[T]) -> int
-
-"""
+    """
+    Gets the number of elements contained in the System.Collections.Generic.Queue.
+    
+    Get: Count(self: Queue[T]) -> int
+    """
 
 
     Enumerator = None
 
 
 class SortedDictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKey, TValue]], IEnumerable[KeyValuePair[TKey, TValue]], IEnumerable, IDictionary, ICollection, IReadOnlyDictionary[TKey, TValue], IReadOnlyCollection[KeyValuePair[TKey, TValue]]):
+    # type: ()
     """
     SortedDictionary[TKey, TValue]()
     SortedDictionary[TKey, TValue](comparer: IComparer[TKey])
@@ -1820,6 +1870,7 @@ class SortedDictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePa
     SortedDictionary[TKey, TValue](dictionary: IDictionary[TKey, TValue], comparer: IComparer[TKey])
     """
     def Add(self, key, value):
+        # type: (self: SortedDictionary[TKey, TValue], key: TKey, value: TValue)
         """
         Add(self: SortedDictionary[TKey, TValue], key: TKey, value: TValue)
             Adds an element with the specified key and value into the System.Collections.Generic.SortedDictionary.
@@ -1830,6 +1881,7 @@ class SortedDictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePa
         pass
 
     def Clear(self):
+        # type: (self: SortedDictionary[TKey, TValue])
         """
         Clear(self: SortedDictionary[TKey, TValue])
             Removes all elements from the System.Collections.Generic.SortedDictionary.
@@ -1837,6 +1889,7 @@ class SortedDictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePa
         pass
 
     def ContainsKey(self, key):
+        # type: (self: SortedDictionary[TKey, TValue], key: TKey) -> bool
         """
         ContainsKey(self: SortedDictionary[TKey, TValue], key: TKey) -> bool
         
@@ -1848,6 +1901,7 @@ class SortedDictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePa
         pass
 
     def ContainsValue(self, value):
+        # type: (self: SortedDictionary[TKey, TValue], value: TValue) -> bool
         """
         ContainsValue(self: SortedDictionary[TKey, TValue], value: TValue) -> bool
         
@@ -1859,10 +1913,12 @@ class SortedDictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePa
         pass
 
     def CopyTo(self, array, index):
+        # type: (self: SortedDictionary[TKey, TValue], array: Array[KeyValuePair[TKey, TValue]], index: int)
         """ CopyTo(self: SortedDictionary[TKey, TValue], array: Array[KeyValuePair[TKey, TValue]], index: int) """
         pass
 
     def GetEnumerator(self):
+        # type: (self: SortedDictionary[TKey, TValue]) -> Enumerator
         """
         GetEnumerator(self: SortedDictionary[TKey, TValue]) -> Enumerator
         
@@ -1872,18 +1928,19 @@ class SortedDictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePa
         pass
 
     def Remove(self, key):
+        # type: (self: SortedDictionary[TKey, TValue], key: TKey) -> bool
         """
         Remove(self: SortedDictionary[TKey, TValue], key: TKey) -> bool
         
             Removes the element with the specified key from the System.Collections.Generic.SortedDictionary.
         
             key: The key of the element to remove.
-            Returns: true if the element is successfully removed; otherwise, false.  This method also returns false if key is not found in the 
-             System.Collections.Generic.SortedDictionary.
+            Returns: true if the element is successfully removed; otherwise, false.  This method also returns false if key is not found in the System.Collections.Generic.SortedDictionary.
         """
         pass
 
     def TryGetValue(self, key, value):
+        # type: (self: SortedDictionary[TKey, TValue], key: TKey) -> (bool, TValue)
         """ TryGetValue(self: SortedDictionary[TKey, TValue], key: TKey) -> (bool, TValue) """
         pass
 
@@ -1946,32 +2003,32 @@ class SortedDictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePa
         pass
 
     Comparer = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Collections.Generic.IComparer used to order the elements of the System.Collections.Generic.SortedDictionary.
-
-Get: Comparer(self: SortedDictionary[TKey, TValue]) -> IComparer[TKey]
-
-"""
+    """
+    Gets the System.Collections.Generic.IComparer used to order the elements of the System.Collections.Generic.SortedDictionary.
+    
+    Get: Comparer(self: SortedDictionary[TKey, TValue]) -> IComparer[TKey]
+    """
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of key/value pairs contained in the System.Collections.Generic.SortedDictionary.
-
-Get: Count(self: SortedDictionary[TKey, TValue]) -> int
-
-"""
+    """
+    Gets the number of key/value pairs contained in the System.Collections.Generic.SortedDictionary.
+    
+    Get: Count(self: SortedDictionary[TKey, TValue]) -> int
+    """
 
     Keys = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection containing the keys in the System.Collections.Generic.SortedDictionary.
-
-Get: Keys(self: SortedDictionary[TKey, TValue]) -> KeyCollection
-
-"""
+    """
+    Gets a collection containing the keys in the System.Collections.Generic.SortedDictionary.
+    
+    Get: Keys(self: SortedDictionary[TKey, TValue]) -> KeyCollection
+    """
 
     Values = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection containing the values in the System.Collections.Generic.SortedDictionary.
-
-Get: Values(self: SortedDictionary[TKey, TValue]) -> ValueCollection
-
-"""
+    """
+    Gets a collection containing the values in the System.Collections.Generic.SortedDictionary.
+    
+    Get: Values(self: SortedDictionary[TKey, TValue]) -> ValueCollection
+    """
 
 
     Enumerator = None
@@ -1980,6 +2037,7 @@ Get: Values(self: SortedDictionary[TKey, TValue]) -> ValueCollection
 
 
 class SortedList(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKey, TValue]], IEnumerable[KeyValuePair[TKey, TValue]], IEnumerable, IDictionary, ICollection, IReadOnlyDictionary[TKey, TValue], IReadOnlyCollection[KeyValuePair[TKey, TValue]]):
+    # type: ()
     """
     SortedList[TKey, TValue]()
     SortedList[TKey, TValue](capacity: int)
@@ -1989,6 +2047,7 @@ class SortedList(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
     SortedList[TKey, TValue](dictionary: IDictionary[TKey, TValue], comparer: IComparer[TKey])
     """
     def Add(self, key, value):
+        # type: (self: SortedList[TKey, TValue], key: TKey, value: TValue)
         """
         Add(self: SortedList[TKey, TValue], key: TKey, value: TValue)
             Adds an element with the specified key and value into the System.Collections.Generic.SortedList.
@@ -1999,6 +2058,7 @@ class SortedList(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def Clear(self):
+        # type: (self: SortedList[TKey, TValue])
         """
         Clear(self: SortedList[TKey, TValue])
             Removes all elements from the System.Collections.Generic.SortedList.
@@ -2006,6 +2066,7 @@ class SortedList(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def ContainsKey(self, key):
+        # type: (self: SortedList[TKey, TValue], key: TKey) -> bool
         """
         ContainsKey(self: SortedList[TKey, TValue], key: TKey) -> bool
         
@@ -2017,6 +2078,7 @@ class SortedList(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def ContainsValue(self, value):
+        # type: (self: SortedList[TKey, TValue], value: TValue) -> bool
         """
         ContainsValue(self: SortedList[TKey, TValue], value: TValue) -> bool
         
@@ -2028,6 +2090,7 @@ class SortedList(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def GetEnumerator(self):
+        # type: (self: SortedList[TKey, TValue]) -> IEnumerator[KeyValuePair[TKey, TValue]]
         """
         GetEnumerator(self: SortedList[TKey, TValue]) -> IEnumerator[KeyValuePair[TKey, TValue]]
         
@@ -2037,6 +2100,7 @@ class SortedList(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def IndexOfKey(self, key):
+        # type: (self: SortedList[TKey, TValue], key: TKey) -> int
         """
         IndexOfKey(self: SortedList[TKey, TValue], key: TKey) -> int
         
@@ -2048,6 +2112,7 @@ class SortedList(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def IndexOfValue(self, value):
+        # type: (self: SortedList[TKey, TValue], value: TValue) -> int
         """
         IndexOfValue(self: SortedList[TKey, TValue], value: TValue) -> int
         
@@ -2059,18 +2124,19 @@ class SortedList(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def Remove(self, key):
+        # type: (self: SortedList[TKey, TValue], key: TKey) -> bool
         """
         Remove(self: SortedList[TKey, TValue], key: TKey) -> bool
         
             Removes the element with the specified key from the System.Collections.Generic.SortedList.
         
             key: The key of the element to remove.
-            Returns: true if the element is successfully removed; otherwise, false.  This method also returns false if key was not found in the original 
-             System.Collections.Generic.SortedList.
+            Returns: true if the element is successfully removed; otherwise, false.  This method also returns false if key was not found in the original System.Collections.Generic.SortedList.
         """
         pass
 
     def RemoveAt(self, index):
+        # type: (self: SortedList[TKey, TValue], index: int)
         """
         RemoveAt(self: SortedList[TKey, TValue], index: int)
             Removes the element at the specified index of the System.Collections.Generic.SortedList.
@@ -2080,6 +2146,7 @@ class SortedList(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def TrimExcess(self):
+        # type: (self: SortedList[TKey, TValue])
         """
         TrimExcess(self: SortedList[TKey, TValue])
             Sets the capacity to the actual number of elements in the System.Collections.Generic.SortedList, if that number is less than 90 percent of current capacity.
@@ -2087,6 +2154,7 @@ class SortedList(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     def TryGetValue(self, key, value):
+        # type: (self: SortedList[TKey, TValue], key: TKey) -> (bool, TValue)
         """ TryGetValue(self: SortedList[TKey, TValue], key: TKey) -> (bool, TValue) """
         pass
 
@@ -2151,44 +2219,46 @@ class SortedList(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKe
         pass
 
     Capacity = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the number of elements that the System.Collections.Generic.SortedList can contain.
-
-Get: Capacity(self: SortedList[TKey, TValue]) -> int
-
-Set: Capacity(self: SortedList[TKey, TValue]) = value
-"""
+    """
+    Gets or sets the number of elements that the System.Collections.Generic.SortedList can contain.
+    
+    Get: Capacity(self: SortedList[TKey, TValue]) -> int
+    
+    Set: Capacity(self: SortedList[TKey, TValue]) = value
+    """
 
     Comparer = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Collections.Generic.IComparer for the sorted list.
-
-Get: Comparer(self: SortedList[TKey, TValue]) -> IComparer[TKey]
-
-"""
+    """
+    Gets the System.Collections.Generic.IComparer for the sorted list.
+    
+    Get: Comparer(self: SortedList[TKey, TValue]) -> IComparer[TKey]
+    """
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of key/value pairs contained in the System.Collections.Generic.SortedList.
-
-Get: Count(self: SortedList[TKey, TValue]) -> int
-
-"""
+    """
+    Gets the number of key/value pairs contained in the System.Collections.Generic.SortedList.
+    
+    Get: Count(self: SortedList[TKey, TValue]) -> int
+    """
 
     Keys = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection containing the keys in the System.Collections.Generic.SortedList.
-
-Get: Keys(self: SortedList[TKey, TValue]) -> IList[TKey]
-
-"""
+    """
+    Gets a collection containing the keys in the System.Collections.Generic.SortedList.
+    
+    Get: Keys(self: SortedList[TKey, TValue]) -> IList[TKey]
+    """
 
     Values = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection containing the values in the System.Collections.Generic.SortedList.
-
-Get: Values(self: SortedList[TKey, TValue]) -> IList[TValue]
-
-"""
+    """
+    Gets a collection containing the values in the System.Collections.Generic.SortedList.
+    
+    Get: Values(self: SortedList[TKey, TValue]) -> IList[TValue]
+    """
 
 
 
 class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, ICollection, ISerializable, IDeserializationCallback, IReadOnlyCollection[T]):
+    # type: ()
     """
     SortedSet[T]()
     SortedSet[T](collection: IEnumerable[T])
@@ -2196,6 +2266,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
     SortedSet[T](comparer: IComparer[T])
     """
     def Add(self, item):
+        # type: (self: SortedSet[T], item: T) -> bool
         """
         Add(self: SortedSet[T], item: T) -> bool
         
@@ -2207,6 +2278,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def Clear(self):
+        # type: (self: SortedSet[T])
         """
         Clear(self: SortedSet[T])
             Removes all elements from the set.
@@ -2214,6 +2286,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def Contains(self, item):
+        # type: (self: SortedSet[T], item: T) -> bool
         """
         Contains(self: SortedSet[T], item: T) -> bool
         
@@ -2225,11 +2298,13 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def CopyTo(self, array, index=None, count=None):
+        # type: (self: SortedSet[T], array: Array[T])CopyTo(self: SortedSet[T], array: Array[T], index: int)CopyTo(self: SortedSet[T], array: Array[T], index: int, count: int)
         """ CopyTo(self: SortedSet[T], array: Array[T])CopyTo(self: SortedSet[T], array: Array[T], index: int)CopyTo(self: SortedSet[T], array: Array[T], index: int, count: int) """
         pass
 
     @staticmethod
     def CreateSetComparer(memberEqualityComparer=None):
+        # type: () -> IEqualityComparer[SortedSet[T]]
         """
         CreateSetComparer() -> IEqualityComparer[SortedSet[T]]
         
@@ -2237,9 +2312,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
             Returns: A comparer for creating a collection of sets.
         CreateSetComparer(memberEqualityComparer: IEqualityComparer[T]) -> IEqualityComparer[SortedSet[T]]
         
-            Returns an System.Collections.IEqualityComparer object, according to a specified comparer, that can be used to create a collection that contains individual 
-             sets.
-        
+            Returns an System.Collections.IEqualityComparer object, according to a specified comparer, that can be used to create a collection that contains individual sets.
         
             memberEqualityComparer: The comparer to use for creating the returned comparer.
             Returns: A comparer for creating a collection of sets.
@@ -2247,6 +2320,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def ExceptWith(self, other):
+        # type: (self: SortedSet[T], other: IEnumerable[T])
         """
         ExceptWith(self: SortedSet[T], other: IEnumerable[T])
             Removes all elements that are in a specified collection from the current System.Collections.Generic.SortedSet object.
@@ -2256,6 +2330,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def GetEnumerator(self):
+        # type: (self: SortedSet[T]) -> Enumerator
         """
         GetEnumerator(self: SortedSet[T]) -> Enumerator
         
@@ -2265,21 +2340,18 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def GetObjectData(self, *args): #cannot find CLR method
+        # type: (self: SortedSet[T], info: SerializationInfo, context: StreamingContext)
         """
         GetObjectData(self: SortedSet[T], info: SerializationInfo, context: StreamingContext)
-            Implements the System.Runtime.Serialization.ISerializable interface and returns the data that you must have to serialize a 
-             System.Collections.Generic.SortedSet object.
+            Implements the System.Runtime.Serialization.ISerializable interface and returns the data that you must have to serialize a System.Collections.Generic.SortedSet object.
         
-        
-            info: A System.Runtime.Serialization.SerializationInfo object that contains the information that is required to serialize the System.Collections.Generic.SortedSet 
-             object.
-        
-            context: A System.Runtime.Serialization.StreamingContext structure that contains the source and destination of the serialized stream associated with the 
-             System.Collections.Generic.SortedSet object.
+            info: A System.Runtime.Serialization.SerializationInfo object that contains the information that is required to serialize the System.Collections.Generic.SortedSet object.
+            context: A System.Runtime.Serialization.StreamingContext structure that contains the source and destination of the serialized stream associated with the System.Collections.Generic.SortedSet object.
         """
         pass
 
     def GetViewBetween(self, lowerValue, upperValue):
+        # type: (self: SortedSet[T], lowerValue: T, upperValue: T) -> SortedSet[T]
         """
         GetViewBetween(self: SortedSet[T], lowerValue: T, upperValue: T) -> SortedSet[T]
         
@@ -2292,6 +2364,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def IntersectWith(self, other):
+        # type: (self: SortedSet[T], other: IEnumerable[T])
         """
         IntersectWith(self: SortedSet[T], other: IEnumerable[T])
             Modifies the current System.Collections.Generic.SortedSet object so that it contains only elements that are also in a specified collection.
@@ -2301,6 +2374,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def IsProperSubsetOf(self, other):
+        # type: (self: SortedSet[T], other: IEnumerable[T]) -> bool
         """
         IsProperSubsetOf(self: SortedSet[T], other: IEnumerable[T]) -> bool
         
@@ -2312,6 +2386,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def IsProperSupersetOf(self, other):
+        # type: (self: SortedSet[T], other: IEnumerable[T]) -> bool
         """
         IsProperSupersetOf(self: SortedSet[T], other: IEnumerable[T]) -> bool
         
@@ -2323,6 +2398,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def IsSubsetOf(self, other):
+        # type: (self: SortedSet[T], other: IEnumerable[T]) -> bool
         """
         IsSubsetOf(self: SortedSet[T], other: IEnumerable[T]) -> bool
         
@@ -2334,6 +2410,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def IsSupersetOf(self, other):
+        # type: (self: SortedSet[T], other: IEnumerable[T]) -> bool
         """
         IsSupersetOf(self: SortedSet[T], other: IEnumerable[T]) -> bool
         
@@ -2345,6 +2422,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def OnDeserialization(self, *args): #cannot find CLR method
+        # type: (self: SortedSet[T], sender: object)
         """
         OnDeserialization(self: SortedSet[T], sender: object)
             Implements the System.Runtime.Serialization.ISerializable interface, and raises the deserialization event when the deserialization is completed.
@@ -2354,6 +2432,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def Overlaps(self, other):
+        # type: (self: SortedSet[T], other: IEnumerable[T]) -> bool
         """
         Overlaps(self: SortedSet[T], other: IEnumerable[T]) -> bool
         
@@ -2365,6 +2444,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def Remove(self, item):
+        # type: (self: SortedSet[T], item: T) -> bool
         """
         Remove(self: SortedSet[T], item: T) -> bool
         
@@ -2376,6 +2456,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def RemoveWhere(self, match):
+        # type: (self: SortedSet[T], match: Predicate[T]) -> int
         """
         RemoveWhere(self: SortedSet[T], match: Predicate[T]) -> int
         
@@ -2387,6 +2468,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def Reverse(self):
+        # type: (self: SortedSet[T]) -> IEnumerable[T]
         """
         Reverse(self: SortedSet[T]) -> IEnumerable[T]
         
@@ -2396,6 +2478,7 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def SetEquals(self, other):
+        # type: (self: SortedSet[T], other: IEnumerable[T]) -> bool
         """
         SetEquals(self: SortedSet[T], other: IEnumerable[T]) -> bool
         
@@ -2407,26 +2490,25 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     def SymmetricExceptWith(self, other):
+        # type: (self: SortedSet[T], other: IEnumerable[T])
         """
         SymmetricExceptWith(self: SortedSet[T], other: IEnumerable[T])
-            Modifies the current System.Collections.Generic.SortedSet object so that it contains only elements that are present either in the current object or in the 
-             specified collection, but not both.
-        
+            Modifies the current System.Collections.Generic.SortedSet object so that it contains only elements that are present either in the current object or in the specified collection, but not both.
         
             other: The collection to compare to the current System.Collections.Generic.SortedSet object.
         """
         pass
 
     def TryGetValue(self, equalValue, actualValue):
+        # type: (self: SortedSet[T], equalValue: T) -> (bool, T)
         """ TryGetValue(self: SortedSet[T], equalValue: T) -> (bool, T) """
         pass
 
     def UnionWith(self, other):
+        # type: (self: SortedSet[T], other: IEnumerable[T])
         """
         UnionWith(self: SortedSet[T], other: IEnumerable[T])
-            Modifies the current System.Collections.Generic.SortedSet object so that it contains all elements that are present in both the current object and in the 
-             specified collection.
-        
+            Modifies the current System.Collections.Generic.SortedSet object so that it contains all elements that are present in both the current object and in the specified collection.
         
             other: The collection to compare to the current System.Collections.Generic.SortedSet object.
         """
@@ -2478,44 +2560,46 @@ class SortedSet(object, ISet[T], ICollection[T], IEnumerable[T], IEnumerable, IC
         pass
 
     Comparer = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Collections.Generic.IEqualityComparer object that is used to determine equality for the values in the System.Collections.Generic.SortedSet.
-
-Get: Comparer(self: SortedSet[T]) -> IComparer[T]
-
-"""
+    """
+    Gets the System.Collections.Generic.IEqualityComparer object that is used to determine equality for the values in the System.Collections.Generic.SortedSet.
+    
+    Get: Comparer(self: SortedSet[T]) -> IComparer[T]
+    """
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of elements in the System.Collections.Generic.SortedSet.
-
-Get: Count(self: SortedSet[T]) -> int
-
-"""
+    """
+    Gets the number of elements in the System.Collections.Generic.SortedSet.
+    
+    Get: Count(self: SortedSet[T]) -> int
+    """
 
     Max = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the maximum value in the System.Collections.Generic.SortedSet, as defined by the comparer.
-
-Get: Max(self: SortedSet[T]) -> T
-
-"""
+    """
+    Gets the maximum value in the System.Collections.Generic.SortedSet, as defined by the comparer.
+    
+    Get: Max(self: SortedSet[T]) -> T
+    """
 
     Min = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the minimum value in the System.Collections.Generic.SortedSet, as defined by the comparer.
-
-Get: Min(self: SortedSet[T]) -> T
-
-"""
+    """
+    Gets the minimum value in the System.Collections.Generic.SortedSet, as defined by the comparer.
+    
+    Get: Min(self: SortedSet[T]) -> T
+    """
 
 
     Enumerator = None
 
 
 class Stack(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollection[T]):
+    # type: ()
     """
     Stack[T]()
     Stack[T](capacity: int)
     Stack[T](collection: IEnumerable[T])
     """
     def Clear(self):
+        # type: (self: Stack[T])
         """
         Clear(self: Stack[T])
             Removes all objects from the System.Collections.Generic.Stack.
@@ -2523,6 +2607,7 @@ class Stack(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def Contains(self, item):
+        # type: (self: Stack[T], item: T) -> bool
         """
         Contains(self: Stack[T], item: T) -> bool
         
@@ -2534,10 +2619,12 @@ class Stack(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def CopyTo(self, array, arrayIndex):
+        # type: (self: Stack[T], array: Array[T], arrayIndex: int)
         """ CopyTo(self: Stack[T], array: Array[T], arrayIndex: int) """
         pass
 
     def GetEnumerator(self):
+        # type: (self: Stack[T]) -> Enumerator
         """
         GetEnumerator(self: Stack[T]) -> Enumerator
         
@@ -2547,6 +2634,7 @@ class Stack(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def Peek(self):
+        # type: (self: Stack[T]) -> T
         """
         Peek(self: Stack[T]) -> T
         
@@ -2556,6 +2644,7 @@ class Stack(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def Pop(self):
+        # type: (self: Stack[T]) -> T
         """
         Pop(self: Stack[T]) -> T
         
@@ -2565,6 +2654,7 @@ class Stack(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def Push(self, item):
+        # type: (self: Stack[T], item: T)
         """
         Push(self: Stack[T], item: T)
             Inserts an object at the top of the System.Collections.Generic.Stack.
@@ -2574,6 +2664,7 @@ class Stack(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def ToArray(self):
+        # type: (self: Stack[T]) -> Array[T]
         """
         ToArray(self: Stack[T]) -> Array[T]
         
@@ -2583,6 +2674,7 @@ class Stack(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     def TrimExcess(self):
+        # type: (self: Stack[T])
         """
         TrimExcess(self: Stack[T])
             Sets the capacity to the actual number of elements in the System.Collections.Generic.Stack, if that number is less than 90 percent of current capacity.
@@ -2622,11 +2714,11 @@ class Stack(object, IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollectio
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of elements contained in the System.Collections.Generic.Stack.
-
-Get: Count(self: Stack[T]) -> int
-
-"""
+    """
+    Gets the number of elements contained in the System.Collections.Generic.Stack.
+    
+    Get: Count(self: Stack[T]) -> int
+    """
 
 
     Enumerator = None

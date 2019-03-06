@@ -16,6 +16,7 @@ class VBCodeProvider(CodeDomProvider, IComponent, IDisposable):
     VBCodeProvider(providerOptions: IDictionary[str, str])
     """
     def CreateCompiler(self):
+        # type: (self: VBCodeProvider) -> ICodeCompiler
         """
         CreateCompiler(self: VBCodeProvider) -> ICodeCompiler
         
@@ -25,6 +26,7 @@ class VBCodeProvider(CodeDomProvider, IComponent, IDisposable):
         pass
 
     def CreateGenerator(self, *__args):
+        # type: (self: VBCodeProvider) -> ICodeGenerator
         """
         CreateGenerator(self: VBCodeProvider) -> ICodeGenerator
         
@@ -34,6 +36,7 @@ class VBCodeProvider(CodeDomProvider, IComponent, IDisposable):
         pass
 
     def Dispose(self):
+        # type: (self: Component, disposing: bool)
         """
         Dispose(self: Component, disposing: bool)
             Releases the unmanaged resources used by the System.ComponentModel.Component and optionally releases the managed resources.
@@ -43,6 +46,7 @@ class VBCodeProvider(CodeDomProvider, IComponent, IDisposable):
         pass
 
     def GenerateCodeFromMember(self, member, writer, options):
+        # type: (self: VBCodeProvider, member: CodeTypeMember, writer: TextWriter, options: CodeGeneratorOptions)
         """
         GenerateCodeFromMember(self: VBCodeProvider, member: CodeTypeMember, writer: TextWriter, options: CodeGeneratorOptions)
             Generates code for the specified class member using the specified text writer and code generator options.
@@ -54,6 +58,7 @@ class VBCodeProvider(CodeDomProvider, IComponent, IDisposable):
         pass
 
     def GetConverter(self, type):
+        # type: (self: VBCodeProvider, type: Type) -> TypeConverter
         """
         GetConverter(self: VBCodeProvider, type: Type) -> TypeConverter
         
@@ -65,26 +70,26 @@ class VBCodeProvider(CodeDomProvider, IComponent, IDisposable):
         pass
 
     def GetService(self, *args): #cannot find CLR method
+        # type: (self: Component, service: Type) -> object
         """
         GetService(self: Component, service: Type) -> object
         
             Returns an object that represents a service provided by the System.ComponentModel.Component or by its System.ComponentModel.Container.
         
             service: A service provided by the System.ComponentModel.Component.
-            Returns: An System.Object that represents a service provided by the System.ComponentModel.Component, or null if the System.ComponentModel.Component does not provide 
-             the specified service.
+            Returns: An System.Object that represents a service provided by the System.ComponentModel.Component, or null if the System.ComponentModel.Component does not provide the specified service.
         """
         pass
 
     def MemberwiseClone(self, *args): #cannot find CLR method
+        # type: (self: MarshalByRefObject, cloneIdentity: bool) -> MarshalByRefObject
         """
         MemberwiseClone(self: MarshalByRefObject, cloneIdentity: bool) -> MarshalByRefObject
         
             Creates a shallow copy of the current System.MarshalByRefObject object.
         
-            cloneIdentity: false to delete the current System.MarshalByRefObject object's identity, which will cause the object to be assigned a new identity when it is marshaled 
-             across a remoting boundary. A value of false is usually appropriate. true to copy the current System.MarshalByRefObject object's identity to its clone, 
-             which will cause remoting client calls to be routed to the remote server object.
+            cloneIdentity: false to delete the current System.MarshalByRefObject object's identity, which will cause the object to be assigned a new identity when it is marshaled across a remoting boundary. A value of false is usually appropriate. true to copy the current 
+             System.MarshalByRefObject object's identity to its clone, which will cause remoting client calls to be routed to the remote server object.
         
             Returns: A shallow copy of the current System.MarshalByRefObject object.
         MemberwiseClone(self: object) -> object
@@ -118,33 +123,27 @@ class VBCodeProvider(CodeDomProvider, IComponent, IDisposable):
         pass
 
     CanRaiseEvents = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether the component can raise an event.
-
-"""
+    """ Gets a value indicating whether the component can raise an event. """
 
     DesignMode = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that indicates whether the System.ComponentModel.Component is currently in design mode.
-
-"""
+    """ Gets a value that indicates whether the System.ComponentModel.Component is currently in design mode. """
 
     Events = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the list of event handlers that are attached to this System.ComponentModel.Component.
-
-"""
+    """ Gets the list of event handlers that are attached to this System.ComponentModel.Component. """
 
     FileExtension = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the file name extension to use when creating source code files.
-
-Get: FileExtension(self: VBCodeProvider) -> str
-
-"""
+    """
+    Gets the file name extension to use when creating source code files.
+    
+    Get: FileExtension(self: VBCodeProvider) -> str
+    """
 
     LanguageOptions = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a language features identifier.
-
-Get: LanguageOptions(self: VBCodeProvider) -> LanguageOptions
-
-"""
+    """
+    Gets a language features identifier.
+    
+    Get: LanguageOptions(self: VBCodeProvider) -> LanguageOptions
+    """
 
 
 

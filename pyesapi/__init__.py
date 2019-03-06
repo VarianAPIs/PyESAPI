@@ -44,7 +44,7 @@ if typing.TYPE_CHECKING:
     from .stubs.System.Collections.Generic import Dictionary
 
     # for numpy array interfacing
-    from .stubs.System.Windows import Point
+    # from .stubs.System.Windows import Point
     from .stubs.System import Array, Int32, Double
     # from .stubs.System.Runtime.InteropServices import GCHandle, GCHandleType  # TODO: these are missing from type stubs
 

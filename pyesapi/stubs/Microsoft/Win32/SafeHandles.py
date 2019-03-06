@@ -11,6 +11,7 @@
 class CriticalHandleMinusOneIsInvalid(CriticalHandle, IDisposable):
     """ Provides a base class for Win32 critical handle implementations in which the value of -1 indicates an invalid handle. """
     def Dispose(self):
+        # type: (self: CriticalHandle, disposing: bool)
         """
         Dispose(self: CriticalHandle, disposing: bool)
             Releases the unmanaged resources used by the System.Runtime.InteropServices.CriticalHandle class specifying whether to perform a normal dispose operation.
@@ -20,16 +21,17 @@ class CriticalHandleMinusOneIsInvalid(CriticalHandle, IDisposable):
         pass
 
     def ReleaseHandle(self, *args): #cannot find CLR method
+        # type: (self: CriticalHandle) -> bool
         """
         ReleaseHandle(self: CriticalHandle) -> bool
         
             When overridden in a derived class, executes the code required to free the handle.
-            Returns: true if the handle is released successfully; otherwise, in the event of a catastrophic failure, false. In this case, it generates a releaseHandleFailed MDA 
-             Managed Debugging Assistant.
+            Returns: true if the handle is released successfully; otherwise, in the event of a catastrophic failure, false. In this case, it generates a releaseHandleFailed MDA Managed Debugging Assistant.
         """
         pass
 
     def SetHandle(self, *args): #cannot find CLR method
+        # type: (self: CriticalHandle, handle: IntPtr)
         """
         SetHandle(self: CriticalHandle, handle: IntPtr)
             Sets the handle to the specified pre-existing handle.
@@ -51,11 +53,11 @@ class CriticalHandleMinusOneIsInvalid(CriticalHandle, IDisposable):
         pass
 
     IsInvalid = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that indicates whether the handle is invalid.
-
-Get: IsInvalid(self: CriticalHandleMinusOneIsInvalid) -> bool
-
-"""
+    """
+    Gets a value that indicates whether the handle is invalid.
+    
+    Get: IsInvalid(self: CriticalHandleMinusOneIsInvalid) -> bool
+    """
 
 
     handle = None
@@ -64,6 +66,7 @@ Get: IsInvalid(self: CriticalHandleMinusOneIsInvalid) -> bool
 class CriticalHandleZeroOrMinusOneIsInvalid(CriticalHandle, IDisposable):
     """ Provides a base class for Win32 critical handle implementations in which the value of either 0 or -1 indicates an invalid handle. """
     def Dispose(self):
+        # type: (self: CriticalHandle, disposing: bool)
         """
         Dispose(self: CriticalHandle, disposing: bool)
             Releases the unmanaged resources used by the System.Runtime.InteropServices.CriticalHandle class specifying whether to perform a normal dispose operation.
@@ -73,16 +76,17 @@ class CriticalHandleZeroOrMinusOneIsInvalid(CriticalHandle, IDisposable):
         pass
 
     def ReleaseHandle(self, *args): #cannot find CLR method
+        # type: (self: CriticalHandle) -> bool
         """
         ReleaseHandle(self: CriticalHandle) -> bool
         
             When overridden in a derived class, executes the code required to free the handle.
-            Returns: true if the handle is released successfully; otherwise, in the event of a catastrophic failure, false. In this case, it generates a releaseHandleFailed MDA 
-             Managed Debugging Assistant.
+            Returns: true if the handle is released successfully; otherwise, in the event of a catastrophic failure, false. In this case, it generates a releaseHandleFailed MDA Managed Debugging Assistant.
         """
         pass
 
     def SetHandle(self, *args): #cannot find CLR method
+        # type: (self: CriticalHandle, handle: IntPtr)
         """
         SetHandle(self: CriticalHandle, handle: IntPtr)
             Sets the handle to the specified pre-existing handle.
@@ -104,19 +108,21 @@ class CriticalHandleZeroOrMinusOneIsInvalid(CriticalHandle, IDisposable):
         pass
 
     IsInvalid = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that indicates whether the handle is invalid.
-
-Get: IsInvalid(self: CriticalHandleZeroOrMinusOneIsInvalid) -> bool
-
-"""
+    """
+    Gets a value that indicates whether the handle is invalid.
+    
+    Get: IsInvalid(self: CriticalHandleZeroOrMinusOneIsInvalid) -> bool
+    """
 
 
     handle = None
 
 
 class SafeAccessTokenHandle(SafeHandle, IDisposable):
+    # type: (handle: IntPtr)
     """ SafeAccessTokenHandle(handle: IntPtr) """
     def Dispose(self):
+        # type: (self: SafeHandle, disposing: bool)
         """
         Dispose(self: SafeHandle, disposing: bool)
             Releases the unmanaged resources used by the System.Runtime.InteropServices.SafeHandle class specifying whether to perform a normal dispose operation.
@@ -126,10 +132,12 @@ class SafeAccessTokenHandle(SafeHandle, IDisposable):
         pass
 
     def ReleaseHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeAccessTokenHandle) -> bool
         """ ReleaseHandle(self: SafeAccessTokenHandle) -> bool """
         pass
 
     def SetHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeHandle, handle: IntPtr)
         """
         SetHandle(self: SafeHandle, handle: IntPtr)
             Sets the handle to the specified pre-existing handle.
@@ -156,9 +164,8 @@ class SafeAccessTokenHandle(SafeHandle, IDisposable):
         pass
 
     IsInvalid = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Get: IsInvalid(self: SafeAccessTokenHandle) -> bool
-
-"""
+    # type: (self: SafeAccessTokenHandle) -> bool
+    """ Get: IsInvalid(self: SafeAccessTokenHandle) -> bool """
 
 
     handle = None
@@ -168,6 +175,7 @@ class SafeAccessTokenHandle(SafeHandle, IDisposable):
 class SafeHandleZeroOrMinusOneIsInvalid(SafeHandle, IDisposable):
     """ Provides a base class for Win32 safe handle implementations in which the value of either 0 or -1 indicates an invalid handle. """
     def Dispose(self):
+        # type: (self: SafeHandle, disposing: bool)
         """
         Dispose(self: SafeHandle, disposing: bool)
             Releases the unmanaged resources used by the System.Runtime.InteropServices.SafeHandle class specifying whether to perform a normal dispose operation.
@@ -177,16 +185,17 @@ class SafeHandleZeroOrMinusOneIsInvalid(SafeHandle, IDisposable):
         pass
 
     def ReleaseHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeHandle) -> bool
         """
         ReleaseHandle(self: SafeHandle) -> bool
         
             When overridden in a derived class, executes the code required to free the handle.
-            Returns: true if the handle is released successfully; otherwise, in the event of a catastrophic failure, false. In this case, it generates a releaseHandleFailed MDA 
-             Managed Debugging Assistant.
+            Returns: true if the handle is released successfully; otherwise, in the event of a catastrophic failure, false. In this case, it generates a releaseHandleFailed MDA Managed Debugging Assistant.
         """
         pass
 
     def SetHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeHandle, handle: IntPtr)
         """
         SetHandle(self: SafeHandle, handle: IntPtr)
             Sets the handle to the specified pre-existing handle.
@@ -213,11 +222,11 @@ class SafeHandleZeroOrMinusOneIsInvalid(SafeHandle, IDisposable):
         pass
 
     IsInvalid = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that indicates whether the handle is invalid.
-
-Get: IsInvalid(self: SafeHandleZeroOrMinusOneIsInvalid) -> bool
-
-"""
+    """
+    Gets a value that indicates whether the handle is invalid.
+    
+    Get: IsInvalid(self: SafeHandleZeroOrMinusOneIsInvalid) -> bool
+    """
 
 
     handle = None
@@ -230,6 +239,7 @@ class SafeFileHandle(SafeHandleZeroOrMinusOneIsInvalid, IDisposable):
     SafeFileHandle(preexistingHandle: IntPtr, ownsHandle: bool)
     """
     def Dispose(self):
+        # type: (self: SafeHandle, disposing: bool)
         """
         Dispose(self: SafeHandle, disposing: bool)
             Releases the unmanaged resources used by the System.Runtime.InteropServices.SafeHandle class specifying whether to perform a normal dispose operation.
@@ -239,10 +249,12 @@ class SafeFileHandle(SafeHandleZeroOrMinusOneIsInvalid, IDisposable):
         pass
 
     def ReleaseHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeFileHandle) -> bool
         """ ReleaseHandle(self: SafeFileHandle) -> bool """
         pass
 
     def SetHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeHandle, handle: IntPtr)
         """
         SetHandle(self: SafeHandle, handle: IntPtr)
             Sets the handle to the specified pre-existing handle.
@@ -274,6 +286,7 @@ class SafeFileHandle(SafeHandleZeroOrMinusOneIsInvalid, IDisposable):
 class SafeHandleMinusOneIsInvalid(SafeHandle, IDisposable):
     """ Provides a base class for Win32 safe handle implementations in which the value of -1 indicates an invalid handle. """
     def Dispose(self):
+        # type: (self: SafeHandle, disposing: bool)
         """
         Dispose(self: SafeHandle, disposing: bool)
             Releases the unmanaged resources used by the System.Runtime.InteropServices.SafeHandle class specifying whether to perform a normal dispose operation.
@@ -283,16 +296,17 @@ class SafeHandleMinusOneIsInvalid(SafeHandle, IDisposable):
         pass
 
     def ReleaseHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeHandle) -> bool
         """
         ReleaseHandle(self: SafeHandle) -> bool
         
             When overridden in a derived class, executes the code required to free the handle.
-            Returns: true if the handle is released successfully; otherwise, in the event of a catastrophic failure, false. In this case, it generates a releaseHandleFailed MDA 
-             Managed Debugging Assistant.
+            Returns: true if the handle is released successfully; otherwise, in the event of a catastrophic failure, false. In this case, it generates a releaseHandleFailed MDA Managed Debugging Assistant.
         """
         pass
 
     def SetHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeHandle, handle: IntPtr)
         """
         SetHandle(self: SafeHandle, handle: IntPtr)
             Sets the handle to the specified pre-existing handle.
@@ -319,19 +333,21 @@ class SafeHandleMinusOneIsInvalid(SafeHandle, IDisposable):
         pass
 
     IsInvalid = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that indicates whether the handle is invalid.
-
-Get: IsInvalid(self: SafeHandleMinusOneIsInvalid) -> bool
-
-"""
+    """
+    Gets a value that indicates whether the handle is invalid.
+    
+    Get: IsInvalid(self: SafeHandleMinusOneIsInvalid) -> bool
+    """
 
 
     handle = None
 
 
 class SafeProcessHandle(SafeHandleZeroOrMinusOneIsInvalid, IDisposable):
+    # type: (existingHandle: IntPtr, ownsHandle: bool)
     """ SafeProcessHandle(existingHandle: IntPtr, ownsHandle: bool) """
     def Dispose(self):
+        # type: (self: SafeHandle, disposing: bool)
         """
         Dispose(self: SafeHandle, disposing: bool)
             Releases the unmanaged resources used by the System.Runtime.InteropServices.SafeHandle class specifying whether to perform a normal dispose operation.
@@ -341,10 +357,12 @@ class SafeProcessHandle(SafeHandleZeroOrMinusOneIsInvalid, IDisposable):
         pass
 
     def ReleaseHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeProcessHandle) -> bool
         """ ReleaseHandle(self: SafeProcessHandle) -> bool """
         pass
 
     def SetHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeHandle, handle: IntPtr)
         """
         SetHandle(self: SafeHandle, handle: IntPtr)
             Sets the handle to the specified pre-existing handle.
@@ -380,6 +398,7 @@ class SafeRegistryHandle(SafeHandleZeroOrMinusOneIsInvalid, IDisposable):
     SafeRegistryHandle(preexistingHandle: IntPtr, ownsHandle: bool)
     """
     def Dispose(self):
+        # type: (self: SafeHandle, disposing: bool)
         """
         Dispose(self: SafeHandle, disposing: bool)
             Releases the unmanaged resources used by the System.Runtime.InteropServices.SafeHandle class specifying whether to perform a normal dispose operation.
@@ -389,10 +408,12 @@ class SafeRegistryHandle(SafeHandleZeroOrMinusOneIsInvalid, IDisposable):
         pass
 
     def ReleaseHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeRegistryHandle) -> bool
         """ ReleaseHandle(self: SafeRegistryHandle) -> bool """
         pass
 
     def SetHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeHandle, handle: IntPtr)
         """
         SetHandle(self: SafeHandle, handle: IntPtr)
             Sets the handle to the specified pre-existing handle.
@@ -428,6 +449,7 @@ class SafeWaitHandle(SafeHandleZeroOrMinusOneIsInvalid, IDisposable):
     SafeWaitHandle(existingHandle: IntPtr, ownsHandle: bool)
     """
     def Dispose(self):
+        # type: (self: SafeHandle, disposing: bool)
         """
         Dispose(self: SafeHandle, disposing: bool)
             Releases the unmanaged resources used by the System.Runtime.InteropServices.SafeHandle class specifying whether to perform a normal dispose operation.
@@ -437,10 +459,12 @@ class SafeWaitHandle(SafeHandleZeroOrMinusOneIsInvalid, IDisposable):
         pass
 
     def ReleaseHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeWaitHandle) -> bool
         """ ReleaseHandle(self: SafeWaitHandle) -> bool """
         pass
 
     def SetHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeHandle, handle: IntPtr)
         """
         SetHandle(self: SafeHandle, handle: IntPtr)
             Sets the handle to the specified pre-existing handle.
@@ -472,6 +496,7 @@ class SafeWaitHandle(SafeHandleZeroOrMinusOneIsInvalid, IDisposable):
 class SafeX509ChainHandle(SafeHandleZeroOrMinusOneIsInvalid, IDisposable):
     # no doc
     def Dispose(self):
+        # type: (self: SafeHandle, disposing: bool)
         """
         Dispose(self: SafeHandle, disposing: bool)
             Releases the unmanaged resources used by the System.Runtime.InteropServices.SafeHandle class specifying whether to perform a normal dispose operation.
@@ -481,10 +506,12 @@ class SafeX509ChainHandle(SafeHandleZeroOrMinusOneIsInvalid, IDisposable):
         pass
 
     def ReleaseHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeX509ChainHandle) -> bool
         """ ReleaseHandle(self: SafeX509ChainHandle) -> bool """
         pass
 
     def SetHandle(self, *args): #cannot find CLR method
+        # type: (self: SafeHandle, handle: IntPtr)
         """
         SetHandle(self: SafeHandle, handle: IntPtr)
             Sets the handle to the specified pre-existing handle.

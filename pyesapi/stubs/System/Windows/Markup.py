@@ -9,6 +9,7 @@
 # classes
 
 class ValueSerializerAttribute(Attribute, _Attribute):
+    # type: (valueSerializerType: Type)
     """
     ValueSerializerAttribute(valueSerializerType: Type)
     ValueSerializerAttribute(valueSerializerTypeName: str)
@@ -26,14 +27,12 @@ class ValueSerializerAttribute(Attribute, _Attribute):
         pass
 
     ValueSerializerType = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Get: ValueSerializerType(self: ValueSerializerAttribute) -> Type
-
-"""
+    # type: (self: ValueSerializerAttribute) -> Type
+    """ Get: ValueSerializerType(self: ValueSerializerAttribute) -> Type """
 
     ValueSerializerTypeName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Get: ValueSerializerTypeName(self: ValueSerializerAttribute) -> str
-
-"""
+    # type: (self: ValueSerializerAttribute) -> str
+    """ Get: ValueSerializerTypeName(self: ValueSerializerAttribute) -> str """
 
 
 

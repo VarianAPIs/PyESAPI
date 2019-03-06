@@ -33,6 +33,7 @@ class ApplicationScopedSettingAttribute(SettingAttribute, _Attribute):
 class SettingsBase(object):
     """ Provides the base class used to support user property settings. """
     def Initialize(self, context, properties, providers):
+        # type: (self: SettingsBase, context: SettingsContext, properties: SettingsPropertyCollection, providers: SettingsProviderCollection)
         """
         Initialize(self: SettingsBase, context: SettingsContext, properties: SettingsPropertyCollection, providers: SettingsProviderCollection)
             Initializes internal properties used by System.Configuration.SettingsBase object.
@@ -44,6 +45,7 @@ class SettingsBase(object):
         pass
 
     def Save(self):
+        # type: (self: SettingsBase)
         """
         Save(self: SettingsBase)
             Stores the current values of the settings properties.
@@ -52,6 +54,7 @@ class SettingsBase(object):
 
     @staticmethod
     def Synchronized(settingsBase):
+        # type: (settingsBase: SettingsBase) -> SettingsBase
         """
         Synchronized(settingsBase: SettingsBase) -> SettingsBase
         
@@ -71,45 +74,47 @@ class SettingsBase(object):
         pass
 
     Context = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the associated settings context.
-
-Get: Context(self: SettingsBase) -> SettingsContext
-
-"""
+    """
+    Gets the associated settings context.
+    
+    Get: Context(self: SettingsBase) -> SettingsContext
+    """
 
     IsSynchronized = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether access to the object is synchronized (thread safe).
-
-Get: IsSynchronized(self: SettingsBase) -> bool
-
-"""
+    # type: (thread safe).
+    """
+    Gets a value indicating whether access to the object is synchronized (thread safe).
+    
+    Get: IsSynchronized(self: SettingsBase) -> bool
+    """
 
     Properties = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the collection of settings properties.
-
-Get: Properties(self: SettingsBase) -> SettingsPropertyCollection
-
-"""
+    """
+    Gets the collection of settings properties.
+    
+    Get: Properties(self: SettingsBase) -> SettingsPropertyCollection
+    """
 
     PropertyValues = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection of settings property values.
-
-Get: PropertyValues(self: SettingsBase) -> SettingsPropertyValueCollection
-
-"""
+    """
+    Gets a collection of settings property values.
+    
+    Get: PropertyValues(self: SettingsBase) -> SettingsPropertyValueCollection
+    """
 
     Providers = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection of settings providers.
-
-Get: Providers(self: SettingsBase) -> SettingsProviderCollection
-
-"""
+    """
+    Gets a collection of settings providers.
+    
+    Get: Providers(self: SettingsBase) -> SettingsProviderCollection
+    """
 
 
 
 class ApplicationSettingsBase(SettingsBase, INotifyPropertyChanged):
     """ Acts as a base class for deriving concrete wrapper classes to implement the application settings feature in Window Forms applications. """
     def GetPreviousVersion(self, propertyName):
+        # type: (self: ApplicationSettingsBase, propertyName: str) -> object
         """
         GetPreviousVersion(self: ApplicationSettingsBase, propertyName: str) -> object
         
@@ -121,6 +126,7 @@ class ApplicationSettingsBase(SettingsBase, INotifyPropertyChanged):
         pass
 
     def OnPropertyChanged(self, *args): #cannot find CLR method
+        # type: (self: ApplicationSettingsBase, sender: object, e: PropertyChangedEventArgs)
         """
         OnPropertyChanged(self: ApplicationSettingsBase, sender: object, e: PropertyChangedEventArgs)
             Raises the System.Configuration.ApplicationSettingsBase.PropertyChanged event.
@@ -131,6 +137,7 @@ class ApplicationSettingsBase(SettingsBase, INotifyPropertyChanged):
         pass
 
     def OnSettingChanging(self, *args): #cannot find CLR method
+        # type: (self: ApplicationSettingsBase, sender: object, e: SettingChangingEventArgs)
         """
         OnSettingChanging(self: ApplicationSettingsBase, sender: object, e: SettingChangingEventArgs)
             Raises the System.Configuration.ApplicationSettingsBase.SettingChanging event.
@@ -141,6 +148,7 @@ class ApplicationSettingsBase(SettingsBase, INotifyPropertyChanged):
         pass
 
     def OnSettingsLoaded(self, *args): #cannot find CLR method
+        # type: (self: ApplicationSettingsBase, sender: object, e: SettingsLoadedEventArgs)
         """
         OnSettingsLoaded(self: ApplicationSettingsBase, sender: object, e: SettingsLoadedEventArgs)
             Raises the System.Configuration.ApplicationSettingsBase.SettingsLoaded event.
@@ -151,6 +159,7 @@ class ApplicationSettingsBase(SettingsBase, INotifyPropertyChanged):
         pass
 
     def OnSettingsSaving(self, *args): #cannot find CLR method
+        # type: (self: ApplicationSettingsBase, sender: object, e: CancelEventArgs)
         """
         OnSettingsSaving(self: ApplicationSettingsBase, sender: object, e: CancelEventArgs)
             Raises the System.Configuration.ApplicationSettingsBase.SettingsSaving event.
@@ -161,6 +170,7 @@ class ApplicationSettingsBase(SettingsBase, INotifyPropertyChanged):
         pass
 
     def Reload(self):
+        # type: (self: ApplicationSettingsBase)
         """
         Reload(self: ApplicationSettingsBase)
             Refreshes the application settings property values from persistent storage.
@@ -168,6 +178,7 @@ class ApplicationSettingsBase(SettingsBase, INotifyPropertyChanged):
         pass
 
     def Reset(self):
+        # type: (self: ApplicationSettingsBase)
         """
         Reset(self: ApplicationSettingsBase)
             Restores the persisted application settings values to their corresponding default properties.
@@ -175,6 +186,7 @@ class ApplicationSettingsBase(SettingsBase, INotifyPropertyChanged):
         pass
 
     def Save(self):
+        # type: (self: ApplicationSettingsBase)
         """
         Save(self: ApplicationSettingsBase)
             Stores the current values of the application settings properties.
@@ -182,6 +194,7 @@ class ApplicationSettingsBase(SettingsBase, INotifyPropertyChanged):
         pass
 
     def Upgrade(self):
+        # type: (self: ApplicationSettingsBase)
         """
         Upgrade(self: ApplicationSettingsBase)
             Updates application settings to reflect a more recent installation of the application.
@@ -211,40 +224,41 @@ class ApplicationSettingsBase(SettingsBase, INotifyPropertyChanged):
         pass
 
     Context = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the application settings context associated with the settings group.
-
-Get: Context(self: ApplicationSettingsBase) -> SettingsContext
-
-"""
+    """
+    Gets the application settings context associated with the settings group.
+    
+    Get: Context(self: ApplicationSettingsBase) -> SettingsContext
+    """
 
     Properties = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the collection of settings properties in the wrapper.
-
-Get: Properties(self: ApplicationSettingsBase) -> SettingsPropertyCollection
-
-"""
+    """
+    Gets the collection of settings properties in the wrapper.
+    
+    Get: Properties(self: ApplicationSettingsBase) -> SettingsPropertyCollection
+    """
 
     PropertyValues = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection of property values.
-
-Get: PropertyValues(self: ApplicationSettingsBase) -> SettingsPropertyValueCollection
-
-"""
+    """
+    Gets a collection of property values.
+    
+    Get: PropertyValues(self: ApplicationSettingsBase) -> SettingsPropertyValueCollection
+    """
 
     Providers = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the collection of application settings providers used by the wrapper.
-
-Get: Providers(self: ApplicationSettingsBase) -> SettingsProviderCollection
-
-"""
+    """
+    Gets the collection of application settings providers used by the wrapper.
+    
+    Get: Providers(self: ApplicationSettingsBase) -> SettingsProviderCollection
+    """
 
     SettingsKey = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the settings key for the application settings group.
-
-Get: SettingsKey(self: ApplicationSettingsBase) -> str
-
-Set: SettingsKey(self: ApplicationSettingsBase) = value
-"""
+    """
+    Gets or sets the settings key for the application settings group.
+    
+    Get: SettingsKey(self: ApplicationSettingsBase) -> str
+    
+    Set: SettingsKey(self: ApplicationSettingsBase) = value
+    """
 
 
     PropertyChanged = None
@@ -267,12 +281,11 @@ class AppSettingsReader(object):
     AppSettingsReader()
     """
     def GetValue(self, key, type):
+        # type: (self: AppSettingsReader, key: str, type: Type) -> object
         """
         GetValue(self: AppSettingsReader, key: str, type: Type) -> object
         
-            Gets the value for a specified key from the System.Configuration.ConfigurationSettings.AppSettings property and returns an object of the specified type 
-             containing the value from the configuration.
-        
+            Gets the value for a specified key from the System.Configuration.ConfigurationSettings.AppSettings property and returns an object of the specified type containing the value from the configuration.
         
             key: The key for which to get the value.
             type: The type of the object to return.
@@ -288,25 +301,21 @@ class ClientSettingsSection(ConfigurationSection):
     ClientSettingsSection()
     """
     ElementProperty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself.
-
-"""
+    """ Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself. """
 
     EvaluationContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object.
-
-"""
+    """ Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object. """
 
     HasContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
     Properties = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
     Settings = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the collection of client settings for the section.
-
-Get: Settings(self: ClientSettingsSection) -> SettingElementCollection
-
-"""
+    """
+    Gets the collection of client settings for the section.
+    
+    Get: Settings(self: ClientSettingsSection) -> SettingElementCollection
+    """
 
 
 
@@ -323,6 +332,7 @@ class ConfigurationException(SystemException, ISerializable, _Exception):
     ConfigurationException(message: str, inner: Exception, filename: str, line: int)
     """
     def GetObjectData(self, info, context):
+        # type: (self: ConfigurationException, info: SerializationInfo, context: StreamingContext)
         """
         GetObjectData(self: ConfigurationException, info: SerializationInfo, context: StreamingContext)
             Sets the System.Runtime.Serialization.SerializationInfo object with the file name and line number at which this configuration exception occurred.
@@ -334,6 +344,7 @@ class ConfigurationException(SystemException, ISerializable, _Exception):
 
     @staticmethod
     def GetXmlNodeFilename(node):
+        # type: (node: XmlNode) -> str
         """
         GetXmlNodeFilename(node: XmlNode) -> str
         
@@ -346,6 +357,7 @@ class ConfigurationException(SystemException, ISerializable, _Exception):
 
     @staticmethod
     def GetXmlNodeLineNumber(node):
+        # type: (node: XmlNode) -> int
         """
         GetXmlNodeLineNumber(node: XmlNode) -> int
         
@@ -381,32 +393,32 @@ class ConfigurationException(SystemException, ISerializable, _Exception):
         pass
 
     BareMessage = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a description of why this configuration exception was thrown.
-
-Get: BareMessage(self: ConfigurationException) -> str
-
-"""
+    """
+    Gets a description of why this configuration exception was thrown.
+    
+    Get: BareMessage(self: ConfigurationException) -> str
+    """
 
     Filename = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the path to the configuration file that caused this configuration exception to be thrown.
-
-Get: Filename(self: ConfigurationException) -> str
-
-"""
+    """
+    Gets the path to the configuration file that caused this configuration exception to be thrown.
+    
+    Get: Filename(self: ConfigurationException) -> str
+    """
 
     Line = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the line number within the configuration file at which this configuration exception was thrown.
-
-Get: Line(self: ConfigurationException) -> int
-
-"""
+    """
+    Gets the line number within the configuration file at which this configuration exception was thrown.
+    
+    Get: Line(self: ConfigurationException) -> int
+    """
 
     Message = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an extended description of why this configuration exception was thrown.
-
-Get: Message(self: ConfigurationException) -> str
-
-"""
+    """
+    Gets an extended description of why this configuration exception was thrown.
+    
+    Get: Message(self: ConfigurationException) -> str
+    """
 
 
     SerializeObjectState = None
@@ -416,15 +428,15 @@ class ConfigurationSettings(object):
     """ Provides runtime versions 1.0 and 1.1 support for reading configuration sections and common configuration settings. """
     @staticmethod
     def GetConfig(sectionName):
+        # type: (sectionName: str) -> object
         """
         GetConfig(sectionName: str) -> object
         
             Returns the System.Configuration.ConfigurationSection object for the passed configuration section name and path.
         
             sectionName: A configuration name and path, such as "system.net/settings".
-            Returns: The System.Configuration.ConfigurationSection object for the passed configuration section name and path.NoteThe System.Configuration.ConfigurationSettings 
-             class provides backward compatibility only. You should use the System.Configuration.ConfigurationManager class or 
-             System.Web.Configuration.WebConfigurationManager class instead.
+            Returns: The System.Configuration.ConfigurationSection object for the passed configuration section name and path.NoteThe System.Configuration.ConfigurationSettings class provides backward compatibility only. You should use the 
+             System.Configuration.ConfigurationManager class or System.Web.Configuration.WebConfigurationManager class instead.
         """
         pass
 
@@ -438,6 +450,7 @@ class ConfigXmlDocument(XmlDocument, ICloneable, IEnumerable, IXPathNavigable, I
     ConfigXmlDocument()
     """
     def CreateAttribute(self, *__args):
+        # type: (self: ConfigXmlDocument, prefix: str, localName: str, namespaceUri: str) -> XmlAttribute
         """
         CreateAttribute(self: ConfigXmlDocument, prefix: str, localName: str, namespaceUri: str) -> XmlAttribute
         
@@ -451,6 +464,7 @@ class ConfigXmlDocument(XmlDocument, ICloneable, IEnumerable, IXPathNavigable, I
         pass
 
     def CreateCDataSection(self, data):
+        # type: (self: ConfigXmlDocument, data: str) -> XmlCDataSection
         """
         CreateCDataSection(self: ConfigXmlDocument, data: str) -> XmlCDataSection
         
@@ -462,6 +476,7 @@ class ConfigXmlDocument(XmlDocument, ICloneable, IEnumerable, IXPathNavigable, I
         pass
 
     def CreateComment(self, data):
+        # type: (self: ConfigXmlDocument, data: str) -> XmlComment
         """
         CreateComment(self: ConfigXmlDocument, data: str) -> XmlComment
         
@@ -473,6 +488,7 @@ class ConfigXmlDocument(XmlDocument, ICloneable, IEnumerable, IXPathNavigable, I
         pass
 
     def CreateDefaultAttribute(self, *args): #cannot find CLR method
+        # type: (self: XmlDocument, prefix: str, localName: str, namespaceURI: str) -> XmlAttribute
         """
         CreateDefaultAttribute(self: XmlDocument, prefix: str, localName: str, namespaceURI: str) -> XmlAttribute
         
@@ -486,6 +502,7 @@ class ConfigXmlDocument(XmlDocument, ICloneable, IEnumerable, IXPathNavigable, I
         pass
 
     def CreateElement(self, *__args):
+        # type: (self: ConfigXmlDocument, prefix: str, localName: str, namespaceUri: str) -> XmlElement
         """
         CreateElement(self: ConfigXmlDocument, prefix: str, localName: str, namespaceUri: str) -> XmlElement
         
@@ -499,6 +516,7 @@ class ConfigXmlDocument(XmlDocument, ICloneable, IEnumerable, IXPathNavigable, I
         pass
 
     def CreateNavigator(self):
+        # type: (self: XmlDocument, node: XmlNode) -> XPathNavigator
         """
         CreateNavigator(self: XmlDocument, node: XmlNode) -> XPathNavigator
         
@@ -510,6 +528,7 @@ class ConfigXmlDocument(XmlDocument, ICloneable, IEnumerable, IXPathNavigable, I
         pass
 
     def CreateSignificantWhitespace(self, data):
+        # type: (self: ConfigXmlDocument, data: str) -> XmlSignificantWhitespace
         """
         CreateSignificantWhitespace(self: ConfigXmlDocument, data: str) -> XmlSignificantWhitespace
         
@@ -521,6 +540,7 @@ class ConfigXmlDocument(XmlDocument, ICloneable, IEnumerable, IXPathNavigable, I
         pass
 
     def CreateTextNode(self, text):
+        # type: (self: ConfigXmlDocument, text: str) -> XmlText
         """
         CreateTextNode(self: ConfigXmlDocument, text: str) -> XmlText
         
@@ -532,6 +552,7 @@ class ConfigXmlDocument(XmlDocument, ICloneable, IEnumerable, IXPathNavigable, I
         pass
 
     def CreateWhitespace(self, data):
+        # type: (self: ConfigXmlDocument, data: str) -> XmlWhitespace
         """
         CreateWhitespace(self: ConfigXmlDocument, data: str) -> XmlWhitespace
         
@@ -543,6 +564,7 @@ class ConfigXmlDocument(XmlDocument, ICloneable, IEnumerable, IXPathNavigable, I
         pass
 
     def Load(self, *__args):
+        # type: (self: ConfigXmlDocument, filename: str)
         """
         Load(self: ConfigXmlDocument, filename: str)
             Loads the configuration file.
@@ -552,6 +574,7 @@ class ConfigXmlDocument(XmlDocument, ICloneable, IEnumerable, IXPathNavigable, I
         pass
 
     def LoadSingleElement(self, filename, sourceReader):
+        # type: (self: ConfigXmlDocument, filename: str, sourceReader: XmlTextReader)
         """
         LoadSingleElement(self: ConfigXmlDocument, filename: str, sourceReader: XmlTextReader)
             Loads a single configuration element.
@@ -574,18 +597,18 @@ class ConfigXmlDocument(XmlDocument, ICloneable, IEnumerable, IXPathNavigable, I
         pass
 
     Filename = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the configuration file name.
-
-Get: Filename(self: ConfigXmlDocument) -> str
-
-"""
+    """
+    Gets the configuration file name.
+    
+    Get: Filename(self: ConfigXmlDocument) -> str
+    """
 
     LineNumber = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the current node line number.
-
-Get: LineNumber(self: ConfigXmlDocument) -> int
-
-"""
+    """
+    Gets the current node line number.
+    
+    Get: LineNumber(self: ConfigXmlDocument) -> int
+    """
 
 
 
@@ -605,11 +628,11 @@ class DefaultSettingValueAttribute(Attribute, _Attribute):
         pass
 
     Value = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the default value for the application settings property.
-
-Get: Value(self: DefaultSettingValueAttribute) -> str
-
-"""
+    """
+    Gets the default value for the application settings property.
+    
+    Get: Value(self: DefaultSettingValueAttribute) -> str
+    """
 
 
 
@@ -620,6 +643,7 @@ class DictionarySectionHandler(object, IConfigurationSectionHandler):
     DictionarySectionHandler()
     """
     def Create(self, parent, context, section):
+        # type: (self: DictionarySectionHandler, parent: object, context: object, section: XmlNode) -> object
         """
         Create(self: DictionarySectionHandler, parent: object, context: object, section: XmlNode) -> object
         
@@ -641,20 +665,17 @@ class DictionarySectionHandler(object, IConfigurationSectionHandler):
         pass
 
     KeyAttributeName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the XML attribute name to use as the key in a key/value pair.
-
-"""
+    """ Gets the XML attribute name to use as the key in a key/value pair. """
 
     ValueAttributeName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the XML attribute name to use as the value in a key/value pair.
-
-"""
+    """ Gets the XML attribute name to use as the value in a key/value pair. """
 
 
 
 class IApplicationSettingsProvider:
     """ Defines extended capabilities for client-based application settings providers. """
     def GetPreviousVersion(self, context, property):
+        # type: (self: IApplicationSettingsProvider, context: SettingsContext, property: SettingsProperty) -> SettingsPropertyValue
         """
         GetPreviousVersion(self: IApplicationSettingsProvider, context: SettingsContext, property: SettingsProperty) -> SettingsPropertyValue
         
@@ -662,12 +683,12 @@ class IApplicationSettingsProvider:
         
             context: A System.Configuration.SettingsContext describing the current application usage.
             property: The System.Configuration.SettingsProperty whose value is to be returned.
-            Returns: A System.Configuration.SettingsPropertyValue containing the value of the specified property setting as it was last set in the previous version of the 
-             application; or null if the setting cannot be found.
+            Returns: A System.Configuration.SettingsPropertyValue containing the value of the specified property setting as it was last set in the previous version of the application; or null if the setting cannot be found.
         """
         pass
 
     def Reset(self, context):
+        # type: (self: IApplicationSettingsProvider, context: SettingsContext)
         """
         Reset(self: IApplicationSettingsProvider, context: SettingsContext)
             Resets the application settings associated with the specified application to their default values.
@@ -677,6 +698,7 @@ class IApplicationSettingsProvider:
         pass
 
     def Upgrade(self, context, properties):
+        # type: (self: IApplicationSettingsProvider, context: SettingsContext, properties: SettingsPropertyCollection)
         """
         Upgrade(self: IApplicationSettingsProvider, context: SettingsContext, properties: SettingsPropertyCollection)
             Indicates to the provider that the application has been upgraded. This offers the provider an opportunity to upgrade its stored settings as appropriate.
@@ -694,6 +716,7 @@ class IApplicationSettingsProvider:
 class IConfigurationSectionHandler:
     """ Handles the access to certain configuration sections. """
     def Create(self, parent, configContext, section):
+        # type: (self: IConfigurationSectionHandler, parent: object, configContext: object, section: XmlNode) -> object
         """
         Create(self: IConfigurationSectionHandler, parent: object, configContext: object, section: XmlNode) -> object
         
@@ -714,6 +737,7 @@ class IConfigurationSectionHandler:
 class IConfigurationSystem:
     """ Provides standard configuration methods. """
     def GetConfig(self, configKey):
+        # type: (self: IConfigurationSystem, configKey: str) -> object
         """
         GetConfig(self: IConfigurationSystem, configKey: str) -> object
         
@@ -725,6 +749,7 @@ class IConfigurationSystem:
         pass
 
     def Init(self):
+        # type: (self: IConfigurationSystem)
         """
         Init(self: IConfigurationSystem)
             Used for initialization.
@@ -737,28 +762,26 @@ class IConfigurationSystem:
 
 
 class IdnElement(ConfigurationElement):
+    # type: (IDN) processing in the System.Uri class.
     """
     Provides the configuration setting for International Domain Name (IDN) processing in the System.Uri class.
     
     IdnElement()
     """
     ElementProperty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself.
-
-"""
+    """ Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself. """
 
     Enabled = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the value of the System.Configuration.IdnElement configuration setting.
-
-Get: Enabled(self: IdnElement) -> UriIdnScope
-
-Set: Enabled(self: IdnElement) = value
-"""
+    """
+    Gets or sets the value of the System.Configuration.IdnElement configuration setting.
+    
+    Get: Enabled(self: IdnElement) -> UriIdnScope
+    
+    Set: Enabled(self: IdnElement) = value
+    """
 
     EvaluationContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object.
-
-"""
+    """ Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object. """
 
     HasContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
@@ -773,6 +796,7 @@ class IgnoreSectionHandler(object, IConfigurationSectionHandler):
     IgnoreSectionHandler()
     """
     def Create(self, parent, configContext, section):
+        # type: (self: IgnoreSectionHandler, parent: object, configContext: object, section: XmlNode) -> object
         """
         Create(self: IgnoreSectionHandler, parent: object, configContext: object, section: XmlNode) -> object
         
@@ -797,6 +821,7 @@ class IgnoreSectionHandler(object, IConfigurationSectionHandler):
 class IPersistComponentSettings:
     """ Defines standard functionality for controls or libraries that store and retrieve application settings. """
     def LoadComponentSettings(self):
+        # type: (self: IPersistComponentSettings)
         """
         LoadComponentSettings(self: IPersistComponentSettings)
             Reads the control's application settings into their corresponding properties and updates the control's state.
@@ -804,6 +829,7 @@ class IPersistComponentSettings:
         pass
 
     def ResetComponentSettings(self):
+        # type: (self: IPersistComponentSettings)
         """
         ResetComponentSettings(self: IPersistComponentSettings)
             Resets the control's application settings properties to their default values.
@@ -811,6 +837,7 @@ class IPersistComponentSettings:
         pass
 
     def SaveComponentSettings(self):
+        # type: (self: IPersistComponentSettings)
         """
         SaveComponentSettings(self: IPersistComponentSettings)
             Persists the control's application settings properties.
@@ -822,46 +849,46 @@ class IPersistComponentSettings:
         pass
 
     SaveSettings = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets a value indicating whether the control should automatically persist its application settings properties.
-
-Get: SaveSettings(self: IPersistComponentSettings) -> bool
-
-Set: SaveSettings(self: IPersistComponentSettings) = value
-"""
+    """
+    Gets or sets a value indicating whether the control should automatically persist its application settings properties.
+    
+    Get: SaveSettings(self: IPersistComponentSettings) -> bool
+    
+    Set: SaveSettings(self: IPersistComponentSettings) = value
+    """
 
     SettingsKey = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the value of the application settings key for the current instance of the control.
-
-Get: SettingsKey(self: IPersistComponentSettings) -> str
-
-Set: SettingsKey(self: IPersistComponentSettings) = value
-"""
+    """
+    Gets or sets the value of the application settings key for the current instance of the control.
+    
+    Get: SettingsKey(self: IPersistComponentSettings) -> str
+    
+    Set: SettingsKey(self: IPersistComponentSettings) = value
+    """
 
 
 
 class IriParsingElement(ConfigurationElement):
+    # type: (IRI) processing in the System.Uri class.
     """
     Provides the configuration setting for International Resource Identifier (IRI) processing in the System.Uri class.
     
     IriParsingElement()
     """
     ElementProperty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself.
-
-"""
+    """ Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself. """
 
     Enabled = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the value of the System.Configuration.IriParsingElement configuration setting.
-
-Get: Enabled(self: IriParsingElement) -> bool
-
-Set: Enabled(self: IriParsingElement) = value
-"""
+    """
+    Gets or sets the value of the System.Configuration.IriParsingElement configuration setting.
+    
+    Get: Enabled(self: IriParsingElement) -> bool
+    
+    Set: Enabled(self: IriParsingElement) = value
+    """
 
     EvaluationContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object.
-
-"""
+    """ Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object. """
 
     HasContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
@@ -872,6 +899,7 @@ Set: Enabled(self: IriParsingElement) = value
 class ISettingsProviderService:
     """ Provides an interface for defining an alternate application settings provider. """
     def GetSettingsProvider(self, property):
+        # type: (self: ISettingsProviderService, property: SettingsProperty) -> SettingsProvider
         """
         GetSettingsProvider(self: ISettingsProviderService, property: SettingsProperty) -> SettingsProvider
         
@@ -890,6 +918,7 @@ class ISettingsProviderService:
 class SettingsProvider(ProviderBase):
     """ Acts as a base class for deriving custom settings providers in the application settings architecture. """
     def GetPropertyValues(self, context, collection):
+        # type: (self: SettingsProvider, context: SettingsContext, collection: SettingsPropertyCollection) -> SettingsPropertyValueCollection
         """
         GetPropertyValues(self: SettingsProvider, context: SettingsContext, collection: SettingsPropertyCollection) -> SettingsPropertyValueCollection
         
@@ -902,6 +931,7 @@ class SettingsProvider(ProviderBase):
         pass
 
     def SetPropertyValues(self, context, collection):
+        # type: (self: SettingsProvider, context: SettingsContext, collection: SettingsPropertyValueCollection)
         """
         SetPropertyValues(self: SettingsProvider, context: SettingsContext, collection: SettingsPropertyValueCollection)
             Sets the values of the specified group of property settings.
@@ -912,12 +942,13 @@ class SettingsProvider(ProviderBase):
         pass
 
     ApplicationName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the name of the currently running application.
-
-Get: ApplicationName(self: SettingsProvider) -> str
-
-Set: ApplicationName(self: SettingsProvider) = value
-"""
+    """
+    Gets or sets the name of the currently running application.
+    
+    Get: ApplicationName(self: SettingsProvider) -> str
+    
+    Set: ApplicationName(self: SettingsProvider) = value
+    """
 
 
 
@@ -928,6 +959,7 @@ class LocalFileSettingsProvider(SettingsProvider, IApplicationSettingsProvider):
     LocalFileSettingsProvider()
     """
     def GetPreviousVersion(self, context, property):
+        # type: (self: LocalFileSettingsProvider, context: SettingsContext, property: SettingsProperty) -> SettingsPropertyValue
         """
         GetPreviousVersion(self: LocalFileSettingsProvider, context: SettingsContext, property: SettingsProperty) -> SettingsPropertyValue
         
@@ -940,6 +972,7 @@ class LocalFileSettingsProvider(SettingsProvider, IApplicationSettingsProvider):
         pass
 
     def GetPropertyValues(self, context, properties):
+        # type: (self: LocalFileSettingsProvider, context: SettingsContext, properties: SettingsPropertyCollection) -> SettingsPropertyValueCollection
         """
         GetPropertyValues(self: LocalFileSettingsProvider, context: SettingsContext, properties: SettingsPropertyCollection) -> SettingsPropertyValueCollection
         
@@ -952,6 +985,7 @@ class LocalFileSettingsProvider(SettingsProvider, IApplicationSettingsProvider):
         pass
 
     def Initialize(self, name, values):
+        # type: (self: LocalFileSettingsProvider, name: str, values: NameValueCollection)
         """
         Initialize(self: LocalFileSettingsProvider, name: str, values: NameValueCollection)
             name: The name of the provider.
@@ -960,6 +994,7 @@ class LocalFileSettingsProvider(SettingsProvider, IApplicationSettingsProvider):
         pass
 
     def Reset(self, context):
+        # type: (self: LocalFileSettingsProvider, context: SettingsContext)
         """
         Reset(self: LocalFileSettingsProvider, context: SettingsContext)
             Resets all application settings properties associated with the specified application to their default values.
@@ -969,6 +1004,7 @@ class LocalFileSettingsProvider(SettingsProvider, IApplicationSettingsProvider):
         pass
 
     def SetPropertyValues(self, context, values):
+        # type: (self: LocalFileSettingsProvider, context: SettingsContext, values: SettingsPropertyValueCollection)
         """
         SetPropertyValues(self: LocalFileSettingsProvider, context: SettingsContext, values: SettingsPropertyValueCollection)
             Sets the values of the specified group of property settings.
@@ -979,6 +1015,7 @@ class LocalFileSettingsProvider(SettingsProvider, IApplicationSettingsProvider):
         pass
 
     def Upgrade(self, context, properties):
+        # type: (self: LocalFileSettingsProvider, context: SettingsContext, properties: SettingsPropertyCollection)
         """
         Upgrade(self: LocalFileSettingsProvider, context: SettingsContext, properties: SettingsPropertyCollection)
             Attempts to migrate previous user-scoped settings from a previous version of the same application.
@@ -993,12 +1030,13 @@ class LocalFileSettingsProvider(SettingsProvider, IApplicationSettingsProvider):
         pass
 
     ApplicationName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the name of the currently running application.
-
-Get: ApplicationName(self: LocalFileSettingsProvider) -> str
-
-Set: ApplicationName(self: LocalFileSettingsProvider) = value
-"""
+    """
+    Gets or sets the name of the currently running application.
+    
+    Get: ApplicationName(self: LocalFileSettingsProvider) -> str
+    
+    Set: ApplicationName(self: LocalFileSettingsProvider) = value
+    """
 
 
 
@@ -1009,6 +1047,7 @@ class NameValueFileSectionHandler(object, IConfigurationSectionHandler):
     NameValueFileSectionHandler()
     """
     def Create(self, parent, configContext, section):
+        # type: (self: NameValueFileSectionHandler, parent: object, configContext: object, section: XmlNode) -> object
         """
         Create(self: NameValueFileSectionHandler, parent: object, configContext: object, section: XmlNode) -> object
         
@@ -1037,6 +1076,7 @@ class NameValueSectionHandler(object, IConfigurationSectionHandler):
     NameValueSectionHandler()
     """
     def Create(self, parent, context, section):
+        # type: (self: NameValueSectionHandler, parent: object, context: object, section: XmlNode) -> object
         """
         Create(self: NameValueSectionHandler, parent: object, context: object, section: XmlNode) -> object
         
@@ -1058,14 +1098,10 @@ class NameValueSectionHandler(object, IConfigurationSectionHandler):
         pass
 
     KeyAttributeName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the XML attribute name to use as the key in a key/value pair.
-
-"""
+    """ Gets the XML attribute name to use as the key in a key/value pair. """
 
     ValueAttributeName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the XML attribute name to use as the value in a key/value pair.
-
-"""
+    """ Gets the XML attribute name to use as the value in a key/value pair. """
 
 
 
@@ -1087,30 +1123,26 @@ class SchemeSettingElement(ConfigurationElement):
     SchemeSettingElement()
     """
     ElementProperty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself.
-
-"""
+    """ Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself. """
 
     EvaluationContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object.
-
-"""
+    """ Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object. """
 
     GenericUriParserOptions = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the value of the GenericUriParserOptions entry from a System.Configuration.SchemeSettingElement instance.
-
-Get: GenericUriParserOptions(self: SchemeSettingElement) -> GenericUriParserOptions
-
-"""
+    """
+    Gets the value of the GenericUriParserOptions entry from a System.Configuration.SchemeSettingElement instance.
+    
+    Get: GenericUriParserOptions(self: SchemeSettingElement) -> GenericUriParserOptions
+    """
 
     HasContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
     Name = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the value of the Name entry from a System.Configuration.SchemeSettingElement instance.
-
-Get: Name(self: SchemeSettingElement) -> str
-
-"""
+    """
+    Gets the value of the Name entry from a System.Configuration.SchemeSettingElement instance.
+    
+    Get: Name(self: SchemeSettingElement) -> str
+    """
 
     Properties = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
@@ -1123,6 +1155,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
     SchemeSettingElementCollection()
     """
     def BaseAdd(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, element: ConfigurationElement)
         """
         BaseAdd(self: ConfigurationElementCollection, element: ConfigurationElement)
             Adds a configuration element to the System.Configuration.ConfigurationElementCollection.
@@ -1132,9 +1165,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
             Adds a configuration element to the configuration element collection.
         
             element: The System.Configuration.ConfigurationElement to add.
-            throwIfExists: true to throw an exception if the System.Configuration.ConfigurationElement specified is already contained in the 
-             System.Configuration.ConfigurationElementCollection; otherwise, false.
-        
+            throwIfExists: true to throw an exception if the System.Configuration.ConfigurationElement specified is already contained in the System.Configuration.ConfigurationElementCollection; otherwise, false.
         BaseAdd(self: ConfigurationElementCollection, index: int, element: ConfigurationElement)
             Adds a configuration element to the configuration element collection.
         
@@ -1144,6 +1175,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def BaseClear(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection)
         """
         BaseClear(self: ConfigurationElementCollection)
             Removes all configuration element objects from the collection.
@@ -1151,6 +1183,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def BaseGet(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, key: object) -> ConfigurationElement
         """
         BaseGet(self: ConfigurationElementCollection, key: object) -> ConfigurationElement
         
@@ -1168,16 +1201,17 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def BaseGetAllKeys(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection) -> Array[object]
         """
         BaseGetAllKeys(self: ConfigurationElementCollection) -> Array[object]
         
             Returns an array of the keys for all of the configuration elements contained in the System.Configuration.ConfigurationElementCollection.
-            Returns: An array that contains the keys for all of the System.Configuration.ConfigurationElement objects contained in the 
-             System.Configuration.ConfigurationElementCollection.
+            Returns: An array that contains the keys for all of the System.Configuration.ConfigurationElement objects contained in the System.Configuration.ConfigurationElementCollection.
         """
         pass
 
     def BaseGetKey(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, index: int) -> object
         """
         BaseGetKey(self: ConfigurationElementCollection, index: int) -> object
         
@@ -1189,6 +1223,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def BaseIndexOf(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, element: ConfigurationElement) -> int
         """
         BaseIndexOf(self: ConfigurationElementCollection, element: ConfigurationElement) -> int
         
@@ -1200,12 +1235,11 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def BaseIsRemoved(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, key: object) -> bool
         """
         BaseIsRemoved(self: ConfigurationElementCollection, key: object) -> bool
         
-            Gets a value indicating whether the System.Configuration.ConfigurationElement with the specified key has been removed from the 
-             System.Configuration.ConfigurationElementCollection.
-        
+            Gets a value indicating whether the System.Configuration.ConfigurationElement with the specified key has been removed from the System.Configuration.ConfigurationElementCollection.
         
             key: The key of the element to check.
             Returns: true if the System.Configuration.ConfigurationElement with the specified key has been removed; otherwise, false. The default is false.
@@ -1213,6 +1247,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def BaseRemove(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, key: object)
         """
         BaseRemove(self: ConfigurationElementCollection, key: object)
             Removes a System.Configuration.ConfigurationElement from the collection.
@@ -1222,6 +1257,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def BaseRemoveAt(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, index: int)
         """
         BaseRemoveAt(self: ConfigurationElementCollection, index: int)
             Removes the System.Configuration.ConfigurationElement at the specified index location.
@@ -1231,6 +1267,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def CreateNewElement(self, *args): #cannot find CLR method
+        # type: (self: SchemeSettingElementCollection) -> ConfigurationElement
         """
         CreateNewElement(self: SchemeSettingElementCollection) -> ConfigurationElement
         CreateNewElement(self: ConfigurationElementCollection, elementName: str) -> ConfigurationElement
@@ -1243,6 +1280,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def DeserializeElement(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, reader: XmlReader, serializeCollectionKey: bool)
         """
         DeserializeElement(self: ConfigurationElement, reader: XmlReader, serializeCollectionKey: bool)
             Reads XML from the configuration file.
@@ -1253,34 +1291,36 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def GetElementKey(self, *args): #cannot find CLR method
+        # type: (self: SchemeSettingElementCollection, element: ConfigurationElement) -> object
         """ GetElementKey(self: SchemeSettingElementCollection, element: ConfigurationElement) -> object """
         pass
 
     def GetTransformedAssemblyString(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, assemblyName: str) -> str
         """
         GetTransformedAssemblyString(self: ConfigurationElement, assemblyName: str) -> str
         
             Returns the transformed version of the specified assembly name.
         
             assemblyName: The name of the assembly.
-            Returns: The transformed version of the assembly name. If no transformer is available, the assemblyName parameter value is returned unchanged. The 
-             System.Configuration.Configuration.TypeStringTransformer property is null if no transformer is available.
+            Returns: The transformed version of the assembly name. If no transformer is available, the assemblyName parameter value is returned unchanged. The System.Configuration.Configuration.TypeStringTransformer property is null if no transformer is available.
         """
         pass
 
     def GetTransformedTypeString(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, typeName: str) -> str
         """
         GetTransformedTypeString(self: ConfigurationElement, typeName: str) -> str
         
             Returns the transformed version of the specified type name.
         
             typeName: The name of the type.
-            Returns: The transformed version of the specified type name. If no transformer is available, the typeName parameter value is returned unchanged. The 
-             System.Configuration.Configuration.TypeStringTransformer property is null if no transformer is available.
+            Returns: The transformed version of the specified type name. If no transformer is available, the typeName parameter value is returned unchanged. The System.Configuration.Configuration.TypeStringTransformer property is null if no transformer is available.
         """
         pass
 
     def IndexOf(self, element):
+        # type: (self: SchemeSettingElementCollection, element: SchemeSettingElement) -> int
         """
         IndexOf(self: SchemeSettingElementCollection, element: SchemeSettingElement) -> int
         
@@ -1292,6 +1332,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def Init(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement)
         """
         Init(self: ConfigurationElement)
             Sets the System.Configuration.ConfigurationElement object to its initial state.
@@ -1299,6 +1340,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def InitializeDefault(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement)
         """
         InitializeDefault(self: ConfigurationElement)
             Used to initialize a default set of values for the System.Configuration.ConfigurationElement object.
@@ -1306,6 +1348,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def IsElementName(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, elementName: str) -> bool
         """
         IsElementName(self: ConfigurationElementCollection, elementName: str) -> bool
         
@@ -1317,31 +1360,29 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def IsElementRemovable(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, element: ConfigurationElement) -> bool
         """
         IsElementRemovable(self: ConfigurationElementCollection, element: ConfigurationElement) -> bool
         
-            Gets a value indicating whether the specified System.Configuration.ConfigurationElement can be removed from the 
-             System.Configuration.ConfigurationElementCollection.
-        
+            Gets a value indicating whether the specified System.Configuration.ConfigurationElement can be removed from the System.Configuration.ConfigurationElementCollection.
         
             element: The element to check.
-            Returns: true if the specified System.Configuration.ConfigurationElement can be removed from this System.Configuration.ConfigurationElementCollection; otherwise, 
-             false. The default is true.
+            Returns: true if the specified System.Configuration.ConfigurationElement can be removed from this System.Configuration.ConfigurationElementCollection; otherwise, false. The default is true.
         """
         pass
 
     def IsModified(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection) -> bool
         """
         IsModified(self: ConfigurationElementCollection) -> bool
         
-            Indicates whether this System.Configuration.ConfigurationElementCollection has been modified since it was last saved or loaded when overridden in a derived 
-             class.
-        
+            Indicates whether this System.Configuration.ConfigurationElementCollection has been modified since it was last saved or loaded when overridden in a derived class.
             Returns: true if any contained element has been modified; otherwise, false
         """
         pass
 
     def ListErrors(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, errorList: IList)
         """
         ListErrors(self: ConfigurationElement, errorList: IList)
             Adds the invalid-property errors in this System.Configuration.ConfigurationElement object, and in all subelements, to the passed list.
@@ -1351,6 +1392,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def OnDeserializeUnrecognizedAttribute(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, name: str, value: str) -> bool
         """
         OnDeserializeUnrecognizedAttribute(self: ConfigurationElement, name: str, value: str) -> bool
         
@@ -1363,6 +1405,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def OnDeserializeUnrecognizedElement(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, elementName: str, reader: XmlReader) -> bool
         """
         OnDeserializeUnrecognizedElement(self: ConfigurationElementCollection, elementName: str, reader: XmlReader) -> bool
         
@@ -1375,6 +1418,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def OnRequiredPropertyNotFound(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, name: str) -> object
         """
         OnRequiredPropertyNotFound(self: ConfigurationElement, name: str) -> object
         
@@ -1386,6 +1430,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def PostDeserialize(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement)
         """
         PostDeserialize(self: ConfigurationElement)
             Called after deserialization.
@@ -1393,6 +1438,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def PreSerialize(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, writer: XmlWriter)
         """
         PreSerialize(self: ConfigurationElement, writer: XmlWriter)
             Called before serialization.
@@ -1402,6 +1448,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def Reset(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, parentElement: ConfigurationElement)
         """
         Reset(self: ConfigurationElementCollection, parentElement: ConfigurationElement)
             Resets the System.Configuration.ConfigurationElementCollection to its unmodified state when overridden in a derived class.
@@ -1411,6 +1458,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def ResetModified(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection)
         """
         ResetModified(self: ConfigurationElementCollection)
             Resets the value of the System.Configuration.ConfigurationElementCollection.IsModified property to false when overridden in a derived class.
@@ -1418,6 +1466,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def SerializeElement(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, writer: XmlWriter, serializeCollectionKey: bool) -> bool
         """
         SerializeElement(self: ConfigurationElementCollection, writer: XmlWriter, serializeCollectionKey: bool) -> bool
         
@@ -1430,6 +1479,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def SerializeToXmlElement(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, writer: XmlWriter, elementName: str) -> bool
         """
         SerializeToXmlElement(self: ConfigurationElement, writer: XmlWriter, elementName: str) -> bool
         
@@ -1442,6 +1492,7 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def SetPropertyValue(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, prop: ConfigurationProperty, value: object, ignoreLocks: bool)
         """
         SetPropertyValue(self: ConfigurationElement, prop: ConfigurationProperty, value: object, ignoreLocks: bool)
             Sets a property to the specified value.
@@ -1453,14 +1504,15 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     def SetReadOnly(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection)
         """
         SetReadOnly(self: ConfigurationElementCollection)
-            Sets the System.Configuration.ConfigurationElementCollection.IsReadOnly property for the System.Configuration.ConfigurationElementCollection object and for 
-             all sub-elements.
+            Sets the System.Configuration.ConfigurationElementCollection.IsReadOnly property for the System.Configuration.ConfigurationElementCollection object and for all sub-elements.
         """
         pass
 
     def Unmerge(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, sourceElement: ConfigurationElement, parentElement: ConfigurationElement, saveMode: ConfigurationSaveMode)
         """
         Unmerge(self: ConfigurationElementCollection, sourceElement: ConfigurationElement, parentElement: ConfigurationElement, saveMode: ConfigurationSaveMode)
             Reverses the effect of merging configuration information from different levels of the configuration hierarchy
@@ -1484,53 +1536,37 @@ class SchemeSettingElementCollection(ConfigurationElementCollection, ICollection
         pass
 
     AddElementName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the name of the System.Configuration.ConfigurationElement to associate with the add operation in the System.Configuration.ConfigurationElementCollection when overridden in a derived class.
-
-"""
+    """ Gets or sets the name of the System.Configuration.ConfigurationElement to associate with the add operation in the System.Configuration.ConfigurationElementCollection when overridden in a derived class. """
 
     ClearElementName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the name for the System.Configuration.ConfigurationElement to associate with the clear operation in the System.Configuration.ConfigurationElementCollection when overridden in a derived class.
-
-"""
+    """ Gets or sets the name for the System.Configuration.ConfigurationElement to associate with the clear operation in the System.Configuration.ConfigurationElementCollection when overridden in a derived class. """
 
     CollectionType = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the default collection type of System.Configuration.SchemeSettingElementCollection.
-
-Get: CollectionType(self: SchemeSettingElementCollection) -> ConfigurationElementCollectionType
-
-"""
+    """
+    Gets the default collection type of System.Configuration.SchemeSettingElementCollection.
+    
+    Get: CollectionType(self: SchemeSettingElementCollection) -> ConfigurationElementCollectionType
+    """
 
     ElementName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the name used to identify this collection of elements in the configuration file when overridden in a derived class.
-
-"""
+    """ Gets the name used to identify this collection of elements in the configuration file when overridden in a derived class. """
 
     ElementProperty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself.
-
-"""
+    """ Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself. """
 
     EvaluationContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object.
-
-"""
+    """ Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object. """
 
     HasContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
     Properties = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the collection of properties.
-
-"""
+    """ Gets the collection of properties. """
 
     RemoveElementName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the name of the System.Configuration.ConfigurationElement to associate with the remove operation in the System.Configuration.ConfigurationElementCollection when overridden in a derived class.
-
-"""
+    """ Gets or sets the name of the System.Configuration.ConfigurationElement to associate with the remove operation in the System.Configuration.ConfigurationElementCollection when overridden in a derived class. """
 
     ThrowOnDuplicate = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether an attempt to add a duplicate System.Configuration.ConfigurationElement to the System.Configuration.ConfigurationElementCollection will cause an exception to be thrown.
-
-"""
+    """ Gets a value indicating whether an attempt to add a duplicate System.Configuration.ConfigurationElement to the System.Configuration.ConfigurationElementCollection will cause an exception to be thrown. """
 
 
 
@@ -1546,32 +1582,32 @@ class SettingChangingEventArgs(CancelEventArgs):
         pass
 
     NewValue = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the new value being assigned to the application settings property.
-
-Get: NewValue(self: SettingChangingEventArgs) -> object
-
-"""
+    """
+    Gets the new value being assigned to the application settings property.
+    
+    Get: NewValue(self: SettingChangingEventArgs) -> object
+    """
 
     SettingClass = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the application settings property category.
-
-Get: SettingClass(self: SettingChangingEventArgs) -> str
-
-"""
+    """
+    Gets the application settings property category.
+    
+    Get: SettingClass(self: SettingChangingEventArgs) -> str
+    """
 
     SettingKey = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the application settings key associated with the property.
-
-Get: SettingKey(self: SettingChangingEventArgs) -> str
-
-"""
+    """
+    Gets the application settings key associated with the property.
+    
+    Get: SettingKey(self: SettingChangingEventArgs) -> str
+    """
 
     SettingName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the name of the application setting associated with the application settings property.
-
-Get: SettingName(self: SettingChangingEventArgs) -> str
-
-"""
+    """
+    Gets the name of the application setting associated with the application settings property.
+    
+    Get: SettingName(self: SettingChangingEventArgs) -> str
+    """
 
 
 
@@ -1582,10 +1618,12 @@ class SettingChangingEventHandler(MulticastDelegate, ICloneable, ISerializable):
     SettingChangingEventHandler(object: object, method: IntPtr)
     """
     def BeginInvoke(self, sender, e, callback, object):
+        # type: (self: SettingChangingEventHandler, sender: object, e: SettingChangingEventArgs, callback: AsyncCallback, object: object) -> IAsyncResult
         """ BeginInvoke(self: SettingChangingEventHandler, sender: object, e: SettingChangingEventArgs, callback: AsyncCallback, object: object) -> IAsyncResult """
         pass
 
     def CombineImpl(self, *args): #cannot find CLR method
+        # type: (self: MulticastDelegate, follow: Delegate) -> Delegate
         """
         CombineImpl(self: MulticastDelegate, follow: Delegate) -> Delegate
         
@@ -1597,23 +1635,24 @@ class SettingChangingEventHandler(MulticastDelegate, ICloneable, ISerializable):
         pass
 
     def DynamicInvokeImpl(self, *args): #cannot find CLR method
+        # type: (self: Delegate, args: Array[object]) -> object
         """
         DynamicInvokeImpl(self: Delegate, args: Array[object]) -> object
         
             Dynamically invokes (late-bound) the method represented by the current delegate.
         
-            args: An array of objects that are the arguments to pass to the method represented by the current delegate.-or- null, if the method represented by the current 
-             delegate does not require arguments.
-        
+            args: An array of objects that are the arguments to pass to the method represented by the current delegate.-or- null, if the method represented by the current delegate does not require arguments.
             Returns: The object returned by the method represented by the delegate.
         """
         pass
 
     def EndInvoke(self, result):
+        # type: (self: SettingChangingEventHandler, result: IAsyncResult)
         """ EndInvoke(self: SettingChangingEventHandler, result: IAsyncResult) """
         pass
 
     def GetMethodImpl(self, *args): #cannot find CLR method
+        # type: (self: MulticastDelegate) -> MethodInfo
         """
         GetMethodImpl(self: MulticastDelegate) -> MethodInfo
         
@@ -1623,18 +1662,19 @@ class SettingChangingEventHandler(MulticastDelegate, ICloneable, ISerializable):
         pass
 
     def Invoke(self, sender, e):
+        # type: (self: SettingChangingEventHandler, sender: object, e: SettingChangingEventArgs)
         """ Invoke(self: SettingChangingEventHandler, sender: object, e: SettingChangingEventArgs) """
         pass
 
     def RemoveImpl(self, *args): #cannot find CLR method
+        # type: (self: MulticastDelegate, value: Delegate) -> Delegate
         """
         RemoveImpl(self: MulticastDelegate, value: Delegate) -> Delegate
         
             Removes an element from the invocation list of this System.MulticastDelegate that is equal to the specified delegate.
         
             value: The delegate to search for in the invocation list.
-            Returns: If value is found in the invocation list for this instance, then a new System.Delegate without value in its invocation list; otherwise, this instance with 
-             its original invocation list.
+            Returns: If value is found in the invocation list for this instance, then a new System.Delegate without value in its invocation list; otherwise, this instance with its original invocation list.
         """
         pass
 
@@ -1659,6 +1699,7 @@ class SettingElement(ConfigurationElement):
     SettingElement(name: str, serializeAs: SettingsSerializeAs)
     """
     def Equals(self, settings):
+        # type: (self: SettingElement, settings: object) -> bool
         """
         Equals(self: SettingElement, settings: object) -> bool
         
@@ -1670,6 +1711,7 @@ class SettingElement(ConfigurationElement):
         pass
 
     def GetHashCode(self):
+        # type: (self: SettingElement) -> int
         """
         GetHashCode(self: SettingElement) -> int
         
@@ -1687,42 +1729,41 @@ class SettingElement(ConfigurationElement):
         pass
 
     ElementProperty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself.
-
-"""
+    """ Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself. """
 
     EvaluationContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object.
-
-"""
+    """ Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object. """
 
     HasContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
     Name = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the name of the System.Configuration.SettingElement object.
-
-Get: Name(self: SettingElement) -> str
-
-Set: Name(self: SettingElement) = value
-"""
+    """
+    Gets or sets the name of the System.Configuration.SettingElement object.
+    
+    Get: Name(self: SettingElement) -> str
+    
+    Set: Name(self: SettingElement) = value
+    """
 
     Properties = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
     SerializeAs = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the serialization mechanism used to persist the values of the System.Configuration.SettingElement object.
-
-Get: SerializeAs(self: SettingElement) -> SettingsSerializeAs
-
-Set: SerializeAs(self: SettingElement) = value
-"""
+    """
+    Gets or sets the serialization mechanism used to persist the values of the System.Configuration.SettingElement object.
+    
+    Get: SerializeAs(self: SettingElement) -> SettingsSerializeAs
+    
+    Set: SerializeAs(self: SettingElement) = value
+    """
 
     Value = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the value of a System.Configuration.SettingElement object by using a System.Configuration.SettingValueElement object.
-
-Get: Value(self: SettingElement) -> SettingValueElement
-
-Set: Value(self: SettingElement) = value
-"""
+    """
+    Gets or sets the value of a System.Configuration.SettingElement object by using a System.Configuration.SettingValueElement object.
+    
+    Get: Value(self: SettingElement) -> SettingValueElement
+    
+    Set: Value(self: SettingElement) = value
+    """
 
 
 
@@ -1733,6 +1774,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
     SettingElementCollection()
     """
     def Add(self, element):
+        # type: (self: SettingElementCollection, element: SettingElement)
         """
         Add(self: SettingElementCollection, element: SettingElement)
             Adds a System.Configuration.SettingElement object to the collection.
@@ -1742,6 +1784,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def BaseAdd(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, element: ConfigurationElement)
         """
         BaseAdd(self: ConfigurationElementCollection, element: ConfigurationElement)
             Adds a configuration element to the System.Configuration.ConfigurationElementCollection.
@@ -1751,9 +1794,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
             Adds a configuration element to the configuration element collection.
         
             element: The System.Configuration.ConfigurationElement to add.
-            throwIfExists: true to throw an exception if the System.Configuration.ConfigurationElement specified is already contained in the 
-             System.Configuration.ConfigurationElementCollection; otherwise, false.
-        
+            throwIfExists: true to throw an exception if the System.Configuration.ConfigurationElement specified is already contained in the System.Configuration.ConfigurationElementCollection; otherwise, false.
         BaseAdd(self: ConfigurationElementCollection, index: int, element: ConfigurationElement)
             Adds a configuration element to the configuration element collection.
         
@@ -1763,6 +1804,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def BaseClear(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection)
         """
         BaseClear(self: ConfigurationElementCollection)
             Removes all configuration element objects from the collection.
@@ -1770,6 +1812,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def BaseGet(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, key: object) -> ConfigurationElement
         """
         BaseGet(self: ConfigurationElementCollection, key: object) -> ConfigurationElement
         
@@ -1787,16 +1830,17 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def BaseGetAllKeys(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection) -> Array[object]
         """
         BaseGetAllKeys(self: ConfigurationElementCollection) -> Array[object]
         
             Returns an array of the keys for all of the configuration elements contained in the System.Configuration.ConfigurationElementCollection.
-            Returns: An array that contains the keys for all of the System.Configuration.ConfigurationElement objects contained in the 
-             System.Configuration.ConfigurationElementCollection.
+            Returns: An array that contains the keys for all of the System.Configuration.ConfigurationElement objects contained in the System.Configuration.ConfigurationElementCollection.
         """
         pass
 
     def BaseGetKey(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, index: int) -> object
         """
         BaseGetKey(self: ConfigurationElementCollection, index: int) -> object
         
@@ -1808,6 +1852,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def BaseIndexOf(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, element: ConfigurationElement) -> int
         """
         BaseIndexOf(self: ConfigurationElementCollection, element: ConfigurationElement) -> int
         
@@ -1819,12 +1864,11 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def BaseIsRemoved(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, key: object) -> bool
         """
         BaseIsRemoved(self: ConfigurationElementCollection, key: object) -> bool
         
-            Gets a value indicating whether the System.Configuration.ConfigurationElement with the specified key has been removed from the 
-             System.Configuration.ConfigurationElementCollection.
-        
+            Gets a value indicating whether the System.Configuration.ConfigurationElement with the specified key has been removed from the System.Configuration.ConfigurationElementCollection.
         
             key: The key of the element to check.
             Returns: true if the System.Configuration.ConfigurationElement with the specified key has been removed; otherwise, false. The default is false.
@@ -1832,6 +1876,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def BaseRemove(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, key: object)
         """
         BaseRemove(self: ConfigurationElementCollection, key: object)
             Removes a System.Configuration.ConfigurationElement from the collection.
@@ -1841,6 +1886,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def BaseRemoveAt(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, index: int)
         """
         BaseRemoveAt(self: ConfigurationElementCollection, index: int)
             Removes the System.Configuration.ConfigurationElement at the specified index location.
@@ -1850,6 +1896,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def Clear(self):
+        # type: (self: SettingElementCollection)
         """
         Clear(self: SettingElementCollection)
             Removes all System.Configuration.SettingElement objects from the collection.
@@ -1857,6 +1904,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def CreateNewElement(self, *args): #cannot find CLR method
+        # type: (self: SettingElementCollection) -> ConfigurationElement
         """
         CreateNewElement(self: SettingElementCollection) -> ConfigurationElement
         CreateNewElement(self: ConfigurationElementCollection, elementName: str) -> ConfigurationElement
@@ -1869,6 +1917,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def DeserializeElement(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, reader: XmlReader, serializeCollectionKey: bool)
         """
         DeserializeElement(self: ConfigurationElement, reader: XmlReader, serializeCollectionKey: bool)
             Reads XML from the configuration file.
@@ -1879,6 +1928,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def Get(self, elementKey):
+        # type: (self: SettingElementCollection, elementKey: str) -> SettingElement
         """
         Get(self: SettingElementCollection, elementKey: str) -> SettingElement
         
@@ -1890,34 +1940,36 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def GetElementKey(self, *args): #cannot find CLR method
+        # type: (self: SettingElementCollection, element: ConfigurationElement) -> object
         """ GetElementKey(self: SettingElementCollection, element: ConfigurationElement) -> object """
         pass
 
     def GetTransformedAssemblyString(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, assemblyName: str) -> str
         """
         GetTransformedAssemblyString(self: ConfigurationElement, assemblyName: str) -> str
         
             Returns the transformed version of the specified assembly name.
         
             assemblyName: The name of the assembly.
-            Returns: The transformed version of the assembly name. If no transformer is available, the assemblyName parameter value is returned unchanged. The 
-             System.Configuration.Configuration.TypeStringTransformer property is null if no transformer is available.
+            Returns: The transformed version of the assembly name. If no transformer is available, the assemblyName parameter value is returned unchanged. The System.Configuration.Configuration.TypeStringTransformer property is null if no transformer is available.
         """
         pass
 
     def GetTransformedTypeString(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, typeName: str) -> str
         """
         GetTransformedTypeString(self: ConfigurationElement, typeName: str) -> str
         
             Returns the transformed version of the specified type name.
         
             typeName: The name of the type.
-            Returns: The transformed version of the specified type name. If no transformer is available, the typeName parameter value is returned unchanged. The 
-             System.Configuration.Configuration.TypeStringTransformer property is null if no transformer is available.
+            Returns: The transformed version of the specified type name. If no transformer is available, the typeName parameter value is returned unchanged. The System.Configuration.Configuration.TypeStringTransformer property is null if no transformer is available.
         """
         pass
 
     def Init(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement)
         """
         Init(self: ConfigurationElement)
             Sets the System.Configuration.ConfigurationElement object to its initial state.
@@ -1925,6 +1977,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def InitializeDefault(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement)
         """
         InitializeDefault(self: ConfigurationElement)
             Used to initialize a default set of values for the System.Configuration.ConfigurationElement object.
@@ -1932,6 +1985,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def IsElementName(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, elementName: str) -> bool
         """
         IsElementName(self: ConfigurationElementCollection, elementName: str) -> bool
         
@@ -1943,31 +1997,29 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def IsElementRemovable(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, element: ConfigurationElement) -> bool
         """
         IsElementRemovable(self: ConfigurationElementCollection, element: ConfigurationElement) -> bool
         
-            Gets a value indicating whether the specified System.Configuration.ConfigurationElement can be removed from the 
-             System.Configuration.ConfigurationElementCollection.
-        
+            Gets a value indicating whether the specified System.Configuration.ConfigurationElement can be removed from the System.Configuration.ConfigurationElementCollection.
         
             element: The element to check.
-            Returns: true if the specified System.Configuration.ConfigurationElement can be removed from this System.Configuration.ConfigurationElementCollection; otherwise, 
-             false. The default is true.
+            Returns: true if the specified System.Configuration.ConfigurationElement can be removed from this System.Configuration.ConfigurationElementCollection; otherwise, false. The default is true.
         """
         pass
 
     def IsModified(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection) -> bool
         """
         IsModified(self: ConfigurationElementCollection) -> bool
         
-            Indicates whether this System.Configuration.ConfigurationElementCollection has been modified since it was last saved or loaded when overridden in a derived 
-             class.
-        
+            Indicates whether this System.Configuration.ConfigurationElementCollection has been modified since it was last saved or loaded when overridden in a derived class.
             Returns: true if any contained element has been modified; otherwise, false
         """
         pass
 
     def ListErrors(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, errorList: IList)
         """
         ListErrors(self: ConfigurationElement, errorList: IList)
             Adds the invalid-property errors in this System.Configuration.ConfigurationElement object, and in all subelements, to the passed list.
@@ -1977,6 +2029,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def OnDeserializeUnrecognizedAttribute(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, name: str, value: str) -> bool
         """
         OnDeserializeUnrecognizedAttribute(self: ConfigurationElement, name: str, value: str) -> bool
         
@@ -1989,6 +2042,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def OnDeserializeUnrecognizedElement(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, elementName: str, reader: XmlReader) -> bool
         """
         OnDeserializeUnrecognizedElement(self: ConfigurationElementCollection, elementName: str, reader: XmlReader) -> bool
         
@@ -2001,6 +2055,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def OnRequiredPropertyNotFound(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, name: str) -> object
         """
         OnRequiredPropertyNotFound(self: ConfigurationElement, name: str) -> object
         
@@ -2012,6 +2067,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def PostDeserialize(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement)
         """
         PostDeserialize(self: ConfigurationElement)
             Called after deserialization.
@@ -2019,6 +2075,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def PreSerialize(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, writer: XmlWriter)
         """
         PreSerialize(self: ConfigurationElement, writer: XmlWriter)
             Called before serialization.
@@ -2028,6 +2085,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def Remove(self, element):
+        # type: (self: SettingElementCollection, element: SettingElement)
         """
         Remove(self: SettingElementCollection, element: SettingElement)
             Removes a System.Configuration.SettingElement object from the collection.
@@ -2037,6 +2095,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def Reset(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, parentElement: ConfigurationElement)
         """
         Reset(self: ConfigurationElementCollection, parentElement: ConfigurationElement)
             Resets the System.Configuration.ConfigurationElementCollection to its unmodified state when overridden in a derived class.
@@ -2046,6 +2105,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def ResetModified(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection)
         """
         ResetModified(self: ConfigurationElementCollection)
             Resets the value of the System.Configuration.ConfigurationElementCollection.IsModified property to false when overridden in a derived class.
@@ -2053,6 +2113,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def SerializeElement(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, writer: XmlWriter, serializeCollectionKey: bool) -> bool
         """
         SerializeElement(self: ConfigurationElementCollection, writer: XmlWriter, serializeCollectionKey: bool) -> bool
         
@@ -2065,6 +2126,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def SerializeToXmlElement(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, writer: XmlWriter, elementName: str) -> bool
         """
         SerializeToXmlElement(self: ConfigurationElement, writer: XmlWriter, elementName: str) -> bool
         
@@ -2077,6 +2139,7 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def SetPropertyValue(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElement, prop: ConfigurationProperty, value: object, ignoreLocks: bool)
         """
         SetPropertyValue(self: ConfigurationElement, prop: ConfigurationProperty, value: object, ignoreLocks: bool)
             Sets a property to the specified value.
@@ -2088,14 +2151,15 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     def SetReadOnly(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection)
         """
         SetReadOnly(self: ConfigurationElementCollection)
-            Sets the System.Configuration.ConfigurationElementCollection.IsReadOnly property for the System.Configuration.ConfigurationElementCollection object and for 
-             all sub-elements.
+            Sets the System.Configuration.ConfigurationElementCollection.IsReadOnly property for the System.Configuration.ConfigurationElementCollection object and for all sub-elements.
         """
         pass
 
     def Unmerge(self, *args): #cannot find CLR method
+        # type: (self: ConfigurationElementCollection, sourceElement: ConfigurationElement, parentElement: ConfigurationElement, saveMode: ConfigurationSaveMode)
         """
         Unmerge(self: ConfigurationElementCollection, sourceElement: ConfigurationElement, parentElement: ConfigurationElement, saveMode: ConfigurationSaveMode)
             Reverses the effect of merging configuration information from different levels of the configuration hierarchy
@@ -2119,50 +2183,36 @@ class SettingElementCollection(ConfigurationElementCollection, ICollection, IEnu
         pass
 
     AddElementName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the name of the System.Configuration.ConfigurationElement to associate with the add operation in the System.Configuration.ConfigurationElementCollection when overridden in a derived class.
-
-"""
+    """ Gets or sets the name of the System.Configuration.ConfigurationElement to associate with the add operation in the System.Configuration.ConfigurationElementCollection when overridden in a derived class. """
 
     ClearElementName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the name for the System.Configuration.ConfigurationElement to associate with the clear operation in the System.Configuration.ConfigurationElementCollection when overridden in a derived class.
-
-"""
+    """ Gets or sets the name for the System.Configuration.ConfigurationElement to associate with the clear operation in the System.Configuration.ConfigurationElementCollection when overridden in a derived class. """
 
     CollectionType = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the type of the configuration collection.
-
-Get: CollectionType(self: SettingElementCollection) -> ConfigurationElementCollectionType
-
-"""
+    """
+    Gets the type of the configuration collection.
+    
+    Get: CollectionType(self: SettingElementCollection) -> ConfigurationElementCollectionType
+    """
 
     ElementName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
     ElementProperty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself.
-
-"""
+    """ Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself. """
 
     EvaluationContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object.
-
-"""
+    """ Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object. """
 
     HasContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
     Properties = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the collection of properties.
-
-"""
+    """ Gets the collection of properties. """
 
     RemoveElementName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the name of the System.Configuration.ConfigurationElement to associate with the remove operation in the System.Configuration.ConfigurationElementCollection when overridden in a derived class.
-
-"""
+    """ Gets or sets the name of the System.Configuration.ConfigurationElement to associate with the remove operation in the System.Configuration.ConfigurationElementCollection when overridden in a derived class. """
 
     ThrowOnDuplicate = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether an attempt to add a duplicate System.Configuration.ConfigurationElement to the System.Configuration.ConfigurationElementCollection will cause an exception to be thrown.
-
-"""
+    """ Gets a value indicating whether an attempt to add a duplicate System.Configuration.ConfigurationElement to the System.Configuration.ConfigurationElementCollection will cause an exception to be thrown. """
 
 
 
@@ -2174,6 +2224,7 @@ class SettingsAttributeDictionary(Hashtable, IDictionary, ICollection, IEnumerab
     SettingsAttributeDictionary(attributes: SettingsAttributeDictionary)
     """
     def GetHash(self, *args): #cannot find CLR method
+        # type: (self: Hashtable, key: object) -> int
         """
         GetHash(self: Hashtable, key: object) -> int
         
@@ -2185,6 +2236,7 @@ class SettingsAttributeDictionary(Hashtable, IDictionary, ICollection, IEnumerab
         pass
 
     def KeyEquals(self, *args): #cannot find CLR method
+        # type: (self: Hashtable, item: object, key: object) -> bool
         """
         KeyEquals(self: Hashtable, item: object, key: object) -> bool
         
@@ -2224,19 +2276,13 @@ class SettingsAttributeDictionary(Hashtable, IDictionary, ICollection, IEnumerab
         pass
 
     comparer = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the System.Collections.IComparer to use for the System.Collections.Hashtable.
-
-"""
+    """ Gets or sets the System.Collections.IComparer to use for the System.Collections.Hashtable. """
 
     EqualityComparer = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Collections.IEqualityComparer to use for the System.Collections.Hashtable.
-
-"""
+    """ Gets the System.Collections.IEqualityComparer to use for the System.Collections.Hashtable. """
 
     hcp = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the object that can dispense hash codes.
-
-"""
+    """ Gets or sets the object that can dispense hash codes. """
 
 
 
@@ -2247,6 +2293,7 @@ class SettingsContext(Hashtable, IDictionary, ICollection, IEnumerable, ISeriali
     SettingsContext()
     """
     def GetHash(self, *args): #cannot find CLR method
+        # type: (self: Hashtable, key: object) -> int
         """
         GetHash(self: Hashtable, key: object) -> int
         
@@ -2258,6 +2305,7 @@ class SettingsContext(Hashtable, IDictionary, ICollection, IEnumerable, ISeriali
         pass
 
     def KeyEquals(self, *args): #cannot find CLR method
+        # type: (self: Hashtable, item: object, key: object) -> bool
         """
         KeyEquals(self: Hashtable, item: object, key: object) -> bool
         
@@ -2289,19 +2337,13 @@ class SettingsContext(Hashtable, IDictionary, ICollection, IEnumerable, ISeriali
         pass
 
     comparer = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the System.Collections.IComparer to use for the System.Collections.Hashtable.
-
-"""
+    """ Gets or sets the System.Collections.IComparer to use for the System.Collections.Hashtable. """
 
     EqualityComparer = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Collections.IEqualityComparer to use for the System.Collections.Hashtable.
-
-"""
+    """ Gets the System.Collections.IEqualityComparer to use for the System.Collections.Hashtable. """
 
     hcp = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the object that can dispense hash codes.
-
-"""
+    """ Gets or sets the object that can dispense hash codes. """
 
 
 
@@ -2321,11 +2363,11 @@ class SettingsDescriptionAttribute(Attribute, _Attribute):
         pass
 
     Description = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the descriptive text for the associated configuration property.
-
-Get: Description(self: SettingsDescriptionAttribute) -> str
-
-"""
+    """
+    Gets the descriptive text for the associated configuration property.
+    
+    Get: Description(self: SettingsDescriptionAttribute) -> str
+    """
 
 
 
@@ -2345,11 +2387,11 @@ class SettingsGroupDescriptionAttribute(Attribute, _Attribute):
         pass
 
     Description = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """The descriptive text for the application settings properties group.
-
-Get: Description(self: SettingsGroupDescriptionAttribute) -> str
-
-"""
+    """
+    The descriptive text for the application settings properties group.
+    
+    Get: Description(self: SettingsGroupDescriptionAttribute) -> str
+    """
 
 
 
@@ -2369,11 +2411,11 @@ class SettingsGroupNameAttribute(Attribute, _Attribute):
         pass
 
     GroupName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the name of the application settings property group.
-
-Get: GroupName(self: SettingsGroupNameAttribute) -> str
-
-"""
+    """
+    Gets the name of the application settings property group.
+    
+    Get: GroupName(self: SettingsGroupNameAttribute) -> str
+    """
 
 
 
@@ -2389,11 +2431,11 @@ class SettingsLoadedEventArgs(EventArgs):
         pass
 
     Provider = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the settings provider used to store configuration settings.
-
-Get: Provider(self: SettingsLoadedEventArgs) -> SettingsProvider
-
-"""
+    """
+    Gets the settings provider used to store configuration settings.
+    
+    Get: Provider(self: SettingsLoadedEventArgs) -> SettingsProvider
+    """
 
 
 
@@ -2404,10 +2446,12 @@ class SettingsLoadedEventHandler(MulticastDelegate, ICloneable, ISerializable):
     SettingsLoadedEventHandler(object: object, method: IntPtr)
     """
     def BeginInvoke(self, sender, e, callback, object):
+        # type: (self: SettingsLoadedEventHandler, sender: object, e: SettingsLoadedEventArgs, callback: AsyncCallback, object: object) -> IAsyncResult
         """ BeginInvoke(self: SettingsLoadedEventHandler, sender: object, e: SettingsLoadedEventArgs, callback: AsyncCallback, object: object) -> IAsyncResult """
         pass
 
     def CombineImpl(self, *args): #cannot find CLR method
+        # type: (self: MulticastDelegate, follow: Delegate) -> Delegate
         """
         CombineImpl(self: MulticastDelegate, follow: Delegate) -> Delegate
         
@@ -2419,23 +2463,24 @@ class SettingsLoadedEventHandler(MulticastDelegate, ICloneable, ISerializable):
         pass
 
     def DynamicInvokeImpl(self, *args): #cannot find CLR method
+        # type: (self: Delegate, args: Array[object]) -> object
         """
         DynamicInvokeImpl(self: Delegate, args: Array[object]) -> object
         
             Dynamically invokes (late-bound) the method represented by the current delegate.
         
-            args: An array of objects that are the arguments to pass to the method represented by the current delegate.-or- null, if the method represented by the current 
-             delegate does not require arguments.
-        
+            args: An array of objects that are the arguments to pass to the method represented by the current delegate.-or- null, if the method represented by the current delegate does not require arguments.
             Returns: The object returned by the method represented by the delegate.
         """
         pass
 
     def EndInvoke(self, result):
+        # type: (self: SettingsLoadedEventHandler, result: IAsyncResult)
         """ EndInvoke(self: SettingsLoadedEventHandler, result: IAsyncResult) """
         pass
 
     def GetMethodImpl(self, *args): #cannot find CLR method
+        # type: (self: MulticastDelegate) -> MethodInfo
         """
         GetMethodImpl(self: MulticastDelegate) -> MethodInfo
         
@@ -2445,18 +2490,19 @@ class SettingsLoadedEventHandler(MulticastDelegate, ICloneable, ISerializable):
         pass
 
     def Invoke(self, sender, e):
+        # type: (self: SettingsLoadedEventHandler, sender: object, e: SettingsLoadedEventArgs)
         """ Invoke(self: SettingsLoadedEventHandler, sender: object, e: SettingsLoadedEventArgs) """
         pass
 
     def RemoveImpl(self, *args): #cannot find CLR method
+        # type: (self: MulticastDelegate, value: Delegate) -> Delegate
         """
         RemoveImpl(self: MulticastDelegate, value: Delegate) -> Delegate
         
             Removes an element from the invocation list of this System.MulticastDelegate that is equal to the specified delegate.
         
             value: The delegate to search for in the invocation list.
-            Returns: If value is found in the invocation list for this instance, then a new System.Delegate without value in its invocation list; otherwise, this instance with 
-             its original invocation list.
+            Returns: If value is found in the invocation list for this instance, then a new System.Delegate without value in its invocation list; otherwise, this instance with its original invocation list.
         """
         pass
 
@@ -2532,11 +2578,11 @@ class SettingsManageabilityAttribute(Attribute, _Attribute):
         pass
 
     Manageability = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the set of special services that have been requested.
-
-Get: Manageability(self: SettingsManageabilityAttribute) -> SettingsManageability
-
-"""
+    """
+    Gets the set of special services that have been requested.
+    
+    Get: Manageability(self: SettingsManageabilityAttribute) -> SettingsManageability
+    """
 
 
 
@@ -2558,75 +2604,83 @@ class SettingsProperty(object):
         pass
 
     Attributes = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a System.Configuration.SettingsAttributeDictionary object containing the attributes of the System.Configuration.SettingsProperty object.
-
-Get: Attributes(self: SettingsProperty) -> SettingsAttributeDictionary
-
-"""
+    """
+    Gets a System.Configuration.SettingsAttributeDictionary object containing the attributes of the System.Configuration.SettingsProperty object.
+    
+    Get: Attributes(self: SettingsProperty) -> SettingsAttributeDictionary
+    """
 
     DefaultValue = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the default value of the System.Configuration.SettingsProperty object.
-
-Get: DefaultValue(self: SettingsProperty) -> object
-
-Set: DefaultValue(self: SettingsProperty) = value
-"""
+    """
+    Gets or sets the default value of the System.Configuration.SettingsProperty object.
+    
+    Get: DefaultValue(self: SettingsProperty) -> object
+    
+    Set: DefaultValue(self: SettingsProperty) = value
+    """
 
     IsReadOnly = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets a value specifying whether a System.Configuration.SettingsProperty object is read-only.
-
-Get: IsReadOnly(self: SettingsProperty) -> bool
-
-Set: IsReadOnly(self: SettingsProperty) = value
-"""
+    """
+    Gets or sets a value specifying whether a System.Configuration.SettingsProperty object is read-only.
+    
+    Get: IsReadOnly(self: SettingsProperty) -> bool
+    
+    Set: IsReadOnly(self: SettingsProperty) = value
+    """
 
     Name = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the name of the System.Configuration.SettingsProperty.
-
-Get: Name(self: SettingsProperty) -> str
-
-Set: Name(self: SettingsProperty) = value
-"""
+    """
+    Gets or sets the name of the System.Configuration.SettingsProperty.
+    
+    Get: Name(self: SettingsProperty) -> str
+    
+    Set: Name(self: SettingsProperty) = value
+    """
 
     PropertyType = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the type for the System.Configuration.SettingsProperty.
-
-Get: PropertyType(self: SettingsProperty) -> Type
-
-Set: PropertyType(self: SettingsProperty) = value
-"""
+    """
+    Gets or sets the type for the System.Configuration.SettingsProperty.
+    
+    Get: PropertyType(self: SettingsProperty) -> Type
+    
+    Set: PropertyType(self: SettingsProperty) = value
+    """
 
     Provider = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the provider for the System.Configuration.SettingsProperty.
-
-Get: Provider(self: SettingsProperty) -> SettingsProvider
-
-Set: Provider(self: SettingsProperty) = value
-"""
+    """
+    Gets or sets the provider for the System.Configuration.SettingsProperty.
+    
+    Get: Provider(self: SettingsProperty) -> SettingsProvider
+    
+    Set: Provider(self: SettingsProperty) = value
+    """
 
     SerializeAs = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets a System.Configuration.SettingsSerializeAs object for the System.Configuration.SettingsProperty.
-
-Get: SerializeAs(self: SettingsProperty) -> SettingsSerializeAs
-
-Set: SerializeAs(self: SettingsProperty) = value
-"""
+    """
+    Gets or sets a System.Configuration.SettingsSerializeAs object for the System.Configuration.SettingsProperty.
+    
+    Get: SerializeAs(self: SettingsProperty) -> SettingsSerializeAs
+    
+    Set: SerializeAs(self: SettingsProperty) = value
+    """
 
     ThrowOnErrorDeserializing = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets a value specifying whether an error will be thrown when the property is unsuccessfully deserialized.
-
-Get: ThrowOnErrorDeserializing(self: SettingsProperty) -> bool
-
-Set: ThrowOnErrorDeserializing(self: SettingsProperty) = value
-"""
+    """
+    Gets or sets a value specifying whether an error will be thrown when the property is unsuccessfully deserialized.
+    
+    Get: ThrowOnErrorDeserializing(self: SettingsProperty) -> bool
+    
+    Set: ThrowOnErrorDeserializing(self: SettingsProperty) = value
+    """
 
     ThrowOnErrorSerializing = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets a value specifying whether an error will be thrown when the property is unsuccessfully serialized.
-
-Get: ThrowOnErrorSerializing(self: SettingsProperty) -> bool
-
-Set: ThrowOnErrorSerializing(self: SettingsProperty) = value
-"""
+    """
+    Gets or sets a value specifying whether an error will be thrown when the property is unsuccessfully serialized.
+    
+    Get: ThrowOnErrorSerializing(self: SettingsProperty) -> bool
+    
+    Set: ThrowOnErrorSerializing(self: SettingsProperty) = value
+    """
 
 
 
@@ -2637,6 +2691,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
     SettingsPropertyCollection()
     """
     def Add(self, property):
+        # type: (self: SettingsPropertyCollection, property: SettingsProperty)
         """
         Add(self: SettingsPropertyCollection, property: SettingsProperty)
             Adds a System.Configuration.SettingsProperty object to the collection.
@@ -2646,6 +2701,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     def Clear(self):
+        # type: (self: SettingsPropertyCollection)
         """
         Clear(self: SettingsPropertyCollection)
             Removes all System.Configuration.SettingsProperty objects from the collection.
@@ -2653,6 +2709,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     def Clone(self):
+        # type: (self: SettingsPropertyCollection) -> object
         """
         Clone(self: SettingsPropertyCollection) -> object
         
@@ -2662,6 +2719,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     def CopyTo(self, array, index):
+        # type: (self: SettingsPropertyCollection, array: Array, index: int)
         """
         CopyTo(self: SettingsPropertyCollection, array: Array, index: int)
             Copies this System.Configuration.SettingsPropertyCollection object to an array.
@@ -2672,6 +2730,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     def GetEnumerator(self):
+        # type: (self: SettingsPropertyCollection) -> IEnumerator
         """
         GetEnumerator(self: SettingsPropertyCollection) -> IEnumerator
         
@@ -2681,6 +2740,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     def OnAdd(self, *args): #cannot find CLR method
+        # type: (self: SettingsPropertyCollection, property: SettingsProperty)
         """
         OnAdd(self: SettingsPropertyCollection, property: SettingsProperty)
             Performs additional, custom processing when adding to the contents of the System.Configuration.SettingsPropertyCollection instance.
@@ -2690,6 +2750,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     def OnAddComplete(self, *args): #cannot find CLR method
+        # type: (self: SettingsPropertyCollection, property: SettingsProperty)
         """
         OnAddComplete(self: SettingsPropertyCollection, property: SettingsProperty)
             Performs additional, custom processing after adding to the contents of the System.Configuration.SettingsPropertyCollection instance.
@@ -2699,6 +2760,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     def OnClear(self, *args): #cannot find CLR method
+        # type: (self: SettingsPropertyCollection)
         """
         OnClear(self: SettingsPropertyCollection)
             Performs additional, custom processing when clearing the contents of the System.Configuration.SettingsPropertyCollection instance.
@@ -2706,6 +2768,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     def OnClearComplete(self, *args): #cannot find CLR method
+        # type: (self: SettingsPropertyCollection)
         """
         OnClearComplete(self: SettingsPropertyCollection)
             Performs additional, custom processing after clearing the contents of the System.Configuration.SettingsPropertyCollection instance.
@@ -2713,6 +2776,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     def OnRemove(self, *args): #cannot find CLR method
+        # type: (self: SettingsPropertyCollection, property: SettingsProperty)
         """
         OnRemove(self: SettingsPropertyCollection, property: SettingsProperty)
             Performs additional, custom processing when removing the contents of the System.Configuration.SettingsPropertyCollection instance.
@@ -2722,6 +2786,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     def OnRemoveComplete(self, *args): #cannot find CLR method
+        # type: (self: SettingsPropertyCollection, property: SettingsProperty)
         """
         OnRemoveComplete(self: SettingsPropertyCollection, property: SettingsProperty)
             Performs additional, custom processing after removing the contents of the System.Configuration.SettingsPropertyCollection instance.
@@ -2731,6 +2796,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     def Remove(self, name):
+        # type: (self: SettingsPropertyCollection, name: str)
         """
         Remove(self: SettingsPropertyCollection, name: str)
             Removes a System.Configuration.SettingsProperty object from the collection.
@@ -2740,6 +2806,7 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     def SetReadOnly(self):
+        # type: (self: SettingsPropertyCollection)
         """
         SetReadOnly(self: SettingsPropertyCollection)
             Sets the collection to be read-only.
@@ -2771,25 +2838,26 @@ class SettingsPropertyCollection(object, IEnumerable, ICloneable, ICollection):
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that specifies the number of System.Configuration.SettingsProperty objects in the collection.
-
-Get: Count(self: SettingsPropertyCollection) -> int
-
-"""
+    """
+    Gets a value that specifies the number of System.Configuration.SettingsProperty objects in the collection.
+    
+    Get: Count(self: SettingsPropertyCollection) -> int
+    """
 
     IsSynchronized = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that indicates whether access to the collection is synchronized (thread safe).
-
-Get: IsSynchronized(self: SettingsPropertyCollection) -> bool
-
-"""
+    # type: (thread safe).
+    """
+    Gets a value that indicates whether access to the collection is synchronized (thread safe).
+    
+    Get: IsSynchronized(self: SettingsPropertyCollection) -> bool
+    """
 
     SyncRoot = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the object to synchronize access to the collection.
-
-Get: SyncRoot(self: SettingsPropertyCollection) -> object
-
-"""
+    """
+    Gets the object to synchronize access to the collection.
+    
+    Get: SyncRoot(self: SettingsPropertyCollection) -> object
+    """
 
 
 
@@ -2867,57 +2935,61 @@ class SettingsPropertyValue(object):
         pass
 
     Deserialized = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets whether the value of a System.Configuration.SettingsProperty object has been deserialized.
-
-Get: Deserialized(self: SettingsPropertyValue) -> bool
-
-Set: Deserialized(self: SettingsPropertyValue) = value
-"""
+    """
+    Gets or sets whether the value of a System.Configuration.SettingsProperty object has been deserialized.
+    
+    Get: Deserialized(self: SettingsPropertyValue) -> bool
+    
+    Set: Deserialized(self: SettingsPropertyValue) = value
+    """
 
     IsDirty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets whether the value of a System.Configuration.SettingsProperty object has changed.
-
-Get: IsDirty(self: SettingsPropertyValue) -> bool
-
-Set: IsDirty(self: SettingsPropertyValue) = value
-"""
+    """
+    Gets or sets whether the value of a System.Configuration.SettingsProperty object has changed.
+    
+    Get: IsDirty(self: SettingsPropertyValue) -> bool
+    
+    Set: IsDirty(self: SettingsPropertyValue) = value
+    """
 
     Name = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the name of the property from the associated System.Configuration.SettingsProperty object.
-
-Get: Name(self: SettingsPropertyValue) -> str
-
-"""
+    """
+    Gets the name of the property from the associated System.Configuration.SettingsProperty object.
+    
+    Get: Name(self: SettingsPropertyValue) -> str
+    """
 
     Property = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.SettingsProperty object.
-
-Get: Property(self: SettingsPropertyValue) -> SettingsProperty
-
-"""
+    """
+    Gets the System.Configuration.SettingsProperty object.
+    
+    Get: Property(self: SettingsPropertyValue) -> SettingsProperty
+    """
 
     PropertyValue = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the value of the System.Configuration.SettingsProperty object.
-
-Get: PropertyValue(self: SettingsPropertyValue) -> object
-
-Set: PropertyValue(self: SettingsPropertyValue) = value
-"""
+    """
+    Gets or sets the value of the System.Configuration.SettingsProperty object.
+    
+    Get: PropertyValue(self: SettingsPropertyValue) -> object
+    
+    Set: PropertyValue(self: SettingsPropertyValue) = value
+    """
 
     SerializedValue = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the serialized value of the System.Configuration.SettingsProperty object.
-
-Get: SerializedValue(self: SettingsPropertyValue) -> object
-
-Set: SerializedValue(self: SettingsPropertyValue) = value
-"""
+    """
+    Gets or sets the serialized value of the System.Configuration.SettingsProperty object.
+    
+    Get: SerializedValue(self: SettingsPropertyValue) -> object
+    
+    Set: SerializedValue(self: SettingsPropertyValue) = value
+    """
 
     UsingDefaultValue = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a Boolean value specifying whether the value of the System.Configuration.SettingsPropertyValue object is the default value as defined by the System.Configuration.SettingsProperty.DefaultValue property value on the associated System.Configuration.SettingsProperty object.
-
-Get: UsingDefaultValue(self: SettingsPropertyValue) -> bool
-
-"""
+    """
+    Gets a Boolean value specifying whether the value of the System.Configuration.SettingsPropertyValue object is the default value as defined by the System.Configuration.SettingsProperty.DefaultValue property value on the associated System.Configuration.SettingsProperty object.
+    
+    Get: UsingDefaultValue(self: SettingsPropertyValue) -> bool
+    """
 
 
 
@@ -2928,6 +3000,7 @@ class SettingsPropertyValueCollection(object, IEnumerable, ICloneable, ICollecti
     SettingsPropertyValueCollection()
     """
     def Add(self, property):
+        # type: (self: SettingsPropertyValueCollection, property: SettingsPropertyValue)
         """
         Add(self: SettingsPropertyValueCollection, property: SettingsPropertyValue)
             Adds a System.Configuration.SettingsPropertyValue object to the collection.
@@ -2937,6 +3010,7 @@ class SettingsPropertyValueCollection(object, IEnumerable, ICloneable, ICollecti
         pass
 
     def Clear(self):
+        # type: (self: SettingsPropertyValueCollection)
         """
         Clear(self: SettingsPropertyValueCollection)
             Removes all System.Configuration.SettingsPropertyValue objects from the collection.
@@ -2944,6 +3018,7 @@ class SettingsPropertyValueCollection(object, IEnumerable, ICloneable, ICollecti
         pass
 
     def Clone(self):
+        # type: (self: SettingsPropertyValueCollection) -> object
         """
         Clone(self: SettingsPropertyValueCollection) -> object
         
@@ -2953,6 +3028,7 @@ class SettingsPropertyValueCollection(object, IEnumerable, ICloneable, ICollecti
         pass
 
     def CopyTo(self, array, index):
+        # type: (self: SettingsPropertyValueCollection, array: Array, index: int)
         """
         CopyTo(self: SettingsPropertyValueCollection, array: Array, index: int)
             Copies this System.Configuration.SettingsPropertyValueCollection collection to an array.
@@ -2963,6 +3039,7 @@ class SettingsPropertyValueCollection(object, IEnumerable, ICloneable, ICollecti
         pass
 
     def GetEnumerator(self):
+        # type: (self: SettingsPropertyValueCollection) -> IEnumerator
         """
         GetEnumerator(self: SettingsPropertyValueCollection) -> IEnumerator
         
@@ -2972,6 +3049,7 @@ class SettingsPropertyValueCollection(object, IEnumerable, ICloneable, ICollecti
         pass
 
     def Remove(self, name):
+        # type: (self: SettingsPropertyValueCollection, name: str)
         """
         Remove(self: SettingsPropertyValueCollection, name: str)
             Removes a System.Configuration.SettingsPropertyValue object from the collection.
@@ -2981,6 +3059,7 @@ class SettingsPropertyValueCollection(object, IEnumerable, ICloneable, ICollecti
         pass
 
     def SetReadOnly(self):
+        # type: (self: SettingsPropertyValueCollection)
         """
         SetReadOnly(self: SettingsPropertyValueCollection)
             Sets the collection to be read-only.
@@ -3012,25 +3091,26 @@ class SettingsPropertyValueCollection(object, IEnumerable, ICloneable, ICollecti
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that specifies the number of System.Configuration.SettingsPropertyValue objects in the collection.
-
-Get: Count(self: SettingsPropertyValueCollection) -> int
-
-"""
+    """
+    Gets a value that specifies the number of System.Configuration.SettingsPropertyValue objects in the collection.
+    
+    Get: Count(self: SettingsPropertyValueCollection) -> int
+    """
 
     IsSynchronized = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that indicates whether access to the collection is synchronized (thread safe).
-
-Get: IsSynchronized(self: SettingsPropertyValueCollection) -> bool
-
-"""
+    # type: (thread safe).
+    """
+    Gets a value that indicates whether access to the collection is synchronized (thread safe).
+    
+    Get: IsSynchronized(self: SettingsPropertyValueCollection) -> bool
+    """
 
     SyncRoot = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the object to synchronize access to the collection.
-
-Get: SyncRoot(self: SettingsPropertyValueCollection) -> object
-
-"""
+    """
+    Gets the object to synchronize access to the collection.
+    
+    Get: SyncRoot(self: SettingsPropertyValueCollection) -> object
+    """
 
 
 
@@ -3085,11 +3165,11 @@ class SettingsProviderAttribute(Attribute, _Attribute):
         pass
 
     ProviderTypeName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the type name of the settings provider.
-
-Get: ProviderTypeName(self: SettingsProviderAttribute) -> str
-
-"""
+    """
+    Gets the type name of the settings provider.
+    
+    Get: ProviderTypeName(self: SettingsProviderAttribute) -> str
+    """
 
 
 
@@ -3100,6 +3180,7 @@ class SettingsProviderCollection(ProviderCollection, IEnumerable, ICollection):
     SettingsProviderCollection()
     """
     def Add(self, provider):
+        # type: (self: SettingsProviderCollection, provider: ProviderBase)
         """
         Add(self: SettingsProviderCollection, provider: ProviderBase)
             Adds a new settings provider to the collection.
@@ -3132,10 +3213,12 @@ class SettingsSavingEventHandler(MulticastDelegate, ICloneable, ISerializable):
     SettingsSavingEventHandler(object: object, method: IntPtr)
     """
     def BeginInvoke(self, sender, e, callback, object):
+        # type: (self: SettingsSavingEventHandler, sender: object, e: CancelEventArgs, callback: AsyncCallback, object: object) -> IAsyncResult
         """ BeginInvoke(self: SettingsSavingEventHandler, sender: object, e: CancelEventArgs, callback: AsyncCallback, object: object) -> IAsyncResult """
         pass
 
     def CombineImpl(self, *args): #cannot find CLR method
+        # type: (self: MulticastDelegate, follow: Delegate) -> Delegate
         """
         CombineImpl(self: MulticastDelegate, follow: Delegate) -> Delegate
         
@@ -3147,23 +3230,24 @@ class SettingsSavingEventHandler(MulticastDelegate, ICloneable, ISerializable):
         pass
 
     def DynamicInvokeImpl(self, *args): #cannot find CLR method
+        # type: (self: Delegate, args: Array[object]) -> object
         """
         DynamicInvokeImpl(self: Delegate, args: Array[object]) -> object
         
             Dynamically invokes (late-bound) the method represented by the current delegate.
         
-            args: An array of objects that are the arguments to pass to the method represented by the current delegate.-or- null, if the method represented by the current 
-             delegate does not require arguments.
-        
+            args: An array of objects that are the arguments to pass to the method represented by the current delegate.-or- null, if the method represented by the current delegate does not require arguments.
             Returns: The object returned by the method represented by the delegate.
         """
         pass
 
     def EndInvoke(self, result):
+        # type: (self: SettingsSavingEventHandler, result: IAsyncResult)
         """ EndInvoke(self: SettingsSavingEventHandler, result: IAsyncResult) """
         pass
 
     def GetMethodImpl(self, *args): #cannot find CLR method
+        # type: (self: MulticastDelegate) -> MethodInfo
         """
         GetMethodImpl(self: MulticastDelegate) -> MethodInfo
         
@@ -3173,18 +3257,19 @@ class SettingsSavingEventHandler(MulticastDelegate, ICloneable, ISerializable):
         pass
 
     def Invoke(self, sender, e):
+        # type: (self: SettingsSavingEventHandler, sender: object, e: CancelEventArgs)
         """ Invoke(self: SettingsSavingEventHandler, sender: object, e: CancelEventArgs) """
         pass
 
     def RemoveImpl(self, *args): #cannot find CLR method
+        # type: (self: MulticastDelegate, value: Delegate) -> Delegate
         """
         RemoveImpl(self: MulticastDelegate, value: Delegate) -> Delegate
         
             Removes an element from the invocation list of this System.MulticastDelegate that is equal to the specified delegate.
         
             value: The delegate to search for in the invocation list.
-            Returns: If value is found in the invocation list for this instance, then a new System.Delegate without value in its invocation list; otherwise, this instance with 
-             its original invocation list.
+            Returns: If value is found in the invocation list for this instance, then a new System.Delegate without value in its invocation list; otherwise, this instance with its original invocation list.
         """
         pass
 
@@ -3263,11 +3348,11 @@ class SettingsSerializeAsAttribute(Attribute, _Attribute):
         pass
 
     SerializeAs = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.SettingsSerializeAs enumeration value that specifies the serialization scheme.
-
-Get: SerializeAs(self: SettingsSerializeAsAttribute) -> SettingsSerializeAs
-
-"""
+    """
+    Gets the System.Configuration.SettingsSerializeAs enumeration value that specifies the serialization scheme.
+    
+    Get: SerializeAs(self: SettingsSerializeAsAttribute) -> SettingsSerializeAs
+    """
 
 
 
@@ -3278,6 +3363,7 @@ class SettingValueElement(ConfigurationElement):
     SettingValueElement()
     """
     def Equals(self, settingValue):
+        # type: (self: SettingValueElement, settingValue: object) -> bool
         """
         Equals(self: SettingValueElement, settingValue: object) -> bool
         
@@ -3289,6 +3375,7 @@ class SettingValueElement(ConfigurationElement):
         pass
 
     def GetHashCode(self):
+        # type: (self: SettingValueElement) -> int
         """
         GetHashCode(self: SettingValueElement) -> int
         
@@ -3298,26 +3385,23 @@ class SettingValueElement(ConfigurationElement):
         pass
 
     ElementProperty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself.
-
-"""
+    """ Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself. """
 
     EvaluationContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object.
-
-"""
+    """ Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object. """
 
     HasContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
     Properties = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
     ValueXml = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the value of a System.Configuration.SettingValueElement object by using an System.Xml.XmlNode object.
-
-Get: ValueXml(self: SettingValueElement) -> XmlNode
-
-Set: ValueXml(self: SettingValueElement) = value
-"""
+    """
+    Gets or sets the value of a System.Configuration.SettingValueElement object by using an System.Xml.XmlNode object.
+    
+    Get: ValueXml(self: SettingValueElement) -> XmlNode
+    
+    Set: ValueXml(self: SettingValueElement) = value
+    """
 
 
 
@@ -3328,6 +3412,7 @@ class SingleTagSectionHandler(object, IConfigurationSectionHandler):
     SingleTagSectionHandler()
     """
     def Create(self, parent, context, section):
+        # type: (self: SingleTagSectionHandler, parent: object, context: object, section: XmlNode) -> object
         """
         Create(self: SingleTagSectionHandler, parent: object, context: object, section: XmlNode) -> object
         
@@ -3409,11 +3494,11 @@ class SpecialSettingAttribute(Attribute, _Attribute):
         pass
 
     SpecialSetting = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the value describing the special setting category of the application settings property.
-
-Get: SpecialSetting(self: SpecialSettingAttribute) -> SpecialSetting
-
-"""
+    """
+    Gets the value describing the special setting category of the application settings property.
+    
+    Get: SpecialSetting(self: SpecialSettingAttribute) -> SpecialSetting
+    """
 
 
 
@@ -3424,39 +3509,37 @@ class UriSection(ConfigurationSection):
     UriSection()
     """
     ElementProperty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself.
-
-"""
+    """ Gets the System.Configuration.ConfigurationElementProperty object that represents the System.Configuration.ConfigurationElement object itself. """
 
     EvaluationContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object.
-
-"""
+    """ Gets the System.Configuration.ContextInformation object for the System.Configuration.ConfigurationElement object. """
 
     HasContext = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
     Idn = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an System.Configuration.IdnElement object that contains the configuration setting for International Domain Name (IDN) processing in the System.Uri class.
-
-Get: Idn(self: UriSection) -> IdnElement
-
-"""
+    # type: (IDN) processing in the System.Uri class.
+    """
+    Gets an System.Configuration.IdnElement object that contains the configuration setting for International Domain Name (IDN) processing in the System.Uri class.
+    
+    Get: Idn(self: UriSection) -> IdnElement
+    """
 
     IriParsing = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an System.Configuration.IriParsingElement object that contains the configuration setting for International Resource Identifiers (IRI) parsing in the System.Uri class.
-
-Get: IriParsing(self: UriSection) -> IriParsingElement
-
-"""
+    # type: (IRI) parsing in the System.Uri class.
+    """
+    Gets an System.Configuration.IriParsingElement object that contains the configuration setting for International Resource Identifiers (IRI) parsing in the System.Uri class.
+    
+    Get: IriParsing(self: UriSection) -> IriParsingElement
+    """
 
     Properties = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
 
     SchemeSettings = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a System.Configuration.SchemeSettingElementCollection object that contains the configuration settings for scheme parsing in the System.Uri class.
-
-Get: SchemeSettings(self: UriSection) -> SchemeSettingElementCollection
-
-"""
+    """
+    Gets a System.Configuration.SchemeSettingElementCollection object that contains the configuration settings for scheme parsing in the System.Uri class.
+    
+    Get: SchemeSettings(self: UriSection) -> SchemeSettingElementCollection
+    """
 
 
 

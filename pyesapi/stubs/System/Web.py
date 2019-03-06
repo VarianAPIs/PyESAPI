@@ -16,6 +16,7 @@ class AspNetHostingPermission(CodeAccessPermission, IPermission, ISecurityEncoda
     AspNetHostingPermission(level: AspNetHostingPermissionLevel)
     """
     def Copy(self):
+        # type: (self: AspNetHostingPermission) -> IPermission
         """
         Copy(self: AspNetHostingPermission) -> IPermission
         
@@ -25,6 +26,7 @@ class AspNetHostingPermission(CodeAccessPermission, IPermission, ISecurityEncoda
         pass
 
     def FromXml(self, securityElement):
+        # type: (self: AspNetHostingPermission, securityElement: SecurityElement)
         """
         FromXml(self: AspNetHostingPermission, securityElement: SecurityElement)
             Reconstructs a permission object with a specified state from an XML encoding.
@@ -34,18 +36,19 @@ class AspNetHostingPermission(CodeAccessPermission, IPermission, ISecurityEncoda
         pass
 
     def Intersect(self, target):
+        # type: (self: AspNetHostingPermission, target: IPermission) -> IPermission
         """
         Intersect(self: AspNetHostingPermission, target: IPermission) -> IPermission
         
             When implemented by a derived class, creates and returns a permission that is the intersection of the current permission and the specified permission.
         
             target: A permission to combine with the current permission. It must be of the same type as the current permission.
-            Returns: An System.Security.IPermission that represents the intersection of the current permission and the specified permission; otherwise, null if the intersection 
-             is empty.
+            Returns: An System.Security.IPermission that represents the intersection of the current permission and the specified permission; otherwise, null if the intersection is empty.
         """
         pass
 
     def IsSubsetOf(self, target):
+        # type: (self: AspNetHostingPermission, target: IPermission) -> bool
         """
         IsSubsetOf(self: AspNetHostingPermission, target: IPermission) -> bool
         
@@ -57,6 +60,7 @@ class AspNetHostingPermission(CodeAccessPermission, IPermission, ISecurityEncoda
         pass
 
     def IsUnrestricted(self):
+        # type: (self: AspNetHostingPermission) -> bool
         """
         IsUnrestricted(self: AspNetHostingPermission) -> bool
         
@@ -66,6 +70,7 @@ class AspNetHostingPermission(CodeAccessPermission, IPermission, ISecurityEncoda
         pass
 
     def ToXml(self):
+        # type: (self: AspNetHostingPermission) -> SecurityElement
         """
         ToXml(self: AspNetHostingPermission) -> SecurityElement
         
@@ -75,6 +80,7 @@ class AspNetHostingPermission(CodeAccessPermission, IPermission, ISecurityEncoda
         pass
 
     def Union(self, target):
+        # type: (self: AspNetHostingPermission, target: IPermission) -> IPermission
         """
         Union(self: AspNetHostingPermission, target: IPermission) -> IPermission
         
@@ -104,12 +110,13 @@ class AspNetHostingPermission(CodeAccessPermission, IPermission, ISecurityEncoda
         pass
 
     Level = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the current hosting permission level for an ASP.NET application.
-
-Get: Level(self: AspNetHostingPermission) -> AspNetHostingPermissionLevel
-
-Set: Level(self: AspNetHostingPermission) = value
-"""
+    """
+    Gets or sets the current hosting permission level for an ASP.NET application.
+    
+    Get: Level(self: AspNetHostingPermission) -> AspNetHostingPermissionLevel
+    
+    Set: Level(self: AspNetHostingPermission) = value
+    """
 
 
 
@@ -120,6 +127,7 @@ class AspNetHostingPermissionAttribute(CodeAccessSecurityAttribute, _Attribute):
     AspNetHostingPermissionAttribute(action: SecurityAction)
     """
     def CreatePermission(self):
+        # type: (self: AspNetHostingPermissionAttribute) -> IPermission
         """
         CreatePermission(self: AspNetHostingPermissionAttribute) -> IPermission
         
@@ -141,12 +149,13 @@ class AspNetHostingPermissionAttribute(CodeAccessSecurityAttribute, _Attribute):
         pass
 
     Level = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the current hosting permission level.
-
-Get: Level(self: AspNetHostingPermissionAttribute) -> AspNetHostingPermissionLevel
-
-Set: Level(self: AspNetHostingPermissionAttribute) = value
-"""
+    """
+    Gets or sets the current hosting permission level.
+    
+    Get: Level(self: AspNetHostingPermissionAttribute) -> AspNetHostingPermissionLevel
+    
+    Set: Level(self: AspNetHostingPermissionAttribute) = value
+    """
 
 
 

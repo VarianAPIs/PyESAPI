@@ -14,6 +14,7 @@ def Partitioner(*args, **kwargs): # real signature unknown
 # classes
 
 class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisposable, IReadOnlyCollection[T]):
+    # type: ()
     """
     BlockingCollection[T]()
     BlockingCollection[T](boundedCapacity: int)
@@ -21,6 +22,7 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
     BlockingCollection[T](collection: IProducerConsumerCollection[T])
     """
     def Add(self, item, cancellationToken=None):
+        # type: (self: BlockingCollection[T], item: T)
         """
         Add(self: BlockingCollection[T], item: T)
             Adds the item to the System.Collections.Concurrent.BlockingCollection.
@@ -36,6 +38,7 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
 
     @staticmethod
     def AddToAny(collections, item, cancellationToken=None):
+        # type: (collections: Array[BlockingCollection[T]], item: T) -> int
         """
         AddToAny(collections: Array[BlockingCollection[T]], item: T) -> int
         AddToAny(collections: Array[BlockingCollection[T]], item: T, cancellationToken: CancellationToken) -> int
@@ -43,6 +46,7 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
         pass
 
     def CompleteAdding(self):
+        # type: (self: BlockingCollection[T])
         """
         CompleteAdding(self: BlockingCollection[T])
             Marks the System.Collections.Concurrent.BlockingCollection instances as not accepting any more additions.
@@ -50,10 +54,12 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
         pass
 
     def CopyTo(self, array, index):
+        # type: (self: BlockingCollection[T], array: Array[T], index: int)
         """ CopyTo(self: BlockingCollection[T], array: Array[T], index: int) """
         pass
 
     def Dispose(self):
+        # type: (self: BlockingCollection[T])
         """
         Dispose(self: BlockingCollection[T])
             Releases all resources used by the current instance of the System.Collections.Concurrent.BlockingCollection class.
@@ -61,6 +67,7 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
         pass
 
     def GetConsumingEnumerable(self, cancellationToken=None):
+        # type: (self: BlockingCollection[T]) -> IEnumerable[T]
         """
         GetConsumingEnumerable(self: BlockingCollection[T]) -> IEnumerable[T]
         
@@ -76,6 +83,7 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
         pass
 
     def Take(self, cancellationToken=None):
+        # type: (self: BlockingCollection[T]) -> T
         """
         Take(self: BlockingCollection[T]) -> T
         
@@ -92,6 +100,7 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
 
     @staticmethod
     def TakeFromAny(collections, item, cancellationToken=None):
+        # type: (collections: Array[BlockingCollection[T]]) -> (int, T)
         """
         TakeFromAny(collections: Array[BlockingCollection[T]]) -> (int, T)
         TakeFromAny(collections: Array[BlockingCollection[T]], cancellationToken: CancellationToken) -> (int, T)
@@ -99,6 +108,7 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
         pass
 
     def ToArray(self):
+        # type: (self: BlockingCollection[T]) -> Array[T]
         """
         ToArray(self: BlockingCollection[T]) -> Array[T]
         
@@ -108,15 +118,14 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
         pass
 
     def TryAdd(self, item, *__args):
+        # type: (self: BlockingCollection[T], item: T) -> bool
         """
         TryAdd(self: BlockingCollection[T], item: T) -> bool
         
             Attempts to add the specified item to the System.Collections.Concurrent.BlockingCollection.
         
             item: The item to be added to the collection.
-            Returns: true if item could be added; otherwise false. If the item is a duplicate, and the underlying collection does not accept duplicate items, then an 
-             System.InvalidOperationException is thrown.
-        
+            Returns: true if item could be added; otherwise false. If the item is a duplicate, and the underlying collection does not accept duplicate items, then an System.InvalidOperationException is thrown.
         TryAdd(self: BlockingCollection[T], item: T, timeout: TimeSpan) -> bool
         
             Attempts to add the specified item to the System.Collections.Concurrent.BlockingCollection.
@@ -130,25 +139,21 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
         
             item: The item to be added to the collection.
             millisecondsTimeout: The number of milliseconds to wait, or System.Threading.Timeout.Infinite (-1) to wait indefinitely.
-            Returns: true if the item could be added to the collection within the specified time; otherwise, false. If the item is a duplicate, and the underlying collection 
-             does not accept duplicate items, then an System.InvalidOperationException is thrown.
-        
+            Returns: true if the item could be added to the collection within the specified time; otherwise, false. If the item is a duplicate, and the underlying collection does not accept duplicate items, then an System.InvalidOperationException is thrown.
         TryAdd(self: BlockingCollection[T], item: T, millisecondsTimeout: int, cancellationToken: CancellationToken) -> bool
         
-            Attempts to add the specified item to the System.Collections.Concurrent.BlockingCollection within the specified time period, while observing a cancellation 
-             token.
-        
+            Attempts to add the specified item to the System.Collections.Concurrent.BlockingCollection within the specified time period, while observing a cancellation token.
         
             item: The item to be added to the collection.
             millisecondsTimeout: The number of milliseconds to wait, or System.Threading.Timeout.Infinite (-1) to wait indefinitely.
             cancellationToken: A cancellation token to observe.
-            Returns: true if the item could be added to the collection within the specified time; otherwise, false. If the item is a duplicate, and the underlying collection 
-             does not accept duplicate items, then an System.InvalidOperationException is thrown.
+            Returns: true if the item could be added to the collection within the specified time; otherwise, false. If the item is a duplicate, and the underlying collection does not accept duplicate items, then an System.InvalidOperationException is thrown.
         """
         pass
 
     @staticmethod
     def TryAddToAny(collections, item, *__args):
+        # type: (collections: Array[BlockingCollection[T]], item: T) -> int
         """
         TryAddToAny(collections: Array[BlockingCollection[T]], item: T) -> int
         TryAddToAny(collections: Array[BlockingCollection[T]], item: T, timeout: TimeSpan) -> int
@@ -158,6 +163,7 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
         pass
 
     def TryTake(self, item, *__args):
+        # type: (self: BlockingCollection[T]) -> (bool, T)
         """
         TryTake(self: BlockingCollection[T]) -> (bool, T)
         TryTake(self: BlockingCollection[T], timeout: TimeSpan) -> (bool, T)
@@ -168,6 +174,7 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
 
     @staticmethod
     def TryTakeFromAny(collections, item, *__args):
+        # type: (collections: Array[BlockingCollection[T]]) -> (int, T)
         """
         TryTakeFromAny(collections: Array[BlockingCollection[T]]) -> (int, T)
         TryTakeFromAny(collections: Array[BlockingCollection[T]], timeout: TimeSpan) -> (int, T)
@@ -219,41 +226,43 @@ class BlockingCollection(object, IEnumerable[T], IEnumerable, ICollection, IDisp
         pass
 
     BoundedCapacity = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the bounded capacity of this System.Collections.Concurrent.BlockingCollection instance.
-
-Get: BoundedCapacity(self: BlockingCollection[T]) -> int
-
-"""
+    """
+    Gets the bounded capacity of this System.Collections.Concurrent.BlockingCollection instance.
+    
+    Get: BoundedCapacity(self: BlockingCollection[T]) -> int
+    """
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of items contained in the System.Collections.Concurrent.BlockingCollection.
-
-Get: Count(self: BlockingCollection[T]) -> int
-
-"""
+    """
+    Gets the number of items contained in the System.Collections.Concurrent.BlockingCollection.
+    
+    Get: Count(self: BlockingCollection[T]) -> int
+    """
 
     IsAddingCompleted = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets whether this System.Collections.Concurrent.BlockingCollection has been marked as complete for adding.
-
-Get: IsAddingCompleted(self: BlockingCollection[T]) -> bool
-
-"""
+    """
+    Gets whether this System.Collections.Concurrent.BlockingCollection has been marked as complete for adding.
+    
+    Get: IsAddingCompleted(self: BlockingCollection[T]) -> bool
+    """
 
     IsCompleted = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets whether this System.Collections.Concurrent.BlockingCollection has been marked as complete for adding and is empty.
-
-Get: IsCompleted(self: BlockingCollection[T]) -> bool
-
-"""
+    """
+    Gets whether this System.Collections.Concurrent.BlockingCollection has been marked as complete for adding and is empty.
+    
+    Get: IsCompleted(self: BlockingCollection[T]) -> bool
+    """
 
 
 
 class ConcurrentBag(object, IProducerConsumerCollection[T], IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollection[T]):
+    # type: ()
     """
     ConcurrentBag[T]()
     ConcurrentBag[T](collection: IEnumerable[T])
     """
     def Add(self, item):
+        # type: (self: ConcurrentBag[T], item: T)
         """
         Add(self: ConcurrentBag[T], item: T)
             Adds an object to the System.Collections.Concurrent.ConcurrentBag.
@@ -263,10 +272,12 @@ class ConcurrentBag(object, IProducerConsumerCollection[T], IEnumerable[T], IEnu
         pass
 
     def CopyTo(self, array, index):
+        # type: (self: ConcurrentBag[T], array: Array[T], index: int)
         """ CopyTo(self: ConcurrentBag[T], array: Array[T], index: int) """
         pass
 
     def GetEnumerator(self):
+        # type: (self: ConcurrentBag[T]) -> IEnumerator[T]
         """
         GetEnumerator(self: ConcurrentBag[T]) -> IEnumerator[T]
         
@@ -276,6 +287,7 @@ class ConcurrentBag(object, IProducerConsumerCollection[T], IEnumerable[T], IEnu
         pass
 
     def ToArray(self):
+        # type: (self: ConcurrentBag[T]) -> Array[T]
         """
         ToArray(self: ConcurrentBag[T]) -> Array[T]
         
@@ -285,10 +297,12 @@ class ConcurrentBag(object, IProducerConsumerCollection[T], IEnumerable[T], IEnu
         pass
 
     def TryPeek(self, result):
+        # type: (self: ConcurrentBag[T]) -> (bool, T)
         """ TryPeek(self: ConcurrentBag[T]) -> (bool, T) """
         pass
 
     def TryTake(self, result):
+        # type: (self: ConcurrentBag[T]) -> (bool, T)
         """ TryTake(self: ConcurrentBag[T]) -> (bool, T) """
         pass
 
@@ -328,22 +342,23 @@ class ConcurrentBag(object, IProducerConsumerCollection[T], IEnumerable[T], IEnu
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of elements contained in the System.Collections.Concurrent.ConcurrentBag.
-
-Get: Count(self: ConcurrentBag[T]) -> int
-
-"""
+    """
+    Gets the number of elements contained in the System.Collections.Concurrent.ConcurrentBag.
+    
+    Get: Count(self: ConcurrentBag[T]) -> int
+    """
 
     IsEmpty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that indicates whether the System.Collections.Concurrent.ConcurrentBag is empty.
-
-Get: IsEmpty(self: ConcurrentBag[T]) -> bool
-
-"""
+    """
+    Gets a value that indicates whether the System.Collections.Concurrent.ConcurrentBag is empty.
+    
+    Get: IsEmpty(self: ConcurrentBag[T]) -> bool
+    """
 
 
 
 class ConcurrentDictionary(object, IDictionary[TKey, TValue], ICollection[KeyValuePair[TKey, TValue]], IEnumerable[KeyValuePair[TKey, TValue]], IEnumerable, IDictionary, ICollection, IReadOnlyDictionary[TKey, TValue], IReadOnlyCollection[KeyValuePair[TKey, TValue]]):
+    # type: (concurrencyLevel: int, capacity: int)
     """
     ConcurrentDictionary[TKey, TValue](concurrencyLevel: int, capacity: int)
     ConcurrentDictionary[TKey, TValue]()
@@ -354,6 +369,7 @@ class ConcurrentDictionary(object, IDictionary[TKey, TValue], ICollection[KeyVal
     ConcurrentDictionary[TKey, TValue](concurrencyLevel: int, capacity: int, comparer: IEqualityComparer[TKey])
     """
     def AddOrUpdate(self, key, *__args):
+        # type: (self: ConcurrentDictionary[TKey, TValue], key: TKey, addValueFactory: Func[TKey, TArg, TValue], updateValueFactory: Func[TKey, TValue, TArg, TValue], factoryArgument: TArg) -> TValue
         """
         AddOrUpdate[TArg](self: ConcurrentDictionary[TKey, TValue], key: TKey, addValueFactory: Func[TKey, TArg, TValue], updateValueFactory: Func[TKey, TValue, TArg, TValue], factoryArgument: TArg) -> TValue
         AddOrUpdate(self: ConcurrentDictionary[TKey, TValue], key: TKey, addValueFactory: Func[TKey, TValue], updateValueFactory: Func[TKey, TValue, TValue]) -> TValue
@@ -362,6 +378,7 @@ class ConcurrentDictionary(object, IDictionary[TKey, TValue], ICollection[KeyVal
         pass
 
     def Clear(self):
+        # type: (self: ConcurrentDictionary[TKey, TValue])
         """
         Clear(self: ConcurrentDictionary[TKey, TValue])
             Removes all keys and values from the System.Collections.Concurrent.ConcurrentDictionary.
@@ -369,6 +386,7 @@ class ConcurrentDictionary(object, IDictionary[TKey, TValue], ICollection[KeyVal
         pass
 
     def ContainsKey(self, key):
+        # type: (self: ConcurrentDictionary[TKey, TValue], key: TKey) -> bool
         """
         ContainsKey(self: ConcurrentDictionary[TKey, TValue], key: TKey) -> bool
         
@@ -380,6 +398,7 @@ class ConcurrentDictionary(object, IDictionary[TKey, TValue], ICollection[KeyVal
         pass
 
     def GetEnumerator(self):
+        # type: (self: ConcurrentDictionary[TKey, TValue]) -> IEnumerator[KeyValuePair[TKey, TValue]]
         """
         GetEnumerator(self: ConcurrentDictionary[TKey, TValue]) -> IEnumerator[KeyValuePair[TKey, TValue]]
         
@@ -389,6 +408,7 @@ class ConcurrentDictionary(object, IDictionary[TKey, TValue], ICollection[KeyVal
         pass
 
     def GetOrAdd(self, key, *__args):
+        # type: (self: ConcurrentDictionary[TKey, TValue], key: TKey, valueFactory: Func[TKey, TValue]) -> TValue
         """
         GetOrAdd(self: ConcurrentDictionary[TKey, TValue], key: TKey, valueFactory: Func[TKey, TValue]) -> TValue
         
@@ -396,23 +416,20 @@ class ConcurrentDictionary(object, IDictionary[TKey, TValue], ICollection[KeyVal
         
             key: The key of the element to add.
             valueFactory: The function used to generate a value for the key
-            Returns: The value for the key. This will be either the existing value for the key if the key is already in the dictionary, or the new value for the key as returned 
-             by valueFactory if the key was not in the dictionary.
-        
+            Returns: The value for the key. This will be either the existing value for the key if the key is already in the dictionary, or the new value for the key as returned by valueFactory if the key was not in the dictionary.
         GetOrAdd(self: ConcurrentDictionary[TKey, TValue], key: TKey, value: TValue) -> TValue
         
             Adds a key/value pair to the System.Collections.Concurrent.ConcurrentDictionary if the key does not already exist.
         
             key: The key of the element to add.
             value: the value to be added, if the key does not already exist
-            Returns: The value for the key. This will be either the existing value for the key if the key is already in the dictionary, or the new value if the key was not in 
-             the dictionary.
-        
+            Returns: The value for the key. This will be either the existing value for the key if the key is already in the dictionary, or the new value if the key was not in the dictionary.
         GetOrAdd[TArg](self: ConcurrentDictionary[TKey, TValue], key: TKey, valueFactory: Func[TKey, TArg, TValue], factoryArgument: TArg) -> TValue
         """
         pass
 
     def ToArray(self):
+        # type: (self: ConcurrentDictionary[TKey, TValue]) -> Array[KeyValuePair[TKey, TValue]]
         """
         ToArray(self: ConcurrentDictionary[TKey, TValue]) -> Array[KeyValuePair[TKey, TValue]]
         
@@ -422,6 +439,7 @@ class ConcurrentDictionary(object, IDictionary[TKey, TValue], ICollection[KeyVal
         pass
 
     def TryAdd(self, key, value):
+        # type: (self: ConcurrentDictionary[TKey, TValue], key: TKey, value: TValue) -> bool
         """
         TryAdd(self: ConcurrentDictionary[TKey, TValue], key: TKey, value: TValue) -> bool
         
@@ -429,20 +447,22 @@ class ConcurrentDictionary(object, IDictionary[TKey, TValue], ICollection[KeyVal
         
             key: The key of the element to add.
             value: The value of the element to add. The value can be a null reference (Nothing in Visual Basic) for reference types.
-            Returns: true if the key/value pair was added to the System.Collections.Concurrent.ConcurrentDictionary successfully. If the key already exists, this method returns 
-             false.
+            Returns: true if the key/value pair was added to the System.Collections.Concurrent.ConcurrentDictionary successfully. If the key already exists, this method returns false.
         """
         pass
 
     def TryGetValue(self, key, value):
+        # type: (self: ConcurrentDictionary[TKey, TValue], key: TKey) -> (bool, TValue)
         """ TryGetValue(self: ConcurrentDictionary[TKey, TValue], key: TKey) -> (bool, TValue) """
         pass
 
     def TryRemove(self, key, value):
+        # type: (self: ConcurrentDictionary[TKey, TValue], key: TKey) -> (bool, TValue)
         """ TryRemove(self: ConcurrentDictionary[TKey, TValue], key: TKey) -> (bool, TValue) """
         pass
 
     def TryUpdate(self, key, newValue, comparisonValue):
+        # type: (self: ConcurrentDictionary[TKey, TValue], key: TKey, newValue: TValue, comparisonValue: TValue) -> bool
         """
         TryUpdate(self: ConcurrentDictionary[TKey, TValue], key: TKey, newValue: TValue, comparisonValue: TValue) -> bool
         
@@ -513,55 +533,58 @@ class ConcurrentDictionary(object, IDictionary[TKey, TValue], ICollection[KeyVal
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of key/value pairs contained in the System.Collections.Concurrent.ConcurrentDictionary.
-
-Get: Count(self: ConcurrentDictionary[TKey, TValue]) -> int
-
-"""
+    """
+    Gets the number of key/value pairs contained in the System.Collections.Concurrent.ConcurrentDictionary.
+    
+    Get: Count(self: ConcurrentDictionary[TKey, TValue]) -> int
+    """
 
     IsEmpty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that indicates whether the System.Collections.Concurrent.ConcurrentDictionary is empty.
-
-Get: IsEmpty(self: ConcurrentDictionary[TKey, TValue]) -> bool
-
-"""
+    """
+    Gets a value that indicates whether the System.Collections.Concurrent.ConcurrentDictionary is empty.
+    
+    Get: IsEmpty(self: ConcurrentDictionary[TKey, TValue]) -> bool
+    """
 
     Keys = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection containing the keys in the System.Collections.Generic.Dictionary{TKey,TValue}.
-
-Get: Keys(self: ConcurrentDictionary[TKey, TValue]) -> ICollection[TKey]
-
-"""
+    """
+    Gets a collection containing the keys in the System.Collections.Generic.Dictionary{TKey,TValue}.
+    
+    Get: Keys(self: ConcurrentDictionary[TKey, TValue]) -> ICollection[TKey]
+    """
 
     Values = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection containing the values in the System.Collections.Generic.Dictionary{TKey,TValue}.
-
-Get: Values(self: ConcurrentDictionary[TKey, TValue]) -> ICollection[TValue]
-
-"""
+    """
+    Gets a collection containing the values in the System.Collections.Generic.Dictionary{TKey,TValue}.
+    
+    Get: Values(self: ConcurrentDictionary[TKey, TValue]) -> ICollection[TValue]
+    """
 
 
 
 class ConcurrentQueue(object, IProducerConsumerCollection[T], IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollection[T]):
+    # type: ()
     """
     ConcurrentQueue[T]()
     ConcurrentQueue[T](collection: IEnumerable[T])
     """
     def CopyTo(self, array, index):
+        # type: (self: ConcurrentQueue[T], array: Array[T], index: int)
         """ CopyTo(self: ConcurrentQueue[T], array: Array[T], index: int) """
         pass
 
     def Enqueue(self, item):
+        # type: (self: ConcurrentQueue[T], item: T)
         """
         Enqueue(self: ConcurrentQueue[T], item: T)
             Adds an object to the end of the System.Collections.Concurrent.ConcurrentQueue.
         
-            item: The object to add to the end of the System.Collections.Concurrent.ConcurrentQueue. The value can be a null reference (Nothing in Visual Basic) for reference 
-             types.
+            item: The object to add to the end of the System.Collections.Concurrent.ConcurrentQueue. The value can be a null reference (Nothing in Visual Basic) for reference types.
         """
         pass
 
     def GetEnumerator(self):
+        # type: (self: ConcurrentQueue[T]) -> IEnumerator[T]
         """
         GetEnumerator(self: ConcurrentQueue[T]) -> IEnumerator[T]
         
@@ -571,6 +594,7 @@ class ConcurrentQueue(object, IProducerConsumerCollection[T], IEnumerable[T], IE
         pass
 
     def ToArray(self):
+        # type: (self: ConcurrentQueue[T]) -> Array[T]
         """
         ToArray(self: ConcurrentQueue[T]) -> Array[T]
         
@@ -580,10 +604,12 @@ class ConcurrentQueue(object, IProducerConsumerCollection[T], IEnumerable[T], IE
         pass
 
     def TryDequeue(self, result):
+        # type: (self: ConcurrentQueue[T]) -> (bool, T)
         """ TryDequeue(self: ConcurrentQueue[T]) -> (bool, T) """
         pass
 
     def TryPeek(self, result):
+        # type: (self: ConcurrentQueue[T]) -> (bool, T)
         """ TryPeek(self: ConcurrentQueue[T]) -> (bool, T) """
         pass
 
@@ -619,27 +645,29 @@ class ConcurrentQueue(object, IProducerConsumerCollection[T], IEnumerable[T], IE
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of elements contained in the System.Collections.Concurrent.ConcurrentQueue.
-
-Get: Count(self: ConcurrentQueue[T]) -> int
-
-"""
+    """
+    Gets the number of elements contained in the System.Collections.Concurrent.ConcurrentQueue.
+    
+    Get: Count(self: ConcurrentQueue[T]) -> int
+    """
 
     IsEmpty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that indicates whether the System.Collections.Concurrent.ConcurrentQueue is empty.
-
-Get: IsEmpty(self: ConcurrentQueue[T]) -> bool
-
-"""
+    """
+    Gets a value that indicates whether the System.Collections.Concurrent.ConcurrentQueue is empty.
+    
+    Get: IsEmpty(self: ConcurrentQueue[T]) -> bool
+    """
 
 
 
 class ConcurrentStack(object, IProducerConsumerCollection[T], IEnumerable[T], IEnumerable, ICollection, IReadOnlyCollection[T]):
+    # type: ()
     """
     ConcurrentStack[T]()
     ConcurrentStack[T](collection: IEnumerable[T])
     """
     def Clear(self):
+        # type: (self: ConcurrentStack[T])
         """
         Clear(self: ConcurrentStack[T])
             Removes all objects from the System.Collections.Concurrent.ConcurrentStack.
@@ -647,10 +675,12 @@ class ConcurrentStack(object, IProducerConsumerCollection[T], IEnumerable[T], IE
         pass
 
     def CopyTo(self, array, index):
+        # type: (self: ConcurrentStack[T], array: Array[T], index: int)
         """ CopyTo(self: ConcurrentStack[T], array: Array[T], index: int) """
         pass
 
     def GetEnumerator(self):
+        # type: (self: ConcurrentStack[T]) -> IEnumerator[T]
         """
         GetEnumerator(self: ConcurrentStack[T]) -> IEnumerator[T]
         
@@ -660,6 +690,7 @@ class ConcurrentStack(object, IProducerConsumerCollection[T], IEnumerable[T], IE
         pass
 
     def Push(self, item):
+        # type: (self: ConcurrentStack[T], item: T)
         """
         Push(self: ConcurrentStack[T], item: T)
             Inserts an object at the top of the System.Collections.Concurrent.ConcurrentStack.
@@ -669,10 +700,12 @@ class ConcurrentStack(object, IProducerConsumerCollection[T], IEnumerable[T], IE
         pass
 
     def PushRange(self, items, startIndex=None, count=None):
+        # type: (self: ConcurrentStack[T], items: Array[T])PushRange(self: ConcurrentStack[T], items: Array[T], startIndex: int, count: int)
         """ PushRange(self: ConcurrentStack[T], items: Array[T])PushRange(self: ConcurrentStack[T], items: Array[T], startIndex: int, count: int) """
         pass
 
     def ToArray(self):
+        # type: (self: ConcurrentStack[T]) -> Array[T]
         """
         ToArray(self: ConcurrentStack[T]) -> Array[T]
         
@@ -682,14 +715,17 @@ class ConcurrentStack(object, IProducerConsumerCollection[T], IEnumerable[T], IE
         pass
 
     def TryPeek(self, result):
+        # type: (self: ConcurrentStack[T]) -> (bool, T)
         """ TryPeek(self: ConcurrentStack[T]) -> (bool, T) """
         pass
 
     def TryPop(self, result):
+        # type: (self: ConcurrentStack[T]) -> (bool, T)
         """ TryPop(self: ConcurrentStack[T]) -> (bool, T) """
         pass
 
     def TryPopRange(self, items, startIndex=None, count=None):
+        # type: (self: ConcurrentStack[T], items: Array[T]) -> int
         """
         TryPopRange(self: ConcurrentStack[T], items: Array[T]) -> int
         TryPopRange(self: ConcurrentStack[T], items: Array[T], startIndex: int, count: int) -> int
@@ -728,22 +764,23 @@ class ConcurrentStack(object, IProducerConsumerCollection[T], IEnumerable[T], IE
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of elements contained in the System.Collections.Concurrent.ConcurrentStack.
-
-Get: Count(self: ConcurrentStack[T]) -> int
-
-"""
+    """
+    Gets the number of elements contained in the System.Collections.Concurrent.ConcurrentStack.
+    
+    Get: Count(self: ConcurrentStack[T]) -> int
+    """
 
     IsEmpty = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that indicates whether the System.Collections.Concurrent.ConcurrentStack is empty.
-
-Get: IsEmpty(self: ConcurrentStack[T]) -> bool
-
-"""
+    """
+    Gets a value that indicates whether the System.Collections.Concurrent.ConcurrentStack is empty.
+    
+    Get: IsEmpty(self: ConcurrentStack[T]) -> bool
+    """
 
 
 
 class EnumerablePartitionerOptions(Enum, IComparable, IFormattable, IConvertible):
+    # type: (flags) EnumerablePartitionerOptions, values: NoBuffering (1), None (0)
     """ enum (flags) EnumerablePartitionerOptions, values: NoBuffering (1), None (0) """
     def __eq__(self, *args): #cannot find CLR method
         """ x.__eq__(y) <==> x==yx.__eq__(y) <==> x==yx.__eq__(y) <==> x==y """
@@ -786,10 +823,12 @@ class EnumerablePartitionerOptions(Enum, IComparable, IFormattable, IConvertible
 class IProducerConsumerCollection(IEnumerable[T], IEnumerable, ICollection):
     # no doc
     def CopyTo(self, array, index):
+        # type: (self: IProducerConsumerCollection[T], array: Array[T], index: int)
         """ CopyTo(self: IProducerConsumerCollection[T], array: Array[T], index: int) """
         pass
 
     def ToArray(self):
+        # type: (self: IProducerConsumerCollection[T]) -> Array[T]
         """
         ToArray(self: IProducerConsumerCollection[T]) -> Array[T]
         
@@ -799,6 +838,7 @@ class IProducerConsumerCollection(IEnumerable[T], IEnumerable, ICollection):
         pass
 
     def TryAdd(self, item):
+        # type: (self: IProducerConsumerCollection[T], item: T) -> bool
         """
         TryAdd(self: IProducerConsumerCollection[T], item: T) -> bool
         
@@ -810,6 +850,7 @@ class IProducerConsumerCollection(IEnumerable[T], IEnumerable, ICollection):
         pass
 
     def TryTake(self, item):
+        # type: (self: IProducerConsumerCollection[T]) -> (bool, T)
         """ TryTake(self: IProducerConsumerCollection[T]) -> (bool, T) """
         pass
 
@@ -833,6 +874,7 @@ class IProducerConsumerCollection(IEnumerable[T], IEnumerable, ICollection):
 class OrderablePartitioner(Partitioner[TSource]):
     # no doc
     def GetDynamicPartitions(self):
+        # type: (self: OrderablePartitioner[TSource]) -> IEnumerable[TSource]
         """
         GetDynamicPartitions(self: OrderablePartitioner[TSource]) -> IEnumerable[TSource]
         
@@ -842,6 +884,7 @@ class OrderablePartitioner(Partitioner[TSource]):
         pass
 
     def GetOrderableDynamicPartitions(self):
+        # type: (self: OrderablePartitioner[TSource]) -> IEnumerable[KeyValuePair[Int64, TSource]]
         """
         GetOrderableDynamicPartitions(self: OrderablePartitioner[TSource]) -> IEnumerable[KeyValuePair[Int64, TSource]]
         
@@ -851,6 +894,7 @@ class OrderablePartitioner(Partitioner[TSource]):
         pass
 
     def GetOrderablePartitions(self, partitionCount):
+        # type: (self: OrderablePartitioner[TSource], partitionCount: int) -> IList[IEnumerator[KeyValuePair[Int64, TSource]]]
         """
         GetOrderablePartitions(self: OrderablePartitioner[TSource], partitionCount: int) -> IList[IEnumerator[KeyValuePair[Int64, TSource]]]
         
@@ -862,6 +906,7 @@ class OrderablePartitioner(Partitioner[TSource]):
         pass
 
     def GetPartitions(self, partitionCount):
+        # type: (self: OrderablePartitioner[TSource], partitionCount: int) -> IList[IEnumerator[TSource]]
         """
         GetPartitions(self: OrderablePartitioner[TSource], partitionCount: int) -> IList[IEnumerator[TSource]]
         
@@ -878,25 +923,25 @@ class OrderablePartitioner(Partitioner[TSource]):
         pass
 
     KeysNormalized = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets whether order keys are normalized.
-
-Get: KeysNormalized(self: OrderablePartitioner[TSource]) -> bool
-
-"""
+    """
+    Gets whether order keys are normalized.
+    
+    Get: KeysNormalized(self: OrderablePartitioner[TSource]) -> bool
+    """
 
     KeysOrderedAcrossPartitions = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets whether elements in an earlier partition always come before elements in a later partition.
-
-Get: KeysOrderedAcrossPartitions(self: OrderablePartitioner[TSource]) -> bool
-
-"""
+    """
+    Gets whether elements in an earlier partition always come before elements in a later partition.
+    
+    Get: KeysOrderedAcrossPartitions(self: OrderablePartitioner[TSource]) -> bool
+    """
 
     KeysOrderedInEachPartition = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets whether elements in each partition are yielded in the order of increasing keys.
-
-Get: KeysOrderedInEachPartition(self: OrderablePartitioner[TSource]) -> bool
-
-"""
+    """
+    Gets whether elements in each partition are yielded in the order of increasing keys.
+    
+    Get: KeysOrderedInEachPartition(self: OrderablePartitioner[TSource]) -> bool
+    """
 
 
 

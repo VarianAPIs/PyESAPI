@@ -17,6 +17,7 @@ class SoundPlayer(Component, IComponent, IDisposable, ISerializable):
     SoundPlayer(stream: Stream)
     """
     def Dispose(self):
+        # type: (self: Component, disposing: bool)
         """
         Dispose(self: Component, disposing: bool)
             Releases the unmanaged resources used by the System.ComponentModel.Component and optionally releases the managed resources.
@@ -26,18 +27,19 @@ class SoundPlayer(Component, IComponent, IDisposable, ISerializable):
         pass
 
     def GetService(self, *args): #cannot find CLR method
+        # type: (self: Component, service: Type) -> object
         """
         GetService(self: Component, service: Type) -> object
         
             Returns an object that represents a service provided by the System.ComponentModel.Component or by its System.ComponentModel.Container.
         
             service: A service provided by the System.ComponentModel.Component.
-            Returns: An System.Object that represents a service provided by the System.ComponentModel.Component, or null if the System.ComponentModel.Component does not provide 
-             the specified service.
+            Returns: An System.Object that represents a service provided by the System.ComponentModel.Component, or null if the System.ComponentModel.Component does not provide the specified service.
         """
         pass
 
     def Load(self):
+        # type: (self: SoundPlayer)
         """
         Load(self: SoundPlayer)
             Loads a sound synchronously.
@@ -45,6 +47,7 @@ class SoundPlayer(Component, IComponent, IDisposable, ISerializable):
         pass
 
     def LoadAsync(self):
+        # type: (self: SoundPlayer)
         """
         LoadAsync(self: SoundPlayer)
             Loads a .wav file from a stream or a Web resource using a new thread.
@@ -52,14 +55,14 @@ class SoundPlayer(Component, IComponent, IDisposable, ISerializable):
         pass
 
     def MemberwiseClone(self, *args): #cannot find CLR method
+        # type: (self: MarshalByRefObject, cloneIdentity: bool) -> MarshalByRefObject
         """
         MemberwiseClone(self: MarshalByRefObject, cloneIdentity: bool) -> MarshalByRefObject
         
             Creates a shallow copy of the current System.MarshalByRefObject object.
         
-            cloneIdentity: false to delete the current System.MarshalByRefObject object's identity, which will cause the object to be assigned a new identity when it is marshaled 
-             across a remoting boundary. A value of false is usually appropriate. true to copy the current System.MarshalByRefObject object's identity to its clone, 
-             which will cause remoting client calls to be routed to the remote server object.
+            cloneIdentity: false to delete the current System.MarshalByRefObject object's identity, which will cause the object to be assigned a new identity when it is marshaled across a remoting boundary. A value of false is usually appropriate. true to copy the current 
+             System.MarshalByRefObject object's identity to its clone, which will cause remoting client calls to be routed to the remote server object.
         
             Returns: A shallow copy of the current System.MarshalByRefObject object.
         MemberwiseClone(self: object) -> object
@@ -70,6 +73,7 @@ class SoundPlayer(Component, IComponent, IDisposable, ISerializable):
         pass
 
     def OnLoadCompleted(self, *args): #cannot find CLR method
+        # type: (self: SoundPlayer, e: AsyncCompletedEventArgs)
         """
         OnLoadCompleted(self: SoundPlayer, e: AsyncCompletedEventArgs)
             Raises the System.Media.SoundPlayer.LoadCompleted event.
@@ -79,6 +83,7 @@ class SoundPlayer(Component, IComponent, IDisposable, ISerializable):
         pass
 
     def OnSoundLocationChanged(self, *args): #cannot find CLR method
+        # type: (self: SoundPlayer, e: EventArgs)
         """
         OnSoundLocationChanged(self: SoundPlayer, e: EventArgs)
             Raises the System.Media.SoundPlayer.SoundLocationChanged event.
@@ -88,6 +93,7 @@ class SoundPlayer(Component, IComponent, IDisposable, ISerializable):
         pass
 
     def OnStreamChanged(self, *args): #cannot find CLR method
+        # type: (self: SoundPlayer, e: EventArgs)
         """
         OnStreamChanged(self: SoundPlayer, e: EventArgs)
             Raises the System.Media.SoundPlayer.StreamChanged event.
@@ -97,6 +103,7 @@ class SoundPlayer(Component, IComponent, IDisposable, ISerializable):
         pass
 
     def Play(self):
+        # type: (self: SoundPlayer)
         """
         Play(self: SoundPlayer)
             Plays the .wav file using a new thread, and loads the .wav file first if it has not been loaded.
@@ -104,6 +111,7 @@ class SoundPlayer(Component, IComponent, IDisposable, ISerializable):
         pass
 
     def PlayLooping(self):
+        # type: (self: SoundPlayer)
         """
         PlayLooping(self: SoundPlayer)
             Plays and loops the .wav file using a new thread, and loads the .wav file first if it has not been loaded.
@@ -111,6 +119,7 @@ class SoundPlayer(Component, IComponent, IDisposable, ISerializable):
         pass
 
     def PlaySync(self):
+        # type: (self: SoundPlayer)
         """
         PlaySync(self: SoundPlayer)
             Plays the .wav file and loads the .wav file first if it has not been loaded.
@@ -118,6 +127,7 @@ class SoundPlayer(Component, IComponent, IDisposable, ISerializable):
         pass
 
     def Stop(self):
+        # type: (self: SoundPlayer)
         """
         Stop(self: SoundPlayer)
             Stops playback of the sound if playback is occurring.
@@ -153,58 +163,56 @@ class SoundPlayer(Component, IComponent, IDisposable, ISerializable):
         pass
 
     CanRaiseEvents = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether the component can raise an event.
-
-"""
+    """ Gets a value indicating whether the component can raise an event. """
 
     DesignMode = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value that indicates whether the System.ComponentModel.Component is currently in design mode.
-
-"""
+    """ Gets a value that indicates whether the System.ComponentModel.Component is currently in design mode. """
 
     Events = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the list of event handlers that are attached to this System.ComponentModel.Component.
-
-"""
+    """ Gets the list of event handlers that are attached to this System.ComponentModel.Component. """
 
     IsLoadCompleted = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether loading of a .wav file has successfully completed.
-
-Get: IsLoadCompleted(self: SoundPlayer) -> bool
-
-"""
+    """
+    Gets a value indicating whether loading of a .wav file has successfully completed.
+    
+    Get: IsLoadCompleted(self: SoundPlayer) -> bool
+    """
 
     LoadTimeout = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the time, in milliseconds, in which the .wav file must load.
-
-Get: LoadTimeout(self: SoundPlayer) -> int
-
-Set: LoadTimeout(self: SoundPlayer) = value
-"""
+    """
+    Gets or sets the time, in milliseconds, in which the .wav file must load.
+    
+    Get: LoadTimeout(self: SoundPlayer) -> int
+    
+    Set: LoadTimeout(self: SoundPlayer) = value
+    """
 
     SoundLocation = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the file path or URL of the .wav file to load.
-
-Get: SoundLocation(self: SoundPlayer) -> str
-
-Set: SoundLocation(self: SoundPlayer) = value
-"""
+    """
+    Gets or sets the file path or URL of the .wav file to load.
+    
+    Get: SoundLocation(self: SoundPlayer) -> str
+    
+    Set: SoundLocation(self: SoundPlayer) = value
+    """
 
     Stream = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the System.IO.Stream from which to load the .wav file.
-
-Get: Stream(self: SoundPlayer) -> Stream
-
-Set: Stream(self: SoundPlayer) = value
-"""
+    """
+    Gets or sets the System.IO.Stream from which to load the .wav file.
+    
+    Get: Stream(self: SoundPlayer) -> Stream
+    
+    Set: Stream(self: SoundPlayer) = value
+    """
 
     Tag = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets the System.Object that contains data about the System.Media.SoundPlayer.
-
-Get: Tag(self: SoundPlayer) -> object
-
-Set: Tag(self: SoundPlayer) = value
-"""
+    """
+    Gets or sets the System.Object that contains data about the System.Media.SoundPlayer.
+    
+    Get: Tag(self: SoundPlayer) -> object
+    
+    Set: Tag(self: SoundPlayer) = value
+    """
 
 
     LoadCompleted = None
@@ -215,6 +223,7 @@ Set: Tag(self: SoundPlayer) = value
 class SystemSound(object):
     """ Represents a system sound type. """
     def Play(self):
+        # type: (self: SystemSound)
         """
         Play(self: SystemSound)
             Plays the system sound type.

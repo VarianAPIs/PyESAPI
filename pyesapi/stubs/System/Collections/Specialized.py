@@ -17,18 +17,15 @@ class BitVector32(object):
     """
     @staticmethod
     def CreateMask(previous=None):
+        # type: () -> int
         """
         CreateMask() -> int
         
-            Creates the first mask in a series of masks that can be used to retrieve individual bits in a System.Collections.Specialized.BitVector32 that is set up as 
-             bit flags.
-        
+            Creates the first mask in a series of masks that can be used to retrieve individual bits in a System.Collections.Specialized.BitVector32 that is set up as bit flags.
             Returns: A mask that isolates the first bit flag in the System.Collections.Specialized.BitVector32.
         CreateMask(previous: int) -> int
         
-            Creates an additional mask following the specified mask in a series of masks that can be used to retrieve individual bits in a 
-             System.Collections.Specialized.BitVector32 that is set up as bit flags.
-        
+            Creates an additional mask following the specified mask in a series of masks that can be used to retrieve individual bits in a System.Collections.Specialized.BitVector32 that is set up as bit flags.
         
             previous: The mask that indicates the previous bit flag.
             Returns: A mask that isolates the bit flag following the one that previous points to in System.Collections.Specialized.BitVector32.
@@ -37,6 +34,7 @@ class BitVector32(object):
 
     @staticmethod
     def CreateSection(maxValue, previous=None):
+        # type: (maxValue: Int16) -> Section
         """
         CreateSection(maxValue: Int16) -> Section
         
@@ -49,6 +47,7 @@ class BitVector32(object):
         pass
 
     def Equals(self, o):
+        # type: (self: BitVector32, o: object) -> bool
         """
         Equals(self: BitVector32, o: object) -> bool
         
@@ -60,6 +59,7 @@ class BitVector32(object):
         pass
 
     def GetHashCode(self):
+        # type: (self: BitVector32) -> int
         """
         GetHashCode(self: BitVector32) -> int
         
@@ -70,6 +70,7 @@ class BitVector32(object):
 
     @staticmethod
     def ToString(value=None):
+        # type: (value: BitVector32) -> str
         """
         ToString(value: BitVector32) -> str
         
@@ -109,11 +110,11 @@ class BitVector32(object):
         pass
 
     Data = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the value of the System.Collections.Specialized.BitVector32 as an integer.
-
-Get: Data(self: BitVector32) -> int
-
-"""
+    """
+    Gets the value of the System.Collections.Specialized.BitVector32 as an integer.
+    
+    Get: Data(self: BitVector32) -> int
+    """
 
 
     Section = None
@@ -127,6 +128,7 @@ class CollectionsUtil(object):
     """
     @staticmethod
     def CreateCaseInsensitiveHashtable(*__args):
+        # type: (capacity: int) -> Hashtable
         """
         CreateCaseInsensitiveHashtable(capacity: int) -> Hashtable
         
@@ -140,9 +142,7 @@ class CollectionsUtil(object):
             Returns: A new case-insensitive instance of the System.Collections.Hashtable class with the default initial capacity.
         CreateCaseInsensitiveHashtable(d: IDictionary) -> Hashtable
         
-            Copies the entries from the specified dictionary to a new case-insensitive instance of the System.Collections.Hashtable class with the same initial capacity 
-             as the number of entries copied.
-        
+            Copies the entries from the specified dictionary to a new case-insensitive instance of the System.Collections.Hashtable class with the same initial capacity as the number of entries copied.
         
             d: The System.Collections.IDictionary to copy to a new case-insensitive System.Collections.Hashtable.
             Returns: A new case-insensitive instance of the System.Collections.Hashtable class containing the entries from the specified System.Collections.IDictionary.
@@ -151,6 +151,7 @@ class CollectionsUtil(object):
 
     @staticmethod
     def CreateCaseInsensitiveSortedList():
+        # type: () -> SortedList
         """
         CreateCaseInsensitiveSortedList() -> SortedList
         
@@ -170,6 +171,7 @@ class HybridDictionary(object, IDictionary, ICollection, IEnumerable):
     HybridDictionary(initialSize: int, caseInsensitive: bool)
     """
     def Add(self, key, value):
+        # type: (self: HybridDictionary, key: object, value: object)
         """
         Add(self: HybridDictionary, key: object, value: object)
             Adds an entry with the specified key and value into the System.Collections.Specialized.HybridDictionary.
@@ -180,6 +182,7 @@ class HybridDictionary(object, IDictionary, ICollection, IEnumerable):
         pass
 
     def Clear(self):
+        # type: (self: HybridDictionary)
         """
         Clear(self: HybridDictionary)
             Removes all entries from the System.Collections.Specialized.HybridDictionary.
@@ -187,6 +190,7 @@ class HybridDictionary(object, IDictionary, ICollection, IEnumerable):
         pass
 
     def Contains(self, key):
+        # type: (self: HybridDictionary, key: object) -> bool
         """
         Contains(self: HybridDictionary, key: object) -> bool
         
@@ -198,18 +202,18 @@ class HybridDictionary(object, IDictionary, ICollection, IEnumerable):
         pass
 
     def CopyTo(self, array, index):
+        # type: (self: HybridDictionary, array: Array, index: int)
         """
         CopyTo(self: HybridDictionary, array: Array, index: int)
             Copies the System.Collections.Specialized.HybridDictionary entries to a one-dimensional System.Array instance at the specified index.
         
-            array: The one-dimensional System.Array that is the destination of the System.Collections.DictionaryEntry objects copied from 
-             System.Collections.Specialized.HybridDictionary. The System.Array must have zero-based indexing.
-        
+            array: The one-dimensional System.Array that is the destination of the System.Collections.DictionaryEntry objects copied from System.Collections.Specialized.HybridDictionary. The System.Array must have zero-based indexing.
             index: The zero-based index in array at which copying begins.
         """
         pass
 
     def GetEnumerator(self):
+        # type: (self: HybridDictionary) -> IDictionaryEnumerator
         """
         GetEnumerator(self: HybridDictionary) -> IDictionaryEnumerator
         
@@ -219,6 +223,7 @@ class HybridDictionary(object, IDictionary, ICollection, IEnumerable):
         pass
 
     def Remove(self, key):
+        # type: (self: HybridDictionary, key: object)
         """
         Remove(self: HybridDictionary, key: object)
             Removes the entry with the specified key from the System.Collections.Specialized.HybridDictionary.
@@ -280,53 +285,54 @@ class HybridDictionary(object, IDictionary, ICollection, IEnumerable):
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of key/value pairs contained in the System.Collections.Specialized.HybridDictionary.
-
-Get: Count(self: HybridDictionary) -> int
-
-"""
+    """
+    Gets the number of key/value pairs contained in the System.Collections.Specialized.HybridDictionary.
+    
+    Get: Count(self: HybridDictionary) -> int
+    """
 
     IsFixedSize = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether the System.Collections.Specialized.HybridDictionary has a fixed size.
-
-Get: IsFixedSize(self: HybridDictionary) -> bool
-
-"""
+    """
+    Gets a value indicating whether the System.Collections.Specialized.HybridDictionary has a fixed size.
+    
+    Get: IsFixedSize(self: HybridDictionary) -> bool
+    """
 
     IsReadOnly = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether the System.Collections.Specialized.HybridDictionary is read-only.
-
-Get: IsReadOnly(self: HybridDictionary) -> bool
-
-"""
+    """
+    Gets a value indicating whether the System.Collections.Specialized.HybridDictionary is read-only.
+    
+    Get: IsReadOnly(self: HybridDictionary) -> bool
+    """
 
     IsSynchronized = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether the System.Collections.Specialized.HybridDictionary is synchronized (thread safe).
-
-Get: IsSynchronized(self: HybridDictionary) -> bool
-
-"""
+    # type: (thread safe).
+    """
+    Gets a value indicating whether the System.Collections.Specialized.HybridDictionary is synchronized (thread safe).
+    
+    Get: IsSynchronized(self: HybridDictionary) -> bool
+    """
 
     Keys = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an System.Collections.ICollection containing the keys in the System.Collections.Specialized.HybridDictionary.
-
-Get: Keys(self: HybridDictionary) -> ICollection
-
-"""
+    """
+    Gets an System.Collections.ICollection containing the keys in the System.Collections.Specialized.HybridDictionary.
+    
+    Get: Keys(self: HybridDictionary) -> ICollection
+    """
 
     SyncRoot = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an object that can be used to synchronize access to the System.Collections.Specialized.HybridDictionary.
-
-Get: SyncRoot(self: HybridDictionary) -> object
-
-"""
+    """
+    Gets an object that can be used to synchronize access to the System.Collections.Specialized.HybridDictionary.
+    
+    Get: SyncRoot(self: HybridDictionary) -> object
+    """
 
     Values = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an System.Collections.ICollection containing the values in the System.Collections.Specialized.HybridDictionary.
-
-Get: Values(self: HybridDictionary) -> ICollection
-
-"""
+    """
+    Gets an System.Collections.ICollection containing the values in the System.Collections.Specialized.HybridDictionary.
+    
+    Get: Values(self: HybridDictionary) -> ICollection
+    """
 
 
 
@@ -342,6 +348,7 @@ class INotifyCollectionChanged:
 class IOrderedDictionary(IDictionary, ICollection, IEnumerable):
     """ Represents an indexed collection of key/value pairs. """
     def GetEnumerator(self):
+        # type: (self: IOrderedDictionary) -> IDictionaryEnumerator
         """
         GetEnumerator(self: IOrderedDictionary) -> IDictionaryEnumerator
         
@@ -351,6 +358,7 @@ class IOrderedDictionary(IDictionary, ICollection, IEnumerable):
         pass
 
     def Insert(self, index, key, value):
+        # type: (self: IOrderedDictionary, index: int, key: object, value: object)
         """
         Insert(self: IOrderedDictionary, index: int, key: object, value: object)
             Inserts a key/value pair into the collection at the specified index.
@@ -362,6 +370,7 @@ class IOrderedDictionary(IDictionary, ICollection, IEnumerable):
         pass
 
     def RemoveAt(self, index):
+        # type: (self: IOrderedDictionary, index: int)
         """
         RemoveAt(self: IOrderedDictionary, index: int)
             Removes the element at the specified index.
@@ -410,6 +419,7 @@ class ListDictionary(object, IDictionary, ICollection, IEnumerable):
     ListDictionary(comparer: IComparer)
     """
     def Add(self, key, value):
+        # type: (self: ListDictionary, key: object, value: object)
         """
         Add(self: ListDictionary, key: object, value: object)
             Adds an entry with the specified key and value into the System.Collections.Specialized.ListDictionary.
@@ -420,6 +430,7 @@ class ListDictionary(object, IDictionary, ICollection, IEnumerable):
         pass
 
     def Clear(self):
+        # type: (self: ListDictionary)
         """
         Clear(self: ListDictionary)
             Removes all entries from the System.Collections.Specialized.ListDictionary.
@@ -427,6 +438,7 @@ class ListDictionary(object, IDictionary, ICollection, IEnumerable):
         pass
 
     def Contains(self, key):
+        # type: (self: ListDictionary, key: object) -> bool
         """
         Contains(self: ListDictionary, key: object) -> bool
         
@@ -438,18 +450,18 @@ class ListDictionary(object, IDictionary, ICollection, IEnumerable):
         pass
 
     def CopyTo(self, array, index):
+        # type: (self: ListDictionary, array: Array, index: int)
         """
         CopyTo(self: ListDictionary, array: Array, index: int)
             Copies the System.Collections.Specialized.ListDictionary entries to a one-dimensional System.Array instance at the specified index.
         
-            array: The one-dimensional System.Array that is the destination of the System.Collections.DictionaryEntry objects copied from 
-             System.Collections.Specialized.ListDictionary. The System.Array must have zero-based indexing.
-        
+            array: The one-dimensional System.Array that is the destination of the System.Collections.DictionaryEntry objects copied from System.Collections.Specialized.ListDictionary. The System.Array must have zero-based indexing.
             index: The zero-based index in array at which copying begins.
         """
         pass
 
     def GetEnumerator(self):
+        # type: (self: ListDictionary) -> IDictionaryEnumerator
         """
         GetEnumerator(self: ListDictionary) -> IDictionaryEnumerator
         
@@ -459,6 +471,7 @@ class ListDictionary(object, IDictionary, ICollection, IEnumerable):
         pass
 
     def Remove(self, key):
+        # type: (self: ListDictionary, key: object)
         """
         Remove(self: ListDictionary, key: object)
             Removes the entry with the specified key from the System.Collections.Specialized.ListDictionary.
@@ -518,59 +531,61 @@ class ListDictionary(object, IDictionary, ICollection, IEnumerable):
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of key/value pairs contained in the System.Collections.Specialized.ListDictionary.
-
-Get: Count(self: ListDictionary) -> int
-
-"""
+    """
+    Gets the number of key/value pairs contained in the System.Collections.Specialized.ListDictionary.
+    
+    Get: Count(self: ListDictionary) -> int
+    """
 
     IsFixedSize = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether the System.Collections.Specialized.ListDictionary has a fixed size.
-
-Get: IsFixedSize(self: ListDictionary) -> bool
-
-"""
+    """
+    Gets a value indicating whether the System.Collections.Specialized.ListDictionary has a fixed size.
+    
+    Get: IsFixedSize(self: ListDictionary) -> bool
+    """
 
     IsReadOnly = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether the System.Collections.Specialized.ListDictionary is read-only.
-
-Get: IsReadOnly(self: ListDictionary) -> bool
-
-"""
+    """
+    Gets a value indicating whether the System.Collections.Specialized.ListDictionary is read-only.
+    
+    Get: IsReadOnly(self: ListDictionary) -> bool
+    """
 
     IsSynchronized = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether the System.Collections.Specialized.ListDictionary is synchronized (thread safe).
-
-Get: IsSynchronized(self: ListDictionary) -> bool
-
-"""
+    # type: (thread safe).
+    """
+    Gets a value indicating whether the System.Collections.Specialized.ListDictionary is synchronized (thread safe).
+    
+    Get: IsSynchronized(self: ListDictionary) -> bool
+    """
 
     Keys = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an System.Collections.ICollection containing the keys in the System.Collections.Specialized.ListDictionary.
-
-Get: Keys(self: ListDictionary) -> ICollection
-
-"""
+    """
+    Gets an System.Collections.ICollection containing the keys in the System.Collections.Specialized.ListDictionary.
+    
+    Get: Keys(self: ListDictionary) -> ICollection
+    """
 
     SyncRoot = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an object that can be used to synchronize access to the System.Collections.Specialized.ListDictionary.
-
-Get: SyncRoot(self: ListDictionary) -> object
-
-"""
+    """
+    Gets an object that can be used to synchronize access to the System.Collections.Specialized.ListDictionary.
+    
+    Get: SyncRoot(self: ListDictionary) -> object
+    """
 
     Values = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an System.Collections.ICollection containing the values in the System.Collections.Specialized.ListDictionary.
-
-Get: Values(self: ListDictionary) -> ICollection
-
-"""
+    """
+    Gets an System.Collections.ICollection containing the values in the System.Collections.Specialized.ListDictionary.
+    
+    Get: Values(self: ListDictionary) -> ICollection
+    """
 
 
 
 class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, IDeserializationCallback):
     """ Provides the abstract base class for a collection of associated System.String keys and System.Object values that can be accessed either with the key or with the index. """
     def BaseAdd(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase, name: str, value: object)
         """
         BaseAdd(self: NameObjectCollectionBase, name: str, value: object)
             Adds an entry with the specified key and value into the System.Collections.Specialized.NameObjectCollectionBase instance.
@@ -581,6 +596,7 @@ class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, 
         pass
 
     def BaseClear(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase)
         """
         BaseClear(self: NameObjectCollectionBase)
             Removes all entries from the System.Collections.Specialized.NameObjectCollectionBase instance.
@@ -588,6 +604,7 @@ class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, 
         pass
 
     def BaseGet(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase, name: str) -> object
         """
         BaseGet(self: NameObjectCollectionBase, name: str) -> object
         
@@ -605,6 +622,7 @@ class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, 
         pass
 
     def BaseGetAllKeys(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase) -> Array[str]
         """
         BaseGetAllKeys(self: NameObjectCollectionBase) -> Array[str]
         
@@ -614,6 +632,7 @@ class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, 
         pass
 
     def BaseGetAllValues(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase) -> Array[object]
         """
         BaseGetAllValues(self: NameObjectCollectionBase) -> Array[object]
         
@@ -629,6 +648,7 @@ class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, 
         pass
 
     def BaseGetKey(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase, index: int) -> str
         """
         BaseGetKey(self: NameObjectCollectionBase, index: int) -> str
         
@@ -640,6 +660,7 @@ class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, 
         pass
 
     def BaseHasKeys(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase) -> bool
         """
         BaseHasKeys(self: NameObjectCollectionBase) -> bool
         
@@ -649,6 +670,7 @@ class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, 
         pass
 
     def BaseRemove(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase, name: str)
         """
         BaseRemove(self: NameObjectCollectionBase, name: str)
             Removes the entries with the specified key from the System.Collections.Specialized.NameObjectCollectionBase instance.
@@ -658,6 +680,7 @@ class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, 
         pass
 
     def BaseRemoveAt(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase, index: int)
         """
         BaseRemoveAt(self: NameObjectCollectionBase, index: int)
             Removes the entry at the specified index of the System.Collections.Specialized.NameObjectCollectionBase instance.
@@ -667,10 +690,11 @@ class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, 
         pass
 
     def BaseSet(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase, name: str, value: object)
         """
         BaseSet(self: NameObjectCollectionBase, name: str, value: object)
-            Sets the value of the first entry with the specified key in the System.Collections.Specialized.NameObjectCollectionBase instance, if found; otherwise, adds 
-             an entry with the specified key and value into the System.Collections.Specialized.NameObjectCollectionBase instance.
+            Sets the value of the first entry with the specified key in the System.Collections.Specialized.NameObjectCollectionBase instance, if found; otherwise, adds an entry with the specified key and value into the 
+             System.Collections.Specialized.NameObjectCollectionBase instance.
         
         
             name: The System.String key of the entry to set. The key can be null.
@@ -684,6 +708,7 @@ class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, 
         pass
 
     def GetEnumerator(self):
+        # type: (self: NameObjectCollectionBase) -> IEnumerator
         """
         GetEnumerator(self: NameObjectCollectionBase) -> IEnumerator
         
@@ -693,21 +718,18 @@ class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, 
         pass
 
     def GetObjectData(self, info, context):
+        # type: (self: NameObjectCollectionBase, info: SerializationInfo, context: StreamingContext)
         """
         GetObjectData(self: NameObjectCollectionBase, info: SerializationInfo, context: StreamingContext)
-            Implements the System.Runtime.Serialization.ISerializable interface and returns the data needed to serialize the 
-             System.Collections.Specialized.NameObjectCollectionBase instance.
+            Implements the System.Runtime.Serialization.ISerializable interface and returns the data needed to serialize the System.Collections.Specialized.NameObjectCollectionBase instance.
         
-        
-            info: A System.Runtime.Serialization.SerializationInfo object that contains the information required to serialize the 
-             System.Collections.Specialized.NameObjectCollectionBase instance.
-        
-            context: A System.Runtime.Serialization.StreamingContext object that contains the source and destination of the serialized stream associated with the 
-             System.Collections.Specialized.NameObjectCollectionBase instance.
+            info: A System.Runtime.Serialization.SerializationInfo object that contains the information required to serialize the System.Collections.Specialized.NameObjectCollectionBase instance.
+            context: A System.Runtime.Serialization.StreamingContext object that contains the source and destination of the serialized stream associated with the System.Collections.Specialized.NameObjectCollectionBase instance.
         """
         pass
 
     def OnDeserialization(self, sender):
+        # type: (self: NameObjectCollectionBase, sender: object)
         """
         OnDeserialization(self: NameObjectCollectionBase, sender: object)
             Implements the System.Runtime.Serialization.ISerializable interface and raises the deserialization event when the deserialization is complete.
@@ -749,23 +771,21 @@ class NameObjectCollectionBase(object, ICollection, IEnumerable, ISerializable, 
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of key/value pairs contained in the System.Collections.Specialized.NameObjectCollectionBase instance.
-
-Get: Count(self: NameObjectCollectionBase) -> int
-
-"""
+    """
+    Gets the number of key/value pairs contained in the System.Collections.Specialized.NameObjectCollectionBase instance.
+    
+    Get: Count(self: NameObjectCollectionBase) -> int
+    """
 
     IsReadOnly = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets a value indicating whether the System.Collections.Specialized.NameObjectCollectionBase instance is read-only.
-
-"""
+    """ Gets or sets a value indicating whether the System.Collections.Specialized.NameObjectCollectionBase instance is read-only. """
 
     Keys = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a System.Collections.Specialized.NameObjectCollectionBase.KeysCollection instance that contains all the keys in the System.Collections.Specialized.NameObjectCollectionBase instance.
-
-Get: Keys(self: NameObjectCollectionBase) -> KeysCollection
-
-"""
+    """
+    Gets a System.Collections.Specialized.NameObjectCollectionBase.KeysCollection instance that contains all the keys in the System.Collections.Specialized.NameObjectCollectionBase instance.
+    
+    Get: Keys(self: NameObjectCollectionBase) -> KeysCollection
+    """
 
 
     KeysCollection = None
@@ -785,6 +805,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
     NameValueCollection(capacity: int, hashProvider: IHashCodeProvider, comparer: IComparer)
     """
     def Add(self, *__args):
+        # type: (self: NameValueCollection, c: NameValueCollection)
         """
         Add(self: NameValueCollection, c: NameValueCollection)
             Copies the entries in the specified System.Collections.Specialized.NameValueCollection to the current System.Collections.Specialized.NameValueCollection.
@@ -799,6 +820,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def BaseAdd(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase, name: str, value: object)
         """
         BaseAdd(self: NameObjectCollectionBase, name: str, value: object)
             Adds an entry with the specified key and value into the System.Collections.Specialized.NameObjectCollectionBase instance.
@@ -809,6 +831,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def BaseClear(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase)
         """
         BaseClear(self: NameObjectCollectionBase)
             Removes all entries from the System.Collections.Specialized.NameObjectCollectionBase instance.
@@ -816,6 +839,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def BaseGet(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase, name: str) -> object
         """
         BaseGet(self: NameObjectCollectionBase, name: str) -> object
         
@@ -833,6 +857,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def BaseGetAllKeys(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase) -> Array[str]
         """
         BaseGetAllKeys(self: NameObjectCollectionBase) -> Array[str]
         
@@ -842,6 +867,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def BaseGetAllValues(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase) -> Array[object]
         """
         BaseGetAllValues(self: NameObjectCollectionBase) -> Array[object]
         
@@ -857,6 +883,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def BaseGetKey(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase, index: int) -> str
         """
         BaseGetKey(self: NameObjectCollectionBase, index: int) -> str
         
@@ -868,6 +895,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def BaseHasKeys(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase) -> bool
         """
         BaseHasKeys(self: NameObjectCollectionBase) -> bool
         
@@ -877,6 +905,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def BaseRemove(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase, name: str)
         """
         BaseRemove(self: NameObjectCollectionBase, name: str)
             Removes the entries with the specified key from the System.Collections.Specialized.NameObjectCollectionBase instance.
@@ -886,6 +915,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def BaseRemoveAt(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase, index: int)
         """
         BaseRemoveAt(self: NameObjectCollectionBase, index: int)
             Removes the entry at the specified index of the System.Collections.Specialized.NameObjectCollectionBase instance.
@@ -895,10 +925,11 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def BaseSet(self, *args): #cannot find CLR method
+        # type: (self: NameObjectCollectionBase, name: str, value: object)
         """
         BaseSet(self: NameObjectCollectionBase, name: str, value: object)
-            Sets the value of the first entry with the specified key in the System.Collections.Specialized.NameObjectCollectionBase instance, if found; otherwise, adds 
-             an entry with the specified key and value into the System.Collections.Specialized.NameObjectCollectionBase instance.
+            Sets the value of the first entry with the specified key in the System.Collections.Specialized.NameObjectCollectionBase instance, if found; otherwise, adds an entry with the specified key and value into the 
+             System.Collections.Specialized.NameObjectCollectionBase instance.
         
         
             name: The System.String key of the entry to set. The key can be null.
@@ -912,6 +943,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def Clear(self):
+        # type: (self: NameValueCollection)
         """
         Clear(self: NameValueCollection)
             Invalidates the cached arrays and removes all entries from the System.Collections.Specialized.NameValueCollection.
@@ -919,40 +951,36 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def CopyTo(self, dest, index):
+        # type: (self: NameValueCollection, dest: Array, index: int)
         """
         CopyTo(self: NameValueCollection, dest: Array, index: int)
-            Copies the entire System.Collections.Specialized.NameValueCollection to a compatible one-dimensional System.Array, starting at the specified index of the 
-             target array.
+            Copies the entire System.Collections.Specialized.NameValueCollection to a compatible one-dimensional System.Array, starting at the specified index of the target array.
         
-        
-            dest: The one-dimensional System.Array that is the destination of the elements copied from System.Collections.Specialized.NameValueCollection. The System.Array 
-             must have zero-based indexing.
-        
+            dest: The one-dimensional System.Array that is the destination of the elements copied from System.Collections.Specialized.NameValueCollection. The System.Array must have zero-based indexing.
             index: The zero-based index in dest at which copying begins.
         """
         pass
 
     def Get(self, *__args):
+        # type: (self: NameValueCollection, name: str) -> str
         """
         Get(self: NameValueCollection, name: str) -> str
         
             Gets the values associated with the specified key from the System.Collections.Specialized.NameValueCollection combined into one comma-separated list.
         
             name: The System.String key of the entry that contains the values to get. The key can be null.
-            Returns: A System.String that contains a comma-separated list of the values associated with the specified key from the 
-             System.Collections.Specialized.NameValueCollection, if found; otherwise, null.
-        
+            Returns: A System.String that contains a comma-separated list of the values associated with the specified key from the System.Collections.Specialized.NameValueCollection, if found; otherwise, null.
         Get(self: NameValueCollection, index: int) -> str
         
             Gets the values at the specified index of the System.Collections.Specialized.NameValueCollection combined into one comma-separated list.
         
             index: The zero-based index of the entry that contains the values to get from the collection.
-            Returns: A System.String that contains a comma-separated list of the values at the specified index of the System.Collections.Specialized.NameValueCollection, if 
-             found; otherwise, null.
+            Returns: A System.String that contains a comma-separated list of the values at the specified index of the System.Collections.Specialized.NameValueCollection, if found; otherwise, null.
         """
         pass
 
     def GetKey(self, index):
+        # type: (self: NameValueCollection, index: int) -> str
         """
         GetKey(self: NameValueCollection, index: int) -> str
         
@@ -964,15 +992,14 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def GetValues(self, *__args):
+        # type: (self: NameValueCollection, name: str) -> Array[str]
         """
         GetValues(self: NameValueCollection, name: str) -> Array[str]
         
             Gets the values associated with the specified key from the System.Collections.Specialized.NameValueCollection.
         
             name: The System.String key of the entry that contains the values to get. The key can be null.
-            Returns: A System.String array that contains the values associated with the specified key from the System.Collections.Specialized.NameValueCollection, if found; 
-             otherwise, null.
-        
+            Returns: A System.String array that contains the values associated with the specified key from the System.Collections.Specialized.NameValueCollection, if found; otherwise, null.
         GetValues(self: NameValueCollection, index: int) -> Array[str]
         
             Gets the values at the specified index of the System.Collections.Specialized.NameValueCollection.
@@ -983,6 +1010,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def HasKeys(self):
+        # type: (self: NameValueCollection) -> bool
         """
         HasKeys(self: NameValueCollection) -> bool
         
@@ -992,6 +1020,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def InvalidateCachedArrays(self, *args): #cannot find CLR method
+        # type: (self: NameValueCollection)
         """
         InvalidateCachedArrays(self: NameValueCollection)
             Resets the cached arrays of the collection to null.
@@ -999,6 +1028,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def Remove(self, name):
+        # type: (self: NameValueCollection, name: str)
         """
         Remove(self: NameValueCollection, name: str)
             Removes the entries with the specified key from the System.Collections.Specialized.NameObjectCollectionBase instance.
@@ -1008,6 +1038,7 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     def Set(self, name, value):
+        # type: (self: NameValueCollection, name: str, value: str)
         """
         Set(self: NameValueCollection, name: str, value: str)
             Sets the value of an entry in the System.Collections.Specialized.NameValueCollection.
@@ -1056,16 +1087,14 @@ class NameValueCollection(NameObjectCollectionBase, ICollection, IEnumerable, IS
         pass
 
     AllKeys = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets all the keys in the System.Collections.Specialized.NameValueCollection.
-
-Get: AllKeys(self: NameValueCollection) -> Array[str]
-
-"""
+    """
+    Gets all the keys in the System.Collections.Specialized.NameValueCollection.
+    
+    Get: AllKeys(self: NameValueCollection) -> Array[str]
+    """
 
     IsReadOnly = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets or sets a value indicating whether the System.Collections.Specialized.NameObjectCollectionBase instance is read-only.
-
-"""
+    """ Gets or sets a value indicating whether the System.Collections.Specialized.NameObjectCollectionBase instance is read-only. """
 
 
 
@@ -1150,39 +1179,39 @@ class NotifyCollectionChangedEventArgs(EventArgs):
         pass
 
     Action = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the action that caused the event.
-
-Get: Action(self: NotifyCollectionChangedEventArgs) -> NotifyCollectionChangedAction
-
-"""
+    """
+    Gets the action that caused the event.
+    
+    Get: Action(self: NotifyCollectionChangedEventArgs) -> NotifyCollectionChangedAction
+    """
 
     NewItems = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the list of new items involved in the change.
-
-Get: NewItems(self: NotifyCollectionChangedEventArgs) -> IList
-
-"""
+    """
+    Gets the list of new items involved in the change.
+    
+    Get: NewItems(self: NotifyCollectionChangedEventArgs) -> IList
+    """
 
     NewStartingIndex = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the index at which the change occurred.
-
-Get: NewStartingIndex(self: NotifyCollectionChangedEventArgs) -> int
-
-"""
+    """
+    Gets the index at which the change occurred.
+    
+    Get: NewStartingIndex(self: NotifyCollectionChangedEventArgs) -> int
+    """
 
     OldItems = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the list of items affected by a System.Collections.Specialized.NotifyCollectionChangedAction.Replace, Remove, or Move action.
-
-Get: OldItems(self: NotifyCollectionChangedEventArgs) -> IList
-
-"""
+    """
+    Gets the list of items affected by a System.Collections.Specialized.NotifyCollectionChangedAction.Replace, Remove, or Move action.
+    
+    Get: OldItems(self: NotifyCollectionChangedEventArgs) -> IList
+    """
 
     OldStartingIndex = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the index at which a System.Collections.Specialized.NotifyCollectionChangedAction.Move, Remove, or Replace action occurred.
-
-Get: OldStartingIndex(self: NotifyCollectionChangedEventArgs) -> int
-
-"""
+    """
+    Gets the index at which a System.Collections.Specialized.NotifyCollectionChangedAction.Move, Remove, or Replace action occurred.
+    
+    Get: OldStartingIndex(self: NotifyCollectionChangedEventArgs) -> int
+    """
 
 
 
@@ -1193,10 +1222,12 @@ class NotifyCollectionChangedEventHandler(MulticastDelegate, ICloneable, ISerial
     NotifyCollectionChangedEventHandler(object: object, method: IntPtr)
     """
     def BeginInvoke(self, sender, e, callback, object):
+        # type: (self: NotifyCollectionChangedEventHandler, sender: object, e: NotifyCollectionChangedEventArgs, callback: AsyncCallback, object: object) -> IAsyncResult
         """ BeginInvoke(self: NotifyCollectionChangedEventHandler, sender: object, e: NotifyCollectionChangedEventArgs, callback: AsyncCallback, object: object) -> IAsyncResult """
         pass
 
     def CombineImpl(self, *args): #cannot find CLR method
+        # type: (self: MulticastDelegate, follow: Delegate) -> Delegate
         """
         CombineImpl(self: MulticastDelegate, follow: Delegate) -> Delegate
         
@@ -1208,23 +1239,24 @@ class NotifyCollectionChangedEventHandler(MulticastDelegate, ICloneable, ISerial
         pass
 
     def DynamicInvokeImpl(self, *args): #cannot find CLR method
+        # type: (self: Delegate, args: Array[object]) -> object
         """
         DynamicInvokeImpl(self: Delegate, args: Array[object]) -> object
         
             Dynamically invokes (late-bound) the method represented by the current delegate.
         
-            args: An array of objects that are the arguments to pass to the method represented by the current delegate.-or- null, if the method represented by the current 
-             delegate does not require arguments.
-        
+            args: An array of objects that are the arguments to pass to the method represented by the current delegate.-or- null, if the method represented by the current delegate does not require arguments.
             Returns: The object returned by the method represented by the delegate.
         """
         pass
 
     def EndInvoke(self, result):
+        # type: (self: NotifyCollectionChangedEventHandler, result: IAsyncResult)
         """ EndInvoke(self: NotifyCollectionChangedEventHandler, result: IAsyncResult) """
         pass
 
     def GetMethodImpl(self, *args): #cannot find CLR method
+        # type: (self: MulticastDelegate) -> MethodInfo
         """
         GetMethodImpl(self: MulticastDelegate) -> MethodInfo
         
@@ -1234,18 +1266,19 @@ class NotifyCollectionChangedEventHandler(MulticastDelegate, ICloneable, ISerial
         pass
 
     def Invoke(self, sender, e):
+        # type: (self: NotifyCollectionChangedEventHandler, sender: object, e: NotifyCollectionChangedEventArgs)
         """ Invoke(self: NotifyCollectionChangedEventHandler, sender: object, e: NotifyCollectionChangedEventArgs) """
         pass
 
     def RemoveImpl(self, *args): #cannot find CLR method
+        # type: (self: MulticastDelegate, value: Delegate) -> Delegate
         """
         RemoveImpl(self: MulticastDelegate, value: Delegate) -> Delegate
         
             Removes an element from the invocation list of this System.MulticastDelegate that is equal to the specified delegate.
         
             value: The delegate to search for in the invocation list.
-            Returns: If value is found in the invocation list for this instance, then a new System.Delegate without value in its invocation list; otherwise, this instance with 
-             its original invocation list.
+            Returns: If value is found in the invocation list for this instance, then a new System.Delegate without value in its invocation list; otherwise, this instance with its original invocation list.
         """
         pass
 
@@ -1272,6 +1305,7 @@ class OrderedDictionary(object, IOrderedDictionary, IDictionary, ICollection, IE
     OrderedDictionary(capacity: int, comparer: IEqualityComparer)
     """
     def Add(self, key, value):
+        # type: (self: OrderedDictionary, key: object, value: object)
         """
         Add(self: OrderedDictionary, key: object, value: object)
             Adds an entry with the specified key and value into the System.Collections.Specialized.OrderedDictionary collection with the lowest available index.
@@ -1282,6 +1316,7 @@ class OrderedDictionary(object, IOrderedDictionary, IDictionary, ICollection, IE
         pass
 
     def AsReadOnly(self):
+        # type: (self: OrderedDictionary) -> OrderedDictionary
         """
         AsReadOnly(self: OrderedDictionary) -> OrderedDictionary
         
@@ -1291,6 +1326,7 @@ class OrderedDictionary(object, IOrderedDictionary, IDictionary, ICollection, IE
         pass
 
     def Clear(self):
+        # type: (self: OrderedDictionary)
         """
         Clear(self: OrderedDictionary)
             Removes all elements from the System.Collections.Specialized.OrderedDictionary collection.
@@ -1298,6 +1334,7 @@ class OrderedDictionary(object, IOrderedDictionary, IDictionary, ICollection, IE
         pass
 
     def Contains(self, key):
+        # type: (self: OrderedDictionary, key: object) -> bool
         """
         Contains(self: OrderedDictionary, key: object) -> bool
         
@@ -1309,18 +1346,18 @@ class OrderedDictionary(object, IOrderedDictionary, IDictionary, ICollection, IE
         pass
 
     def CopyTo(self, array, index):
+        # type: (self: OrderedDictionary, array: Array, index: int)
         """
         CopyTo(self: OrderedDictionary, array: Array, index: int)
             Copies the System.Collections.Specialized.OrderedDictionary elements to a one-dimensional System.Array object at the specified index.
         
-            array: The one-dimensional System.Array object that is the destination of the System.Collections.DictionaryEntry objects copied from 
-             System.Collections.Specialized.OrderedDictionary collection. The System.Array must have zero-based indexing.
-        
+            array: The one-dimensional System.Array object that is the destination of the System.Collections.DictionaryEntry objects copied from System.Collections.Specialized.OrderedDictionary collection. The System.Array must have zero-based indexing.
             index: The zero-based index in array at which copying begins.
         """
         pass
 
     def GetEnumerator(self):
+        # type: (self: OrderedDictionary) -> IDictionaryEnumerator
         """
         GetEnumerator(self: OrderedDictionary) -> IDictionaryEnumerator
         
@@ -1330,21 +1367,18 @@ class OrderedDictionary(object, IOrderedDictionary, IDictionary, ICollection, IE
         pass
 
     def GetObjectData(self, info, context):
+        # type: (self: OrderedDictionary, info: SerializationInfo, context: StreamingContext)
         """
         GetObjectData(self: OrderedDictionary, info: SerializationInfo, context: StreamingContext)
-            Implements the System.Runtime.Serialization.ISerializable interface and returns the data needed to serialize the 
-             System.Collections.Specialized.OrderedDictionary collection.
+            Implements the System.Runtime.Serialization.ISerializable interface and returns the data needed to serialize the System.Collections.Specialized.OrderedDictionary collection.
         
-        
-            info: A System.Runtime.Serialization.SerializationInfo object containing the information required to serialize the 
-             System.Collections.Specialized.OrderedDictionary collection.
-        
-            context: A System.Runtime.Serialization.StreamingContext object containing the source and destination of the serialized stream associated with the 
-             System.Collections.Specialized.OrderedDictionary.
+            info: A System.Runtime.Serialization.SerializationInfo object containing the information required to serialize the System.Collections.Specialized.OrderedDictionary collection.
+            context: A System.Runtime.Serialization.StreamingContext object containing the source and destination of the serialized stream associated with the System.Collections.Specialized.OrderedDictionary.
         """
         pass
 
     def Insert(self, index, key, value):
+        # type: (self: OrderedDictionary, index: int, key: object, value: object)
         """
         Insert(self: OrderedDictionary, index: int, key: object, value: object)
             Inserts a new entry into the System.Collections.Specialized.OrderedDictionary collection with the specified key and value at the specified index.
@@ -1356,6 +1390,7 @@ class OrderedDictionary(object, IOrderedDictionary, IDictionary, ICollection, IE
         pass
 
     def OnDeserialization(self, *args): #cannot find CLR method
+        # type: (self: OrderedDictionary, sender: object)
         """
         OnDeserialization(self: OrderedDictionary, sender: object)
             Implements the System.Runtime.Serialization.ISerializable interface and is called back by the deserialization event when deserialization is complete.
@@ -1365,6 +1400,7 @@ class OrderedDictionary(object, IOrderedDictionary, IDictionary, ICollection, IE
         pass
 
     def Remove(self, key):
+        # type: (self: OrderedDictionary, key: object)
         """
         Remove(self: OrderedDictionary, key: object)
             Removes the entry with the specified key from the System.Collections.Specialized.OrderedDictionary collection.
@@ -1374,6 +1410,7 @@ class OrderedDictionary(object, IOrderedDictionary, IDictionary, ICollection, IE
         pass
 
     def RemoveAt(self, index):
+        # type: (self: OrderedDictionary, index: int)
         """
         RemoveAt(self: OrderedDictionary, index: int)
             Removes the entry at the specified index from the System.Collections.Specialized.OrderedDictionary collection.
@@ -1436,32 +1473,32 @@ class OrderedDictionary(object, IOrderedDictionary, IDictionary, ICollection, IE
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of key/values pairs contained in the System.Collections.Specialized.OrderedDictionary collection.
-
-Get: Count(self: OrderedDictionary) -> int
-
-"""
+    """
+    Gets the number of key/values pairs contained in the System.Collections.Specialized.OrderedDictionary collection.
+    
+    Get: Count(self: OrderedDictionary) -> int
+    """
 
     IsReadOnly = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether the System.Collections.Specialized.OrderedDictionary collection is read-only.
-
-Get: IsReadOnly(self: OrderedDictionary) -> bool
-
-"""
+    """
+    Gets a value indicating whether the System.Collections.Specialized.OrderedDictionary collection is read-only.
+    
+    Get: IsReadOnly(self: OrderedDictionary) -> bool
+    """
 
     Keys = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an System.Collections.ICollection object containing the keys in the System.Collections.Specialized.OrderedDictionary collection.
-
-Get: Keys(self: OrderedDictionary) -> ICollection
-
-"""
+    """
+    Gets an System.Collections.ICollection object containing the keys in the System.Collections.Specialized.OrderedDictionary collection.
+    
+    Get: Keys(self: OrderedDictionary) -> ICollection
+    """
 
     Values = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an System.Collections.ICollection object containing the values in the System.Collections.Specialized.OrderedDictionary collection.
-
-Get: Values(self: OrderedDictionary) -> ICollection
-
-"""
+    """
+    Gets an System.Collections.ICollection object containing the values in the System.Collections.Specialized.OrderedDictionary collection.
+    
+    Get: Values(self: OrderedDictionary) -> ICollection
+    """
 
 
 
@@ -1472,6 +1509,7 @@ class StringCollection(object, IList, ICollection, IEnumerable):
     StringCollection()
     """
     def Add(self, value):
+        # type: (self: StringCollection, value: str) -> int
         """
         Add(self: StringCollection, value: str) -> int
         
@@ -1483,16 +1521,17 @@ class StringCollection(object, IList, ICollection, IEnumerable):
         pass
 
     def AddRange(self, value):
+        # type: (self: StringCollection, value: Array[str])
         """
         AddRange(self: StringCollection, value: Array[str])
             Copies the elements of a string array to the end of the System.Collections.Specialized.StringCollection.
         
-            value: An array of strings to add to the end of the System.Collections.Specialized.StringCollection. The array itself can not be null but it can contain elements 
-             that are null.
+            value: An array of strings to add to the end of the System.Collections.Specialized.StringCollection. The array itself can not be null but it can contain elements that are null.
         """
         pass
 
     def Clear(self):
+        # type: (self: StringCollection)
         """
         Clear(self: StringCollection)
             Removes all the strings from the System.Collections.Specialized.StringCollection.
@@ -1500,6 +1539,7 @@ class StringCollection(object, IList, ICollection, IEnumerable):
         pass
 
     def Contains(self, value):
+        # type: (self: StringCollection, value: str) -> bool
         """
         Contains(self: StringCollection, value: str) -> bool
         
@@ -1511,20 +1551,18 @@ class StringCollection(object, IList, ICollection, IEnumerable):
         pass
 
     def CopyTo(self, array, index):
+        # type: (self: StringCollection, array: Array[str], index: int)
         """
         CopyTo(self: StringCollection, array: Array[str], index: int)
-            Copies the entire System.Collections.Specialized.StringCollection values to a one-dimensional array of strings, starting at the specified index of the 
-             target array.
+            Copies the entire System.Collections.Specialized.StringCollection values to a one-dimensional array of strings, starting at the specified index of the target array.
         
-        
-            array: The one-dimensional array of strings that is the destination of the elements copied from System.Collections.Specialized.StringCollection. The System.Array 
-             must have zero-based indexing.
-        
+            array: The one-dimensional array of strings that is the destination of the elements copied from System.Collections.Specialized.StringCollection. The System.Array must have zero-based indexing.
             index: The zero-based index in array at which copying begins.
         """
         pass
 
     def GetEnumerator(self):
+        # type: (self: StringCollection) -> StringEnumerator
         """
         GetEnumerator(self: StringCollection) -> StringEnumerator
         
@@ -1534,6 +1572,7 @@ class StringCollection(object, IList, ICollection, IEnumerable):
         pass
 
     def IndexOf(self, value):
+        # type: (self: StringCollection, value: str) -> int
         """
         IndexOf(self: StringCollection, value: str) -> int
         
@@ -1545,6 +1584,7 @@ class StringCollection(object, IList, ICollection, IEnumerable):
         pass
 
     def Insert(self, index, value):
+        # type: (self: StringCollection, index: int, value: str)
         """
         Insert(self: StringCollection, index: int, value: str)
             Inserts a string into the System.Collections.Specialized.StringCollection at the specified index.
@@ -1555,6 +1595,7 @@ class StringCollection(object, IList, ICollection, IEnumerable):
         pass
 
     def Remove(self, value):
+        # type: (self: StringCollection, value: str)
         """
         Remove(self: StringCollection, value: str)
             Removes the first occurrence of a specific string from the System.Collections.Specialized.StringCollection.
@@ -1564,6 +1605,7 @@ class StringCollection(object, IList, ICollection, IEnumerable):
         pass
 
     def RemoveAt(self, index):
+        # type: (self: StringCollection, index: int)
         """
         RemoveAt(self: StringCollection, index: int)
             Removes the string at the specified index of the System.Collections.Specialized.StringCollection.
@@ -1615,32 +1657,33 @@ class StringCollection(object, IList, ICollection, IEnumerable):
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of strings contained in the System.Collections.Specialized.StringCollection.
-
-Get: Count(self: StringCollection) -> int
-
-"""
+    """
+    Gets the number of strings contained in the System.Collections.Specialized.StringCollection.
+    
+    Get: Count(self: StringCollection) -> int
+    """
 
     IsReadOnly = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether the System.Collections.Specialized.StringCollection is read-only.
-
-Get: IsReadOnly(self: StringCollection) -> bool
-
-"""
+    """
+    Gets a value indicating whether the System.Collections.Specialized.StringCollection is read-only.
+    
+    Get: IsReadOnly(self: StringCollection) -> bool
+    """
 
     IsSynchronized = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether access to the System.Collections.Specialized.StringCollection is synchronized (thread safe).
-
-Get: IsSynchronized(self: StringCollection) -> bool
-
-"""
+    # type: (thread safe).
+    """
+    Gets a value indicating whether access to the System.Collections.Specialized.StringCollection is synchronized (thread safe).
+    
+    Get: IsSynchronized(self: StringCollection) -> bool
+    """
 
     SyncRoot = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an object that can be used to synchronize access to the System.Collections.Specialized.StringCollection.
-
-Get: SyncRoot(self: StringCollection) -> object
-
-"""
+    """
+    Gets an object that can be used to synchronize access to the System.Collections.Specialized.StringCollection.
+    
+    Get: SyncRoot(self: StringCollection) -> object
+    """
 
 
 
@@ -1651,6 +1694,7 @@ class StringDictionary(object, IEnumerable):
     StringDictionary()
     """
     def Add(self, key, value):
+        # type: (self: StringDictionary, key: str, value: str)
         """
         Add(self: StringDictionary, key: str, value: str)
             Adds an entry with the specified key and value into the System.Collections.Specialized.StringDictionary.
@@ -1661,6 +1705,7 @@ class StringDictionary(object, IEnumerable):
         pass
 
     def Clear(self):
+        # type: (self: StringDictionary)
         """
         Clear(self: StringDictionary)
             Removes all entries from the System.Collections.Specialized.StringDictionary.
@@ -1668,6 +1713,7 @@ class StringDictionary(object, IEnumerable):
         pass
 
     def ContainsKey(self, key):
+        # type: (self: StringDictionary, key: str) -> bool
         """
         ContainsKey(self: StringDictionary, key: str) -> bool
         
@@ -1679,6 +1725,7 @@ class StringDictionary(object, IEnumerable):
         pass
 
     def ContainsValue(self, value):
+        # type: (self: StringDictionary, value: str) -> bool
         """
         ContainsValue(self: StringDictionary, value: str) -> bool
         
@@ -1690,6 +1737,7 @@ class StringDictionary(object, IEnumerable):
         pass
 
     def CopyTo(self, array, index):
+        # type: (self: StringDictionary, array: Array, index: int)
         """
         CopyTo(self: StringDictionary, array: Array, index: int)
             Copies the string dictionary values to a one-dimensional System.Array instance at the specified index.
@@ -1700,6 +1748,7 @@ class StringDictionary(object, IEnumerable):
         pass
 
     def GetEnumerator(self):
+        # type: (self: StringDictionary) -> IEnumerator
         """
         GetEnumerator(self: StringDictionary) -> IEnumerator
         
@@ -1709,6 +1758,7 @@ class StringDictionary(object, IEnumerable):
         pass
 
     def Remove(self, key):
+        # type: (self: StringDictionary, key: str)
         """
         Remove(self: StringDictionary, key: str)
             Removes the entry with the specified key from the string dictionary.
@@ -1745,45 +1795,47 @@ class StringDictionary(object, IEnumerable):
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the number of key/value pairs in the System.Collections.Specialized.StringDictionary.
-
-Get: Count(self: StringDictionary) -> int
-
-"""
+    """
+    Gets the number of key/value pairs in the System.Collections.Specialized.StringDictionary.
+    
+    Get: Count(self: StringDictionary) -> int
+    """
 
     IsSynchronized = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a value indicating whether access to the System.Collections.Specialized.StringDictionary is synchronized (thread safe).
-
-Get: IsSynchronized(self: StringDictionary) -> bool
-
-"""
+    # type: (thread safe).
+    """
+    Gets a value indicating whether access to the System.Collections.Specialized.StringDictionary is synchronized (thread safe).
+    
+    Get: IsSynchronized(self: StringDictionary) -> bool
+    """
 
     Keys = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection of keys in the System.Collections.Specialized.StringDictionary.
-
-Get: Keys(self: StringDictionary) -> ICollection
-
-"""
+    """
+    Gets a collection of keys in the System.Collections.Specialized.StringDictionary.
+    
+    Get: Keys(self: StringDictionary) -> ICollection
+    """
 
     SyncRoot = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets an object that can be used to synchronize access to the System.Collections.Specialized.StringDictionary.
-
-Get: SyncRoot(self: StringDictionary) -> object
-
-"""
+    """
+    Gets an object that can be used to synchronize access to the System.Collections.Specialized.StringDictionary.
+    
+    Get: SyncRoot(self: StringDictionary) -> object
+    """
 
     Values = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets a collection of values in the System.Collections.Specialized.StringDictionary.
-
-Get: Values(self: StringDictionary) -> ICollection
-
-"""
+    """
+    Gets a collection of values in the System.Collections.Specialized.StringDictionary.
+    
+    Get: Values(self: StringDictionary) -> ICollection
+    """
 
 
 
 class StringEnumerator(object):
     """ Supports a simple iteration over a System.Collections.Specialized.StringCollection. """
     def MoveNext(self):
+        # type: (self: StringEnumerator) -> bool
         """
         MoveNext(self: StringEnumerator) -> bool
         
@@ -1793,6 +1845,7 @@ class StringEnumerator(object):
         pass
 
     def Reset(self):
+        # type: (self: StringEnumerator)
         """
         Reset(self: StringEnumerator)
             Sets the enumerator to its initial position, which is before the first element in the collection.
@@ -1800,11 +1853,11 @@ class StringEnumerator(object):
         pass
 
     Current = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    """Gets the current element in the collection.
-
-Get: Current(self: StringEnumerator) -> str
-
-"""
+    """
+    Gets the current element in the collection.
+    
+    Get: Current(self: StringEnumerator) -> str
+    """
 
 
 

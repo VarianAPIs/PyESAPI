@@ -11,10 +11,12 @@
 class ICommand:
     # no doc
     def CanExecute(self, parameter):
+        # type: (self: ICommand, parameter: object) -> bool
         """ CanExecute(self: ICommand, parameter: object) -> bool """
         pass
 
     def Execute(self, parameter):
+        # type: (self: ICommand, parameter: object)
         """ Execute(self: ICommand, parameter: object) """
         pass
 
