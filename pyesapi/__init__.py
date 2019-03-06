@@ -1,6 +1,5 @@
 import sys, os
 import pythoncom
-pythoncom.CoInitialize()  # enforces single thread apartment mode
 
 ESAPI_PATH = os.environ.get('ESAPI_PATH')
 
@@ -35,26 +34,44 @@ else:
 
 import clr  # pip install git+https://github.com/VarianAPIs/pythonnet
 
-clr.AddReference('System.Windows')
-# clr.AddReference('System.Linq')
-# clr.AddReference('System.Collections')
-clr.AddReference('VMS.TPS.Common.Model.API')
-# clr.AddReference('VMS.TPS.Common.Model')
+import typing
+
+if typing.TYPE_CHECKING:
+    from .stubs.VMS.TPS.Common.Model.Types import *
+    from .stubs.VMS.TPS.Common.Model.API import *
+
+    from .stubs import System
+    from .stubs.System.Collections.Generic import Dictionary
+
+    # for numpy array interfacing
+    from .stubs.System.Windows import Point
+    from .stubs.System import Array, Int32, Double
+    # from .stubs.System.Runtime.InteropServices import GCHandle, GCHandleType  # TODO: these are missing from type stubs
+
+else:
+    # enforce single thread apartment mode:
+    pythoncom.CoInitialize()  # pylint: disable=no-member
+    
+    clr.AddReference('System.Windows')
+    # clr.AddReference('System.Linq')
+    # clr.AddReference('System.Collections')
+    clr.AddReference('VMS.TPS.Common.Model.API')
+    # clr.AddReference('VMS.TPS.Common.Model')
 
 
-# the bad stuff
-import System
-from System.Collections.Generic import Dictionary
-# import System.Reflection
+    # the bad stuff
+    import System  #pylint: disable=import-error
+    from System.Collections.Generic import Dictionary  #pylint: disable=import-error
+    # import System.Reflection
 
-# the good stuff
-from VMS.TPS.Common.Model.Types import *
-from VMS.TPS.Common.Model.API import *
+    # the good stuff
+    from VMS.TPS.Common.Model.Types import *  #pylint: disable=import-error
+    from VMS.TPS.Common.Model.API import *  #pylint: disable=import-error
 
-# for numpy array interfacing
-from System.Windows import Point
-from System import Array, Int32, Double
-from System.Runtime.InteropServices import GCHandle, GCHandleType
+    # for numpy array interfacing
+    from System.Windows import Point  #pylint: disable=import-error
+    from System import Array, Int32, Double #pylint: disable=import-error
+    from System.Runtime.InteropServices import GCHandle, GCHandleType #pylint: disable=import-error
 
 # the python
 import numpy as np
@@ -160,8 +177,6 @@ def make_segment_mask_for_grid(structure, dose_or_image):
 def make_segment_mask_for_structure(dose_or_image, structure):
     '''returns a 3D numpy.ndarray of bools matching dose or image grid indexed like [x,y,z]'''
     if (structure.HasSegment):
-        mask_array = np.zeros((dose_or_image.ZSize, dose_or_image.YSize, dose_or_image.XSize))
-
         pre_buffer = System.Collections.BitArray(dose_or_image.ZSize)
         row_buffer = Array.CreateInstance(bool, dose_or_image.ZSize)
 
