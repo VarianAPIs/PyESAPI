@@ -24,7 +24,19 @@ To simpify the install process and to provide users with accelerated (pre-compil
 * [Developer Workshop 2018](examples/DeveloperWorkshop2018/README.md)
 * Stand-alone python script: [standalone.py](examples/standalone.py)
 
-## Development
+## Visual Studio Code
+(tips comming soon)
+
+## Proxy and Git Considerations
+* [Proxy for Anaconda](https://support.anaconda.com/customer/en/portal/articles/2921276-using-anaconda-behind-a-firewall-or-proxy)
+* Install git in a conda env: `conda install -c anaconda git`
+  * No admin privlages are arequired when installing git this way  
+* Proxy for git: `git config --global https.proxy https://some.proxy.net:1234`
+
+# Development
+For those wishing to contribute to PyESAPI
+
+## Custom ESAPI DLL path
 Set custom ESAPI_PATH (to DLLs) before import (bypasses production directory path search)
 ```python
 import os
@@ -33,9 +45,7 @@ import pyesapi
 # ...
 ```
 
-## Visual Studio Code
-
-### Stub Gen
+## Stub Gen
 To create lintable code and enable code completion (in Visual Studio Code at least) we generate python stubs for ESAPI libs...
 1. [Download](https://ironpython.net/download/) and install IronPython (2.7.9 tested to work) in default location (C:\Program Files\IronPython 2.7\ipy.exe).
 1. Load ironpython-stubs submodule `git submodule update --init` (ironstubs)
@@ -43,14 +53,8 @@ To create lintable code and enable code completion (in Visual Studio Code at lea
 1. Execute script `stubgen.ps1` (if you hit a Pdb prompt, type continue)
 1. Commit updates to stubs folder
 
-## Proxy and Git Considerations
-* [Proxy for Anaconda](https://support.anaconda.com/customer/en/portal/articles/2921276-using-anaconda-behind-a-firewall-or-proxy)
-* Install git in a conda env: `conda install -c anaconda git`
-  * No admin privlages are arequired when installing git this way  
-* Proxy for git: `git config --global https.proxy https://some.proxy.net:1234`
-
 ## TODOs
-- [ ] Official PyPi release
 - [ ] PyESAPI Stubs
+- [ ] Official PyPi release
 - [ ] Visual Studio Code support
 - [ ] Version stubs.min files
