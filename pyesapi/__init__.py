@@ -9,18 +9,18 @@ if ESAPI_PATH is not None:
     sys.path.append(ESAPI_PATH)
 else:
     # do some soul searching
-    rpaths=[os.path.join("esapi","API"),"ExternalBeam"]
-    versions=["15.5","15.6"]
-    base=os.path.join("Program Files (x86)","Varian","RTM")
-    drives=["C:","D:"] # Could potentially list local drives, but Eclispe should be on C or D
+    rpaths = [os.path.join("esapi", "API"), "ExternalBeam"]
+    versions = ["15.5", "15.6"]
+    base = os.path.join("Program Files (x86)", "Varian", "RTM")
+    drives = ["C:", "D:"] # Could potentially list local drives, but Eclispe should be on C or D
 
     # Add paths that exist
-    paths=[]
-    spaths=[]
+    paths = []
+    spaths = []
     for drive in drives:
         for ver in versions:
             for rp in rpaths:
-                p=os.path.join(drive,os.sep,base,ver,rp)
+                p = os.path.join(drive, os.sep, base, ver, rp)
                 spaths.append(p)
                 if os.path.isdir(p):
                     paths.append(p)
@@ -135,7 +135,7 @@ def fill_in_profiles(dose_or_image, profile_fxn, row_buffer, dtype, pre_buffer=N
         for y in range(dose_or_image.YSize):  # scan Y dimension
             stop = VVector.op_Addition(start_x, z_direction)
 
-            # get the profile along Z dimension
+            # get the profile along Z dimension 
             if pre_buffer is None:
                 profile_fxn(start_x, stop, row_buffer)
             else:
@@ -253,14 +253,14 @@ Dose.np_voxel_locations = compute_voxel_points_matrix
 
 Beam.np_set_fluence = set_fluence_nparray
 
-
+Dose.YSize
 ## some tests ##
 
 def validate_structure_mask(structure, mask, pts, margin=4):
     dilation_idx = np.where(binary_dilation(mask, iterations=margin))
     flat_pts = pts[dilation_idx]
     flat_mask = mask[dilation_idx]
-    vv = VVector()
+    vv = VVector(0. ,0. , 0.)
 
     def tester(pt):
         vv.x = pt[0]
