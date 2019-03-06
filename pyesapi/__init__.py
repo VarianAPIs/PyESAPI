@@ -253,7 +253,6 @@ Dose.np_voxel_locations = compute_voxel_points_matrix
 
 Beam.np_set_fluence = set_fluence_nparray
 
-Dose.YSize
 ## some tests ##
 
 def validate_structure_mask(structure, mask, pts, margin=4):
