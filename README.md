@@ -30,7 +30,10 @@ To simpify the install process and to provide users with accelerated (pre-compil
 * Select your pyesapi36 conda env (bottom bar, left side)
 * PyLint is already included in the provided pyesapi36 conda env
 * Type stubs are still experimental
-* Adding conda to your path might be useful (seems VS Code assumes this)
+* Set path to conda in your *User* settings.json:
+  * `"python.condaPath": "C:\\Example\\Path\\To\\anaconda3\\Scripts\\conda.exe"`
+* Set cmd to default integrated terminal in *Workspace* settings.json file [(ref)](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)
+  * `"terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe"`
 
 ## Proxy and Git Considerations
 * [Proxy for Anaconda](https://support.anaconda.com/customer/en/portal/articles/2921276-using-anaconda-behind-a-firewall-or-proxy)
