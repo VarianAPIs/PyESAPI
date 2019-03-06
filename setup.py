@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='pyesapi',
-    version='0.5.1',
+    version='0.2.1',
     description='Python interface to Eclipse Scripting API',
     author='Michael Folkerts, Varian Medical Systems',
     author_email='Michael.Folkerts@varian.com',
