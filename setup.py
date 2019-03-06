@@ -1,8 +1,9 @@
-from distutils.core import setup, find_packages
+from distutils.core import setup
+from setuptools import find_packages
 
 setup(
     name='pyesapi',
-    version='0.5dev',
+    version='0.5.1',
     description='Python interface to Eclipse Scripting API',
     author='Michael Folkerts, Varian Medical Systems',
     author_email='Michael.Folkerts@varian.com',
