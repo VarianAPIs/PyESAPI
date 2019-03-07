@@ -108,7 +108,8 @@ def to_ndarray(src, dtype):
         src_ptr = src_hndl.AddrOfPinnedObject().ToInt64()
         dest = np.frombuffer(string_at(src_ptr, len(src) * sizeof(dtype)), dtype=dtype)
     finally:
-        if src_hndl.IsAllocated: src_hndl.Free()
+        if src_hndl.IsAllocated:
+            src_hndl.Free()
     if SAFE_MODE:
         check_arrays(src, dest)
     return dest
