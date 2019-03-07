@@ -1,3 +1,4 @@
 [submodule "ironpython-stubs"]
 	path = ironpython-stubs
-	url = https://github.com/gtalarico/ironpython-stubs.git
+	url = https://github.com/fizxmike/ironpython-stubs.git
+
