@@ -1,4 +1,5 @@
-import sys, os
+import sys
+import os
 import pythoncom
 
 ESAPI_PATH = os.environ.get('ESAPI_PATH')
@@ -11,7 +12,7 @@ else:
     rpaths = [os.path.join("esapi", "API"), "ExternalBeam"]
     versions = ["15.5", "15.6"]
     base = os.path.join("Program Files (x86)", "Varian", "RTM")
-    drives = ["C:", "D:"] # Could potentially list local drives, but Eclispe should be on C or D
+    drives = ["C:", "D:"]  # Could potentially list local drives, but Eclispe should be on C or D
 
     # Add paths that exist
     paths = []
@@ -25,9 +26,9 @@ else:
                     paths.append(p)
 
     if len(paths) < 2:
-        raise Exception("Did not find required library paths!  Searched for:\n %s"%(",\n".join(spaths)))
+        raise Exception("Did not find required library paths!  Searched for:\n %s" % (",\n".join(spaths)))
     if len(paths) > 2:
-        print("WARNING: Found multiple possible VMS dll locations:\n %s"%(",\n".join(spaths)))
+        print("WARNING: Found multiple possible VMS dll locations:\n %s" % (",\n".join(spaths)))
 
     for p in paths:
         sys.path.append(p)
@@ -50,7 +51,7 @@ if typing.TYPE_CHECKING:
 
 else:
     # enforce single thread apartment mode:
-    pythoncom.CoInitialize()  # pylint: disable=no-member
+    pythoncom.CoInitialize()
     
     clr.AddReference('System.Windows')
     # clr.AddReference('System.Linq')
@@ -58,20 +59,19 @@ else:
     clr.AddReference('VMS.TPS.Common.Model.API')
     # clr.AddReference('VMS.TPS.Common.Model')
 
-
     # the bad stuff
-    import System  #pylint: disable=import-error
-    from System.Collections.Generic import Dictionary  #pylint: disable=import-error
+    import System
+    from System.Collections.Generic import Dictionary 
     # import System.Reflection
 
     # the good stuff
-    from VMS.TPS.Common.Model.Types import *  #pylint: disable=import-error
-    from VMS.TPS.Common.Model.API import *  #pylint: disable=import-error
+    from VMS.TPS.Common.Model.Types import *
+    from VMS.TPS.Common.Model.API import *
 
     # for numpy array interfacing
-    from System.Windows import Point  #pylint: disable=import-error
-    from System import Array, Int32, Double #pylint: disable=import-error
-    from System.Runtime.InteropServices import GCHandle, GCHandleType #pylint: disable=import-error
+    from System.Windows import Point
+    from System import Array, Int32, Double
+    from System.Runtime.InteropServices import GCHandle, GCHandleType
 
 # the python
 import numpy as np
