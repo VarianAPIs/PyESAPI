@@ -1,5 +1,5 @@
 # PyESAPI
-"Pie-Sappy"
+"Pie-Sappy" for research use only.
 
 A passion project to help accelerate breakthroughs in medical physics research by bringing the power of Python into the Varian API ecosystem.
 
