@@ -12,6 +12,6 @@ setup(
     install_requires=[
         'numpy',
         'scipy',
-        'pythonnet==2.3.0', # tested to work with python 3.6
+        'pythonnet', #  v2.3.0 tested to work with python 3.6
     ],
 )
