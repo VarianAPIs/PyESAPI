@@ -274,7 +274,7 @@ def get_editable_IonBeamParameters(beam):
     for mi in beam.GetType().GetMethods():
         if mi.ReturnType.ToString() == 'VMS.TPS.Common.Model.API.IonBeamParameters':
             return mi.Invoke(beam,[])
-pyesapi.IonBeam.GetEditableIonBeamParameters = get_editable_IonBeamParameters
+IonBeam.GetEditableIonBeamParameters = get_editable_IonBeamParameters
 
 
 ## some tests ##
