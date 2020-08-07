@@ -269,6 +269,14 @@ Dose.np_voxel_locations = compute_voxel_points_matrix
 
 Beam.np_set_fluence = set_fluence_nparray
 
+# fixing some pythonnet confusion
+def get_editable_IonBeamParameters(beam):
+    for mi in beam.GetType().GetMethods():
+        if mi.ReturnType.ToString() == 'VMS.TPS.Common.Model.API.IonBeamParameters':
+            return mi.Invoke(beam,[])
+pyesapi.IonBeam.GetEditableIonBeamParameters = get_editable_IonBeamParameters
+
+
 ## some tests ##
 
 def validate_structure_mask(structure, mask, pts, margin=4):
