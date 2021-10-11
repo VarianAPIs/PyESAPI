@@ -12,13 +12,14 @@ else:
     rpaths = [os.path.join("esapi", "API"), "ExternalBeam"]
     base = os.path.join("Program Files (x86)", "Varian", "RTM")
     drives = ["C:", "D:"]  # Could potentially list local drives, but Eclispe should be on C or D
-
+    searched_paths = []
     # Add paths that exist
     paths = []
     version = 0
     release = 0
     for drive in drives:
         drive_path = os.path.join(drive, os.sep, base)
+        searched_paths += [os.path.join(drive_path, '%version', i) for i in rpaths]
         if not os.path.exists(drive_path):
             continue
         # Only load up the latest version and release of the software, regardless of the drive
@@ -40,7 +41,7 @@ else:
                                 paths = [os.path.join(drive, os.sep, base, ver, rp) for rp in rpaths]
 
     if len(paths) < 2:
-        raise Exception("Did not find required library paths!  Searched for:\n %s" % (",\n".join(paths)))
+        raise Exception("Did not find required library paths!  Searched for:\n %s" % (",\n".join(searched_paths)))
     if len(paths) > 2:
         print("WARNING: Found multiple possible VMS dll locations:\n %s" % (",\n".join(paths)))
 
