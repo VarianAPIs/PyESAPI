@@ -186,9 +186,11 @@ class Application(SerializableObject, IXmlSerializable, IDisposable):
 
     @staticmethod
     def CreateApplication(username=None, password=None):
-        # type: (username: str, password: str) -> Application
+        # type: (username: str, password: str) -> Application
+
         """
-        CreateApplication(username: str, password: str) -> Application
+        CreateApplication(username: str, password: str) -> Application
+
         CreateApplication() -> Application
         """
         pass
@@ -567,10 +569,13 @@ class Beam(ApiDataObject, IXmlSerializable):
     """ Get: GantryDirection(self: Beam) -> GantryDirection """
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: Beam) -> str
+    # type: (self: Beam) -> str
+
     """
-    Get: Id(self: Beam) -> str
-    
+    Get: Id(self: Beam) -> str
+
+    
+
     Set: Id(self: Beam) = value
     """
 
@@ -868,18 +873,24 @@ class BeamParameters(object):
     """ Get: GantryDirection(self: BeamParameters) -> GantryDirection """
 
     Isocenter = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: BeamParameters) -> VVector
+    # type: (self: BeamParameters) -> VVector
+
     """
-    Get: Isocenter(self: BeamParameters) -> VVector
-    
+    Get: Isocenter(self: BeamParameters) -> VVector
+
+    
+
     Set: Isocenter(self: BeamParameters) = value
     """
 
     WeightFactor = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: BeamParameters) -> float
+    # type: (self: BeamParameters) -> float
+
     """
-    Get: WeightFactor(self: BeamParameters) -> float
-    
+    Get: WeightFactor(self: BeamParameters) -> float
+
+    
+
     Set: WeightFactor(self: BeamParameters) = value
     """
 
@@ -1106,10 +1117,13 @@ class PlanningItem(ApiDataObject, IXmlSerializable):
     """ Get: Dose(self: PlanningItem) -> PlanningItemDose """
 
     DoseValuePresentation = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: PlanningItem) -> DoseValuePresentation
+    # type: (self: PlanningItem) -> DoseValuePresentation
+
     """
-    Get: DoseValuePresentation(self: PlanningItem) -> DoseValuePresentation
-    
+    Get: DoseValuePresentation(self: PlanningItem) -> DoseValuePresentation
+
+    
+
     Set: DoseValuePresentation(self: PlanningItem) = value
     """
 
@@ -1252,10 +1266,13 @@ class PlanSetup(PlanningItem, IXmlSerializable):
     """ Get: ElectronCalculationOptions(self: PlanSetup) -> Dictionary[str, str] """
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: PlanSetup) -> str
+    # type: (self: PlanSetup) -> str
+
     """
-    Get: Id(self: PlanSetup) -> str
-    
+    Get: Id(self: PlanSetup) -> str
+
+    
+
     Set: Id(self: PlanSetup) = value
     """
 
@@ -1312,10 +1329,13 @@ class PlanSetup(PlanningItem, IXmlSerializable):
     """ Get: PlanNormalizationPoint(self: PlanSetup) -> VVector """
 
     PlanNormalizationValue = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: PlanSetup) -> float
+    # type: (self: PlanSetup) -> float
+
     """
-    Get: PlanNormalizationValue(self: PlanSetup) -> float
-    
+    Get: PlanNormalizationValue(self: PlanSetup) -> float
+
+    
+
     Set: PlanNormalizationValue(self: PlanSetup) = value
     """
 
@@ -1420,10 +1440,13 @@ class PlanSetup(PlanningItem, IXmlSerializable):
     """ Get: UID(self: PlanSetup) -> str """
 
     UseGating = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: PlanSetup) -> bool
+    # type: (self: PlanSetup) -> bool
+
     """
-    Get: UseGating(self: PlanSetup) -> bool
-    
+    Get: UseGating(self: PlanSetup) -> bool
+
+    
+
     Set: UseGating(self: PlanSetup) = value
     """
 
@@ -1928,18 +1951,24 @@ class ControlPointParameters(object):
     """ Get: Index(self: ControlPointParameters) -> int """
 
     JawPositions = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ControlPointParameters) -> VRect[float]
+    # type: (self: ControlPointParameters) -> VRect[float]
+
     """
-    Get: JawPositions(self: ControlPointParameters) -> VRect[float]
-    
+    Get: JawPositions(self: ControlPointParameters) -> VRect[float]
+
+    
+
     Set: JawPositions(self: ControlPointParameters) = value
     """
 
     LeafPositions = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ControlPointParameters) -> Array[Single]
+    # type: (self: ControlPointParameters) -> Array[Single]
+
     """
-    Get: LeafPositions(self: ControlPointParameters) -> Array[Single]
-    
+    Get: LeafPositions(self: ControlPointParameters) -> Array[Single]
+
+    
+
     Set: LeafPositions(self: ControlPointParameters) = value
     """
 
@@ -1998,9 +2027,11 @@ class Course(ApiDataObject, IXmlSerializable):
         pass
 
     def CopyPlanSetup(self, sourcePlan, structureset=None, outputDiagnostics=None):
-        # type: (self: Course, sourcePlan: PlanSetup) -> PlanSetup
+        # type: (self: Course, sourcePlan: PlanSetup) -> PlanSetup
+
         """
-        CopyPlanSetup(self: Course, sourcePlan: PlanSetup) -> PlanSetup
+        CopyPlanSetup(self: Course, sourcePlan: PlanSetup) -> PlanSetup
+
         CopyPlanSetup(self: Course, sourcePlan: PlanSetup, structureset: StructureSet, outputDiagnostics: StringBuilder) -> PlanSetup
         """
         pass
@@ -2049,10 +2080,13 @@ class Course(ApiDataObject, IXmlSerializable):
     """ Get: ExternalPlanSetups(self: Course) -> IEnumerable[ExternalPlanSetup] """
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: Course) -> str
+    # type: (self: Course) -> str
+
     """
-    Get: Id(self: Course) -> str
-    
+    Get: Id(self: Course) -> str
+
+    
+
     Set: Id(self: Course) = value
     """
 
@@ -2292,10 +2326,13 @@ class ESAPIActionPackAttribute(Attribute, _Attribute):
         pass
 
     IsWriteable = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ESAPIActionPackAttribute) -> bool
+    # type: (self: ESAPIActionPackAttribute) -> bool
+
     """
-    Get: IsWriteable(self: ESAPIActionPackAttribute) -> bool
-    
+    Get: IsWriteable(self: ESAPIActionPackAttribute) -> bool
+
+    
+
     Set: IsWriteable(self: ESAPIActionPackAttribute) = value
     """
 
@@ -2309,10 +2346,13 @@ class ESAPIScriptAttribute(Attribute, _Attribute):
         pass
 
     IsWriteable = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ESAPIScriptAttribute) -> bool
+    # type: (self: ESAPIScriptAttribute) -> bool
+
     """
-    Get: IsWriteable(self: ESAPIScriptAttribute) -> bool
-    
+    Get: IsWriteable(self: ESAPIScriptAttribute) -> bool
+
+    
+
     Set: IsWriteable(self: ESAPIScriptAttribute) = value
     """
 
@@ -2516,11 +2556,15 @@ class ExternalPlanSetup(PlanSetup, IXmlSerializable):
         pass
 
     def CalculateLeafMotions(self, options=None):
-        # type: (self: ExternalPlanSetup) -> CalculationResult
+        # type: (self: ExternalPlanSetup) -> CalculationResult
+
         """
-        CalculateLeafMotions(self: ExternalPlanSetup) -> CalculationResult
-        CalculateLeafMotions(self: ExternalPlanSetup, options: LMCVOptions) -> CalculationResult
-        CalculateLeafMotions(self: ExternalPlanSetup, options: SmartLMCOptions) -> CalculationResult
+        CalculateLeafMotions(self: ExternalPlanSetup) -> CalculationResult
+
+        CalculateLeafMotions(self: ExternalPlanSetup, options: LMCVOptions) -> CalculationResult
+
+        CalculateLeafMotions(self: ExternalPlanSetup, options: SmartLMCOptions) -> CalculationResult
+
         CalculateLeafMotions(self: ExternalPlanSetup, options: LMCMSSOptions) -> CalculationResult
         """
         pass
@@ -2556,21 +2600,29 @@ class ExternalPlanSetup(PlanSetup, IXmlSerializable):
         pass
 
     def Optimize(self, *__args):
-        # type: (self: ExternalPlanSetup, maxIterations: int) -> OptimizerResult
+        # type: (self: ExternalPlanSetup, maxIterations: int) -> OptimizerResult
+
         """
-        Optimize(self: ExternalPlanSetup, maxIterations: int) -> OptimizerResult
-        Optimize(self: ExternalPlanSetup, maxIterations: int, optimizationOption: OptimizationOption) -> OptimizerResult
-        Optimize(self: ExternalPlanSetup, maxIterations: int, optimizationOption: OptimizationOption, mlcId: str) -> OptimizerResult
-        Optimize(self: ExternalPlanSetup) -> OptimizerResult
+        Optimize(self: ExternalPlanSetup, maxIterations: int) -> OptimizerResult
+
+        Optimize(self: ExternalPlanSetup, maxIterations: int, optimizationOption: OptimizationOption) -> OptimizerResult
+
+        Optimize(self: ExternalPlanSetup, maxIterations: int, optimizationOption: OptimizationOption, mlcId: str) -> OptimizerResult
+
+        Optimize(self: ExternalPlanSetup) -> OptimizerResult
+
         Optimize(self: ExternalPlanSetup, options: OptimizationOptionsIMRT) -> OptimizerResult
         """
         pass
 
     def OptimizeVMAT(self, *__args):
-        # type: (self: ExternalPlanSetup, mlcId: str) -> OptimizerResult
+        # type: (self: ExternalPlanSetup, mlcId: str) -> OptimizerResult
+
         """
-        OptimizeVMAT(self: ExternalPlanSetup, mlcId: str) -> OptimizerResult
-        OptimizeVMAT(self: ExternalPlanSetup) -> OptimizerResult
+        OptimizeVMAT(self: ExternalPlanSetup, mlcId: str) -> OptimizerResult
+
+        OptimizeVMAT(self: ExternalPlanSetup) -> OptimizerResult
+
         OptimizeVMAT(self: ExternalPlanSetup, options: OptimizationOptionsVMAT) -> OptimizerResult
         """
         pass
@@ -2812,10 +2864,13 @@ class Image(ApiDataObject, IXmlSerializable):
     """ Get: HasUserOrigin(self: Image) -> bool """
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: Image) -> str
+    # type: (self: Image) -> str
+
     """
-    Get: Id(self: Image) -> str
-    
+    Get: Id(self: Image) -> str
+
+    
+
     Set: Id(self: Image) = value
     """
 
@@ -2840,10 +2895,13 @@ class Image(ApiDataObject, IXmlSerializable):
     """ Get: Series(self: Image) -> Series """
 
     UserOrigin = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: Image) -> VVector
+    # type: (self: Image) -> VVector
+
     """
-    Get: UserOrigin(self: Image) -> VVector
-    
+    Get: UserOrigin(self: Image) -> VVector
+
+    
+
     Set: UserOrigin(self: Image) = value
     """
 
@@ -3280,10 +3338,13 @@ class IonPlanSetup(PlanSetup, IXmlSerializable):
     """ Get: IonBeams(self: IonPlanSetup) -> IEnumerable[IonBeam] """
 
     IsPostProcessingNeeded = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: IonPlanSetup) -> bool
+    # type: (self: IonPlanSetup) -> bool
+
     """
-    Get: IsPostProcessingNeeded(self: IonPlanSetup) -> bool
-    
+    Get: IsPostProcessingNeeded(self: IonPlanSetup) -> bool
+
+    
+
     Set: IsPostProcessingNeeded(self: IonPlanSetup) = value
     """
 
@@ -3388,26 +3449,35 @@ class IonSpotParameters(SerializableObject, IXmlSerializable):
         pass
 
     Weight = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: IonSpotParameters) -> Single
+    # type: (self: IonSpotParameters) -> Single
+
     """
-    Get: Weight(self: IonSpotParameters) -> Single
-    
+    Get: Weight(self: IonSpotParameters) -> Single
+
+    
+
     Set: Weight(self: IonSpotParameters) = value
     """
 
     X = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: IonSpotParameters) -> Single
+    # type: (self: IonSpotParameters) -> Single
+
     """
-    Get: X(self: IonSpotParameters) -> Single
-    
+    Get: X(self: IonSpotParameters) -> Single
+
+    
+
     Set: X(self: IonSpotParameters) = value
     """
 
     Y = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: IonSpotParameters) -> Single
+    # type: (self: IonSpotParameters) -> Single
+
     """
-    Get: Y(self: IonSpotParameters) -> Single
-    
+    Get: Y(self: IonSpotParameters) -> Single
+
+    
+
     Set: Y(self: IonSpotParameters) = value
     """
 
@@ -4108,10 +4178,13 @@ class OptimizationSetup(SerializableObject, IXmlSerializable):
     """ Get: Parameters(self: OptimizationSetup) -> IEnumerable[OptimizationParameter] """
 
     UseJawTracking = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: OptimizationSetup) -> bool
+    # type: (self: OptimizationSetup) -> bool
+
     """
-    Get: UseJawTracking(self: OptimizationSetup) -> bool
-    
+    Get: UseJawTracking(self: OptimizationSetup) -> bool
+
+    
+
     Set: UseJawTracking(self: OptimizationSetup) = value
     """
 
@@ -4209,9 +4282,11 @@ class Patient(ApiDataObject, IXmlSerializable):
         pass
 
     def CopyImageFromOtherPatient(self, *__args):
-        # type: (self: Patient, otherPatientId: str, otherPatientStudyId: str, otherPatient3DImageId: str) -> StructureSet
+        # type: (self: Patient, otherPatientId: str, otherPatientStudyId: str, otherPatient3DImageId: str) -> StructureSet
+
         """
-        CopyImageFromOtherPatient(self: Patient, otherPatientId: str, otherPatientStudyId: str, otherPatient3DImageId: str) -> StructureSet
+        CopyImageFromOtherPatient(self: Patient, otherPatientId: str, otherPatientStudyId: str, otherPatient3DImageId: str) -> StructureSet
+
         CopyImageFromOtherPatient(self: Patient, targetStudy: Study, otherPatientId: str, otherPatientStudyId: str, otherPatient3DImageId: str) -> StructureSet
         """
         pass
@@ -4976,10 +5051,13 @@ class ReferencePoint(ApiDataObject, IXmlSerializable):
         pass
 
     DailyDoseLimit = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ReferencePoint) -> DoseValue
+    # type: (self: ReferencePoint) -> DoseValue
+
     """
-    Get: DailyDoseLimit(self: ReferencePoint) -> DoseValue
-    
+    Get: DailyDoseLimit(self: ReferencePoint) -> DoseValue
+
+    
+
     Set: DailyDoseLimit(self: ReferencePoint) = value
     """
 
@@ -4988,18 +5066,24 @@ class ReferencePoint(ApiDataObject, IXmlSerializable):
     """ Get: PatientVolumeId(self: ReferencePoint) -> str """
 
     SessionDoseLimit = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ReferencePoint) -> DoseValue
+    # type: (self: ReferencePoint) -> DoseValue
+
     """
-    Get: SessionDoseLimit(self: ReferencePoint) -> DoseValue
-    
+    Get: SessionDoseLimit(self: ReferencePoint) -> DoseValue
+
+    
+
     Set: SessionDoseLimit(self: ReferencePoint) = value
     """
 
     TotalDoseLimit = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ReferencePoint) -> DoseValue
+    # type: (self: ReferencePoint) -> DoseValue
+
     """
-    Get: TotalDoseLimit(self: ReferencePoint) -> DoseValue
-    
+    Get: TotalDoseLimit(self: ReferencePoint) -> DoseValue
+
+    
+
     Set: TotalDoseLimit(self: ReferencePoint) = value
     """
 
@@ -5462,98 +5546,134 @@ class SearchBodyParameters(SerializableObject, IXmlSerializable):
         pass
 
     FillAllCavities = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> bool
+    # type: (self: SearchBodyParameters) -> bool
+
     """
-    Get: FillAllCavities(self: SearchBodyParameters) -> bool
-    
+    Get: FillAllCavities(self: SearchBodyParameters) -> bool
+
+    
+
     Set: FillAllCavities(self: SearchBodyParameters) = value
     """
 
     KeepLargestParts = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> bool
+    # type: (self: SearchBodyParameters) -> bool
+
     """
-    Get: KeepLargestParts(self: SearchBodyParameters) -> bool
-    
+    Get: KeepLargestParts(self: SearchBodyParameters) -> bool
+
+    
+
     Set: KeepLargestParts(self: SearchBodyParameters) = value
     """
 
     LowerHUThreshold = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> int
+    # type: (self: SearchBodyParameters) -> int
+
     """
-    Get: LowerHUThreshold(self: SearchBodyParameters) -> int
-    
+    Get: LowerHUThreshold(self: SearchBodyParameters) -> int
+
+    
+
     Set: LowerHUThreshold(self: SearchBodyParameters) = value
     """
 
     MREdgeThresholdHigh = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> int
+    # type: (self: SearchBodyParameters) -> int
+
     """
-    Get: MREdgeThresholdHigh(self: SearchBodyParameters) -> int
-    
+    Get: MREdgeThresholdHigh(self: SearchBodyParameters) -> int
+
+    
+
     Set: MREdgeThresholdHigh(self: SearchBodyParameters) = value
     """
 
     MREdgeThresholdLow = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> int
+    # type: (self: SearchBodyParameters) -> int
+
     """
-    Get: MREdgeThresholdLow(self: SearchBodyParameters) -> int
-    
+    Get: MREdgeThresholdLow(self: SearchBodyParameters) -> int
+
+    
+
     Set: MREdgeThresholdLow(self: SearchBodyParameters) = value
     """
 
     NumberOfLargestPartsToKeep = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> int
+    # type: (self: SearchBodyParameters) -> int
+
     """
-    Get: NumberOfLargestPartsToKeep(self: SearchBodyParameters) -> int
-    
+    Get: NumberOfLargestPartsToKeep(self: SearchBodyParameters) -> int
+
+    
+
     Set: NumberOfLargestPartsToKeep(self: SearchBodyParameters) = value
     """
 
     PreCloseOpenings = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> bool
+    # type: (self: SearchBodyParameters) -> bool
+
     """
-    Get: PreCloseOpenings(self: SearchBodyParameters) -> bool
-    
+    Get: PreCloseOpenings(self: SearchBodyParameters) -> bool
+
+    
+
     Set: PreCloseOpenings(self: SearchBodyParameters) = value
     """
 
     PreCloseOpeningsRadius = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> float
+    # type: (self: SearchBodyParameters) -> float
+
     """
-    Get: PreCloseOpeningsRadius(self: SearchBodyParameters) -> float
-    
+    Get: PreCloseOpeningsRadius(self: SearchBodyParameters) -> float
+
+    
+
     Set: PreCloseOpeningsRadius(self: SearchBodyParameters) = value
     """
 
     PreDisconnect = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> bool
+    # type: (self: SearchBodyParameters) -> bool
+
     """
-    Get: PreDisconnect(self: SearchBodyParameters) -> bool
-    
+    Get: PreDisconnect(self: SearchBodyParameters) -> bool
+
+    
+
     Set: PreDisconnect(self: SearchBodyParameters) = value
     """
 
     PreDisconnectRadius = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> float
+    # type: (self: SearchBodyParameters) -> float
+
     """
-    Get: PreDisconnectRadius(self: SearchBodyParameters) -> float
-    
+    Get: PreDisconnectRadius(self: SearchBodyParameters) -> float
+
+    
+
     Set: PreDisconnectRadius(self: SearchBodyParameters) = value
     """
 
     Smoothing = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> bool
+    # type: (self: SearchBodyParameters) -> bool
+
     """
-    Get: Smoothing(self: SearchBodyParameters) -> bool
-    
+    Get: Smoothing(self: SearchBodyParameters) -> bool
+
+    
+
     Set: Smoothing(self: SearchBodyParameters) = value
     """
 
     SmoothingLevel = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> int
+    # type: (self: SearchBodyParameters) -> int
+
     """
-    Get: SmoothingLevel(self: SearchBodyParameters) -> int
-    
+    Get: SmoothingLevel(self: SearchBodyParameters) -> int
+
+    
+
     Set: SmoothingLevel(self: SearchBodyParameters) = value
     """
 
@@ -5978,10 +6098,13 @@ class Structure(ApiDataObject, IXmlSerializable):
     """ Get: HasSegment(self: Structure) -> bool """
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: Structure) -> str
+    # type: (self: Structure) -> str
+
     """
-    Get: Id(self: Structure) -> str
-    
+    Get: Id(self: Structure) -> str
+
+    
+
     Set: Id(self: Structure) = value
     """
 
@@ -6002,10 +6125,13 @@ class Structure(ApiDataObject, IXmlSerializable):
     """ Get: ROINumber(self: Structure) -> int """
 
     SegmentVolume = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: Structure) -> SegmentVolume
+    # type: (self: Structure) -> SegmentVolume
+
     """
-    Get: SegmentVolume(self: Structure) -> SegmentVolume
-    
+    Get: SegmentVolume(self: Structure) -> SegmentVolume
+
+    
+
     Set: SegmentVolume(self: Structure) = value
     """
 
@@ -6088,10 +6214,13 @@ class StructureSet(ApiDataObject, IXmlSerializable):
     """ Get: ApplicationScriptLogs(self: StructureSet) -> IEnumerable[ApplicationScriptLog] """
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: StructureSet) -> str
+    # type: (self: StructureSet) -> str
+
     """
-    Get: Id(self: StructureSet) -> str
-    
+    Get: Id(self: StructureSet) -> str
+
+    
+
     Set: Id(self: StructureSet) = value
     """
 
@@ -6184,9 +6313,11 @@ class TradeoffExplorationContext(object):
         pass
 
     def AddTradeoffObjective(self, *__args):
-        # type: (self: TradeoffExplorationContext, structure: Structure) -> bool
+        # type: (self: TradeoffExplorationContext, structure: Structure) -> bool
+
         """
-        AddTradeoffObjective(self: TradeoffExplorationContext, structure: Structure) -> bool
+        AddTradeoffObjective(self: TradeoffExplorationContext, structure: Structure) -> bool
+
         AddTradeoffObjective(self: TradeoffExplorationContext, objective: OptimizationObjective) -> bool
         """
         pass
@@ -6252,9 +6383,11 @@ class TradeoffExplorationContext(object):
         pass
 
     def RemoveTradeoffObjective(self, *__args):
-        # type: (self: TradeoffExplorationContext, tradeoffObjective: TradeoffObjective) -> bool
+        # type: (self: TradeoffExplorationContext, tradeoffObjective: TradeoffObjective) -> bool
+
         """
-        RemoveTradeoffObjective(self: TradeoffExplorationContext, tradeoffObjective: TradeoffObjective) -> bool
+        RemoveTradeoffObjective(self: TradeoffExplorationContext, tradeoffObjective: TradeoffObjective) -> bool
+
         RemoveTradeoffObjective(self: TradeoffExplorationContext, structure: Structure) -> bool
         """
         pass
