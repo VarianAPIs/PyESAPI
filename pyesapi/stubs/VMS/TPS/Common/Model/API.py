@@ -16,7 +16,7 @@ class SerializableObject(object, IXmlSerializable):
         """ ClearSerializationHistory() """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -31,7 +31,7 @@ class SerializableObject(object, IXmlSerializable):
         """ ReadXml(self: SerializableObject, reader: XmlReader) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -41,18 +41,18 @@ class SerializableObject(object, IXmlSerializable):
         """ WriteXml(self: SerializableObject, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __repr__(self, *args):  # cannot find CLR method
+    def __repr__(self, *args): #cannot find CLR method
         """ __repr__(self: object) -> str """
         pass
 
 
 class ApiDataObject(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -67,7 +67,7 @@ class ApiDataObject(SerializableObject, IXmlSerializable):
         """ GetHashCode(self: ApiDataObject) -> int """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -82,18 +82,18 @@ class ApiDataObject(SerializableObject, IXmlSerializable):
         """ WriteXml(self: ApiDataObject, writer: XmlWriter) """
         pass
 
-    def __eq__(self, *args):  # cannot find CLR method
+    def __eq__(self, *args): #cannot find CLR method
         """ x.__eq__(y) <==> x==y """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __ne__(self, *args):  # cannot find CLR method
+    def __ne__(self, *args): #cannot find CLR method
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Comment = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -121,14 +121,15 @@ class ApiDataObject(SerializableObject, IXmlSerializable):
     """ Get: Name(self: ApiDataObject) -> str """
 
 
+
 class AddOn(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -138,11 +139,11 @@ class AddOn(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: AddOn, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     CreationDateTime = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -150,14 +151,15 @@ class AddOn(ApiDataObject, IXmlSerializable):
     """ Get: CreationDateTime(self: AddOn) -> Nullable[DateTime] """
 
 
+
 class AddOnMaterial(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -167,11 +169,11 @@ class AddOnMaterial(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: AddOnMaterial, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
 
@@ -184,11 +186,9 @@ class Application(SerializableObject, IXmlSerializable, IDisposable):
 
     @staticmethod
     def CreateApplication(username=None, password=None):
-        # type: (username: str, password: str) -> Application
-
+        # type: (username: str, password: str) -> Application
         """
-        CreateApplication(username: str, password: str) -> Application
-
+        CreateApplication(username: str, password: str) -> Application
         CreateApplication() -> Application
         """
         pass
@@ -198,7 +198,7 @@ class Application(SerializableObject, IXmlSerializable, IDisposable):
         """ Dispose(self: Application) """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -218,7 +218,7 @@ class Application(SerializableObject, IXmlSerializable, IDisposable):
         """ SaveModifications(self: Application) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -228,15 +228,15 @@ class Application(SerializableObject, IXmlSerializable, IDisposable):
         """ WriteXml(self: Application, writer: XmlWriter) """
         pass
 
-    def __enter__(self, *args):  # cannot find CLR method
+    def __enter__(self, *args): #cannot find CLR method
         """ __enter__(self: IDisposable) -> object """
         pass
 
-    def __exit__(self, *args):  # cannot find CLR method
+    def __exit__(self, *args): #cannot find CLR method
         """ __exit__(self: IDisposable, exc_type: object, exc_value: object, exc_back: object) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -253,14 +253,15 @@ class Application(SerializableObject, IXmlSerializable, IDisposable):
     """ Get: ScriptEnvironment(self: Application) -> ScriptEnvironment """
 
 
+
 class ApplicationScript(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -270,11 +271,11 @@ class ApplicationScript(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: ApplicationScript, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     ApprovalStatus = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -318,14 +319,15 @@ class ApplicationScript(ApiDataObject, IXmlSerializable):
     """ Get: StatusUserIdentity(self: ApplicationScript) -> UserIdentity """
 
 
+
 class ApplicationScriptLog(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -335,11 +337,11 @@ class ApplicationScriptLog(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: ApplicationScriptLog, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     CourseId = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -375,14 +377,15 @@ class ApplicationScriptLog(ApiDataObject, IXmlSerializable):
     """ Get: StructureSetUID(self: ApplicationScriptLog) -> str """
 
 
+
 class Applicator(AddOn, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -392,11 +395,11 @@ class Applicator(AddOn, IXmlSerializable):
         """ WriteXml(self: Applicator, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
 
@@ -422,13 +425,12 @@ class Beam(ApiDataObject, IXmlSerializable):
         """ CreateOrReplaceDRR(self: Beam, parameters: DRRCalculationParameters) -> Image """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def FitCollimatorToStructure(self, margins, structure, useAsymmetricXJaws, useAsymmetricYJaws,
-                                 optimizeCollimatorRotation):
+    def FitCollimatorToStructure(self, margins, structure, useAsymmetricXJaws, useAsymmetricYJaws, optimizeCollimatorRotation):
         # type: (self: Beam, margins: FitToStructureMargins, structure: Structure, useAsymmetricXJaws: bool, useAsymmetricYJaws: bool, optimizeCollimatorRotation: bool)
         """ FitCollimatorToStructure(self: Beam, margins: FitToStructureMargins, structure: Structure, useAsymmetricXJaws: bool, useAsymmetricYJaws: bool, optimizeCollimatorRotation: bool) """
         pass
@@ -483,7 +485,7 @@ class Beam(ApiDataObject, IXmlSerializable):
         """ SetOptimalFluence(self: Beam, fluence: Fluence) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -493,11 +495,11 @@ class Beam(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Beam, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Applicator = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -565,13 +567,10 @@ class Beam(ApiDataObject, IXmlSerializable):
     """ Get: GantryDirection(self: Beam) -> GantryDirection """
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: Beam) -> str
-
+    # type: (self: Beam) -> str
     """
-    Get: Id(self: Beam) -> str
-
-
-
+    Get: Id(self: Beam) -> str
+    
     Set: Id(self: Beam) = value
     """
 
@@ -672,14 +671,15 @@ class Beam(ApiDataObject, IXmlSerializable):
     """ Get: WeightFactor(self: Beam) -> float """
 
 
+
 class BeamCalculationLog(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -689,7 +689,7 @@ class BeamCalculationLog(SerializableObject, IXmlSerializable):
         """ WriteXml(self: BeamCalculationLog, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -706,9 +706,10 @@ class BeamCalculationLog(SerializableObject, IXmlSerializable):
     """ Get: MessageLines(self: BeamCalculationLog) -> IEnumerable[str] """
 
 
+
 class Dose(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -728,7 +729,7 @@ class Dose(ApiDataObject, IXmlSerializable):
         """ GetVoxels(self: Dose, planeIndex: int, preallocatedBuffer: Array[int]) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -743,11 +744,11 @@ class Dose(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Dose, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     DoseMax3D = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -815,9 +816,10 @@ class Dose(ApiDataObject, IXmlSerializable):
     """ Get: ZSize(self: Dose) -> int """
 
 
+
 class BeamDose(Dose, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -827,7 +829,7 @@ class BeamDose(Dose, IXmlSerializable):
         """ GetAbsoluteBeamDoseValue(self: BeamDose, relative: DoseValue) -> DoseValue """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -837,11 +839,11 @@ class BeamDose(Dose, IXmlSerializable):
         """ WriteXml(self: BeamDose, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
 
@@ -866,36 +868,31 @@ class BeamParameters(object):
     """ Get: GantryDirection(self: BeamParameters) -> GantryDirection """
 
     Isocenter = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: BeamParameters) -> VVector
-
+    # type: (self: BeamParameters) -> VVector
     """
-    Get: Isocenter(self: BeamParameters) -> VVector
-
-
-
+    Get: Isocenter(self: BeamParameters) -> VVector
+    
     Set: Isocenter(self: BeamParameters) = value
     """
 
     WeightFactor = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: BeamParameters) -> float
-
+    # type: (self: BeamParameters) -> float
     """
-    Get: WeightFactor(self: BeamParameters) -> float
-
-
-
+    Get: WeightFactor(self: BeamParameters) -> float
+    
     Set: WeightFactor(self: BeamParameters) = value
     """
 
 
+
 class BeamUncertainty(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -905,11 +902,11 @@ class BeamUncertainty(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: BeamUncertainty, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Beam = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -925,14 +922,15 @@ class BeamUncertainty(ApiDataObject, IXmlSerializable):
     """ Get: Dose(self: BeamUncertainty) -> Dose """
 
 
+
 class Block(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -942,11 +940,11 @@ class Block(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Block, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     AddOnMaterial = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -978,14 +976,15 @@ class Block(ApiDataObject, IXmlSerializable):
     """ Get: Type(self: Block) -> BlockType """
 
 
+
 class Bolus(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -995,7 +994,7 @@ class Bolus(SerializableObject, IXmlSerializable):
         """ WriteXml(self: Bolus, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -1012,14 +1011,15 @@ class Bolus(SerializableObject, IXmlSerializable):
     """ Get: Name(self: Bolus) -> str """
 
 
+
 class BrachyFieldReferencePoint(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -1029,11 +1029,11 @@ class BrachyFieldReferencePoint(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: BrachyFieldReferencePoint, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     FieldDose = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -1057,9 +1057,10 @@ class BrachyFieldReferencePoint(ApiDataObject, IXmlSerializable):
     """ Get: RefPointLocation(self: BrachyFieldReferencePoint) -> VVector """
 
 
+
 class PlanningItem(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -1079,7 +1080,7 @@ class PlanningItem(ApiDataObject, IXmlSerializable):
         """ GetVolumeAtDose(self: PlanningItem, structure: Structure, dose: DoseValue, requestedVolumePresentation: VolumePresentation) -> float """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -1089,11 +1090,11 @@ class PlanningItem(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: PlanningItem, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     CreationDateTime = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -1105,13 +1106,10 @@ class PlanningItem(ApiDataObject, IXmlSerializable):
     """ Get: Dose(self: PlanningItem) -> PlanningItemDose """
 
     DoseValuePresentation = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: PlanningItem) -> DoseValuePresentation
-
+    # type: (self: PlanningItem) -> DoseValuePresentation
     """
-    Get: DoseValuePresentation(self: PlanningItem) -> DoseValuePresentation
-
-
-
+    Get: DoseValuePresentation(self: PlanningItem) -> DoseValuePresentation
+    
     Set: DoseValuePresentation(self: PlanningItem) = value
     """
 
@@ -1124,6 +1122,7 @@ class PlanningItem(ApiDataObject, IXmlSerializable):
     """ Get: StructuresSelectedForDvh(self: PlanningItem) -> IEnumerable[Structure] """
 
 
+
 class PlanSetup(PlanningItem, IXmlSerializable):
     # no doc
     def AddReferencePoint(self, structure, location, id, name):
@@ -1131,7 +1130,7 @@ class PlanSetup(PlanningItem, IXmlSerializable):
         """ AddReferencePoint(self: PlanSetup, structure: Structure, location: Nullable[VVector], id: str, name: str) -> ReferencePoint """
         pass
 
-    def AttachToCalcClient(self, *args):  # cannot find CLR method
+    def AttachToCalcClient(self, *args): #cannot find CLR method
         # type: (self: PlanSetup, doseCalcClient: ICalculationClient)
         """ AttachToCalcClient(self: PlanSetup, doseCalcClient: ICalculationClient) """
         pass
@@ -1141,12 +1140,12 @@ class PlanSetup(PlanningItem, IXmlSerializable):
         """ ClearCalculationModel(self: PlanSetup, calculationType: CalculationType) """
         pass
 
-    def DetachFromCalcClient(self, *args):  # cannot find CLR method
+    def DetachFromCalcClient(self, *args): #cannot find CLR method
         # type: (self: PlanSetup, doseCalcClient: ICalculationClient)
         """ DetachFromCalcClient(self: PlanSetup, doseCalcClient: ICalculationClient) """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -1171,7 +1170,7 @@ class PlanSetup(PlanningItem, IXmlSerializable):
         """ GetProtocolPrescriptionsAndMeasures(self: PlanSetup, prescriptions: List[ProtocolPhasePrescription], measures: List[ProtocolPhaseMeasure]) -> (List[ProtocolPhasePrescription], List[ProtocolPhaseMeasure]) """
         pass
 
-    def Report(self, *args):  # cannot find CLR method
+    def Report(self, *args): #cannot find CLR method
         # type: (self: PlanSetup, str: str)
         """ Report(self: PlanSetup, str: str) """
         pass
@@ -1191,7 +1190,7 @@ class PlanSetup(PlanningItem, IXmlSerializable):
         """ SetPrescription(self: PlanSetup, numberOfFractions: int, dosePerFraction: DoseValue, treatmentPercentage: float) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -1201,11 +1200,11 @@ class PlanSetup(PlanningItem, IXmlSerializable):
         """ WriteXml(self: PlanSetup, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     ApplicationScriptLogs = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -1236,8 +1235,7 @@ class PlanSetup(PlanningItem, IXmlSerializable):
     # type: (self: PlanSetup) -> DoseValue
     """ Get: DosePerFraction(self: PlanSetup) -> DoseValue """
 
-    DosePerFractionInPrimaryRefPoint = property(lambda self: object(), lambda self, v: None,
-                                                lambda self: None)  # default
+    DosePerFractionInPrimaryRefPoint = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: PlanSetup) -> DoseValue
     """ Get: DosePerFractionInPrimaryRefPoint(self: PlanSetup) -> DoseValue """
 
@@ -1254,13 +1252,10 @@ class PlanSetup(PlanningItem, IXmlSerializable):
     """ Get: ElectronCalculationOptions(self: PlanSetup) -> Dictionary[str, str] """
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: PlanSetup) -> str
-
+    # type: (self: PlanSetup) -> str
     """
-    Get: Id(self: PlanSetup) -> str
-
-
-
+    Get: Id(self: PlanSetup) -> str
+    
     Set: Id(self: PlanSetup) = value
     """
 
@@ -1317,13 +1312,10 @@ class PlanSetup(PlanningItem, IXmlSerializable):
     """ Get: PlanNormalizationPoint(self: PlanSetup) -> VVector """
 
     PlanNormalizationValue = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: PlanSetup) -> float
-
+    # type: (self: PlanSetup) -> float
     """
-    Get: PlanNormalizationValue(self: PlanSetup) -> float
-
-
-
+    Get: PlanNormalizationValue(self: PlanSetup) -> float
+    
     Set: PlanNormalizationValue(self: PlanSetup) = value
     """
 
@@ -1428,13 +1420,10 @@ class PlanSetup(PlanningItem, IXmlSerializable):
     """ Get: UID(self: PlanSetup) -> str """
 
     UseGating = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: PlanSetup) -> bool
-
+    # type: (self: PlanSetup) -> bool
     """
-    Get: UseGating(self: PlanSetup) -> bool
-
-
-
+    Get: UseGating(self: PlanSetup) -> bool
+    
     Set: UseGating(self: PlanSetup) = value
     """
 
@@ -1442,12 +1431,13 @@ class PlanSetup(PlanningItem, IXmlSerializable):
     # type: (self: PlanSetup) -> PlanSetup
     """ Get: VerifiedPlan(self: PlanSetup) -> PlanSetup """
 
+
     m_errorsOnCalculationCompleted = None
 
 
 class BrachyPlanSetup(PlanSetup, IXmlSerializable):
     # no doc
-    def AttachToCalcClient(self, *args):  # cannot find CLR method
+    def AttachToCalcClient(self, *args): #cannot find CLR method
         # type: (self: PlanSetup, doseCalcClient: ICalculationClient)
         """ AttachToCalcClient(self: PlanSetup, doseCalcClient: ICalculationClient) """
         pass
@@ -1457,22 +1447,22 @@ class BrachyPlanSetup(PlanSetup, IXmlSerializable):
         """ CalculateAccurateTG43DoseProfile(self: BrachyPlanSetup, start: VVector, stop: VVector, preallocatedBuffer: Array[float]) -> DoseProfile """
         pass
 
-    def DetachFromCalcClient(self, *args):  # cannot find CLR method
+    def DetachFromCalcClient(self, *args): #cannot find CLR method
         # type: (self: PlanSetup, doseCalcClient: ICalculationClient)
         """ DetachFromCalcClient(self: PlanSetup, doseCalcClient: ICalculationClient) """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def Report(self, *args):  # cannot find CLR method
+    def Report(self, *args): #cannot find CLR method
         # type: (self: PlanSetup, str: str)
         """ Report(self: PlanSetup, str: str) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -1482,11 +1472,11 @@ class BrachyPlanSetup(PlanSetup, IXmlSerializable):
         """ WriteXml(self: BrachyPlanSetup, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     ApplicationSetupType = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -1521,17 +1511,18 @@ class BrachyPlanSetup(PlanSetup, IXmlSerializable):
     # type: (self: BrachyPlanSetup) -> str
     """ Get: TreatmentTechnique(self: BrachyPlanSetup) -> str """
 
+
     m_errorsOnCalculationCompleted = None
 
 
 class BrachySolidApplicator(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -1541,11 +1532,11 @@ class BrachySolidApplicator(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: BrachySolidApplicator, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     ApplicatorSetName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -1593,9 +1584,10 @@ class BrachySolidApplicator(ApiDataObject, IXmlSerializable):
     """ Get: Version(self: BrachySolidApplicator) -> str """
 
 
+
 class BrachyTreatmentUnit(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -1605,7 +1597,7 @@ class BrachyTreatmentUnit(ApiDataObject, IXmlSerializable):
         """ GetActiveRadioactiveSource(self: BrachyTreatmentUnit) -> RadioactiveSource """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -1615,11 +1607,11 @@ class BrachyTreatmentUnit(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: BrachyTreatmentUnit, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     DoseRateMode = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -1654,8 +1646,7 @@ class BrachyTreatmentUnit(ApiDataObject, IXmlSerializable):
     # type: (self: BrachyTreatmentUnit) -> float
     """ Get: MaximumChannelLength(self: BrachyTreatmentUnit) -> float """
 
-    MaximumDwellPositionsPerChannel = property(lambda self: object(), lambda self, v: None,
-                                               lambda self: None)  # default
+    MaximumDwellPositionsPerChannel = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: BrachyTreatmentUnit) -> int
     """ Get: MaximumDwellPositionsPerChannel(self: BrachyTreatmentUnit) -> int """
 
@@ -1688,6 +1679,7 @@ class BrachyTreatmentUnit(ApiDataObject, IXmlSerializable):
     """ Get: StepSizeResolution(self: BrachyTreatmentUnit) -> float """
 
 
+
 class CalculationResult(object):
     # no doc
     Success = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -1695,9 +1687,10 @@ class CalculationResult(object):
     """ Get: Success(self: CalculationResult) -> bool """
 
 
+
 class Catheter(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -1712,7 +1705,7 @@ class Catheter(ApiDataObject, IXmlSerializable):
         """ GetTotalDwellTime(self: Catheter) -> float """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -1722,11 +1715,11 @@ class Catheter(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Catheter, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     ApplicatorLength = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -1770,14 +1763,15 @@ class Catheter(ApiDataObject, IXmlSerializable):
     """ Get: TreatmentUnit(self: Catheter) -> BrachyTreatmentUnit """
 
 
+
 class Compensator(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -1787,11 +1781,11 @@ class Compensator(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Compensator, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Material = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -1807,14 +1801,15 @@ class Compensator(ApiDataObject, IXmlSerializable):
     """ Get: Tray(self: Compensator) -> Tray """
 
 
+
 class ControlPoint(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -1824,7 +1819,7 @@ class ControlPoint(SerializableObject, IXmlSerializable):
         """ WriteXml(self: ControlPoint, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -1873,9 +1868,10 @@ class ControlPoint(SerializableObject, IXmlSerializable):
     """ Get: TableTopVerticalPosition(self: ControlPoint) -> float """
 
 
+
 class ControlPointCollection(SerializableObject, IXmlSerializable, IEnumerable[ControlPoint], IEnumerable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -1885,7 +1881,7 @@ class ControlPointCollection(SerializableObject, IXmlSerializable, IEnumerable[C
         """ GetEnumerator(self: ControlPointCollection) -> IEnumerator[ControlPoint] """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -1895,25 +1891,26 @@ class ControlPointCollection(SerializableObject, IXmlSerializable, IEnumerable[C
         """ WriteXml(self: ControlPointCollection, writer: XmlWriter) """
         pass
 
-    def __contains__(self, *args):  # cannot find CLR method
+    def __contains__(self, *args): #cannot find CLR method
         """ __contains__[ControlPoint](enumerable: IEnumerable[ControlPoint], value: ControlPoint) -> bool """
         pass
 
-    def __getitem__(self, *args):  # cannot find CLR method
+    def __getitem__(self, *args): #cannot find CLR method
         """ x.__getitem__(y) <==> x[y] """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __iter__(self, *args):  # cannot find CLR method
+    def __iter__(self, *args): #cannot find CLR method
         """ __iter__(self: IEnumerable) -> object """
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: ControlPointCollection) -> int
     """ Get: Count(self: ControlPointCollection) -> int """
+
 
 
 class ControlPointParameters(object):
@@ -1931,24 +1928,18 @@ class ControlPointParameters(object):
     """ Get: Index(self: ControlPointParameters) -> int """
 
     JawPositions = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ControlPointParameters) -> VRect[float]
-
+    # type: (self: ControlPointParameters) -> VRect[float]
     """
-    Get: JawPositions(self: ControlPointParameters) -> VRect[float]
-
-
-
+    Get: JawPositions(self: ControlPointParameters) -> VRect[float]
+    
     Set: JawPositions(self: ControlPointParameters) = value
     """
 
     LeafPositions = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ControlPointParameters) -> Array[Single]
-
+    # type: (self: ControlPointParameters) -> Array[Single]
     """
-    Get: LeafPositions(self: ControlPointParameters) -> Array[Single]
-
-
-
+    Get: LeafPositions(self: ControlPointParameters) -> Array[Single]
+    
     Set: LeafPositions(self: ControlPointParameters) = value
     """
 
@@ -1971,6 +1962,7 @@ class ControlPointParameters(object):
     TableTopVerticalPosition = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: ControlPointParameters) -> float
     """ Get: TableTopVerticalPosition(self: ControlPointParameters) -> float """
+
 
 
 class Course(ApiDataObject, IXmlSerializable):
@@ -2006,16 +1998,14 @@ class Course(ApiDataObject, IXmlSerializable):
         pass
 
     def CopyPlanSetup(self, sourcePlan, structureset=None, outputDiagnostics=None):
-        # type: (self: Course, sourcePlan: PlanSetup) -> PlanSetup
-
+        # type: (self: Course, sourcePlan: PlanSetup) -> PlanSetup
         """
-        CopyPlanSetup(self: Course, sourcePlan: PlanSetup) -> PlanSetup
-
+        CopyPlanSetup(self: Course, sourcePlan: PlanSetup) -> PlanSetup
         CopyPlanSetup(self: Course, sourcePlan: PlanSetup, structureset: StructureSet, outputDiagnostics: StringBuilder) -> PlanSetup
         """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -2025,7 +2015,7 @@ class Course(ApiDataObject, IXmlSerializable):
         """ RemovePlanSetup(self: Course, planSetup: PlanSetup) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2035,11 +2025,11 @@ class Course(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Course, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     BrachyPlanSetups = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -2059,13 +2049,10 @@ class Course(ApiDataObject, IXmlSerializable):
     """ Get: ExternalPlanSetups(self: Course) -> IEnumerable[ExternalPlanSetup] """
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: Course) -> str
-
+    # type: (self: Course) -> str
     """
-    Get: Id(self: Course) -> str
-
-
-
+    Get: Id(self: Course) -> str
+    
     Set: Id(self: Course) = value
     """
 
@@ -2102,6 +2089,7 @@ class Course(ApiDataObject, IXmlSerializable):
     """ Get: TreatmentSessions(self: Course) -> IEnumerable[TreatmentSession] """
 
 
+
 class CustomScriptExecutable(object):
     # no doc
     @staticmethod
@@ -2117,12 +2105,12 @@ class CustomScriptExecutable(object):
 
 class Diagnosis(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2132,11 +2120,11 @@ class Diagnosis(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Diagnosis, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     ClinicalDescription = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -2152,14 +2140,15 @@ class Diagnosis(ApiDataObject, IXmlSerializable):
     """ Get: CodeTable(self: Diagnosis) -> str """
 
 
+
 class DVHData(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2169,7 +2158,7 @@ class DVHData(SerializableObject, IXmlSerializable):
         """ WriteXml(self: DVHData, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -2210,14 +2199,15 @@ class DVHData(SerializableObject, IXmlSerializable):
     """ Get: Volume(self: DVHData) -> float """
 
 
+
 class Wedge(AddOn, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2227,11 +2217,11 @@ class Wedge(AddOn, IXmlSerializable):
         """ WriteXml(self: Wedge, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Direction = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -2243,14 +2233,15 @@ class Wedge(AddOn, IXmlSerializable):
     """ Get: WedgeAngle(self: Wedge) -> float """
 
 
+
 class DynamicWedge(Wedge, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2260,22 +2251,22 @@ class DynamicWedge(Wedge, IXmlSerializable):
         """ WriteXml(self: DynamicWedge, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
 
 class EnhancedDynamicWedge(DynamicWedge, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2285,62 +2276,56 @@ class EnhancedDynamicWedge(DynamicWedge, IXmlSerializable):
         """ WriteXml(self: EnhancedDynamicWedge, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
 
 class ESAPIActionPackAttribute(Attribute, _Attribute):
     # type: ()
     """ ESAPIActionPackAttribute() """
-
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
     IsWriteable = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ESAPIActionPackAttribute) -> bool
-
+    # type: (self: ESAPIActionPackAttribute) -> bool
     """
-    Get: IsWriteable(self: ESAPIActionPackAttribute) -> bool
-
-
-
+    Get: IsWriteable(self: ESAPIActionPackAttribute) -> bool
+    
     Set: IsWriteable(self: ESAPIActionPackAttribute) = value
     """
+
 
 
 class ESAPIScriptAttribute(Attribute, _Attribute):
     # type: ()
     """ ESAPIScriptAttribute() """
-
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
     IsWriteable = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ESAPIScriptAttribute) -> bool
-
+    # type: (self: ESAPIScriptAttribute) -> bool
     """
-    Get: IsWriteable(self: ESAPIScriptAttribute) -> bool
-
-
-
+    Get: IsWriteable(self: ESAPIScriptAttribute) -> bool
+    
     Set: IsWriteable(self: ESAPIScriptAttribute) = value
     """
 
 
+
 class EstimatedDVH(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2350,11 +2335,11 @@ class EstimatedDVH(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: EstimatedDVH, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     CurveData = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -2386,6 +2371,7 @@ class EstimatedDVH(ApiDataObject, IXmlSerializable):
     """ Get: Type(self: EstimatedDVH) -> DVHEstimateType """
 
 
+
 class EvaluationDose(Dose, IXmlSerializable):
     # no doc
     def DoseValueToVoxel(self, doseValue):
@@ -2393,7 +2379,7 @@ class EvaluationDose(Dose, IXmlSerializable):
         """ DoseValueToVoxel(self: EvaluationDose, doseValue: DoseValue) -> int """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -2403,7 +2389,7 @@ class EvaluationDose(Dose, IXmlSerializable):
         """ SetVoxels(self: EvaluationDose, planeIndex: int, values: Array[int]) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2413,22 +2399,22 @@ class EvaluationDose(Dose, IXmlSerializable):
         """ WriteXml(self: EvaluationDose, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
 
 class ExternalBeamTreatmentUnit(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2438,11 +2424,11 @@ class ExternalBeamTreatmentUnit(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: ExternalBeamTreatmentUnit, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     MachineModel = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -2466,57 +2452,50 @@ class ExternalBeamTreatmentUnit(ApiDataObject, IXmlSerializable):
     """ Get: SourceAxisDistance(self: ExternalBeamTreatmentUnit) -> float """
 
 
+
 class ExternalPlanSetup(PlanSetup, IXmlSerializable):
     # no doc
-    def AddArcBeam(self, machineParameters, jawPositions, collimatorAngle, gantryAngle, gantryStop, gantryDirection,
-                   patientSupportAngle, isocenter):
+    def AddArcBeam(self, machineParameters, jawPositions, collimatorAngle, gantryAngle, gantryStop, gantryDirection, patientSupportAngle, isocenter):
         # type: (self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, jawPositions: VRect[float], collimatorAngle: float, gantryAngle: float, gantryStop: float, gantryDirection: GantryDirection, patientSupportAngle: float, isocenter: VVector) -> Beam
         """ AddArcBeam(self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, jawPositions: VRect[float], collimatorAngle: float, gantryAngle: float, gantryStop: float, gantryDirection: GantryDirection, patientSupportAngle: float, isocenter: VVector) -> Beam """
         pass
 
-    def AddConformalArcBeam(self, machineParameters, collimatorAngle, controlPointCount, gantryAngle, gantryStop,
-                            gantryDirection, patientSupportAngle, isocenter):
+    def AddConformalArcBeam(self, machineParameters, collimatorAngle, controlPointCount, gantryAngle, gantryStop, gantryDirection, patientSupportAngle, isocenter):
         # type: (self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, collimatorAngle: float, controlPointCount: int, gantryAngle: float, gantryStop: float, gantryDirection: GantryDirection, patientSupportAngle: float, isocenter: VVector) -> Beam
         """ AddConformalArcBeam(self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, collimatorAngle: float, controlPointCount: int, gantryAngle: float, gantryStop: float, gantryDirection: GantryDirection, patientSupportAngle: float, isocenter: VVector) -> Beam """
         pass
 
-    def AddMLCArcBeam(self, machineParameters, leafPositions, jawPositions, collimatorAngle, gantryAngle, gantryStop,
-                      gantryDirection, patientSupportAngle, isocenter):
+    def AddMLCArcBeam(self, machineParameters, leafPositions, jawPositions, collimatorAngle, gantryAngle, gantryStop, gantryDirection, patientSupportAngle, isocenter):
         # type: (self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, leafPositions: Array[Single], jawPositions: VRect[float], collimatorAngle: float, gantryAngle: float, gantryStop: float, gantryDirection: GantryDirection, patientSupportAngle: float, isocenter: VVector) -> Beam
         """ AddMLCArcBeam(self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, leafPositions: Array[Single], jawPositions: VRect[float], collimatorAngle: float, gantryAngle: float, gantryStop: float, gantryDirection: GantryDirection, patientSupportAngle: float, isocenter: VVector) -> Beam """
         pass
 
-    def AddMLCBeam(self, machineParameters, leafPositions, jawPositions, collimatorAngle, gantryAngle,
-                   patientSupportAngle, isocenter):
+    def AddMLCBeam(self, machineParameters, leafPositions, jawPositions, collimatorAngle, gantryAngle, patientSupportAngle, isocenter):
         # type: (self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, leafPositions: Array[Single], jawPositions: VRect[float], collimatorAngle: float, gantryAngle: float, patientSupportAngle: float, isocenter: VVector) -> Beam
         """ AddMLCBeam(self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, leafPositions: Array[Single], jawPositions: VRect[float], collimatorAngle: float, gantryAngle: float, patientSupportAngle: float, isocenter: VVector) -> Beam """
         pass
 
-    def AddMultipleStaticSegmentBeam(self, machineParameters, metersetWeights, collimatorAngle, gantryAngle,
-                                     patientSupportAngle, isocenter):
+    def AddMultipleStaticSegmentBeam(self, machineParameters, metersetWeights, collimatorAngle, gantryAngle, patientSupportAngle, isocenter):
         # type: (self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, metersetWeights: IEnumerable[float], collimatorAngle: float, gantryAngle: float, patientSupportAngle: float, isocenter: VVector) -> Beam
         """ AddMultipleStaticSegmentBeam(self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, metersetWeights: IEnumerable[float], collimatorAngle: float, gantryAngle: float, patientSupportAngle: float, isocenter: VVector) -> Beam """
         pass
 
-    def AddSlidingWindowBeam(self, machineParameters, metersetWeights, collimatorAngle, gantryAngle,
-                             patientSupportAngle, isocenter):
+    def AddSlidingWindowBeam(self, machineParameters, metersetWeights, collimatorAngle, gantryAngle, patientSupportAngle, isocenter):
         # type: (self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, metersetWeights: IEnumerable[float], collimatorAngle: float, gantryAngle: float, patientSupportAngle: float, isocenter: VVector) -> Beam
         """ AddSlidingWindowBeam(self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, metersetWeights: IEnumerable[float], collimatorAngle: float, gantryAngle: float, patientSupportAngle: float, isocenter: VVector) -> Beam """
         pass
 
-    def AddStaticBeam(self, machineParameters, jawPositions, collimatorAngle, gantryAngle, patientSupportAngle,
-                      isocenter):
+    def AddStaticBeam(self, machineParameters, jawPositions, collimatorAngle, gantryAngle, patientSupportAngle, isocenter):
         # type: (self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, jawPositions: VRect[float], collimatorAngle: float, gantryAngle: float, patientSupportAngle: float, isocenter: VVector) -> Beam
         """ AddStaticBeam(self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, jawPositions: VRect[float], collimatorAngle: float, gantryAngle: float, patientSupportAngle: float, isocenter: VVector) -> Beam """
         pass
 
-    def AddVMATBeam(self, machineParameters, metersetWeights, collimatorAngle, gantryAngle, gantryStop, gantryDirection,
-                    patientSupportAngle, isocenter):
+    def AddVMATBeam(self, machineParameters, metersetWeights, collimatorAngle, gantryAngle, gantryStop, gantryDirection, patientSupportAngle, isocenter):
         # type: (self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, metersetWeights: IEnumerable[float], collimatorAngle: float, gantryAngle: float, gantryStop: float, gantryDirection: GantryDirection, patientSupportAngle: float, isocenter: VVector) -> Beam
         """ AddVMATBeam(self: ExternalPlanSetup, machineParameters: ExternalBeamMachineParameters, metersetWeights: IEnumerable[float], collimatorAngle: float, gantryAngle: float, gantryStop: float, gantryDirection: GantryDirection, patientSupportAngle: float, isocenter: VVector) -> Beam """
         pass
 
-    def AttachToCalcClient(self, *args):  # cannot find CLR method
+    def AttachToCalcClient(self, *args): #cannot find CLR method
         # type: (self: PlanSetup, doseCalcClient: ICalculationClient)
         """ AttachToCalcClient(self: PlanSetup, doseCalcClient: ICalculationClient) """
         pass
@@ -2537,15 +2516,11 @@ class ExternalPlanSetup(PlanSetup, IXmlSerializable):
         pass
 
     def CalculateLeafMotions(self, options=None):
-        # type: (self: ExternalPlanSetup) -> CalculationResult
-
+        # type: (self: ExternalPlanSetup) -> CalculationResult
         """
-        CalculateLeafMotions(self: ExternalPlanSetup) -> CalculationResult
-
-        CalculateLeafMotions(self: ExternalPlanSetup, options: LMCVOptions) -> CalculationResult
-
-        CalculateLeafMotions(self: ExternalPlanSetup, options: SmartLMCOptions) -> CalculationResult
-
+        CalculateLeafMotions(self: ExternalPlanSetup) -> CalculationResult
+        CalculateLeafMotions(self: ExternalPlanSetup, options: LMCVOptions) -> CalculationResult
+        CalculateLeafMotions(self: ExternalPlanSetup, options: SmartLMCOptions) -> CalculationResult
         CalculateLeafMotions(self: ExternalPlanSetup, options: LMCMSSOptions) -> CalculationResult
         """
         pass
@@ -2565,12 +2540,12 @@ class ExternalPlanSetup(PlanSetup, IXmlSerializable):
         """ CreateEvaluationDose(self: ExternalPlanSetup) -> EvaluationDose """
         pass
 
-    def DetachFromCalcClient(self, *args):  # cannot find CLR method
+    def DetachFromCalcClient(self, *args): #cannot find CLR method
         # type: (self: PlanSetup, doseCalcClient: ICalculationClient)
         """ DetachFromCalcClient(self: PlanSetup, doseCalcClient: ICalculationClient) """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -2581,29 +2556,21 @@ class ExternalPlanSetup(PlanSetup, IXmlSerializable):
         pass
 
     def Optimize(self, *__args):
-        # type: (self: ExternalPlanSetup, maxIterations: int) -> OptimizerResult
-
+        # type: (self: ExternalPlanSetup, maxIterations: int) -> OptimizerResult
         """
-        Optimize(self: ExternalPlanSetup, maxIterations: int) -> OptimizerResult
-
-        Optimize(self: ExternalPlanSetup, maxIterations: int, optimizationOption: OptimizationOption) -> OptimizerResult
-
-        Optimize(self: ExternalPlanSetup, maxIterations: int, optimizationOption: OptimizationOption, mlcId: str) -> OptimizerResult
-
-        Optimize(self: ExternalPlanSetup) -> OptimizerResult
-
+        Optimize(self: ExternalPlanSetup, maxIterations: int) -> OptimizerResult
+        Optimize(self: ExternalPlanSetup, maxIterations: int, optimizationOption: OptimizationOption) -> OptimizerResult
+        Optimize(self: ExternalPlanSetup, maxIterations: int, optimizationOption: OptimizationOption, mlcId: str) -> OptimizerResult
+        Optimize(self: ExternalPlanSetup) -> OptimizerResult
         Optimize(self: ExternalPlanSetup, options: OptimizationOptionsIMRT) -> OptimizerResult
         """
         pass
 
     def OptimizeVMAT(self, *__args):
-        # type: (self: ExternalPlanSetup, mlcId: str) -> OptimizerResult
-
+        # type: (self: ExternalPlanSetup, mlcId: str) -> OptimizerResult
         """
-        OptimizeVMAT(self: ExternalPlanSetup, mlcId: str) -> OptimizerResult
-
-        OptimizeVMAT(self: ExternalPlanSetup) -> OptimizerResult
-
+        OptimizeVMAT(self: ExternalPlanSetup, mlcId: str) -> OptimizerResult
+        OptimizeVMAT(self: ExternalPlanSetup) -> OptimizerResult
         OptimizeVMAT(self: ExternalPlanSetup, options: OptimizationOptionsVMAT) -> OptimizerResult
         """
         pass
@@ -2613,12 +2580,12 @@ class ExternalPlanSetup(PlanSetup, IXmlSerializable):
         """ RemoveBeam(self: ExternalPlanSetup, beam: Beam) """
         pass
 
-    def Report(self, *args):  # cannot find CLR method
+    def Report(self, *args): #cannot find CLR method
         # type: (self: PlanSetup, str: str)
         """ Report(self: PlanSetup, str: str) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2628,11 +2595,11 @@ class ExternalPlanSetup(PlanSetup, IXmlSerializable):
         """ WriteXml(self: ExternalPlanSetup, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     DoseAsEvaluationDose = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -2643,17 +2610,18 @@ class ExternalPlanSetup(PlanSetup, IXmlSerializable):
     # type: (self: ExternalPlanSetup) -> TradeoffExplorationContext
     """ Get: TradeoffExplorationContext(self: ExternalPlanSetup) -> TradeoffExplorationContext """
 
+
     m_errorsOnCalculationCompleted = None
 
 
 class FieldReferencePoint(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2663,11 +2631,11 @@ class FieldReferencePoint(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: FieldReferencePoint, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     EffectiveDepth = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -2699,10 +2667,10 @@ class FieldReferencePoint(ApiDataObject, IXmlSerializable):
     """ Get: SSD(self: FieldReferencePoint) -> float """
 
 
+
 class Globals(object):
     # type: ()
     """ Globals() """
-
     @staticmethod
     def DisableApiAccessTrace():
         # type: ()
@@ -2733,12 +2701,12 @@ class Globals(object):
 
 class Hospital(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2748,11 +2716,11 @@ class Hospital(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Hospital, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     CreationDateTime = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -2762,6 +2730,7 @@ class Hospital(ApiDataObject, IXmlSerializable):
     Location = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: Hospital) -> str
     """ Get: Location(self: Hospital) -> str """
+
 
 
 class Image(ApiDataObject, IXmlSerializable):
@@ -2776,7 +2745,7 @@ class Image(ApiDataObject, IXmlSerializable):
         """ DicomToUser(self: Image, dicom: VVector, planSetup: PlanSetup) -> VVector """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -2791,7 +2760,7 @@ class Image(ApiDataObject, IXmlSerializable):
         """ GetVoxels(self: Image, planeIndex: int, preallocatedBuffer: Array[int]) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2811,19 +2780,18 @@ class Image(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Image, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     ApprovalHistory = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: Image) -> IEnumerable[ImageApprovalHistoryEntry]
     """ Get: ApprovalHistory(self: Image) -> IEnumerable[ImageApprovalHistoryEntry] """
 
-    ContrastBolusAgentIngredientName = property(lambda self: object(), lambda self, v: None,
-                                                lambda self: None)  # default
+    ContrastBolusAgentIngredientName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: Image) -> str
     """ Get: ContrastBolusAgentIngredientName(self: Image) -> str """
 
@@ -2844,13 +2812,10 @@ class Image(ApiDataObject, IXmlSerializable):
     """ Get: HasUserOrigin(self: Image) -> bool """
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: Image) -> str
-
+    # type: (self: Image) -> str
     """
-    Get: Id(self: Image) -> str
-
-
-
+    Get: Id(self: Image) -> str
+    
     Set: Id(self: Image) = value
     """
 
@@ -2875,13 +2840,10 @@ class Image(ApiDataObject, IXmlSerializable):
     """ Get: Series(self: Image) -> Series """
 
     UserOrigin = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: Image) -> VVector
-
+    # type: (self: Image) -> VVector
     """
-    Get: UserOrigin(self: Image) -> VVector
-
-
-
+    Get: UserOrigin(self: Image) -> VVector
+    
     Set: UserOrigin(self: Image) = value
     """
 
@@ -2930,9 +2892,10 @@ class Image(ApiDataObject, IXmlSerializable):
     """ Get: ZSize(self: Image) -> int """
 
 
+
 class IonBeam(Beam, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -2942,7 +2905,7 @@ class IonBeam(Beam, IXmlSerializable):
         """ GetEditableParameters(self: IonBeam) -> IonBeamParameters """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -2952,11 +2915,11 @@ class IonBeam(Beam, IXmlSerializable):
         """ WriteXml(self: IonBeam, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     AirGap = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -3032,6 +2995,7 @@ class IonBeam(Beam, IXmlSerializable):
     """ Get: VirtualSADY(self: IonBeam) -> float """
 
 
+
 class IonBeamParameters(BeamParameters):
     # no doc
     ControlPoints = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -3043,14 +3007,15 @@ class IonBeamParameters(BeamParameters):
     """ Get: IonControlPointPairs(self: IonBeamParameters) -> IonControlPointPairCollection """
 
 
+
 class IonControlPoint(ControlPoint, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3060,7 +3025,7 @@ class IonControlPoint(ControlPoint, IXmlSerializable):
         """ WriteXml(self: IonControlPoint, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -3109,9 +3074,10 @@ class IonControlPoint(ControlPoint, IXmlSerializable):
     """ Get: SnoutPosition(self: IonControlPoint) -> float """
 
 
+
 class IonControlPointCollection(SerializableObject, IXmlSerializable, IEnumerable[IonControlPoint], IEnumerable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -3121,7 +3087,7 @@ class IonControlPointCollection(SerializableObject, IXmlSerializable, IEnumerabl
         """ GetEnumerator(self: IonControlPointCollection) -> IEnumerator[IonControlPoint] """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3131,25 +3097,26 @@ class IonControlPointCollection(SerializableObject, IXmlSerializable, IEnumerabl
         """ WriteXml(self: IonControlPointCollection, writer: XmlWriter) """
         pass
 
-    def __contains__(self, *args):  # cannot find CLR method
+    def __contains__(self, *args): #cannot find CLR method
         """ __contains__[IonControlPoint](enumerable: IEnumerable[IonControlPoint], value: IonControlPoint) -> bool """
         pass
 
-    def __getitem__(self, *args):  # cannot find CLR method
+    def __getitem__(self, *args): #cannot find CLR method
         """ x.__getitem__(y) <==> x[y] """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __iter__(self, *args):  # cannot find CLR method
+    def __iter__(self, *args): #cannot find CLR method
         """ __iter__(self: IEnumerable) -> object """
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: IonControlPointCollection) -> int
     """ Get: Count(self: IonControlPointCollection) -> int """
+
 
 
 class IonControlPointPair(object):
@@ -3189,6 +3156,7 @@ class IonControlPointPair(object):
     """ Get: StartIndex(self: IonControlPointPair) -> int """
 
 
+
 class IonControlPointPairCollection(object, IEnumerable[IonControlPointPair], IEnumerable):
     # no doc
     def GetEnumerator(self):
@@ -3196,29 +3164,30 @@ class IonControlPointPairCollection(object, IEnumerable[IonControlPointPair], IE
         """ GetEnumerator(self: IonControlPointPairCollection) -> IEnumerator[IonControlPointPair] """
         pass
 
-    def __contains__(self, *args):  # cannot find CLR method
+    def __contains__(self, *args): #cannot find CLR method
         """ __contains__[IonControlPointPair](enumerable: IEnumerable[IonControlPointPair], value: IonControlPointPair) -> bool """
         pass
 
-    def __getitem__(self, *args):  # cannot find CLR method
+    def __getitem__(self, *args): #cannot find CLR method
         """ x.__getitem__(y) <==> x[y] """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __iter__(self, *args):  # cannot find CLR method
+    def __iter__(self, *args): #cannot find CLR method
         """ __iter__(self: IEnumerable) -> object """
         pass
 
-    def __repr__(self, *args):  # cannot find CLR method
+    def __repr__(self, *args): #cannot find CLR method
         """ __repr__(self: object) -> str """
         pass
 
     Count = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: IonControlPointPairCollection) -> int
     """ Get: Count(self: IonControlPointPairCollection) -> int """
+
 
 
 class IonControlPointParameters(ControlPointParameters):
@@ -3232,9 +3201,10 @@ class IonControlPointParameters(ControlPointParameters):
     """ Get: RawSpotList(self: IonControlPointParameters) -> IonSpotParametersCollection """
 
 
+
 class IonPlanSetup(PlanSetup, IXmlSerializable):
     # no doc
-    def AttachToCalcClient(self, *args):  # cannot find CLR method
+    def AttachToCalcClient(self, *args): #cannot find CLR method
         # type: (self: PlanSetup, doseCalcClient: ICalculationClient)
         """ AttachToCalcClient(self: PlanSetup, doseCalcClient: ICalculationClient) """
         pass
@@ -3259,12 +3229,12 @@ class IonPlanSetup(PlanSetup, IXmlSerializable):
         """ CreateEvaluationDose(self: IonPlanSetup) -> EvaluationDose """
         pass
 
-    def DetachFromCalcClient(self, *args):  # cannot find CLR method
+    def DetachFromCalcClient(self, *args): #cannot find CLR method
         # type: (self: PlanSetup, doseCalcClient: ICalculationClient)
         """ DetachFromCalcClient(self: PlanSetup, doseCalcClient: ICalculationClient) """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -3279,12 +3249,12 @@ class IonPlanSetup(PlanSetup, IXmlSerializable):
         """ PostProcessAndCalculateDose(self: IonPlanSetup) -> CalculationResult """
         pass
 
-    def Report(self, *args):  # cannot find CLR method
+    def Report(self, *args): #cannot find CLR method
         # type: (self: PlanSetup, str: str)
         """ Report(self: PlanSetup, str: str) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3294,11 +3264,11 @@ class IonPlanSetup(PlanSetup, IXmlSerializable):
         """ WriteXml(self: IonPlanSetup, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     DoseAsEvaluationDose = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -3310,27 +3280,25 @@ class IonPlanSetup(PlanSetup, IXmlSerializable):
     """ Get: IonBeams(self: IonPlanSetup) -> IEnumerable[IonBeam] """
 
     IsPostProcessingNeeded = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: IonPlanSetup) -> bool
-
+    # type: (self: IonPlanSetup) -> bool
     """
-    Get: IsPostProcessingNeeded(self: IonPlanSetup) -> bool
-
-
-
+    Get: IsPostProcessingNeeded(self: IonPlanSetup) -> bool
+    
     Set: IsPostProcessingNeeded(self: IonPlanSetup) = value
     """
+
 
     m_errorsOnCalculationCompleted = None
 
 
 class IonSpot(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3340,7 +3308,7 @@ class IonSpot(SerializableObject, IXmlSerializable):
         """ WriteXml(self: IonSpot, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -3353,9 +3321,10 @@ class IonSpot(SerializableObject, IXmlSerializable):
     """ Get: Weight(self: IonSpot) -> Single """
 
 
+
 class IonSpotCollection(SerializableObject, IXmlSerializable, IEnumerable[IonSpot], IEnumerable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -3365,7 +3334,7 @@ class IonSpotCollection(SerializableObject, IXmlSerializable, IEnumerable[IonSpo
         """ GetEnumerator(self: IonSpotCollection) -> IEnumerator[IonSpot] """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3375,19 +3344,19 @@ class IonSpotCollection(SerializableObject, IXmlSerializable, IEnumerable[IonSpo
         """ WriteXml(self: IonSpotCollection, writer: XmlWriter) """
         pass
 
-    def __contains__(self, *args):  # cannot find CLR method
+    def __contains__(self, *args): #cannot find CLR method
         """ __contains__[IonSpot](enumerable: IEnumerable[IonSpot], value: IonSpot) -> bool """
         pass
 
-    def __getitem__(self, *args):  # cannot find CLR method
+    def __getitem__(self, *args): #cannot find CLR method
         """ x.__getitem__(y) <==> x[y] """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __iter__(self, *args):  # cannot find CLR method
+    def __iter__(self, *args): #cannot find CLR method
         """ __iter__(self: IEnumerable) -> object """
         pass
 
@@ -3396,14 +3365,15 @@ class IonSpotCollection(SerializableObject, IXmlSerializable, IEnumerable[IonSpo
     """ Get: Count(self: IonSpotCollection) -> int """
 
 
+
 class IonSpotParameters(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3413,47 +3383,39 @@ class IonSpotParameters(SerializableObject, IXmlSerializable):
         """ WriteXml(self: IonSpotParameters, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
     Weight = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: IonSpotParameters) -> Single
-
+    # type: (self: IonSpotParameters) -> Single
     """
-    Get: Weight(self: IonSpotParameters) -> Single
-
-
-
+    Get: Weight(self: IonSpotParameters) -> Single
+    
     Set: Weight(self: IonSpotParameters) = value
     """
 
     X = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: IonSpotParameters) -> Single
-
+    # type: (self: IonSpotParameters) -> Single
     """
-    Get: X(self: IonSpotParameters) -> Single
-
-
-
+    Get: X(self: IonSpotParameters) -> Single
+    
     Set: X(self: IonSpotParameters) = value
     """
 
     Y = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: IonSpotParameters) -> Single
-
+    # type: (self: IonSpotParameters) -> Single
     """
-    Get: Y(self: IonSpotParameters) -> Single
-
-
-
+    Get: Y(self: IonSpotParameters) -> Single
+    
     Set: Y(self: IonSpotParameters) = value
     """
 
 
+
 class IonSpotParametersCollection(SerializableObject, IXmlSerializable, IEnumerable[IonSpotParameters], IEnumerable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -3463,7 +3425,7 @@ class IonSpotParametersCollection(SerializableObject, IXmlSerializable, IEnumera
         """ GetEnumerator(self: IonSpotParametersCollection) -> IEnumerator[IonSpotParameters] """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3473,19 +3435,19 @@ class IonSpotParametersCollection(SerializableObject, IXmlSerializable, IEnumera
         """ WriteXml(self: IonSpotParametersCollection, writer: XmlWriter) """
         pass
 
-    def __contains__(self, *args):  # cannot find CLR method
+    def __contains__(self, *args): #cannot find CLR method
         """ __contains__[IonSpotParameters](enumerable: IEnumerable[IonSpotParameters], value: IonSpotParameters) -> bool """
         pass
 
-    def __getitem__(self, *args):  # cannot find CLR method
+    def __getitem__(self, *args): #cannot find CLR method
         """ x.__getitem__(y) <==> x[y] """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __iter__(self, *args):  # cannot find CLR method
+    def __iter__(self, *args): #cannot find CLR method
         """ __iter__(self: IEnumerable) -> object """
         pass
 
@@ -3494,14 +3456,15 @@ class IonSpotParametersCollection(SerializableObject, IXmlSerializable, IEnumera
     """ Get: Count(self: IonSpotParametersCollection) -> int """
 
 
+
 class Isodose(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3511,7 +3474,7 @@ class Isodose(SerializableObject, IXmlSerializable):
         """ WriteXml(self: Isodose, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -3528,14 +3491,15 @@ class Isodose(SerializableObject, IXmlSerializable):
     """ Get: MeshGeometry(self: Isodose) -> MeshGeometry3D """
 
 
+
 class LateralSpreadingDevice(AddOn, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3545,11 +3509,11 @@ class LateralSpreadingDevice(AddOn, IXmlSerializable):
         """ WriteXml(self: LateralSpreadingDevice, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Type = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -3557,14 +3521,15 @@ class LateralSpreadingDevice(AddOn, IXmlSerializable):
     """ Get: Type(self: LateralSpreadingDevice) -> LateralSpreadingDeviceType """
 
 
+
 class LateralSpreadingDeviceSettings(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3574,12 +3539,11 @@ class LateralSpreadingDeviceSettings(SerializableObject, IXmlSerializable):
         """ WriteXml(self: LateralSpreadingDeviceSettings, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    IsocenterToLateralSpreadingDeviceDistance = property(lambda self: object(), lambda self, v: None,
-                                                         lambda self: None)  # default
+    IsocenterToLateralSpreadingDeviceDistance = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: LateralSpreadingDeviceSettings) -> float
     """ Get: IsocenterToLateralSpreadingDeviceDistance(self: LateralSpreadingDeviceSettings) -> float """
 
@@ -3587,25 +3551,24 @@ class LateralSpreadingDeviceSettings(SerializableObject, IXmlSerializable):
     # type: (self: LateralSpreadingDeviceSettings) -> str
     """ Get: LateralSpreadingDeviceSetting(self: LateralSpreadingDeviceSettings) -> str """
 
-    LateralSpreadingDeviceWaterEquivalentThickness = property(lambda self: object(), lambda self, v: None,
-                                                              lambda self: None)  # default
+    LateralSpreadingDeviceWaterEquivalentThickness = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: LateralSpreadingDeviceSettings) -> float
     """ Get: LateralSpreadingDeviceWaterEquivalentThickness(self: LateralSpreadingDeviceSettings) -> float """
 
-    ReferencedLateralSpreadingDevice = property(lambda self: object(), lambda self, v: None,
-                                                lambda self: None)  # default
+    ReferencedLateralSpreadingDevice = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: LateralSpreadingDeviceSettings) -> LateralSpreadingDevice
     """ Get: ReferencedLateralSpreadingDevice(self: LateralSpreadingDeviceSettings) -> LateralSpreadingDevice """
 
 
+
 class MLC(AddOn, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3615,11 +3578,11 @@ class MLC(AddOn, IXmlSerializable):
         """ WriteXml(self: MLC, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     ManufacturerName = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -3639,14 +3602,15 @@ class MLC(AddOn, IXmlSerializable):
     """ Get: SerialNumber(self: MLC) -> str """
 
 
+
 class MotorizedWedge(Wedge, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3656,22 +3620,22 @@ class MotorizedWedge(Wedge, IXmlSerializable):
         """ WriteXml(self: MotorizedWedge, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
 
 class OmniWedge(Wedge, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3681,17 +3645,17 @@ class OmniWedge(Wedge, IXmlSerializable):
         """ WriteXml(self: OmniWedge, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
 
 class OptimizationObjective(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -3706,7 +3670,7 @@ class OptimizationObjective(SerializableObject, IXmlSerializable):
         """ GetHashCode(self: OptimizationObjective) -> int """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3716,15 +3680,15 @@ class OptimizationObjective(SerializableObject, IXmlSerializable):
         """ WriteXml(self: OptimizationObjective, writer: XmlWriter) """
         pass
 
-    def __eq__(self, *args):  # cannot find CLR method
+    def __eq__(self, *args): #cannot find CLR method
         """ x.__eq__(y) <==> x==y """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __ne__(self, *args):  # cannot find CLR method
+    def __ne__(self, *args): #cannot find CLR method
         pass
 
     Operator = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -3744,14 +3708,15 @@ class OptimizationObjective(SerializableObject, IXmlSerializable):
     """ Get: StructureId(self: OptimizationObjective) -> str """
 
 
+
 class OptimizationEUDObjective(OptimizationObjective, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3761,7 +3726,7 @@ class OptimizationEUDObjective(OptimizationObjective, IXmlSerializable):
         """ WriteXml(self: OptimizationEUDObjective, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -3774,9 +3739,10 @@ class OptimizationEUDObjective(OptimizationObjective, IXmlSerializable):
     """ Get: ParameterA(self: OptimizationEUDObjective) -> float """
 
 
+
 class OptimizationParameter(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -3791,7 +3757,7 @@ class OptimizationParameter(SerializableObject, IXmlSerializable):
         """ GetHashCode(self: OptimizationParameter) -> int """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3801,26 +3767,26 @@ class OptimizationParameter(SerializableObject, IXmlSerializable):
         """ WriteXml(self: OptimizationParameter, writer: XmlWriter) """
         pass
 
-    def __eq__(self, *args):  # cannot find CLR method
+    def __eq__(self, *args): #cannot find CLR method
         """ x.__eq__(y) <==> x==y """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __ne__(self, *args):  # cannot find CLR method
+    def __ne__(self, *args): #cannot find CLR method
         pass
 
 
 class OptimizationExcludeStructureParameter(OptimizationParameter, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3830,7 +3796,7 @@ class OptimizationExcludeStructureParameter(OptimizationParameter, IXmlSerializa
         """ WriteXml(self: OptimizationExcludeStructureParameter, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -3839,14 +3805,15 @@ class OptimizationExcludeStructureParameter(OptimizationParameter, IXmlSerializa
     """ Get: Structure(self: OptimizationExcludeStructureParameter) -> Structure """
 
 
+
 class OptimizationIMRTBeamParameter(OptimizationParameter, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3856,7 +3823,7 @@ class OptimizationIMRTBeamParameter(OptimizationParameter, IXmlSerializable):
         """ WriteXml(self: OptimizationIMRTBeamParameter, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -3885,14 +3852,15 @@ class OptimizationIMRTBeamParameter(OptimizationParameter, IXmlSerializable):
     """ Get: SmoothY(self: OptimizationIMRTBeamParameter) -> float """
 
 
+
 class OptimizationJawTrackingUsedParameter(OptimizationParameter, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3902,19 +3870,19 @@ class OptimizationJawTrackingUsedParameter(OptimizationParameter, IXmlSerializab
         """ WriteXml(self: OptimizationJawTrackingUsedParameter, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
 
 class OptimizationLineObjective(OptimizationObjective, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3924,7 +3892,7 @@ class OptimizationLineObjective(OptimizationObjective, IXmlSerializable):
         """ WriteXml(self: OptimizationLineObjective, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -3933,14 +3901,15 @@ class OptimizationLineObjective(OptimizationObjective, IXmlSerializable):
     """ Get: CurveData(self: OptimizationLineObjective) -> Array[DVHPoint] """
 
 
+
 class OptimizationMeanDoseObjective(OptimizationObjective, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3950,7 +3919,7 @@ class OptimizationMeanDoseObjective(OptimizationObjective, IXmlSerializable):
         """ WriteXml(self: OptimizationMeanDoseObjective, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -3959,14 +3928,15 @@ class OptimizationMeanDoseObjective(OptimizationObjective, IXmlSerializable):
     """ Get: Dose(self: OptimizationMeanDoseObjective) -> DoseValue """
 
 
+
 class OptimizationNormalTissueParameter(OptimizationParameter, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -3976,7 +3946,7 @@ class OptimizationNormalTissueParameter(OptimizationParameter, IXmlSerializable)
         """ WriteXml(self: OptimizationNormalTissueParameter, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -4005,14 +3975,15 @@ class OptimizationNormalTissueParameter(OptimizationParameter, IXmlSerializable)
     """ Get: StartDosePercentage(self: OptimizationNormalTissueParameter) -> float """
 
 
+
 class OptimizationPointCloudParameter(OptimizationParameter, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4022,7 +3993,7 @@ class OptimizationPointCloudParameter(OptimizationParameter, IXmlSerializable):
         """ WriteXml(self: OptimizationPointCloudParameter, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -4035,14 +4006,15 @@ class OptimizationPointCloudParameter(OptimizationParameter, IXmlSerializable):
     """ Get: Structure(self: OptimizationPointCloudParameter) -> Structure """
 
 
+
 class OptimizationPointObjective(OptimizationObjective, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4052,7 +4024,7 @@ class OptimizationPointObjective(OptimizationObjective, IXmlSerializable):
         """ WriteXml(self: OptimizationPointObjective, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -4063,6 +4035,7 @@ class OptimizationPointObjective(OptimizationObjective, IXmlSerializable):
     Volume = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: OptimizationPointObjective) -> float
     """ Get: Volume(self: OptimizationPointObjective) -> float """
+
 
 
 class OptimizationSetup(SerializableObject, IXmlSerializable):
@@ -4087,8 +4060,7 @@ class OptimizationSetup(SerializableObject, IXmlSerializable):
         """ AddMeanDoseObjective(self: OptimizationSetup, structure: Structure, dose: DoseValue, priority: float) -> OptimizationMeanDoseObjective """
         pass
 
-    def AddNormalTissueObjective(self, priority, distanceFromTargetBorderInMM, startDosePercentage, endDosePercentage,
-                                 fallOff):
+    def AddNormalTissueObjective(self, priority, distanceFromTargetBorderInMM, startDosePercentage, endDosePercentage, fallOff):
         # type: (self: OptimizationSetup, priority: float, distanceFromTargetBorderInMM: float, startDosePercentage: float, endDosePercentage: float, fallOff: float) -> OptimizationNormalTissueParameter
         """ AddNormalTissueObjective(self: OptimizationSetup, priority: float, distanceFromTargetBorderInMM: float, startDosePercentage: float, endDosePercentage: float, fallOff: float) -> OptimizationNormalTissueParameter """
         pass
@@ -4098,7 +4070,7 @@ class OptimizationSetup(SerializableObject, IXmlSerializable):
         """ AddPointObjective(self: OptimizationSetup, structure: Structure, objectiveOperator: OptimizationObjectiveOperator, dose: DoseValue, volume: float, priority: float) -> OptimizationPointObjective """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -4113,7 +4085,7 @@ class OptimizationSetup(SerializableObject, IXmlSerializable):
         """ RemoveParameter(self: OptimizationSetup, parameter: OptimizationParameter) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4123,7 +4095,7 @@ class OptimizationSetup(SerializableObject, IXmlSerializable):
         """ WriteXml(self: OptimizationSetup, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -4136,15 +4108,13 @@ class OptimizationSetup(SerializableObject, IXmlSerializable):
     """ Get: Parameters(self: OptimizationSetup) -> IEnumerable[OptimizationParameter] """
 
     UseJawTracking = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: OptimizationSetup) -> bool
-
+    # type: (self: OptimizationSetup) -> bool
     """
-    Get: UseJawTracking(self: OptimizationSetup) -> bool
-
-
-
+    Get: UseJawTracking(self: OptimizationSetup) -> bool
+    
     Set: UseJawTracking(self: OptimizationSetup) = value
     """
+
 
 
 class OptimizerDVH(object):
@@ -4158,6 +4128,7 @@ class OptimizerDVH(object):
     """ Get: Structure(self: OptimizerDVH) -> Structure """
 
 
+
 class OptimizerObjectiveValue(object):
     # no doc
     Structure = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -4169,10 +4140,10 @@ class OptimizerObjectiveValue(object):
     """ Get: Value(self: OptimizerObjectiveValue) -> float """
 
 
+
 class OptimizerResult(CalculationResult):
     # no doc
-    NumberOfIMRTOptimizerIterations = property(lambda self: object(), lambda self, v: None,
-                                               lambda self: None)  # default
+    NumberOfIMRTOptimizerIterations = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: OptimizerResult) -> int
     """ Get: NumberOfIMRTOptimizerIterations(self: OptimizerResult) -> int """
 
@@ -4187,6 +4158,7 @@ class OptimizerResult(CalculationResult):
     TotalObjectiveFunctionValue = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: OptimizerResult) -> float
     """ Get: TotalObjectiveFunctionValue(self: OptimizerResult) -> float """
+
 
 
 class Patient(ApiDataObject, IXmlSerializable):
@@ -4216,8 +4188,7 @@ class Patient(ApiDataObject, IXmlSerializable):
         """ CanAddEmptyPhantom(self: Patient) -> (bool, str) """
         pass
 
-    def CanCopyImageFromOtherPatient(self, targetStudy, otherPatientId, otherPatientStudyId, otherPatient3DImageId,
-                                     errorMessage):
+    def CanCopyImageFromOtherPatient(self, targetStudy, otherPatientId, otherPatientStudyId, otherPatient3DImageId, errorMessage):
         # type: (self: Patient, targetStudy: Study, otherPatientId: str, otherPatientStudyId: str, otherPatient3DImageId: str) -> (bool, str)
         """ CanCopyImageFromOtherPatient(self: Patient, targetStudy: Study, otherPatientId: str, otherPatientStudyId: str, otherPatient3DImageId: str) -> (bool, str) """
         pass
@@ -4238,16 +4209,14 @@ class Patient(ApiDataObject, IXmlSerializable):
         pass
 
     def CopyImageFromOtherPatient(self, *__args):
-        # type: (self: Patient, otherPatientId: str, otherPatientStudyId: str, otherPatient3DImageId: str) -> StructureSet
-
+        # type: (self: Patient, otherPatientId: str, otherPatientStudyId: str, otherPatient3DImageId: str) -> StructureSet
         """
-        CopyImageFromOtherPatient(self: Patient, otherPatientId: str, otherPatientStudyId: str, otherPatient3DImageId: str) -> StructureSet
-
+        CopyImageFromOtherPatient(self: Patient, otherPatientId: str, otherPatientStudyId: str, otherPatient3DImageId: str) -> StructureSet
         CopyImageFromOtherPatient(self: Patient, targetStudy: Study, otherPatientId: str, otherPatientStudyId: str, otherPatient3DImageId: str) -> StructureSet
         """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -4262,7 +4231,7 @@ class Patient(ApiDataObject, IXmlSerializable):
         """ RemoveEmptyPhantom(self: Patient, structureset: StructureSet) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4272,11 +4241,11 @@ class Patient(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Patient, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Courses = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -4340,14 +4309,15 @@ class Patient(ApiDataObject, IXmlSerializable):
     """ Get: Studies(self: Patient) -> IEnumerable[Study] """
 
 
+
 class PatientSummary(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4357,7 +4327,7 @@ class PatientSummary(SerializableObject, IXmlSerializable):
         """ WriteXml(self: PatientSummary, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -4398,14 +4368,15 @@ class PatientSummary(SerializableObject, IXmlSerializable):
     """ Get: SSN(self: PatientSummary) -> str """
 
 
+
 class PlanningItemDose(Dose, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4415,17 +4386,17 @@ class PlanningItemDose(Dose, IXmlSerializable):
         """ WriteXml(self: PlanningItemDose, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
 
 class PlanSum(PlanningItem, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -4440,7 +4411,7 @@ class PlanSum(PlanningItem, IXmlSerializable):
         """ GetPlanWeight(self: PlanSum, planSetupInPlanSum: PlanSetup) -> float """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4450,11 +4421,11 @@ class PlanSum(PlanningItem, IXmlSerializable):
         """ WriteXml(self: PlanSum, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Course = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -4470,14 +4441,15 @@ class PlanSum(PlanningItem, IXmlSerializable):
     """ Get: PlanSumComponents(self: PlanSum) -> IEnumerable[PlanSumComponent] """
 
 
+
 class PlanSumComponent(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4487,11 +4459,11 @@ class PlanSumComponent(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: PlanSumComponent, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     PlanSetupId = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -4507,14 +4479,15 @@ class PlanSumComponent(ApiDataObject, IXmlSerializable):
     """ Get: PlanWeight(self: PlanSumComponent) -> float """
 
 
+
 class PlanTreatmentSession(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4524,11 +4497,11 @@ class PlanTreatmentSession(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: PlanTreatmentSession, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     PlanSetup = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -4544,9 +4517,10 @@ class PlanTreatmentSession(ApiDataObject, IXmlSerializable):
     """ Get: TreatmentSession(self: PlanTreatmentSession) -> TreatmentSession """
 
 
+
 class PlanUncertainty(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -4556,7 +4530,7 @@ class PlanUncertainty(ApiDataObject, IXmlSerializable):
         """ GetDVHCumulativeData(self: PlanUncertainty, structure: Structure, dosePresentation: DoseValuePresentation, volumePresentation: VolumePresentation, binWidth: float) -> DVHData """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4566,11 +4540,11 @@ class PlanUncertainty(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: PlanUncertainty, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     BeamUncertainties = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -4598,14 +4572,15 @@ class PlanUncertainty(ApiDataObject, IXmlSerializable):
     """ Get: UncertaintyType(self: PlanUncertainty) -> PlanUncertaintyType """
 
 
+
 class ProtocolPhaseMeasure(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4615,7 +4590,7 @@ class ProtocolPhaseMeasure(SerializableObject, IXmlSerializable):
         """ WriteXml(self: ProtocolPhaseMeasure, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -4648,14 +4623,15 @@ class ProtocolPhaseMeasure(SerializableObject, IXmlSerializable):
     """ Get: TypeText(self: ProtocolPhaseMeasure) -> str """
 
 
+
 class ProtocolPhasePrescription(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4665,7 +4641,7 @@ class ProtocolPhasePrescription(SerializableObject, IXmlSerializable):
         """ WriteXml(self: ProtocolPhasePrescription, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -4702,14 +4678,15 @@ class ProtocolPhasePrescription(SerializableObject, IXmlSerializable):
     """ Get: TargetTotalDose(self: ProtocolPhasePrescription) -> DoseValue """
 
 
+
 class RadioactiveSource(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4719,11 +4696,11 @@ class RadioactiveSource(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: RadioactiveSource, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     CalibrationDate = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -4747,14 +4724,15 @@ class RadioactiveSource(ApiDataObject, IXmlSerializable):
     """ Get: Strength(self: RadioactiveSource) -> float """
 
 
+
 class RadioactiveSourceModel(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4764,11 +4742,11 @@ class RadioactiveSourceModel(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: RadioactiveSourceModel, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     ActiveSize = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -4816,14 +4794,15 @@ class RadioactiveSourceModel(ApiDataObject, IXmlSerializable):
     """ Get: StatusUserName(self: RadioactiveSourceModel) -> str """
 
 
+
 class RangeModulator(AddOn, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4833,11 +4812,11 @@ class RangeModulator(AddOn, IXmlSerializable):
         """ WriteXml(self: RangeModulator, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Type = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -4845,14 +4824,15 @@ class RangeModulator(AddOn, IXmlSerializable):
     """ Get: Type(self: RangeModulator) -> RangeModulatorType """
 
 
+
 class RangeModulatorSettings(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4862,12 +4842,11 @@ class RangeModulatorSettings(SerializableObject, IXmlSerializable):
         """ WriteXml(self: RangeModulatorSettings, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    IsocenterToRangeModulatorDistance = property(lambda self: object(), lambda self, v: None,
-                                                 lambda self: None)  # default
+    IsocenterToRangeModulatorDistance = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: RangeModulatorSettings) -> float
     """ Get: IsocenterToRangeModulatorDistance(self: RangeModulatorSettings) -> float """
 
@@ -4875,8 +4854,7 @@ class RangeModulatorSettings(SerializableObject, IXmlSerializable):
     # type: (self: RangeModulatorSettings) -> float
     """ Get: RangeModulatorGatingStartValue(self: RangeModulatorSettings) -> float """
 
-    RangeModulatorGatingStarWaterEquivalentThickness = property(lambda self: object(), lambda self, v: None,
-                                                                lambda self: None)  # default
+    RangeModulatorGatingStarWaterEquivalentThickness = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: RangeModulatorSettings) -> float
     """ Get: RangeModulatorGatingStarWaterEquivalentThickness(self: RangeModulatorSettings) -> float """
 
@@ -4884,8 +4862,7 @@ class RangeModulatorSettings(SerializableObject, IXmlSerializable):
     # type: (self: RangeModulatorSettings) -> float
     """ Get: RangeModulatorGatingStopValue(self: RangeModulatorSettings) -> float """
 
-    RangeModulatorGatingStopWaterEquivalentThickness = property(lambda self: object(), lambda self, v: None,
-                                                                lambda self: None)  # default
+    RangeModulatorGatingStopWaterEquivalentThickness = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: RangeModulatorSettings) -> float
     """ Get: RangeModulatorGatingStopWaterEquivalentThickness(self: RangeModulatorSettings) -> float """
 
@@ -4894,14 +4871,15 @@ class RangeModulatorSettings(SerializableObject, IXmlSerializable):
     """ Get: ReferencedRangeModulator(self: RangeModulatorSettings) -> RangeModulator """
 
 
+
 class RangeShifter(AddOn, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4911,11 +4889,11 @@ class RangeShifter(AddOn, IXmlSerializable):
         """ WriteXml(self: RangeShifter, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Type = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -4923,14 +4901,15 @@ class RangeShifter(AddOn, IXmlSerializable):
     """ Get: Type(self: RangeShifter) -> RangeShifterType """
 
 
+
 class RangeShifterSettings(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4940,12 +4919,11 @@ class RangeShifterSettings(SerializableObject, IXmlSerializable):
         """ WriteXml(self: RangeShifterSettings, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    IsocenterToRangeShifterDistance = property(lambda self: object(), lambda self, v: None,
-                                               lambda self: None)  # default
+    IsocenterToRangeShifterDistance = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: RangeShifterSettings) -> float
     """ Get: IsocenterToRangeShifterDistance(self: RangeShifterSettings) -> float """
 
@@ -4953,8 +4931,7 @@ class RangeShifterSettings(SerializableObject, IXmlSerializable):
     # type: (self: RangeShifterSettings) -> str
     """ Get: RangeShifterSetting(self: RangeShifterSettings) -> str """
 
-    RangeShifterWaterEquivalentThickness = property(lambda self: object(), lambda self, v: None,
-                                                    lambda self: None)  # default
+    RangeShifterWaterEquivalentThickness = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: RangeShifterSettings) -> float
     """ Get: RangeShifterWaterEquivalentThickness(self: RangeShifterSettings) -> float """
 
@@ -4963,9 +4940,10 @@ class RangeShifterSettings(SerializableObject, IXmlSerializable):
     """ Get: ReferencedRangeShifter(self: RangeShifterSettings) -> RangeShifter """
 
 
+
 class ReferencePoint(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -4980,7 +4958,7 @@ class ReferencePoint(ApiDataObject, IXmlSerializable):
         """ HasLocation(self: ReferencePoint, planSetup: PlanSetup) -> bool """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -4990,21 +4968,18 @@ class ReferencePoint(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: ReferencePoint, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     DailyDoseLimit = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ReferencePoint) -> DoseValue
-
+    # type: (self: ReferencePoint) -> DoseValue
     """
-    Get: DailyDoseLimit(self: ReferencePoint) -> DoseValue
-
-
-
+    Get: DailyDoseLimit(self: ReferencePoint) -> DoseValue
+    
     Set: DailyDoseLimit(self: ReferencePoint) = value
     """
 
@@ -5013,31 +4988,26 @@ class ReferencePoint(ApiDataObject, IXmlSerializable):
     """ Get: PatientVolumeId(self: ReferencePoint) -> str """
 
     SessionDoseLimit = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ReferencePoint) -> DoseValue
-
+    # type: (self: ReferencePoint) -> DoseValue
     """
-    Get: SessionDoseLimit(self: ReferencePoint) -> DoseValue
-
-
-
+    Get: SessionDoseLimit(self: ReferencePoint) -> DoseValue
+    
     Set: SessionDoseLimit(self: ReferencePoint) = value
     """
 
     TotalDoseLimit = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: ReferencePoint) -> DoseValue
-
+    # type: (self: ReferencePoint) -> DoseValue
     """
-    Get: TotalDoseLimit(self: ReferencePoint) -> DoseValue
-
-
-
+    Get: TotalDoseLimit(self: ReferencePoint) -> DoseValue
+    
     Set: TotalDoseLimit(self: ReferencePoint) = value
     """
 
 
+
 class Registration(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -5047,7 +5017,7 @@ class Registration(ApiDataObject, IXmlSerializable):
         """ InverseTransformPoint(self: Registration, pt: VVector) -> VVector """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5062,11 +5032,11 @@ class Registration(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Registration, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     CreationDateTime = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -5106,14 +5076,15 @@ class Registration(ApiDataObject, IXmlSerializable):
     """ Get: UID(self: Registration) -> str """
 
 
+
 class RTPrescription(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5123,11 +5094,11 @@ class RTPrescription(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: RTPrescription, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     BolusFrequency = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -5190,8 +5161,7 @@ class RTPrescription(ApiDataObject, IXmlSerializable):
     # type: (self: RTPrescription) -> str
     """ Get: Status(self: RTPrescription) -> str """
 
-    TargetConstraintsWithoutTargetLevel = property(lambda self: object(), lambda self, v: None,
-                                                   lambda self: None)  # default
+    TargetConstraintsWithoutTargetLevel = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: RTPrescription) -> IEnumerable[RTPrescriptionTargetConstraints]
     """ Get: TargetConstraintsWithoutTargetLevel(self: RTPrescription) -> IEnumerable[RTPrescriptionTargetConstraints] """
 
@@ -5204,14 +5174,15 @@ class RTPrescription(ApiDataObject, IXmlSerializable):
     """ Get: Technique(self: RTPrescription) -> str """
 
 
+
 class RTPrescriptionConstraint(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5221,7 +5192,7 @@ class RTPrescriptionConstraint(SerializableObject, IXmlSerializable):
         """ WriteXml(self: RTPrescriptionConstraint, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -5246,14 +5217,15 @@ class RTPrescriptionConstraint(SerializableObject, IXmlSerializable):
     """ Get: Value2(self: RTPrescriptionConstraint) -> str """
 
 
+
 class RTPrescriptionOrganAtRisk(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5263,7 +5235,7 @@ class RTPrescriptionOrganAtRisk(SerializableObject, IXmlSerializable):
         """ WriteXml(self: RTPrescriptionOrganAtRisk, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -5276,14 +5248,15 @@ class RTPrescriptionOrganAtRisk(SerializableObject, IXmlSerializable):
     """ Get: OrganAtRiskId(self: RTPrescriptionOrganAtRisk) -> str """
 
 
+
 class RTPrescriptionTarget(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5293,11 +5266,11 @@ class RTPrescriptionTarget(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: RTPrescriptionTarget, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Constraints = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -5325,14 +5298,15 @@ class RTPrescriptionTarget(ApiDataObject, IXmlSerializable):
     """ Get: Value(self: RTPrescriptionTarget) -> float """
 
 
+
 class RTPrescriptionTargetConstraints(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5342,7 +5316,7 @@ class RTPrescriptionTargetConstraints(SerializableObject, IXmlSerializable):
         """ WriteXml(self: RTPrescriptionTargetConstraints, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -5355,11 +5329,11 @@ class RTPrescriptionTargetConstraints(SerializableObject, IXmlSerializable):
     """ Get: TargetId(self: RTPrescriptionTargetConstraints) -> str """
 
 
+
 class ScriptContext(object):
     # type: (context: object, user: object, appName: str)
     """ ScriptContext(context: object, user: object, appName: str) """
-
-    @staticmethod  # known case of __new__
+    @staticmethod # known case of __new__
     def __new__(self, context, user, appName):
         """ __new__(cls: type, context: object, user: object, appName: str) """
         pass
@@ -5429,16 +5403,16 @@ class ScriptContext(object):
     """ Get: VersionInfo(self: ScriptContext) -> str """
 
 
+
 class ScriptEnvironment(object):
     # type: (appName: str, scripts: IEnumerable[IApplicationScript], scriptExecutionEngine: Action[Assembly, object, Window, object])
     """ ScriptEnvironment(appName: str, scripts: IEnumerable[IApplicationScript], scriptExecutionEngine: Action[Assembly, object, Window, object]) """
-
     def ExecuteScript(self, scriptAssembly, scriptContext, window):
         # type: (self: ScriptEnvironment, scriptAssembly: Assembly, scriptContext: ScriptContext, window: Window)
         """ ExecuteScript(self: ScriptEnvironment, scriptAssembly: Assembly, scriptContext: ScriptContext, window: Window) """
         pass
 
-    @staticmethod  # known case of __new__
+    @staticmethod # known case of __new__
     def __new__(self, appName, scripts, scriptExecutionEngine):
         """ __new__(cls: type, appName: str, scripts: IEnumerable[IApplicationScript], scriptExecutionEngine: Action[Assembly, object, Window, object]) """
         pass
@@ -5460,9 +5434,10 @@ class ScriptEnvironment(object):
     """ Get: VersionInfo(self: ScriptEnvironment) -> str """
 
 
+
 class SearchBodyParameters(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -5472,7 +5447,7 @@ class SearchBodyParameters(SerializableObject, IXmlSerializable):
         """ LoadDefaults(self: SearchBodyParameters) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5482,151 +5457,116 @@ class SearchBodyParameters(SerializableObject, IXmlSerializable):
         """ WriteXml(self: SearchBodyParameters, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
     FillAllCavities = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> bool
-
+    # type: (self: SearchBodyParameters) -> bool
     """
-    Get: FillAllCavities(self: SearchBodyParameters) -> bool
-
-
-
+    Get: FillAllCavities(self: SearchBodyParameters) -> bool
+    
     Set: FillAllCavities(self: SearchBodyParameters) = value
     """
 
     KeepLargestParts = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> bool
-
+    # type: (self: SearchBodyParameters) -> bool
     """
-    Get: KeepLargestParts(self: SearchBodyParameters) -> bool
-
-
-
+    Get: KeepLargestParts(self: SearchBodyParameters) -> bool
+    
     Set: KeepLargestParts(self: SearchBodyParameters) = value
     """
 
     LowerHUThreshold = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> int
-
+    # type: (self: SearchBodyParameters) -> int
     """
-    Get: LowerHUThreshold(self: SearchBodyParameters) -> int
-
-
-
+    Get: LowerHUThreshold(self: SearchBodyParameters) -> int
+    
     Set: LowerHUThreshold(self: SearchBodyParameters) = value
     """
 
     MREdgeThresholdHigh = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> int
-
+    # type: (self: SearchBodyParameters) -> int
     """
-    Get: MREdgeThresholdHigh(self: SearchBodyParameters) -> int
-
-
-
+    Get: MREdgeThresholdHigh(self: SearchBodyParameters) -> int
+    
     Set: MREdgeThresholdHigh(self: SearchBodyParameters) = value
     """
 
     MREdgeThresholdLow = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> int
-
+    # type: (self: SearchBodyParameters) -> int
     """
-    Get: MREdgeThresholdLow(self: SearchBodyParameters) -> int
-
-
-
+    Get: MREdgeThresholdLow(self: SearchBodyParameters) -> int
+    
     Set: MREdgeThresholdLow(self: SearchBodyParameters) = value
     """
 
     NumberOfLargestPartsToKeep = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> int
-
+    # type: (self: SearchBodyParameters) -> int
     """
-    Get: NumberOfLargestPartsToKeep(self: SearchBodyParameters) -> int
-
-
-
+    Get: NumberOfLargestPartsToKeep(self: SearchBodyParameters) -> int
+    
     Set: NumberOfLargestPartsToKeep(self: SearchBodyParameters) = value
     """
 
     PreCloseOpenings = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> bool
-
+    # type: (self: SearchBodyParameters) -> bool
     """
-    Get: PreCloseOpenings(self: SearchBodyParameters) -> bool
-
-
-
+    Get: PreCloseOpenings(self: SearchBodyParameters) -> bool
+    
     Set: PreCloseOpenings(self: SearchBodyParameters) = value
     """
 
     PreCloseOpeningsRadius = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> float
-
+    # type: (self: SearchBodyParameters) -> float
     """
-    Get: PreCloseOpeningsRadius(self: SearchBodyParameters) -> float
-
-
-
+    Get: PreCloseOpeningsRadius(self: SearchBodyParameters) -> float
+    
     Set: PreCloseOpeningsRadius(self: SearchBodyParameters) = value
     """
 
     PreDisconnect = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> bool
-
+    # type: (self: SearchBodyParameters) -> bool
     """
-    Get: PreDisconnect(self: SearchBodyParameters) -> bool
-
-
-
+    Get: PreDisconnect(self: SearchBodyParameters) -> bool
+    
     Set: PreDisconnect(self: SearchBodyParameters) = value
     """
 
     PreDisconnectRadius = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> float
-
+    # type: (self: SearchBodyParameters) -> float
     """
-    Get: PreDisconnectRadius(self: SearchBodyParameters) -> float
-
-
-
+    Get: PreDisconnectRadius(self: SearchBodyParameters) -> float
+    
     Set: PreDisconnectRadius(self: SearchBodyParameters) = value
     """
 
     Smoothing = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> bool
-
+    # type: (self: SearchBodyParameters) -> bool
     """
-    Get: Smoothing(self: SearchBodyParameters) -> bool
-
-
-
+    Get: Smoothing(self: SearchBodyParameters) -> bool
+    
     Set: Smoothing(self: SearchBodyParameters) = value
     """
 
     SmoothingLevel = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: SearchBodyParameters) -> int
-
+    # type: (self: SearchBodyParameters) -> int
     """
-    Get: SmoothingLevel(self: SearchBodyParameters) -> int
-
-
-
+    Get: SmoothingLevel(self: SearchBodyParameters) -> int
+    
     Set: SmoothingLevel(self: SearchBodyParameters) = value
     """
 
 
+
 class SeedCollection(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5636,11 +5576,11 @@ class SeedCollection(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: SeedCollection, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     BrachyFieldReferencePoints = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -5656,6 +5596,7 @@ class SeedCollection(ApiDataObject, IXmlSerializable):
     """ Get: SourcePositions(self: SeedCollection) -> IEnumerable[SourcePosition] """
 
 
+
 class SegmentVolume(SerializableObject, IXmlSerializable):
     # no doc
     def And(self, other):
@@ -5668,7 +5609,7 @@ class SegmentVolume(SerializableObject, IXmlSerializable):
         """ AsymmetricMargin(self: SegmentVolume, margins: AxisAlignedMargins) -> SegmentVolume """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -5688,7 +5629,7 @@ class SegmentVolume(SerializableObject, IXmlSerializable):
         """ Or(self: SegmentVolume, other: SegmentVolume) -> SegmentVolume """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5708,14 +5649,14 @@ class SegmentVolume(SerializableObject, IXmlSerializable):
         """ Xor(self: SegmentVolume, other: SegmentVolume) -> SegmentVolume """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
 
 class Series(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -5725,7 +5666,7 @@ class Series(ApiDataObject, IXmlSerializable):
         """ SetImagingDevice(self: Series, imagingDeviceId: str) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5735,11 +5676,11 @@ class Series(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Series, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     FOR = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -5779,14 +5720,15 @@ class Series(ApiDataObject, IXmlSerializable):
     """ Get: UID(self: Series) -> str """
 
 
+
 class Slot(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5796,11 +5738,11 @@ class Slot(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Slot, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Number = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -5808,14 +5750,15 @@ class Slot(ApiDataObject, IXmlSerializable):
     """ Get: Number(self: Slot) -> int """
 
 
+
 class SourcePosition(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5825,11 +5768,11 @@ class SourcePosition(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: SourcePosition, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     DwellTime = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -5849,14 +5792,15 @@ class SourcePosition(ApiDataObject, IXmlSerializable):
     """ Get: Translation(self: SourcePosition) -> VVector """
 
 
+
 class StandardWedge(Wedge, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -5866,11 +5810,11 @@ class StandardWedge(Wedge, IXmlSerializable):
         """ WriteXml(self: StandardWedge, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
 
@@ -5921,7 +5865,7 @@ class Structure(ApiDataObject, IXmlSerializable):
         """ ConvertToHighResolution(self: Structure) """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -5981,7 +5925,7 @@ class Structure(ApiDataObject, IXmlSerializable):
         """ SetAssignedHU(self: Structure, huValue: float) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -6006,11 +5950,11 @@ class Structure(ApiDataObject, IXmlSerializable):
         """ Xor(self: Structure, other: SegmentVolume) -> SegmentVolume """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     ApprovalHistory = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -6034,13 +5978,10 @@ class Structure(ApiDataObject, IXmlSerializable):
     """ Get: HasSegment(self: Structure) -> bool """
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: Structure) -> str
-
+    # type: (self: Structure) -> str
     """
-    Get: Id(self: Structure) -> str
-
-
-
+    Get: Id(self: Structure) -> str
+    
     Set: Id(self: Structure) = value
     """
 
@@ -6061,13 +6002,10 @@ class Structure(ApiDataObject, IXmlSerializable):
     """ Get: ROINumber(self: Structure) -> int """
 
     SegmentVolume = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: Structure) -> SegmentVolume
-
+    # type: (self: Structure) -> SegmentVolume
     """
-    Get: SegmentVolume(self: Structure) -> SegmentVolume
-
-
-
+    Get: SegmentVolume(self: Structure) -> SegmentVolume
+    
     Set: SegmentVolume(self: Structure) = value
     """
 
@@ -6078,6 +6016,7 @@ class Structure(ApiDataObject, IXmlSerializable):
     Volume = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: Structure) -> float
     """ Get: Volume(self: Structure) -> float """
+
 
 
 class StructureSet(ApiDataObject, IXmlSerializable):
@@ -6112,7 +6051,7 @@ class StructureSet(ApiDataObject, IXmlSerializable):
         """ Delete(self: StructureSet) """
         pass
 
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -6127,7 +6066,7 @@ class StructureSet(ApiDataObject, IXmlSerializable):
         """ RemoveStructure(self: StructureSet, structure: Structure) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -6137,11 +6076,11 @@ class StructureSet(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: StructureSet, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     ApplicationScriptLogs = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -6149,13 +6088,10 @@ class StructureSet(ApiDataObject, IXmlSerializable):
     """ Get: ApplicationScriptLogs(self: StructureSet) -> IEnumerable[ApplicationScriptLog] """
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
-    # type: (self: StructureSet) -> str
-
+    # type: (self: StructureSet) -> str
     """
-    Get: Id(self: StructureSet) -> str
-
-
-
+    Get: Id(self: StructureSet) -> str
+    
     Set: Id(self: StructureSet) = value
     """
 
@@ -6176,14 +6112,15 @@ class StructureSet(ApiDataObject, IXmlSerializable):
     """ Get: UID(self: StructureSet) -> str """
 
 
+
 class Study(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -6193,11 +6130,11 @@ class Study(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Study, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     CreationDateTime = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -6213,14 +6150,15 @@ class Study(ApiDataObject, IXmlSerializable):
     """ Get: UID(self: Study) -> str """
 
 
+
 class Technique(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -6230,11 +6168,11 @@ class Technique(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: Technique, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
 
@@ -6246,11 +6184,9 @@ class TradeoffExplorationContext(object):
         pass
 
     def AddTradeoffObjective(self, *__args):
-        # type: (self: TradeoffExplorationContext, structure: Structure) -> bool
-
+        # type: (self: TradeoffExplorationContext, structure: Structure) -> bool
         """
-        AddTradeoffObjective(self: TradeoffExplorationContext, structure: Structure) -> bool
-
+        AddTradeoffObjective(self: TradeoffExplorationContext, structure: Structure) -> bool
         AddTradeoffObjective(self: TradeoffExplorationContext, objective: OptimizationObjective) -> bool
         """
         pass
@@ -6316,11 +6252,9 @@ class TradeoffExplorationContext(object):
         pass
 
     def RemoveTradeoffObjective(self, *__args):
-        # type: (self: TradeoffExplorationContext, tradeoffObjective: TradeoffObjective) -> bool
-
+        # type: (self: TradeoffExplorationContext, tradeoffObjective: TradeoffObjective) -> bool
         """
-        RemoveTradeoffObjective(self: TradeoffExplorationContext, tradeoffObjective: TradeoffObjective) -> bool
-
+        RemoveTradeoffObjective(self: TradeoffExplorationContext, tradeoffObjective: TradeoffObjective) -> bool
         RemoveTradeoffObjective(self: TradeoffExplorationContext, structure: Structure) -> bool
         """
         pass
@@ -6348,13 +6282,11 @@ class TradeoffExplorationContext(object):
     # type: (self: TradeoffExplorationContext) -> bool
     """ Get: CanLoadSavedPlanCollection(self: TradeoffExplorationContext) -> bool """
 
-    CanUseHybridOptimizationInPlanGeneration = property(lambda self: object(), lambda self, v: None,
-                                                        lambda self: None)  # default
+    CanUseHybridOptimizationInPlanGeneration = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: TradeoffExplorationContext) -> bool
     """ Get: CanUseHybridOptimizationInPlanGeneration(self: TradeoffExplorationContext) -> bool """
 
-    CanUsePlanDoseAsIntermediateDose = property(lambda self: object(), lambda self, v: None,
-                                                lambda self: None)  # default
+    CanUsePlanDoseAsIntermediateDose = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: TradeoffExplorationContext) -> bool
     """ Get: CanUsePlanDoseAsIntermediateDose(self: TradeoffExplorationContext) -> bool """
 
@@ -6383,6 +6315,7 @@ class TradeoffExplorationContext(object):
     """ Get: TradeoffStructureCandidates(self: TradeoffExplorationContext) -> IReadOnlyList[Structure] """
 
 
+
 class TradeoffObjective(object):
     # no doc
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -6398,41 +6331,41 @@ class TradeoffObjective(object):
     """ Get: Structure(self: TradeoffObjective) -> Structure """
 
 
+
 class TradeoffPlanGenerationIntermediateDoseMode(Enum, IComparable, IFormattable, IConvertible):
     # type: (2), NotUsed (0), UsePlanDose (1)
     """ enum TradeoffPlanGenerationIntermediateDoseMode, values: Calculate (2), NotUsed (0), UsePlanDose (1) """
-
-    def __eq__(self, *args):  # cannot find CLR method
+    def __eq__(self, *args): #cannot find CLR method
         """ x.__eq__(y) <==> x==yx.__eq__(y) <==> x==yx.__eq__(y) <==> x==y """
         pass
 
-    def __format__(self, *args):  # cannot find CLR method
+    def __format__(self, *args): #cannot find CLR method
         """ __format__(formattable: IFormattable, format: str) -> str """
         pass
 
-    def __ge__(self, *args):  # cannot find CLR method
+    def __ge__(self, *args): #cannot find CLR method
         pass
 
-    def __gt__(self, *args):  # cannot find CLR method
+    def __gt__(self, *args): #cannot find CLR method
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __le__(self, *args):  # cannot find CLR method
+    def __le__(self, *args): #cannot find CLR method
         pass
 
-    def __lt__(self, *args):  # cannot find CLR method
+    def __lt__(self, *args): #cannot find CLR method
         pass
 
-    def __ne__(self, *args):  # cannot find CLR method
+    def __ne__(self, *args): #cannot find CLR method
         pass
 
-    def __reduce_ex__(self, *args):  # cannot find CLR method
+    def __reduce_ex__(self, *args): #cannot find CLR method
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Calculate = None
@@ -6443,12 +6376,12 @@ class TradeoffPlanGenerationIntermediateDoseMode(Enum, IComparable, IFormattable
 
 class Tray(AddOn, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -6458,22 +6391,22 @@ class Tray(AddOn, IXmlSerializable):
         """ WriteXml(self: Tray, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
 
 class TreatmentPhase(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -6483,11 +6416,11 @@ class TreatmentPhase(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: TreatmentPhase, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     OtherInfo = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -6507,14 +6440,15 @@ class TreatmentPhase(ApiDataObject, IXmlSerializable):
     """ Get: TimeGapType(self: TreatmentPhase) -> str """
 
 
+
 class TreatmentSession(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -6524,11 +6458,11 @@ class TreatmentSession(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: TreatmentSession, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     SessionNumber = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -6540,14 +6474,15 @@ class TreatmentSession(ApiDataObject, IXmlSerializable):
     """ Get: SessionPlans(self: TreatmentSession) -> IEnumerable[PlanTreatmentSession] """
 
 
+
 class TreatmentUnitOperatingLimit(ApiDataObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -6557,11 +6492,11 @@ class TreatmentUnitOperatingLimit(ApiDataObject, IXmlSerializable):
         """ WriteXml(self: TreatmentUnitOperatingLimit, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Label = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
@@ -6585,14 +6520,15 @@ class TreatmentUnitOperatingLimit(ApiDataObject, IXmlSerializable):
     """ Get: UnitString(self: TreatmentUnitOperatingLimit) -> str """
 
 
+
 class TreatmentUnitOperatingLimits(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -6602,7 +6538,7 @@ class TreatmentUnitOperatingLimits(SerializableObject, IXmlSerializable):
         """ WriteXml(self: TreatmentUnitOperatingLimits, writer: XmlWriter) """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
@@ -6621,6 +6557,7 @@ class TreatmentUnitOperatingLimits(SerializableObject, IXmlSerializable):
     PatientSupportAngle = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
     # type: (self: TreatmentUnitOperatingLimits) -> TreatmentUnitOperatingLimit
     """ Get: PatientSupportAngle(self: TreatmentUnitOperatingLimits) -> TreatmentUnitOperatingLimit """
+
 
 
 class TypeBasedIdValidator(object):
@@ -6645,7 +6582,7 @@ class TypeBasedIdValidator(object):
 
 class User(SerializableObject, IXmlSerializable):
     # no doc
-    def EndSerialization(self, *args):  # cannot find CLR method
+    def EndSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject)
         """ EndSerialization(self: SerializableObject) """
         pass
@@ -6660,7 +6597,7 @@ class User(SerializableObject, IXmlSerializable):
         """ GetHashCode(self: User) -> int """
         pass
 
-    def StartSerialization(self, *args):  # cannot find CLR method
+    def StartSerialization(self, *args): #cannot find CLR method
         # type: (self: SerializableObject, typeName: str, typeId: str)
         """ StartSerialization(self: SerializableObject, typeName: str, typeId: str) """
         pass
@@ -6675,18 +6612,18 @@ class User(SerializableObject, IXmlSerializable):
         """ WriteXml(self: User, writer: XmlWriter) """
         pass
 
-    def __eq__(self, *args):  # cannot find CLR method
+    def __eq__(self, *args): #cannot find CLR method
         """ x.__eq__(y) <==> x==y """
         pass
 
-    def __init__(self, *args):  # cannot find CLR method
+    def __init__(self, *args): #cannot find CLR method
         """ x.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signaturex.__init__(...) initializes x; see x.__class__.__doc__ for signature """
         pass
 
-    def __ne__(self, *args):  # cannot find CLR method
+    def __ne__(self, *args): #cannot find CLR method
         pass
 
-    def __str__(self, *args):  # cannot find CLR method
+    def __str__(self, *args): #cannot find CLR method
         pass
 
     Id = property(lambda self: object(), lambda self, v: None, lambda self: None)  # default
