@@ -76,7 +76,7 @@ else:
 # the python
 import numpy as np
 from ctypes import string_at, sizeof, c_int32, c_bool, c_double
-from scipy.ndimage.morphology import binary_dilation
+from scipy.ndimage.morphology import binary_dilation, binary_erosion
 
 from .Lot import Lot
 
@@ -158,7 +158,7 @@ def fill_in_profiles(dose_or_image, profile_fxn, row_buffer, dtype, pre_buffer=N
                 profile_fxn(start_x, stop, row_buffer)
             else:
                 profile_fxn(start_x, stop, pre_buffer)
-                pre_buffer.CopyTo(row_buffer, 0)
+                pre_buffer.CopyTo(row_buffer, 0)  # is this really needed?
 
             # save data
             mask_array[x, y, :] = to_ndarray(row_buffer, dtype)
@@ -169,10 +169,47 @@ def fill_in_profiles(dose_or_image, profile_fxn, row_buffer, dtype, pre_buffer=N
     return mask_array
 
 
-def make_segment_mask_for_grid(structure, dose_or_image):
-    '''returns a 3D numpy.ndarray of bools matching dose or image grid indexed like [z,x,y]'''
+def make_segment_mask_for_grid(structure, dose_or_image, sub_samples = None):
+    '''returns a 3D numpy.ndarray of bools matching dose or image grid indexed like [z,x,y]
+       sub_samples: int, number of samples along each dimension of voxel used to compute partial voxel values (default: None == center of voxel only)
+    '''
     assert dose_or_image is not None, "A dose or image object is required to generate a mask."
-    return make_segment_mask_for_structure(dose_or_image, structure)
+    mask = make_segment_mask_for_structure(dose_or_image, structure)
+    if sub_samples is None:
+        return mask
+    else:
+        assert type(sub_samples) == int, "sub_samples must be an integer"
+        assert sub_samples > 1, "sub_samples must be > 1"
+        # compute fractional voxels at boundary
+
+        mask_dilated = binary_dilation(mask)
+        mask_eroded = binary_erosion(mask)
+        mask_boundary = mask_dilated ^ mask_eroded
+        nsamples = sub_samples**3
+        boundary_idx = np.where(mask_boundary)
+
+        mask_partials = np.zeros_like(mask, dtype=float)
+        xRes, yRes, zRes = dose_or_image.XRes, dose_or_image.YRes, dose_or_image.ZRes
+        
+        for ix, iy, iz in zip(boundary_idx[0],boundary_idx[1],boundary_idx[2]):
+
+            x = dose_or_image.Origin.x + ix * xRes
+            y = dose_or_image.Origin.y + iy * yRes
+            z = dose_or_image.Origin.z + iz * zRes
+
+            f = 0
+            for xf in np.linspace(-0.5*xRes,0.5*xRes,sub_samples):
+                for yf in np.linspace(-0.5*yRes,0.5*yRes,sub_samples):
+                    start = VVector(x + xf, y + yf, z - zRes)
+                    stop  = VVector(x + xf, y + yf, z)
+                    inside = System.Collections.BitArray(sub_samples)
+                    structure.GetSegmentProfile(start, stop, inside)
+                    for b in inside:
+                        if b:
+                            f += 1
+            mask_partials[ix,iy,iz] = f/nsamples
+
+        return mask_partials + mask_eroded
 
 
 def make_segment_mask_for_structure(dose_or_image, structure):
