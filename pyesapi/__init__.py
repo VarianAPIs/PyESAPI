@@ -200,8 +200,8 @@ def make_segment_mask_for_grid(structure, dose_or_image, sub_samples = None):
             f = 0
             for xf in np.linspace(-0.5*xRes,0.5*xRes,sub_samples):
                 for yf in np.linspace(-0.5*yRes,0.5*yRes,sub_samples):
-                    start = VVector(x + xf, y + yf, z - zRes)
-                    stop  = VVector(x + xf, y + yf, z)
+                    start = VVector(x + xf, y + yf, z - 0.5 * zRes)
+                    stop  = VVector(x + xf, y + yf, z + 0.5 * zRes )
                     inside = System.Collections.BitArray(sub_samples)
                     structure.GetSegmentProfile(start, stop, inside)
                     for b in inside:
