@@ -10,7 +10,7 @@ if ESAPI_PATH is not None:
 else:
     # do some soul searching
     rpaths = [os.path.join("esapi", "API"), "ExternalBeam"]
-    versions = ["15.5", "15.6"]
+    versions = ["15.5", "15.6", "16.0", "16.1", "17.0", "18.0"]
     base = os.path.join("Program Files (x86)", "Varian", "RTM")
     drives = ["C:", "D:"]  # Could potentially list local drives, but Eclispe should be on C or D
 
