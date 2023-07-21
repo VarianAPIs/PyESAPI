@@ -13,5 +13,6 @@ setup(
         'numpy',
         'scipy',
         'pythonnet', #  v2.3.0 tested to work with python 3.6
+        'pynetdicom'
     ],
 )
