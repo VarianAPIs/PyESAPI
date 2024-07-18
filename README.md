@@ -1,32 +1,42 @@
 # PyESAPI
-"Pie-Sappy" for research use only.
+"Pi-e-Sappy" for research use only.
 
-A passion project to help accelerate breakthroughs in medical physics research by bringing the power of Python into the Varian API ecosystem.
+A passion project to help accelerate breakthroughs in medical physics research by bringing the power of Python into the Varian API ecosystem. PyESAPI combined with Jupyter Notebook gives you a "command line to Eclipse" allowing you to rapidly prototype you ESAPI scritps or research ideas.
 
-## Quickstart (updated June 16th 2023)
+## Quick Start (updated July 17th 2024)
 
 * Access your Eclipse 15.5 (or later) TBOX desktop
-* Install Python 3.10 or higher from: https://www.python.org/downloads/
-* Optionally install google chrome or chromium browser (for better Jupyter Notebook experience) and set it as your default browser
+* Install Python 3.10 or 3.11 from: https://www.python.org/downloads/
+  * Be sure to check the option to "add python.exe to PATH" (unless you are already managing multiple versions of Python)
+  * Note: The latest versions of Jupyter Notebook supported for Python 3.12 uses [iPython kernel with multi threading enabled](https://github.com/ipython/ipython/issues/13723) which is not compatable with ESAPI)
 * Launch "Command Prompt" by searching in Windows menu
-* Navigate to a directory where you would like to store your first PyEsapi project using the `cd` command
-* (optional) Create and activate a python virtual environment in this location using `python -m venv venv`
+* Navigate to a directory where you would like to store your first PyESAPI project using the `cd` command
 * In the prompt, execute the commands:
   * `pip install https://api.github.com/repos/VarianAPIs/PyESAPI/tarball`
   * `pip install jupyter`
 * Then execute the command `jupyter notebook`
-* Create a new notebook and see below for examples (be sure not to select "root" kernel).
+* Create a new notebook and see below for examples (if you are using a python virtual be sure not to select "root" kernel).
 
 ## Examples
-* [Developer Workshop 2018](examples/DeveloperWorkshop2018/README.md)
+### Jupyter Notebooks (from Developer Workshop 2018)
+  * [Getting Started](http://nbviewer.jupyter.org/github/VarianAPIs/PyESAPI/blob/master/examples/DeveloperWorkshop2018/GettingStarted.ipynb)
+  * [Data Mining](http://nbviewer.jupyter.org/github/VarianAPIs/PyESAPI/blob/master/examples/DeveloperWorkshop2018/DataMining.ipynb)
+  * [10xResearch](http://nbviewer.jupyter.org/github/VarianAPIs/PyESAPI/blob/master/examples/DeveloperWorkshop2018/10xResearch.ipynb)
 * Stand-alone python script: [standalone.py](examples/standalone.py)
 
 ## Upgrading
 * Inside your project directory, execute `pip install https://api.github.com/repos/VarianAPIs/PyESAPI/tarball --upgrade`
   * This will check and upgrade PyESAPI if a newer version is available
 
-# Development
-For those wishing to contribute to PyESAPI
+## Recommended tooling:
+Now that you've had a chance to explore the capabilities of PyESAPI, it's time to get more organized. Below are some recommendations on platforms and software to develop with.
+  * Varian Innovation Center Eclipse Envionrment (or local TBOX)
+  * VisualStudio Code (lighweight IDE)
+  * Google Chrome or Microsoft Edge set as default browser (for better Jupyter Notebook experience)
+  * Git or GitHub Desktop (code repository and open source collaboration)
+
+# Development Notes
+For those wishing to contribute to PyESAPI or use PyESAPI with pre-released local builds of Eclipse.
 
 ## Custom ESAPI DLL path
 Set custom ESAPI_PATH (to DLLs) before import (bypasses production directory path search)
@@ -37,13 +47,10 @@ import pyesapi
 # ...
 ```
 
-## Stub Gen
-To create lintable code and enable code completion (in Visual Studio Code at least) we generate python stubs for ESAPI libs...
+## Stub Gen (experimental/under construction)
+To create lintable code and enable code completion (in Visual Studio Code at least) we can generate python stubs for ESAPI libs using IronPython...
 1. [Download](https://ironpython.net/download/) and install IronPython (2.7.9 tested to work) in default location (C:\Program Files\IronPython 2.7\ipy.exe).
 1. Load ironpython-stubs submodule `git submodule update --init` (ironstubs)
 1. Move to stubgen folder `cd stubgen`
 1. Execute script `stubgen.ps1` (if you hit a Pdb prompt, type continue)
 1. Commit updates to stubs folder
-
-## TODOs
-
