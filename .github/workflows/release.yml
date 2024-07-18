@@ -40,7 +40,4 @@ jobs:
         draft: true
         prerelease: false
         body: |
-          This is an official `${{  github.ref_name }}` release of the **`${{ github.event.repository.name }}`** project.
-          For use on Eclipse versions 16 and up.
-          This software is valid until 365 post release.
-        files: ${{ env.RELEASE_NAME }}-portablePyESAPI.zip
+          This is the official `${{  github.ref_name }}` release of the PyESAPI for use on Eclipse TBOX or VIC environment for Eclipse versions 15.1 and up.

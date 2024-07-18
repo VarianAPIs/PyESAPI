@@ -1,19 +1,21 @@
 # PyESAPI
 "Pi-e-Sappy" for research use only.
 
-A passion project to help accelerate breakthroughs in medical physics research by bringing the power of Python into the Varian API ecosystem. PyESAPI combined with Jupyter Notebook gives you a "command line to Eclipse" allowing you to rapidly prototype you ESAPI scritps or research ideas.
+A passion project to help accelerate breakthroughs in medical physics research by bringing the power of Python into the Varian API ecosystem.
+PyESAPI combined with Jupyter Notebook gives you a "command line to Eclipse" allowing you to rapidly prototype you ESAPI scripts or research ideas.
 
 ## Quick Start (updated July 17th 2024)
 
 * Access your Eclipse 15.5 (or later) TBOX desktop
 * Install Python 3.10 or 3.11 from: https://www.python.org/downloads/
   * Be sure to check the option to "add python.exe to PATH" (unless you are already managing multiple versions of Python)
-  * Note: The latest versions of Jupyter Notebook supported for Python 3.12 uses [iPython kernel with multi threading enabled](https://github.com/ipython/ipython/issues/13723) which is not compatable with ESAPI)
+  * Note: The latest versions of Jupyter Notebook supported for Python 3.12 uses [iPython kernel with multi threading enabled](https://github.com/ipython/ipython/issues/13723) which is not compatible with ESAPI)
 * Launch "Command Prompt" by searching in Windows menu
 * Navigate to a directory where you would like to store your first PyESAPI project using the `cd` command
 * In the prompt, execute the commands:
   * `pip install https://api.github.com/repos/VarianAPIs/PyESAPI/tarball`
   * `pip install jupyter`
+    * This
 * Then execute the command `jupyter notebook`
 * Create a new notebook and see below for examples (if you are using a python virtual be sure not to select "root" kernel).
 
@@ -24,14 +26,17 @@ A passion project to help accelerate breakthroughs in medical physics research b
   * [10xResearch](http://nbviewer.jupyter.org/github/VarianAPIs/PyESAPI/blob/master/examples/DeveloperWorkshop2018/10xResearch.ipynb)
 * Stand-alone python script: [standalone.py](examples/standalone.py)
 
+## Known issues
+PyESAPI is not compatible with vscode-jupyter plugin which uses multithreading. ESAPI only allows for single thread access to objects and functions.
+
 ## Upgrading
 * Inside your project directory, execute `pip install https://api.github.com/repos/VarianAPIs/PyESAPI/tarball --upgrade`
   * This will check and upgrade PyESAPI if a newer version is available
 
 ## Recommended tooling:
 Now that you've had a chance to explore the capabilities of PyESAPI, it's time to get more organized. Below are some recommendations on platforms and software to develop with.
-  * Varian Innovation Center Eclipse Envionrment (or local TBOX)
-  * VisualStudio Code (lighweight IDE)
+  * Varian Innovation Center Eclipse environment (or local TBOX)
+  * VisualStudio Code (lightweight IDE)
   * Google Chrome or Microsoft Edge set as default browser (for better Jupyter Notebook experience)
   * Git or GitHub Desktop (code repository and open source collaboration)
 
