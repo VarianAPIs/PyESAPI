@@ -1,0 +1,46 @@
+name: Release
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'  # like v1.0.0
+jobs:
+  build-dist:
+    name: Package PyESAPI
+    runs-on: windows-latest
+    steps:
+    - name: Update pip
+      run: py -m pip install --upgrade build
+    - name: Build package
+      run: py -m build
+  pypi-publish:
+    name: Upload release to PyPI
+    runs-on: windows-latest
+    needs: build-dist
+    environment:
+      name: pypi
+      url: https://pypi.org/p/<your-pypi-project-name>
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+    steps:
+    # retrieve your distributions here
+    - name: Publish package distributions to TestPyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/
+  github-release:
+    name: Create release in GitHub
+    runs-on: windows-latest
+    steps:
+    - name: Create Release
+      uses: softprops/action-gh-release@v0.1.13
+      with:
+        name: PyESAPI ${{ github.ref_name }}
+        tag_name: ${{ github.ref_name }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        draft: true
+        prerelease: false
+        body: |
+          This is an official `${{  github.ref_name }}` release of the **`${{ github.event.repository.name }}`** project.
+          For use on Eclipse versions 16 and up.
+          This software is valid until 365 post release.
+        files: ${{ env.RELEASE_NAME }}-portablePyESAPI.zip
