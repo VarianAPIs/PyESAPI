@@ -27,7 +27,8 @@ PyESAPI combined with Jupyter Notebook gives you a "command line to Eclipse" all
 * Stand-alone python script: [standalone.py](examples/standalone.py)
 
 ## Known issues
-PyESAPI is not compatible with vscode-jupyter plugin which uses multithreading. ESAPI only allows for single-thread access to objects and functions.
+* PyESAPI is not compatible with vscode-jupyter plugin which uses multithreading. ESAPI only allows for single-thread access to objects and functions.
+* Python 3.12 may require Microsoft Visual C++ 14.0 or greater. If you are using a VIC environment, you can get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
 ## Upgrading
 * Inside your project directory, execute `pip install https://api.github.com/repos/VarianAPIs/PyESAPI/tarball --upgrade`
