@@ -1,8 +1,6 @@
 name: Release
 on:
-  push:
-    tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'  # like v1.0.0
+  pull_request:
 jobs:
   build-dist:
     name: Package PyESAPI
