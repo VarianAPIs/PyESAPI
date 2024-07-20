@@ -16,7 +16,7 @@ PyESAPI combined with Jupyter Notebook gives you a "command line to Eclipse" all
   * `pip install pyesapi`
   * `pip install jupyter`
 * Then execute the command `jupyter notebook`
-* Create a new notebook and see below for examples (if you are using a python virtual be sure not to select "root" kernel).
+* Create a new notebook and see below for examples (if you are using a python virtual environment be sure not to select "root" kernel).
 
 ## Examples
 ### Jupyter Notebooks (from Developer Workshop 2018)
