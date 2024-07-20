@@ -13,7 +13,7 @@ PyESAPI combined with Jupyter Notebook gives you a "command line to Eclipse" all
 * Launch "Command Prompt" by searching in Windows menu
 * Navigate to a directory where you would like to store your first PyESAPI project using the `cd` command
 * In the prompt, execute the commands:
-  * `pip install https://api.github.com/repos/VarianAPIs/PyESAPI/tarball`
+  * `pip install pyesapi`
   * `pip install jupyter`
     * This
 * Then execute the command `jupyter notebook`
