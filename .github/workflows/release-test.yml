@@ -6,7 +6,7 @@ on:
   #     - 'v[0-9]+.[0-9]+.[0-9]+'  # like v1.0.0
 jobs:
   build-dist:
-    name: Package PyESAPI
+    name: Package PyESAPI and Release
     runs-on: windows-latest
     steps:
     - name: Checkout repo
@@ -17,25 +17,11 @@ jobs:
       run: |
         py -m pip install --upgrade build
         py -m build
-  pypi-publish:
-    name: Upload release to PyPI
-    runs-on: ubuntu-latest
-    needs: build-dist
-    environment:
-      name: pypi
-      url: https://test.pypi.org/p/PyESAPI
-    permissions:
-      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
-    steps:
-    - name: Publish package distributions to TestPyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
       with:
-        repository-url: https://test.pypi.org/legacy/
-  github-release:
-    name: Create release in GitHub
-    runs-on: windows-latest
-    needs: [build-dist, pypi-publish]
-    steps:
+        name: dist
+        path: dist
     - name: Create Release
       uses: softprops/action-gh-release@v0.1.13
       with:
@@ -47,3 +33,22 @@ jobs:
         prerelease: false
         body: |
           This is the official `${{  github.ref_name }}` release of the PyESAPI for use on Eclipse TBOX or VIC environment for Eclipse versions 15.1 and up.
+  pypi-publish:
+    name: Upload release to PyPI
+    runs-on: ubuntu-latest
+    needs: build-dist
+    environment:
+      name: pypi
+      url: https://test.pypi.org/p/PyESAPI
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+    steps:
+    - name: Download All Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: dist
+        path: dist
+    - name: Publish package distributions to TestPyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/
