@@ -12,12 +12,14 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
     - name: Update pip
-      run: py -m pip install --upgrade build
+      run: py -m pip install --upgrade pip
     - name: Build package
-      run: py -m build
+      run: |
+        py -m pip install --upgrade build
+        py -m build
   pypi-publish:
     name: Upload release to PyPI
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build-dist
     environment:
       name: pypi
@@ -33,7 +35,7 @@ jobs:
   github-release:
     name: Create release in GitHub
     runs-on: windows-latest
-    needs: build-dist
+    needs: [build-dist, pypi-publish]
     steps:
     - name: Create Release
       uses: softprops/action-gh-release@v0.1.13
