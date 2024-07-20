@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='pyesapi',
-    version='0.2.3',
+    version='0.2.4',
     description='A customized Python interface to Eclipse Scripting API',
     long_description='Leverages the pythonnet project to interface with dotnet CLI to launch a stand-alone instance of ESAPI runtime. Helper functions and classes have been added to return numpy arrays and manage collections (of IEnumerable).',
     author='Michael M. Folkerts',
