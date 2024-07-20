@@ -1,11 +1,16 @@
 name: Release
 on:
   pull_request:
+  # push:
+  #   tags:
+  #     - 'v[0-9]+.[0-9]+.[0-9]+'  # like v1.0.0
 jobs:
   build-dist:
     name: Package PyESAPI
     runs-on: windows-latest
     steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
     - name: Update pip
       run: py -m pip install --upgrade build
     - name: Build package
@@ -16,7 +21,7 @@ jobs:
     needs: build-dist
     environment:
       name: pypi
-      url: https://pypi.org/p/<your-pypi-project-name>
+      url: https://test.pypi.org/p/PyESAPI
     permissions:
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
     steps:
@@ -28,6 +33,7 @@ jobs:
   github-release:
     name: Create release in GitHub
     runs-on: windows-latest
+    needs: build-dist
     steps:
     - name: Create Release
       uses: softprops/action-gh-release@v0.1.13
@@ -36,6 +42,7 @@ jobs:
         tag_name: ${{ github.ref_name }}
         token: ${{ secrets.GITHUB_TOKEN }}
         draft: true
+        files: dist/*
         prerelease: false
         body: |
           This is the official `${{  github.ref_name }}` release of the PyESAPI for use on Eclipse TBOX or VIC environment for Eclipse versions 15.1 and up.
