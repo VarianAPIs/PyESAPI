@@ -5,7 +5,7 @@ setup(
     name='pyesapi',
     version='0.2.3',
     description='A customized Python interface to Eclipse Scripting API',
-    long_description='Leverages the pythonnet project to interface with dotnet CLI in real time. Helper functions and classes have been added to return numpy arrays and manage collections (of IEnumerable).'
+    long_description='Leverages the pythonnet project to interface with dotnet CLI in real time. Helper functions and classes have been added to return numpy arrays and manage collections (of IEnumerable).',
     author='Michael M. Folkerts, PhD at Varian, a Siemens Healthineers Company',
     url='https://github.com/VarianAPIs/PyESAPI',
     author_email='Michael.Folkerts@varian.com',
