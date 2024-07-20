@@ -30,7 +30,7 @@ PyESAPI combined with Jupyter Notebook gives you a "command line to Eclipse" all
 * Python 3.12 may require Microsoft Visual C++ 14.0 or greater. If you are using a VIC environment, you can get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
 ## Upgrading
-* Inside your project directory, execute `pip install https://api.github.com/repos/VarianAPIs/PyESAPI/tarball --upgrade`
+* `pip install --upgrade pysapi`
   * This will check and upgrade PyESAPI if a newer version is available
 
 ## Recommended tooling:
