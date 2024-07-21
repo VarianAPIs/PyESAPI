@@ -1,5 +1,5 @@
-import pyesapi  # pip install git+https://github.com/VarianAPIs/PyESAPI
-
+# pip install pyesapi
+import pyesapi
 def main():
     try:
         app = pyesapi.CustomScriptExecutable.CreateApplication('python_ex')  # script name is used for logging
