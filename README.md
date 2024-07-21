@@ -2,11 +2,11 @@
 "Pi-e-Sappy" for research use only.
 
 A passion project to help accelerate breakthroughs in medical physics research by bringing the power of Python into the Varian API ecosystem.
-PyESAPI combined with Jupyter Notebook gives you a "command line to Eclipse" allowing you to rapidly prototype you ESAPI scripts or research ideas.
+PyESAPI combined with Jupyter Notebook gives you a "command line to Eclipse" allowing you to rapidly prototype your ESAPI scripts or research ideas.
 
 ## Quick Start (updated July 17th 2024)
 
-* Access your Eclipse 15.5 (or later) TBOX desktop
+* Access your Eclipse 15.5 (or later) TBOX desktop or Varian Innovation Center environment
 * Install Python 3.10 or later from: https://www.python.org/downloads/
   * Be sure to check the option to "add python.exe to PATH" (unless you are already managing multiple versions of Python)
   * Note: If you use an older version of Python, your milage may vary.
@@ -16,7 +16,7 @@ PyESAPI combined with Jupyter Notebook gives you a "command line to Eclipse" all
   * `pip install pyesapi`
   * `pip install jupyter`
 * Then execute the command `jupyter notebook`
-* Create a new notebook and see below for examples (if you are using a python virtual environment be sure not to select "root" kernel).
+* Create a new notebook and see below for examples (if you are using a python virtual environment, be sure not to select "root" kernel).
 
 ## Examples
 ### Jupyter Notebooks (from Developer Workshop 2018)
@@ -26,8 +26,9 @@ PyESAPI combined with Jupyter Notebook gives you a "command line to Eclipse" all
 * Stand-alone python script: [standalone.py](examples/standalone.py)
 
 ## Known issues
-* PyESAPI is not compatible with vscode-jupyter plugin which uses multithreading. ESAPI only allows for single-thread access to objects and functions.
+* PyESAPI is not compatible with vscode-jupyter plugin which uses multithreading. ESAPI only allows for single-thread access to objects.
 * Python 3.12 may require Microsoft Visual C++ 14.0 or greater. If you are using a VIC environment, you can get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
+  * Note: anaconda provieds pre-built binaries for popular packages.
 
 ## Upgrading
 * `pip install --upgrade pysapi`
