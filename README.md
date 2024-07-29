@@ -25,6 +25,15 @@ PyESAPI combined with Jupyter Notebook gives you a "command line to Eclipse" all
   * [10xResearch](http://nbviewer.jupyter.org/github/VarianAPIs/PyESAPI/blob/master/examples/DeveloperWorkshop2018/10xResearch.ipynb)
 * Stand-alone python script: [standalone.py](examples/standalone.py)
 
+## Additional Resources
+PyESAPI wraps the official ESAPI interface, so a majority of the guidance on ESAPI caries over.
+* "Online" Help documentation in Eclipse External Beam (under question mark menu in upper right-hand side of the window)
+  * ![image](https://github.com/user-attachments/assets/f749caca-ae32-4e2d-9138-8e3c0eefb8bb)
+
+* [Varian API Book](https://varianapis.github.io/VarianApiBook.pdf) - contributions from the usual suspects
+* [ESAPI Code Samples](https://github.com/VarianAPIs/Varian-Code-Samples) - full ESAPI projects from previous workshops
+* [ESAPI Subreddit](https://www.reddit.com/r/esapi/) - active ESAPI community
+
 ## Known issues
 * PyESAPI is not compatible with vscode-jupyter plugin which uses multithreading. ESAPI only allows for single-thread access to objects.
 * Python 3.12 may require Microsoft Visual C++ 14.0 or greater. If you are using a VIC environment, you can get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
