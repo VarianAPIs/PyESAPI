@@ -16,6 +16,7 @@ setup(
         'numpy',
         'scipy',
         'pythonnet',
-        'pynetdicom'
+        'pynetdicom',
+        'pywin32'
     ],
 )
