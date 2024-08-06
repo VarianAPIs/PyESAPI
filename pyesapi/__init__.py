@@ -73,6 +73,7 @@ else:
     # clr.AddReference('System.Collections')
     clr.AddReference('VMS.TPS.Common.Model.API')
     # clr.AddReference('VMS.TPS.Common.Model')
+    clr.AddReference('VMS.TPS.Common.Model.Types')
 
     # the bad stuff
     import System
