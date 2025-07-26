@@ -63,9 +63,30 @@ import pyesapi
 ```
 
 ## Stub Gen (experimental/under construction)
-To create lintable code and enable code completion (in Visual Studio Code at least) we can generate python stubs for ESAPI libs using IronPython...
+To create lintable code and enable code completion (in Visual Studio Code at least) we can generate python stubs for ESAPI libs using multiple approaches:
+
+### Method 1: IronPython Assembly Introspection (Recommended)
 1. [Download](https://ironpython.net/download/) and install IronPython (2.7.9 tested to work) in default location (C:\Program Files\IronPython 2.7\ipy.exe).
 1. Load ironpython-stubs submodule `git submodule update --init` (ironstubs)
 1. Move to stubgen folder `cd stubgen`
 1. Execute script `stubgen.ps1` (if you hit a Pdb prompt, type continue)
 1. Commit updates to stubs folder
+
+### Method 2: CHM Documentation Extraction
+If you have access to ESAPI CHM help files:
+1. Move to stubgen folder `cd stubgen`  
+1. Run CHM converter: `.\chm_to_stubs.ps1 -ChmPath "C:\Path\To\ESAPI.chm" -OutputDir "chm_stubs"`
+1. Review and integrate generated stubs
+
+See [stubgen/README.md](stubgen/README.md) for detailed instructions.
+
+
+## 2025 Upgrades
+* structures masks
+* intellisense (stubs for v18, at least)
+* HU on CT (non-breaking)
+* ImageGeo to pass into _like functions
+
+## Future
+* support model evaluation
+* fast approx dose

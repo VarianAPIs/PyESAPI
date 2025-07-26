@@ -57,12 +57,10 @@ if typing.TYPE_CHECKING:
     from .stubs.VMS.TPS.Common.Model.API import *
 
     from .stubs import System
-    from .stubs.System.Collections.Generic import Dictionary
+    from .stubs.System import Array, Int32, Double
 
     # for numpy array interfacing
-    # from .stubs.System.Windows import Point
-    from .stubs.System import Array, Int32, Double
-    # from .stubs.System.Runtime.InteropServices import GCHandle, GCHandleType  # TODO: these are missing from type stubs
+    from .stubs.System.Runtime.InteropServices import GCHandle, GCHandleType
 
 else:
     # enforce single thread apartment mode:
